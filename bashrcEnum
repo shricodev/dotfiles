@@ -15,10 +15,10 @@ local LHOST="http://localhost"; gau $1 | gf redirect | qsreplace "$LHOST" | xarg
 
 enum(){
         mkdir $1
-	      cd $1
+	cd $1
         assetfinder -subs-only "$1" | tee -a domains
         cat domains | anew domains.txt
-	      amass enum -brute -active --passive -d "$1" -o domains -config ~/.config/amass/config.ini
+	amass enum -brute -active --passive -d "$1" -o domains -config ~/.config/amass/config.ini
         cat domains | anew domains.txt
         rm domains
         subfinder -silent -d "$1" -o domains
@@ -32,7 +32,7 @@ enum(){
         cat domains.txt | aquatone -out screens -scan-timeout 200 -screenshot-timeout 60000 -ports xlarge
         naabu -silent -iL domains.txt | tee -a portscan.txt
         subjack -w domains.txt -t 100 -timeout 20 -o subjack_out.txt --ssl -c /src/github.com/haccer/subjack/fingerprints.json
-	      nuclei -l hosts.txt -t ~/nuclei-templates/ -markdown-export reports
-	      pluma reports/
-	      for i in $(cat hosts.txt); do ffuf -u $i/FUZZ -w ~/Documents/bugbounty/wordlist/dir.txt -ac -c -e php,txt,asp,html,aspx;done
+	nuclei -l hosts.txt -t ~/nuclei-templates/ -markdown-export reports
+	pluma reports/
+	for i in $(cat hosts.txt); do ffuf -u $i/FUZZ -w ~/Documents/bugbounty/wordlist/dir.txt -ac -c -e php,txt,asp,html,aspx;done
 }
