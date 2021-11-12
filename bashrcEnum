@@ -25,10 +25,10 @@ enum(){
         cat domains | anew domains.txt
         rm domains
         cat domains.txt | httpx -silent | tee -a hosts.txt
-        cd '`pwd`' dirsearch -l hosts.txt -t 20 -x 500 -e asp,aspx,htm,html,gz,tgz,zip,txt,php,pl,tar,action,do --exclude-status=301,400,403,500-999
+        dirsearch -l hosts.txt -t 20 -x 500 -e asp,aspx,htm,html,gz,tgz,zip,txt,php,pl,tar,action,do --exclude-status=301,400,403,500-999
         echo "$1" | git-hound
         kr scan "$1" -A=apiroutes-210228:20000 -x 10 --ignore-length=34
-        cd '`pwd`' && jaeles scan -s ~/.jaeles/ -U hosts.txt
+        jaeles scan -s ~/.jaeles/ -U hosts.txt
         cat domains.txt | aquatone -out screens -scan-timeout 200 -screenshot-timeout 60000 -ports xlarge
         naabu -silent -iL domains.txt | tee -a portscan.txt
         subjack -w domains.txt -t 100 -timeout 20 -o subjack_out.txt --ssl -c /src/github.com/haccer/subjack/fingerprints.json
