@@ -1,0 +1,125 @@
+{
+    "notebook.editorOptionsCustomizations": null,
+    "workbench.startup": "none",
+    "launch": {
+
+        "configurations": [],
+        "compounds": []
+    },
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.tabCompletion": "on",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.smoothScrolling": true,
+    "editor.fontLigatures": true,
+    "prettier.tabWidth": 4,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 20000,
+    "editor.lineHeight": 2,
+    "editor.minimap.enabled": false,
+    "markdown.preview.lineHeight": 5,
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "@",
+            "color": "#ffc0cb",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        }
+    ],
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.mouseWheelZoom": true,
+    "editor.cursorBlinking": "expand",
+    "bracketPairColorizer.depreciation-notice": false,
+    "workbench.editor.restoreViewState": false,
+    "workbench.startupEditor": "none",
+    "code-runner.runInTerminal": true,
+    "editor.fontFamily": "'Fira Code','Source Code Pro', 'Consolas', 'Courier New', monospace",
+    "workbench.colorTheme": "Shades of Purple",
+    "editor.tokenColorCustomizations": {
+        "[Shades of Purple]": {
+            "textMateRules": [
+                {
+                    "scope": [
+                        "comment.block",
+                        "punctuation.definition.comment.end",
+                        "punctuation.definition.comment.begin"
+                    ],
+                    "settings": {
+                        "foreground": "#85b3f8",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": [
+                        "comment.block.documentation",
+                        "punctuation.definition.comment.begin.documentation",
+                        "punctuation.definition.comment.end.documentation"
+                    ],
+                    "settings": {
+                        "foreground": "#6bddb7",
+                        "fontStyle": "bold"
+                    }
+                },{
+                    "scope":["comment.line", "punctuation.definition.comment"],
+                    "settings": {
+                        "foreground": "#8b8040ee",
+                        "fontStyle": "bold"
+                    }
+                }
+            ]
+        }
+    },
+    "files.exclude": {
+        "**.class": true,
+        "**/*.class": true
+    }
+
+}
