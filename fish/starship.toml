@@ -1,6 +1,5 @@
 format = """
 $username\
-$hostname\
 $directory\
 $git_branch\
 $git_status\
@@ -9,7 +8,6 @@ $java\
 $cmd_duration\
 $fill\
 $nodejs\
-$os\
 $time\
 $line_break\
 $character"""
@@ -19,11 +17,6 @@ disabled = false
 
 [username]
 format = '[$user]($style) in '
-
-[os]
-format = "[$symbol]($style) "
-style = "bold white"
-disabled = false
 
 [character]
 success_symbol = "[❯](purple)"
