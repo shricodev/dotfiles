@@ -58,7 +58,7 @@ symbol = " "
 symbol = " "
 
 [directory]
-style = "blue"
+style = "brown yellow"
 read_only = " "
 truncation_length = 4
 truncate_to_repo = false
@@ -79,7 +79,7 @@ symbol = " "
 symbol = " "
 
 [golang]
-symbol = " "
+symbol = "🐹 "
 
 [guix_shell]
 symbol = " "
@@ -115,7 +115,7 @@ symbol = " "
 symbol = " "
 
 [nodejs]
-format = "[$symbol($version )]($style)"
+format = "[⬢](bold green) on"
 
 [os.symbols]
 Alpine = " "
@@ -162,7 +162,7 @@ symbol = " "
 symbol = "🪺 "
 
 [python]
-symbol = " "
+symbol = "🐍"
 
 [rlang]
 symbol = "ﳒ "
@@ -171,7 +171,7 @@ symbol = "ﳒ "
 symbol = " "
 
 [rust]
-symbol = " "
+symbol = "🦀 "
 
 [scala]
 symbol = " "
