@@ -19,7 +19,7 @@ disabled = false
 format = '[$user]($style) in '
 
 [character]
-success_symbol = "[❯](purple)"
+success_symbol = "[❯](bold purple)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
@@ -28,7 +28,7 @@ format = 'took [$duration]($style)'
 style = "bold yellow"
 
 [time]
-format = 'at [$time]($style) '
+format = '[$time]($style) '
 disabled = false
 use_12hr = true
 
@@ -51,10 +51,11 @@ symbol = " "
 symbol = " "
 
 [directory]
-style = "blue"
+style = "bold green"
 read_only = " "
+read_only_style = "yellow"
 truncation_length = 4
-truncate_to_repo = false
+truncate_to_repo = true
 
 [docker_context]
 symbol = " "
@@ -72,7 +73,7 @@ symbol = " "
 symbol = " "
 
 [golang]
-symbol = "🐹 "
+symbol = " "
 
 [guix_shell]
 symbol = " "
@@ -87,7 +88,7 @@ symbol = "⌘ "
 symbol = " "
 
 [java]
-symbol = "☕ "
+symbol = "🍵 "
 
 [julia]
 symbol = " "
@@ -108,7 +109,7 @@ symbol = " "
 symbol = " "
 
 [nodejs]
-format = "[⬢](bold green) on"
+format = "[⬢ ($version )]($style)at "
 
 [os.symbols]
 Alpine = " "
@@ -155,7 +156,7 @@ symbol = " "
 symbol = "🪺 "
 
 [python]
-symbol = "🐍"
+symbol = "🐍 "
 
 [rlang]
 symbol = "ﳒ "
@@ -164,7 +165,7 @@ symbol = "ﳒ "
 symbol = " "
 
 [rust]
-symbol = "🦀 "
+symbol = " "
 
 [scala]
 symbol = " "
