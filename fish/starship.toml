@@ -5,6 +5,7 @@ $git_branch\
 $git_status\
 $python\
 $java\
+$rust\
 $cmd_duration\
 $fill\
 $nodejs\
@@ -38,17 +39,8 @@ symbol = " "
 [aws]
 symbol = "  "
 
-[buf]
-symbol = " "
-
 [c]
 symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
 
 [directory]
 style = "bold green"
@@ -60,12 +52,6 @@ truncate_to_repo = true
 [docker_context]
 symbol = " "
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
 [fossil_branch]
 symbol = " "
 
@@ -75,38 +61,14 @@ symbol = " "
 [golang]
 symbol = " "
 
-[guix_shell]
-symbol = " "
-
-[haskell]
-symbol = " "
-
-[haxe]
-symbol = "⌘ "
-
 [hg_branch]
 symbol = " "
 
 [java]
 symbol = "🍵 "
 
-[julia]
-symbol = " "
-
-[lua]
-symbol = " "
-
 [memory_usage]
 symbol = " "
-
-[meson]
-symbol = "喝 "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
 
 [nodejs]
 format = "[⬢ ($version )]($style)at "
@@ -152,29 +114,8 @@ Windows = " "
 [package]
 symbol = " "
 
-[pijul_channel]
-symbol = "🪺 "
-
 [python]
 symbol = "🐍 "
 
-[rlang]
-symbol = "ﳒ "
-
-[ruby]
-symbol = " "
-
 [rust]
 symbol = " "
-
-[scala]
-symbol = " "
-
-[spack]
-symbol = "🅢 "
-
-[jobs]
-symbol = ""
-style = "bold red"
-number_threshold = 1
-format = "[$symbol]($style)"
