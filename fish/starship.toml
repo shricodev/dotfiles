@@ -3,13 +3,14 @@ $username\
 $directory\
 $git_branch\
 $git_status\
+$package\
 $python\
 $java\
 $rust\
-$cmd_duration\
-$fill\
+$golang\
+$docker_context\
 $nodejs\
-$time\
+$cmd_duration\
 $line_break\
 $character"""
 
@@ -19,103 +20,33 @@ disabled = false
 [username]
 format = '[$user]($style) in '
 
+[java]
+style = "bold yellow"
+
 [character]
 success_symbol = "[❯](bold purple)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
 [cmd_duration]
-format = 'took [$duration]($style)'
+format = 'took [$duration]($style) '
 style = "bold yellow"
 
-[time]
-format = '[$time]($style) '
-disabled = false
-use_12hr = true
-
-[fill]
-symbol = " "
-
-[aws]
-symbol = "  "
-
-[c]
-symbol = " "
-
 [directory]
-style = "bold green"
+style = "bold blue"
 read_only = " "
 read_only_style = "yellow"
 truncation_length = 4
 truncate_to_repo = true
 
-[docker_context]
-symbol = " "
-
-[fossil_branch]
-symbol = " "
-
 [git_branch]
 symbol = " "
-
-[golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = "🍵 "
 
 [memory_usage]
 symbol = " "
 
 [nodejs]
-format = "[⬢ ($version )]($style)at "
-
-[os.symbols]
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "﯑ "
-Gentoo = " "
-HardenedBSD = "ﲊ "
-Illumos = " "
-Linux = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = " "
-openSUSE = " "
-OracleLinux = " "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = " "
-Solus = "ﴱ "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = " "
-
-[package]
-symbol = " "
-
-[python]
-symbol = "🐍 "
+symbol = "⬢ "
 
 [rust]
 symbol = " "
