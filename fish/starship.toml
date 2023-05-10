@@ -15,7 +15,11 @@ $line_break\
 $character"""
 
 [git_status]
-disabled = false
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+staged = '[++\($count\)](green)'
+deleted = '🗑️'
 
 [username]
 format = '[$user]($style) in '
@@ -41,9 +45,6 @@ truncate_to_repo = true
 
 [git_branch]
 symbol = " "
-
-[memory_usage]
-symbol = " "
 
 [nodejs]
 symbol = "⬢ "
