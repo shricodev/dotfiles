@@ -1,4 +1,3 @@
-# Configs
-Private repo containing my api keys and config files
+# dotfiles
 
-[comment]: APTx1337.github.io
+Repository for my dotfiles.
