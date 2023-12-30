@@ -18,10 +18,6 @@
     "command": "workbench.action.toggleActivityBarVisibility"
   },
   {
-    "key": "alt+n",
-    "command": "workbench.action.toggleSidebarVisibility"
-  },
-  {
     "key": "ctrl+b",
     "command": "-workbench.action.toggleSidebarVisibility"
   },
@@ -189,10 +185,6 @@
   },
   {
     "key": "ctrl+p",
-    "command": "workbench.action.quickOpen"
-  },
-  {
-    "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
   },
   {
@@ -244,5 +236,29 @@
     "key": "shift+alt+o",
     "command": "-editor.action.organizeImports",
     "when": "textInputFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "- =",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
   }
 ]
