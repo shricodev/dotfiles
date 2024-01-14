@@ -411,7 +411,7 @@
     "workbench.editor.enablePreview": false,
     "workbench.colorTheme": "One Dark Pro Mix",
     "whichkey.sortOrder": "alphabetically",
-    "whichkey.delay": 1000,
+    "whichkey.delay": 300,
     "whichkey.bindings": [
       {
         "key": "w",
