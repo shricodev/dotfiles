@@ -192,6 +192,10 @@
     "command": "-workbench.action.closeActiveEditor"
   },
   {
+    "key": "ctrl+shift+f",
+    "command": "workbench.action.closeWindow"
+  },
+  {
     "key": "ctrl+shift+end",
     "command": "-cursorBottomSelect",
     "when": "textInputFocus"
@@ -401,11 +405,6 @@
     "when": "editorTextFocus && neovim.ctrlKeysInsert && !neovim.recording && neovim.mode == 'insert'"
   },
   {
-    "key": "alt+j",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
-  },
-  {
     "key": "ctrl+shift+t",
     "command": "workbench.action.togglePanel"
   },
@@ -436,6 +435,11 @@
   {
     "key": "space",
     "command": "whichkey.show",
-    "when": "neovim.mode != 'insert' && !textInputFocus"
+    "when": "neovim.mode != 'insert' && editorTextFocus"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "workbench.action.toggleMaximizedPanel"
   }
 ]
+
