@@ -44,6 +44,20 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/plugins<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
+-- Setup the basic lsp-config keybinds
+-- Setup some keybindings for code actions.
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+
+-- Setup the keybindings for neo-tree
+vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
+vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>")
+
+-- Setup the keybindings for the none-ls
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
 	[[

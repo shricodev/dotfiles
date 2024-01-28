@@ -20,7 +20,5 @@ return {
 				width = 24,
 			},
 		})
-		vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
-		vim.keymap.set("n", "<C-b>", ":Neotree toggle<CR>")
 	end,
 }
