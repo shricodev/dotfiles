@@ -8,55 +8,91 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- Move the selected text up and down, with J and K key.
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move the selected block of code down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the selected block of code up" })
 
 -- Move text
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join the current line with below line with space as the delimeter" })
 
 -- Move in the file half the screen.
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Move in the file down half the screen" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move in the file up half the screen" })
 
 -- Search the file while keeping the search term in the center of the file.
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "n", "nzzzv", { desc = "Search the next occurance keeping the word in center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Search the previous occurance keeping thhe word in center" })
 
 -- Paste hack
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste the text while keeping it intact" })
 
 -- Switch between different projects
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Quick Fix list
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", {desc = "Navigate to next quick fix"})
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", {desc = "Navigate to prev quick fix"})
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", {desc = "Navigate to next location list"})
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", {desc = "Navigate to prev location list"})
 
 -- Change an occurance of a word in the entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set(
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Change an occurance of the word in the file" }
+)
 
 -- Make a file executable right from the editor.
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>x",
+	"<cmd>!chmod +x %<CR>",
+	{ silent = true, desc = "Make a file executable right from the editor" }
+)
 
 -- Shortcut to open the config folder
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/plugins<CR>");
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set(
+	"n",
+	"<leader>vpp",
+	"<cmd>e ~/.config/nvim/lua/plugins<CR>",
+	{ desc = "Open the NVIM config lua plugins folder" }
+)
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "make_it_run script" })
 
 -- Setup the basic lsp-config keybinds
 -- Setup some keybindings for code actions.
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to the word definition" })
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Go to the code reference" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "View all the code actions" })
 
 -- Setup the keybindings for neo-tree
 vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
-vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>")
+vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file" })
+
+-- Setup the keybinds for the Harpoon plugin
+vim.keymap.set(
+	"n",
+	"<leader>hm",
+	"<cmd>lua require('harpoon.mark').add_file()<CR>",
+	{ desc = "Mark file with harpoon" }
+)
+vim.keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", { desc = "Go to next harpoon mark" })
+vim.keymap.set(
+	"n",
+	"<leader>hp",
+	"<cmd>lua require('harpoon.ui').nav_prev()<CR>",
+	{ desc = "Go to previous harpoon mark" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>hv",
+	":Telescope harpoon marks<CR>",
+	{ desc = "View all the harpoon marked lines and files" }
+)
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(

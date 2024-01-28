@@ -19,7 +19,9 @@ return {
 			-- Setup the keybindings for the telescope plugin.
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+
 			require("telescope").load_extension("ui-select")
+			require("telescope").load_extension("harpoon")
 		end,
 	},
 }
