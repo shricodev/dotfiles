@@ -14,7 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 -- EO lazy.nvim setup
 
 require("vim-options")
-require("lazy").setup("plugins", {
+require("lazy").setup({
+  { import = "plugins" },
+  { import = "plugins.lsp" },
+}, {
   checker = {
     enabled = true,
     notify = false,
