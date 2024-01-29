@@ -17,7 +17,7 @@ vim.opt.wrap = false -- disable line wrapping
 vim.opt.ignorecase = true -- ignore case when searching
 vim.opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
--- vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- backspace
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
@@ -81,7 +81,7 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Navigate to prev 
 -- Change an occurance of a word in the entire file
 vim.keymap.set(
   "n",
-  "<leader>s",
+  "<leader>sw",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Change an occurance of the word in the file" }
 )
@@ -106,9 +106,6 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { d
 -- Setup the basic lsp-config keybinds
 -- Setup some keybindings for code actions.
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to the word definition" })
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Go to the code reference" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "View all the code actions" })
 
 -- Setup the keybindings for neo-tree
 vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
