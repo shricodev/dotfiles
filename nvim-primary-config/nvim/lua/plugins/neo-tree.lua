@@ -18,6 +18,10 @@ return {
       window = {
         position = "left",
         width = 24,
+        mappings = {
+          ["h"] = "toggle_node",
+          ["l"] = "open",
+        },
       },
     })
   end,
