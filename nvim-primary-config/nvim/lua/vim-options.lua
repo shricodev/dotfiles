@@ -1,10 +1,39 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
 
+-- tabs & indentation
+vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
+vim.opt.shiftwidth = 2 -- 2 spaces for indent width
+vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line when starting new one
+
+-- show number in current line and show relative number to all other lines
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+-- line wrapping
+vim.opt.wrap = false -- disable line wrapping
+
+-- search settings
+vim.opt.ignorecase = true -- ignore case when searching
+vim.opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+
+-- vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+
+-- backspace
+vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+
+-- clipboard
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+
+-- split windows
+vim.opt.splitright = true -- split vertical window to the right
+vim.opt.splitbelow = true -- split horizontal window to the bottom
+
+-- turn off swapfile
+vim.opt.swapfile = false
+
+-- cursor line
+vim.opt.cursorline = true -- highlight the current cursor line
 
 -- use jk to exit insert mode
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
