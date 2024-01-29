@@ -29,10 +29,10 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste the text while keepin
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Quick Fix list
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", {desc = "Navigate to next quick fix"})
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", {desc = "Navigate to prev quick fix"})
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", {desc = "Navigate to next location list"})
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", {desc = "Navigate to prev location list"})
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Navigate to next quick fix" })
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Navigate to prev quick fix" })
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Navigate to next location list" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Navigate to prev location list" })
 
 -- Change an occurance of a word in the entire file
 vim.keymap.set(
@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Go to the co
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "View all the code actions" })
 
 -- Setup the keybindings for neo-tree
-vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
+vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
@@ -93,6 +93,10 @@ vim.keymap.set(
 	":Telescope harpoon marks<CR>",
 	{ desc = "View all the harpoon marked lines and files" }
 )
+
+-- Setup the keybinding for the auto-session plugin
+vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
+vim.keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for current working directory" }) -- save workspace session for current working directory
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
