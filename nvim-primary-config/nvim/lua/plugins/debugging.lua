@@ -4,8 +4,8 @@ return {
 		"rcarriga/nvim-dap-ui",
 	},
 	config = function()
-    require("dapui").setup()
-    -- TODO: REQUIRE AND SETUP LANGUAGE SPECIFIC DEBUGGER HERE... 
+		require("dapui").setup()
+		-- TODO: REQUIRE AND SETUP LANGUAGE SPECIFIC DEBUGGER HERE...
 		local dap, dapui = require("dap"), require("dapui")
 
 		dap.listeners.before.attach.dapui_config = function()
