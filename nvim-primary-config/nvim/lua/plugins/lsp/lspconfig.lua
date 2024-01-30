@@ -137,6 +137,19 @@ return {
       on_attach = on_attach,
     })
 
+    -- configure golang server
+    lspconfig["gopls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "go", "gomod", "gowork", "gotmpl" },
+      settings = {
+        gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+        },
+      },
+    })
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
