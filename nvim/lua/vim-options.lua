@@ -115,8 +115,7 @@ vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
--- I am using the conform.nvim to format the files. so use this only when not using the plugin.
--- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file" })
 
 -- Setup the keybinds for the Harpoon plugin
 vim.keymap.set(
@@ -139,7 +138,7 @@ vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore s
 vim.keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for current working directory" }) -- save workspace session for current working directory
 
 -- Setup the gitsigns plugins
-vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
+vim.keymap.set("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
 vim.keymap.set(
   "n",
   "<leader>gt",
