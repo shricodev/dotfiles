@@ -1,9 +1,9 @@
 vim.g.mapleader = " "
 
 -- tabs & indentation
-vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-vim.opt.shiftwidth = 2 -- 2 spaces for indent width
-vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
+vim.opt.shiftwidth = 2    -- 2 spaces for indent width
+vim.opt.expandtab = true  -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 
 -- show number in current line and show relative number to all other lines
@@ -17,8 +17,8 @@ vim.opt.wrap = false -- disable line wrapping
 -- set guicursor=n-v-c-i:block
 
 -- search settings
-vim.opt.ignorecase = true -- ignore case when searching
-vim.opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+vim.opt.ignorecase = true  -- ignore case when searching
+vim.opt.smartcase = true   -- if you include mixed case in your search, assumes you want case-sensitive
 
 vim.opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
@@ -49,9 +49,9 @@ vim.keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- incr
 vim.keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
 
 -- window management
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })     -- split window vertically
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })   -- split window horizontally
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })      -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
 -- Move the selected text up and down, with J and K key.
@@ -131,16 +131,20 @@ vim.keymap.set(
   "<cmd>lua require('harpoon.ui').nav_prev()<CR>",
   { desc = "Go to previous harpoon mark" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>hv",
-  ":Telescope harpoon marks<CR>",
-  { desc = "View all the harpoon marked lines and files" }
-)
+vim.keymap.set("n", "<leader>hv", ":Telescope harpoon marks<CR>", { desc = "View all the harpoon marked files" })
 
 -- Setup the keybinding for the auto-session plugin
-vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
+vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" })                 -- restore last workspace session for current directory
 vim.keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for current working directory" }) -- save workspace session for current working directory
+
+-- Setup the gitsigns plugins
+vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
+vim.keymap.set(
+  "n",
+  "<leader>gt",
+  ":Gitsigns toggle_current_line_blame<CR>",
+  { desc = "Toggle the current line git blame" }
+)
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(

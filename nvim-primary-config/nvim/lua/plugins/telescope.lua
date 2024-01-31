@@ -36,6 +36,7 @@ return {
       vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
       vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
       vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+
       require("telescope").load_extension("harpoon")
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("ui-select")
