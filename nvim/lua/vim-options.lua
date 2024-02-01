@@ -115,7 +115,7 @@ vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file with the LSP Server" })
 
 -- Setup the keybinds for the Harpoon plugin
 vim.keymap.set(
@@ -145,6 +145,15 @@ vim.keymap.set(
   ":Gitsigns toggle_current_line_blame<CR>",
   { desc = "Toggle the current line git blame" }
 )
+
+-- Setup the keybinds for vim-fugitive.
+vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>")
+vim.keymap.set("n", "<leader>gq", "<cmd>G<CR><cmd>q<CR>")
+vim.keymap.set("n", "<leader>gw", "<cmd>GWrite<CR>")
+vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>")
+vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>")
+vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
+vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>")
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
