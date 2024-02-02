@@ -111,7 +111,7 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { d
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
 
 -- Setup the keybindings for neo-tree
-vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
+vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>", { desc = "Focus on the explorer" })
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
@@ -120,7 +120,6 @@ vim.keymap.set("n", "<leader>f", function()
     filter = function(client)
       return client.name == "null-ls"
     end,
-    async = true,
   })
 end, { desc = "Format buffer with null-ls" })
 
@@ -162,6 +161,9 @@ vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>")
 vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
 vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>")
 
+-- Setup the keybindings for the bufferline plugin
+vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>")
+
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
   [[
@@ -173,3 +175,5 @@ vim.api.nvim_exec(
 ]],
   false
 )
+
+vim.opt.termguicolors = true
