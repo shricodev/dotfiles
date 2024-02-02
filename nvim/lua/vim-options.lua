@@ -115,7 +115,14 @@ vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>")
 vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
 
 -- Setup the keybindings for the none-ls
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format the file with the LSP Server" })
+vim.keymap.set("n", "<leader>f", function()
+  vim.lsp.buf.format({
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    async = true,
+  })
+end, { desc = "Format buffer with null-ls" })
 
 -- Setup the keybinds for the Harpoon plugin
 vim.keymap.set(
