@@ -162,7 +162,7 @@ vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
 vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>")
 
 -- Setup the keybindings for the bufferline plugin
-vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>")
+vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
