@@ -65,6 +65,7 @@ return {
                   --  only use null-ls for formatting instead of lsp server
                   return client.name == "null-ls"
                 end,
+                async = true,
                 bufnr = bufnr,
               })
             end,
