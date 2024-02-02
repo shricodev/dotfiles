@@ -24,7 +24,7 @@ return {
     })
 
     -- Setup the keybinding for the toggle-terminal plugin.
-    vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", { desc = "Open a floating terminal." })
-    vim.keymap.set("n", "<leader>tf", toggle_float, { desc = "Open a split terminal below." })
+    vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", { desc = "Open a split terminal below" })
+    vim.keymap.set("n", "<leader>tf", toggle_float, { desc = "Open a floating terminal" })
   end,
 }
