@@ -16,6 +16,7 @@ return {
     -- enable mason and configure icons
     mason.setup({
       ui = {
+        border = "rounded",
         icons = {
           package_installed = "✓",
           package_pending = "➜",
@@ -31,12 +32,12 @@ return {
         "html",
         "cssls",
         "tailwindcss",
-        "svelte",
+        -- "svelte",
         "gopls",
         "lua_ls",
-        "graphql",
+        -- "graphql",
         "emmet_ls",
-        "prismals",
+        -- "prismals",
         "pyright",
       },
       -- auto-install configured servers (with lspconfig)
@@ -51,7 +52,6 @@ return {
         "black", -- python formatter
         "pylint", -- python linter
         "eslint_d", -- js linter
-        -- "gopls", -- go formatter
         -- add other formatter in the future.
       },
     })
