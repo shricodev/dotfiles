@@ -61,6 +61,30 @@ return {
 
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
+    -- Specify how the border looks like
+    local border = {
+      { "┌", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "┐", "FloatBorder" },
+      { "│", "FloatBorder" },
+      { "┘", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "└", "FloatBorder" },
+      { "│", "FloatBorder" },
+    }
+
+    -- setup borders in the diagnostic window.
+    vim.diagnostic.config({
+      float = {
+        border = border,
+      },
+    })
+
+    -- Add the border on hover and on signature help popup window
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
@@ -74,29 +98,34 @@ return {
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure typescript server with plugin
     lspconfig["tsserver"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure css server
     lspconfig["cssls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure tailwindcss server
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure svelte server
     -- lspconfig["svelte"].setup({
     --   capabilities = capabilities,
+    --   handlers = handlers,
     --   on_attach = function(client, bufnr)
     --     on_attach(client, bufnr)
     --
@@ -115,12 +144,14 @@ return {
     lspconfig["prismals"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure graphql language server
     lspconfig["graphql"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
     })
 
@@ -128,6 +159,7 @@ return {
     lspconfig["emmet_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
     })
 
@@ -135,12 +167,14 @@ return {
     lspconfig["pyright"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
     })
 
     -- configure golang server
     lspconfig["gopls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       filetypes = { "go", "gomod", "gowork", "gotmpl" },
       settings = {
         gopls = {
@@ -154,6 +188,7 @@ return {
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global
