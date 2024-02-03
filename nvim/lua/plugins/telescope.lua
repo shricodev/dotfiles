@@ -7,7 +7,7 @@ return {
     tag = "0.1.5",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
@@ -40,6 +40,7 @@ return {
       require("telescope").load_extension("harpoon")
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("ui-select")
+      -- require("telescope").load_extension("project_nvim")
     end,
   },
 }

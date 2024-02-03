@@ -72,8 +72,13 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Search the previous occurance keepin
 -- Paste hack
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste the text while keeping it intact" })
 
--- Switch between different projects
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- Switch between projects
+vim.keymap.set(
+  "n",
+  "<C-p>",
+  ":lua require('telescope').extensions.projects.projects()<CR>",
+  { noremap = true, silent = true, desc = "Switch between multiple projects" }
+)
 
 -- Quick Fix list
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Navigate to next quick fix" })
@@ -111,8 +116,8 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { d
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
 
 -- Setup the keybindings for neo-tree
-vim.keymap.set("n", "<leader>ee", ":Neotree filesystem reveal left<CR>", { desc = "Focus on the explorer" })
-vim.keymap.set("n", "<leader>b", ":Neotree toggle<CR>", { desc = "Toggle NeoTree explorer" })
+vim.keymap.set("n", "<leader>ee", ":NvimTreeFocus<CR>", { desc = "Focus on the NvimTree explorer" })
+vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", { desc = "Toggle NvimTree explorer" })
 
 -- Setup the keybindings for the none-ls
 vim.keymap.set("n", "<leader>f", function()
@@ -153,13 +158,13 @@ vim.keymap.set(
 )
 
 -- Setup the keybinds for vim-fugitive.
-vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>")
-vim.keymap.set("n", "<leader>gq", "<cmd>G<CR><cmd>q<CR>")
-vim.keymap.set("n", "<leader>gw", "<cmd>GWrite<CR>")
-vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>")
-vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>")
-vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>")
-vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>")
+vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>", { desc = "Open the git status" })
+vim.keymap.set("n", "<leader>gq", "<cmd>G<CR><cmd>q<CR>", { desc = "Close the open git status" })
+vim.keymap.set("n", "<leader>gw", "<cmd>Gwrite<CR>", { desc = "Write and stage the changes" })
+vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>", { desc = "Gread" })
+vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>", { desc = "diffget //2 (get the diff from left)" })
+vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>", { desc = "diffget //3 (get the diff from right)" })
+vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Push the changes to the remote" })
 
 -- Setup the keybindings for the bufferline plugin
 vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
