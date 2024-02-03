@@ -26,6 +26,7 @@ return {
               last_three_paths = last_three_paths .. "/" .. path_components[i]
             end
 
+            last_three_paths = string.gsub(last_three_paths, "^//", "/")
             return last_three_paths
           end,
           highlight = "Directory",
