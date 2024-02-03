@@ -1,6 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  event = "VeryLazy",
   config = function()
     local toggle_float = function()
       local Terminal = require("toggleterm.terminal").Terminal

@@ -18,11 +18,18 @@ require("lazy").setup({
   { import = "plugins" },
   { import = "plugins.lsp" },
 }, {
+  install = {
+    colorscheme = { "catppuccin", "default" },
+  },
   checker = {
     enabled = true,
     notify = false,
   },
   change_detection = {
     notify = false,
+    enabled = true,
+  },
+  ui = {
+    border = "rounded",
   },
 })
