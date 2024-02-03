@@ -21,6 +21,16 @@ return {
       start_in_insert = true,
       persist_size = true,
       direction = "horizontal",
+      insert_mappings = true,
+      close_on_exit = true,
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
     })
 
     -- Setup the keybinding for the toggle-terminal plugin.

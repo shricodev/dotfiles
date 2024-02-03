@@ -19,7 +19,10 @@ return {
         "stylua", -- lua formatter
         "black", -- python formatter
         "pylint", -- python linter
+        "isort", -- python imports sort
         "eslint_d", -- js linter
+        "gofumpt", -- go formatter
+        "goimports_reviser", -- go imports sort
       },
     })
 
@@ -43,6 +46,8 @@ return {
         }), -- js/ts formatter
         formatting.stylua, -- lua formatter
         formatting.isort,
+        formatting.gofumpt,
+        formatting.goimports_reviser,
         formatting.black,
         diagnostics.pylint,
         diagnostics.eslint_d.with({ -- js/ts linter
