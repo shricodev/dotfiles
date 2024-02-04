@@ -1,6 +1,9 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  event = "VeryLazy",
+  keys = {
+    { "<leader>b", ":NvimTreeToggle<CR>", desc = "Toggle the Nvim-Tree explorer" },
+    { "<leader>ee", ":NvimTreeFocus<CR>", desc = "Focus on the explorer" },
+  },
   config = function()
     local function my_on_attach(bufnr)
       local api = require("nvim-tree.api")

@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
+  event = { "BufReadPre", "BufWritePre" },
   dependencies = {
     "rcarriga/nvim-dap-ui",
   },
@@ -20,10 +21,5 @@ return {
     dap.listeners.before.event_exited.dapui_config = function()
       dapui.close()
     end
-
-    vim.keymap.set("n", "<Leader>dt", ":DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-    vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "Continue Breakpoint" })
-    vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "Terminate the debugger" })
-    vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "Step Over the breakpoint" })
   end,
 }

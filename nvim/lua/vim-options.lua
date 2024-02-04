@@ -109,15 +109,11 @@ vim.keymap.set(
   "<cmd>e ~/.config/nvim/lua/plugins<CR>",
   { desc = "Open the NVIM config lua plugins folder" }
 )
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "make_it_run script" })
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "make_it_rain script" })
 
 -- Setup the basic lsp-config keybinds
 -- Setup some keybindings for code actions.
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
-
--- Setup the keybindings for neo-tree
-vim.keymap.set("n", "<leader>ee", ":NvimTreeFocus<CR>", { desc = "Focus on the NvimTree explorer" })
-vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", { desc = "Toggle NvimTree explorer" })
 
 -- Setup the keybindings for the none-ls
 vim.keymap.set("n", "<leader>f", function()
@@ -157,14 +153,11 @@ vim.keymap.set(
   { desc = "Toggle the current line git blame" }
 )
 
--- Setup the keybinds for vim-fugitive.
-vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>", { desc = "Open the git status" })
-vim.keymap.set("n", "<leader>gq", "<cmd>G<CR><cmd>q<CR>", { desc = "Close the open git status" })
-vim.keymap.set("n", "<leader>gw", "<cmd>Gwrite<CR>", { desc = "Write and stage the changes" })
-vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>", { desc = "Gread" })
-vim.keymap.set("n", "<leader>gh", "<cmd>diffget //2<CR>", { desc = "diffget //2 (get the diff from left)" })
-vim.keymap.set("n", "<leader>gl", "<cmd>diffget //3<CR>", { desc = "diffget //3 (get the diff from right)" })
-vim.keymap.set("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Push the changes to the remote" })
+-- Setup the keybindings for the nvim dap plugin
+vim.keymap.set("n", "<Leader>dt", ":DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
+vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "Continue Breakpoint" })
+vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "Terminate the debugger" })
+vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "Step Over the breakpoint" })
 
 -- Setup the keybindings for the bufferline plugin
 vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
