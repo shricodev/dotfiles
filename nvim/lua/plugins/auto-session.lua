@@ -1,6 +1,6 @@
 return {
   "rmagatti/auto-session",
-  lazy = true,
+  event = "VeryLazy",
   config = function()
     local auto_session = require("auto-session")
     auto_session.setup({
