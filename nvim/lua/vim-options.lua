@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- tabs & indentation
 vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
@@ -10,11 +11,17 @@ vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- change the updatetime property to 50ms
+vim.opt.updatetime = 50
+
 -- line wrapping
 vim.opt.wrap = false -- disable line wrapping
 
--- setup the cursor to block in all the modes
--- set guicursor=n-v-c-i:block
+vim.opt.termguicolors = true
+vim.opt.background = "dark" -- colorschemes that can be light or dark will be made dark
+
+-- always keep min 8 lines above and below the cursor
+vim.opt.scrolloff = 8
 
 -- search settings
 vim.opt.ignorecase = true -- ignore case when searching
@@ -161,6 +168,15 @@ vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "Step Over the br
 
 -- Setup the keybindings for the bufferline plugin
 vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
+
+vim.opt.guicursor = {
+  "n-v-c:block", -- Normal, visual, command-line: block cursor
+  "i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+  "r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
+  "o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
+  "a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
+  "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
+}
 
 -- Setup the clipboard to work globally
 vim.api.nvim_exec(
