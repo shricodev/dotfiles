@@ -33,6 +33,13 @@ return {
 
       -- Setup the keybindings for the telescope plugin.
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in the cwd" })
+      -- This is to also view the .env sort of files in the telescope find files ui
+      vim.keymap.set(
+        "n",
+        "<leader>faf",
+        "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
+        { desc = "Fuzzy find files in the cwd" }
+      )
       vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string in cwd" })
       vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
       vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })

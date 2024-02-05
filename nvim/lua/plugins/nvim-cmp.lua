@@ -115,11 +115,10 @@ return {
       }),
       -- use these symbols for the border in the suggestion.
       window = {
-        completion = {
-          border = "rounded",
-          scrollbar = false,
+        completion = cmp.config.window.bordered(),
+        documentation = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
         },
-        documentation = cmp.config.window.bordered(),
       },
       experimental = {
         ghost_text = false,
