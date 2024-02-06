@@ -190,7 +190,7 @@ return {
       renderer = {
         add_trailing = false,
         group_empty = false,
-        highlight_git = false,
+        highlight_git = true,
         full_name = false,
         highlight_opened_files = "none",
         root_folder_label = ":t",
