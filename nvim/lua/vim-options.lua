@@ -74,7 +74,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move in the file up half the s
 
 -- Search the file while keeping the search term in the center of the file.
 vim.keymap.set("n", "n", "nzzzv", { desc = "Search the next occurance keeping the word in center" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Search the previous occurance keeping thhe word in center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Search the previous occurance keeping the word in center" })
 
 -- Paste hack
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste the text while keeping it intact" })
@@ -116,7 +116,6 @@ vim.keymap.set(
   "<cmd>e ~/.config/nvim/lua/plugins<CR>",
   { desc = "Open the NVIM config lua plugins folder" }
 )
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = "make_it_rain script" })
 
 -- Setup the basic lsp-config keybinds
 -- Setup some keybindings for code actions.
@@ -131,26 +130,6 @@ vim.keymap.set("n", "<leader>f", function()
   })
 end, { desc = "Format buffer with null-ls" })
 
--- Setup the keybinds for the Harpoon plugin
-vim.keymap.set(
-  "n",
-  "<leader>hm",
-  "<cmd>lua require('harpoon.mark').add_file()<CR>",
-  { desc = "Mark file with harpoon" }
-)
-vim.keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", { desc = "Go to next harpoon mark" })
-vim.keymap.set(
-  "n",
-  "<leader>hp",
-  "<cmd>lua require('harpoon.ui').nav_prev()<CR>",
-  { desc = "Go to previous harpoon mark" }
-)
-vim.keymap.set("n", "<leader>hv", ":Telescope harpoon marks<CR>", { desc = "View all the harpoon marked files" })
-
--- Setup the keybinding for the auto-session plugin
-vim.keymap.set("n", "<leader>wr", "<cmd>SessionRestore<CR>", { desc = "Restore session for cwd" }) -- restore last workspace session for current directory
-vim.keymap.set("n", "<leader>ws", "<cmd>SessionSave<CR>", { desc = "Save session for current working directory" }) -- save workspace session for current working directory
-
 -- Setup the gitsigns plugins
 vim.keymap.set("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
 vim.keymap.set(
@@ -159,12 +138,6 @@ vim.keymap.set(
   ":Gitsigns toggle_current_line_blame<CR>",
   { desc = "Toggle the current line git blame" }
 )
-
--- Setup the keybindings for the nvim dap plugin
-vim.keymap.set("n", "<Leader>dt", ":DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-vim.keymap.set("n", "<Leader>dc", ":DapContinue<CR>", { desc = "Continue Breakpoint" })
-vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "Terminate the debugger" })
-vim.keymap.set("n", "<Leader>do", ":DapStepOver<CR>", { desc = "Step Over the breakpoint" })
 
 -- Setup the keybindings for the bufferline plugin
 vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
@@ -177,17 +150,3 @@ vim.opt.guicursor = {
   "a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
   "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
-
--- Setup the clipboard to work globally
-vim.api.nvim_exec(
-  [[
- if has('unnamedplus')
-    set clipboard=unnamedplus
- else
-    set clipboard=unnamed
- endif
-]],
-  false
-)
-
-vim.opt.termguicolors = true

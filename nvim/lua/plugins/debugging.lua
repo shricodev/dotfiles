@@ -1,6 +1,27 @@
 return {
   "mfussenegger/nvim-dap",
-  event = { "BufReadPre", "BufWritePre" },
+  keys = {
+    {
+      "<leader>dt",
+      ":DapToggleBreakpoint<CR>",
+      desc = "Toggle breakpoint",
+    },
+    {
+      "<leader>dc",
+      ":DapContinue<CR>",
+      desc = "Continue Breakpoint",
+    },
+    {
+      "<leader>dx",
+      ":DapTerminate<CR>",
+      desc = "Terminate the debugger",
+    },
+    {
+      "<leader>do",
+      ":DapStepOver<CR>",
+      desc = "Step Over the breakpoint",
+    },
+  },
   dependencies = {
     "rcarriga/nvim-dap-ui",
   },
