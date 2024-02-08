@@ -12,41 +12,33 @@ git clone git@github.com:shricodev/dotfiles.git ~/.dotfiles
 
 Install GNU Stow (if not already installed)
 
-```
+```bash
 apt install stow
 ```
 
 Install all the dotfiles config:
 
-```
-cd ~/.dotfiles && \
- stow nvim && \
- stow bash && \
- stow fish && \
- stow stow && \
- stow git && \
- stow ssh && \
- stow tmux
+```bash
+cd ~/.dotfiles && stow */ # Stow all the directories
 ```
 
 May get some warning messages like the following one:
 
-```
+```bash
 cd ~/dotfiles
 ```
 
-```
+```bash
 stow git
 WARNING! stowing git would cause conflicts:
 
 - existing target is neither a link nor a directory: .gitconfig
   All operations aborted.
-
 ```
 
 Or
 
-```
+```bash
 WARNING! stowing git would cause conflicts:
 
 - existing target is not owned by stow: .gitconfig
@@ -55,6 +47,6 @@ WARNING! stowing git would cause conflicts:
 
 This means that the file .gitconfig (or any other file name that appear in the warning) exists before the symlinking. We need to manually change its name so GNU Stow can create the symlink. My recommendation is to rename it:
 
-```
+```bash
 mv ~/.gitconfig ~/.gitconfig.old
 ```
