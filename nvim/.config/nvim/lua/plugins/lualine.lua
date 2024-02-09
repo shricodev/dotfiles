@@ -9,16 +9,16 @@ return {
         ignore_focus = { "NvimTree" },
         always_divide_middle = true,
         globalstatus = false,
-        component_separators = "|",
         section_separators = { left = "", right = "" },
+        component_separators = { left = "|", right = "|" },
       },
       inactive_sections = {
-        lualine_a = { "filename" },
+        lualine_a = {},
         lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
         lualine_y = {},
-        lualine_z = { "location" },
+        lualine_z = {},
       },
       sections = {
         lualine_a = {

@@ -13,9 +13,9 @@ return {
       check_ts = true, -- enable treesitter
       disable_filetype = { "TelescopePrompt", "spectre_panel" }, -- Disable the plugin when searching in the TS window
       ts_config = {
-        lua = { "string" },                 -- don't add pairs in lua string treesitter nodes
+        lua = { "string" }, -- don't add pairs in lua string treesitter nodes
         javascript = { "template_string" }, -- don't add pairs in javscript template_string treesitter nodes
-        java = false,                       -- don't check treesitter on java
+        java = false, -- don't check treesitter on java
       },
     })
 

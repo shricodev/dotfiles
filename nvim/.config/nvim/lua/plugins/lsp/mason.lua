@@ -18,9 +18,9 @@ return {
       ui = {
         border = "rounded",
         icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
+          package_pending = " ",
+          package_installed = "󰄳 ",
+          package_uninstalled = "󰚌 ",
         },
       },
     })
@@ -32,14 +32,12 @@ return {
         "html",
         "cssls",
         "tailwindcss",
-        -- "svelte",
         "gopls",
         "lua_ls",
-        -- "graphql",
         "emmet_ls",
-        -- "prismals",
         "pyright",
       },
+      max_concurrent_installers = 10,
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
     })
@@ -50,8 +48,9 @@ return {
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter
-        "pylint", -- python linter
         "eslint_d", -- js linter
+        "mypy",
+        "ruff",
         -- add other formatter in the future.
       },
     })

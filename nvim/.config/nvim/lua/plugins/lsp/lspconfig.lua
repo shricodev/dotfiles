@@ -61,29 +61,18 @@ return {
 
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
-    -- Specify how the border looks like
-    local border = {
-      { "┌", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "┐", "FloatBorder" },
-      { "│", "FloatBorder" },
-      { "┘", "FloatBorder" },
-      { "─", "FloatBorder" },
-      { "└", "FloatBorder" },
-      { "│", "FloatBorder" },
-    }
 
     -- setup borders in the diagnostic window.
     vim.diagnostic.config({
       float = {
-        border = border,
+        border = "rounded",
       },
     })
 
     -- Add the border on hover and on signature help popup window
     local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
     }
 
     -- Change the Diagnostic symbols in the sign column (gutter)
@@ -145,6 +134,7 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       handlers = handlers,
+      filetypes = { "prisma" },
     })
 
     -- configure graphql language server
@@ -168,6 +158,7 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       handlers = handlers,
+      filetypes = { "python" },
     })
 
     -- configure golang server
@@ -189,6 +180,7 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       handlers = handlers,
+      filetypes = { "lua" },
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global

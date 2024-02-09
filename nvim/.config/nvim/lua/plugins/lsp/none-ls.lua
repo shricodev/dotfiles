@@ -2,7 +2,7 @@ return {
   "nvimtools/none-ls.nvim", -- configure formatters & linters
   lazy = true,
   -- for now, I am using none-ls, so in future, if decide to quit using nonels comment this below line and uncomment the events lines in the formatting.lua and linting.lua
-  event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
+  event = { "BufReadPre", "BufNewFile", "BufWritePost" }, -- to enable uncomment this
   dependencies = {
     "jay-babu/mason-null-ls.nvim",
   },
@@ -18,7 +18,8 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "black", -- python formatter
-        "pylint", -- python linter
+        "mypy", -- static type checking
+        "ruff", -- python linter
         "isort", -- python imports sort
         "eslint_d", -- js linter
         "gofumpt", -- go formatter
@@ -49,7 +50,8 @@ return {
         formatting.gofumpt,
         formatting.goimports_reviser,
         formatting.black,
-        diagnostics.pylint,
+        diagnostics.mypy,
+        diagnostics.ruff,
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
             return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

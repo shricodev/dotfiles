@@ -180,12 +180,22 @@ return {
 
     require("nvim-tree").setup({
       on_attach = my_on_attach,
-      hijack_netrw = false,
+      disable_netrw = true,
+      hijack_netrw = true,
+      hijack_cursor = true,
       sync_root_with_cwd = true,
       view = {
-        width = 26,
-        relativenumber = true,
-        number = true,
+        adaptive_size = false,
+        width = 30,
+        side = "left",
+      },
+      filesystem_watchers = {
+        enable = true,
+      },
+      actions = {
+        open_file = {
+          resize_window = true,
+        },
       },
       renderer = {
         add_trailing = false,
@@ -211,6 +221,8 @@ return {
           symlink_arrow = " ➛ ",
           show = {
             folder_arrow = false,
+            file = true,
+            folder = true,
           },
           glyphs = {
             default = icons.ui.Text,
@@ -242,16 +254,13 @@ return {
       },
       update_focused_file = {
         enable = true,
-        debounce_delay = 15,
         update_root = true,
         ignore_list = {},
       },
-
       diagnostics = {
         enable = true,
         show_on_dirs = false,
         show_on_open_dirs = true,
-        debounce_delay = 50,
         severity = {
           min = vim.diagnostic.severity.HINT,
           max = vim.diagnostic.severity.ERROR,
