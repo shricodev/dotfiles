@@ -52,6 +52,12 @@ return {
       opts.desc = "Go to next diagnostic"
       keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
+      opts.desc = "Document Symbols"
+      keymap.set("n", "<leader>ds", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
+
+      opts.desc = "Workspace Symbols"
+      keymap.set("n", "<leader>ws", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", opts)
+
       opts.desc = "Show documentation for what is under cursor"
       keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
