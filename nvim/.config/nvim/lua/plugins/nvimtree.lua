@@ -183,11 +183,13 @@ return {
       disable_netrw = true,
       hijack_netrw = true,
       hijack_cursor = true,
+      hijack_unnamed_buffer_when_opening = false,
       sync_root_with_cwd = true,
       view = {
         adaptive_size = false,
         width = 30,
         side = "left",
+        preserve_window_proportions = true,
       },
       filesystem_watchers = {
         enable = true,
@@ -254,7 +256,7 @@ return {
       },
       update_focused_file = {
         enable = true,
-        update_root = true,
+        update_root = false,
         ignore_list = {},
       },
       diagnostics = {
