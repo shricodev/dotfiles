@@ -15,3 +15,8 @@
 ; Use neovim as the default editor for git
 [core]
 	editor = nvim
+
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate

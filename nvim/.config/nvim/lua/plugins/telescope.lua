@@ -17,7 +17,7 @@ return {
           prompt_prefix = "   ",
           border = {},
           initial_mode = "insert",
-          selection_caret = "  ",
+          selection_caret = "⮞ ",
           entry_prefix = "  ",
           file_ignore_patterns = { "node_modules" },
           set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -79,7 +79,6 @@ return {
       require("telescope").load_extension("harpoon")
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("ui-select")
-      -- require("telescope").load_extension("project_nvim")
     end,
   },
 }

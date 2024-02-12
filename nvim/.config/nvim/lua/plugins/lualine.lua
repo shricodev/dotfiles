@@ -3,6 +3,24 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    local harpoon = require("harpoon.mark")
+
+    -- function that returns harpoon_marks based on if we are on a harpoon marked file.
+    local function harpoon_component()
+      local total_harpoon_marks = harpoon.get_length()
+      if total_harpoon_marks == 0 then
+        return ""
+      end
+
+      local current_mark = "—"
+      local mark_index = harpoon.get_current_index()
+      if mark_index ~= nil then
+        current_mark = tostring(mark_index)
+      end
+
+      return string.format("󱡅 %s/%d", current_mark, total_harpoon_marks)
+    end
+
     require("lualine").setup({
       options = {
         theme = "catppuccin",
@@ -24,6 +42,7 @@ return {
         lualine_a = {
           { "mode", separator = { left = "" }, right_padding = 2 },
         },
+        lualine_c = { "filename", harpoon_component },
         lualine_z = {
           { "location", separator = { right = "" }, left_padding = 2 },
         },

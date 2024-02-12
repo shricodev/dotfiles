@@ -20,7 +20,6 @@ return {
       native_lsp = { enabled = true },
       -- notify = true,
       nvimtree = true,
-      -- neotree = true,
       symbols_outline = true,
       telescope = true,
       treesitter = true,
