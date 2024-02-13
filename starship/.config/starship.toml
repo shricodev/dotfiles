@@ -6,7 +6,15 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$python\
+$golang\
+$rust\
+$nodejs\
 $character"""
+
+right_format = """
+$aws\
+$docker_context"""
 
 [character]
 success_symbol = "[❯](purple)"
@@ -22,8 +30,26 @@ disabled = false
 [git_state]
 disabled = false
 
-[cmd_duration]
-format = "[$duration]($style) "
+[python]
+format = "[$symbol($virtualenv )](bold yellow)"
+
+[golang]
+format = '[ ](bold cyan)'
+
+[rust]
+format = '[$symbol ](bold red)'
+
+[nodejs]
+format = "[♦️ ](bold red)"
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = "  "
+
+[docker_context]
+format = '[🐳 $context](bold blue) '
+only_with_files = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
