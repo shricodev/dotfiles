@@ -187,7 +187,7 @@ return {
       sync_root_with_cwd = true,
       view = {
         adaptive_size = false,
-        width = 30,
+        width = 40,
         side = "left",
         preserve_window_proportions = true,
       },

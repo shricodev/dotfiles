@@ -25,6 +25,6 @@ return {
       treesitter = true,
       treesitter_context = true,
     })
-    vim.cmd.colorscheme("catppuccin-mocha")
+    vim.cmd.colorscheme("catppuccin")
   end,
 }
