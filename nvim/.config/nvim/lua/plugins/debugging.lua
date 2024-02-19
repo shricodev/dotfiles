@@ -29,6 +29,11 @@ return {
     require("dapui").setup()
     -- TODO: REQUIRE AND SETUP LANGUAGE SPECIFIC DEBUGGER HERE...
     local dap, dapui = require("dap"), require("dapui")
+    -- Use this symbol for visualizing a breakpoint.
+    vim.fn.sign_define(
+      "DapBreakpoint",
+      { text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+    )
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
