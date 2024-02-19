@@ -13,7 +13,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- EO lazy.nvim setup
 
-require("vim-options")
+-- Import all the custom keymaps, groups and custom vim options.
+require("keymaps")
+require("misc")
+require("options")
+
 require("lazy").setup({
   { import = "plugins" },
   { import = "plugins.lsp" },
