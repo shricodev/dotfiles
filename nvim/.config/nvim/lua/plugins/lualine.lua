@@ -27,7 +27,9 @@ return {
         ignore_focus = { "NvimTree" },
         always_divide_middle = true,
         globalstatus = false,
-        section_separators = { left = "", right = "" },
+        icons_enabled = true,
+        -- section_separators = { left = "", right = "" },
+        section_separators = "",
         component_separators = { left = "|", right = "|" },
       },
       inactive_sections = {
@@ -40,11 +42,12 @@ return {
       },
       sections = {
         lualine_a = {
-          { "mode", separator = { left = "" }, right_padding = 2 },
+          { "mode" },
         },
         lualine_c = { "filename", harpoon_component },
         lualine_z = {
-          { "location", separator = { right = "" }, left_padding = 2 },
+          { "location" },
+          -- { "location", separator = { right = "" }, left_padding = 2 },
         },
       },
       tabline = {},
