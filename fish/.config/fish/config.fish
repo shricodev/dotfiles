@@ -19,6 +19,12 @@ set TERM xterm-256color # Sets the terminal type
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 
+# Use the mocha theme for the bat command
+set -gx BAT_THEME "Catppuccin-mocha"
+
+# Use the mocha theme for the fish shell
+fish_config theme choose "Catppuccin Mocha"
+
 ### SET MANPAGER
 ### Uncomment only one of these!
 
@@ -30,21 +36,9 @@ set -x MANPAGER "nvim +Man!"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
-    # peco
-    bind \cr peco_select_history # Bind for peco select history to Ctrl+R
-    bind \cf peco_change_directory # Bind for peco change directory to Ctrl+F
     # fish_default_key_bindings
     fish_vi_key_bindings
 end
-
-### END OF VI MODE ###
-
-### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
-set fish_color_normal brcyan
-set fish_color_autosuggestion '#7d7d7d'
-set fish_color_command brcyan
-set fish_color_error '#ff6c6b'
-set fish_color_param brcyan
 
 ### FUNCTIONS ###
 
@@ -225,16 +219,6 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-# Play audio files in current dir by type
-# alias playwav='vlc *.wav'
-# alias playogg='vlc *.ogg'
-# alias playmp3='vlc *.mp3'
-
-# Play video files in current dir by type
-# alias playavi='vlc *.avi'
-# alias playmov='vlc *.mov'
-# alias playmp4='vlc *.mp4'
-
 # switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
@@ -246,86 +230,8 @@ alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 # termbin
 alias tb="nc termbin.com 9999"
 
-# the terminal rickroll
-# alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-
 # Mocp must be launched with bash instead of Fish!
 alias mocp="bash -c mocp"
-
-# name: sashimi
-# If decide to move to the sashimi prompt comment out the below lines of code
-# function fish_prompt
-#     set -l last_status $status
-#     set -l cyan (set_color -o cyan)
-#     set -l yellow (set_color -o yellow)
-#     set -g red (set_color -o red)
-#     set -g blue (set_color -o blue)
-#     set -l green (set_color -o green)
-#     set -g normal (set_color normal)
-#
-#     set -l ahead (_git_ahead)
-#     set -g whitespace ' '
-#
-#     if test $last_status = 0
-#         set initial_indicator "$green◆"
-#         set status_indicator "$normal❯$cyan❯$green❯"
-#     else
-#         set initial_indicator "$red✖ $last_status"
-#         set status_indicator "$red❯$red❯$red❯"
-#     end
-#     set -l cwd $cyan(basename (prompt_pwd))
-#
-#     if [ (_git_branch_name) ]
-#
-#         if test (_git_branch_name) = master
-#             set -l git_branch (_git_branch_name)
-#             set git_info "$normal git:($red$git_branch$normal)"
-#         else
-#             set -l git_branch (_git_branch_name)
-#             set git_info "$normal git:($blue$git_branch$normal)"
-#         end
-#
-#         if [ (_is_git_dirty) ]
-#             set -l dirty "$yellow ✗"
-#             set git_info "$git_info$dirty"
-#         end
-#     end
-#
-#     # Notify if a command took more than 5 minutes
-#     if [ "$CMD_DURATION" -gt 300000 ]
-#         echo The last command took (math "$CMD_DURATION/1000") seconds.
-#     end
-#
-#     echo -n -s $initial_indicator $whitespace $cwd $git_info $whitespace $ahead $status_indicator $whitespace
-# end
-
-# function _git_ahead
-#     set -l commits (command git rev-list --left-right '@{upstream}...HEAD' 2>/dev/null)
-#     if [ $status != 0 ]
-#         return
-#     end
-#     set -l behind (count (for arg in $commits; echo $arg; end | grep '^<'))
-#     set -l ahead (count (for arg in $commits; echo $arg; end | grep -v '^<'))
-#     switch "$ahead $behind"
-#         case '' # no upstream
-#         case '0 0' # equal to upstream
-#             return
-#         case '* 0' # ahead of upstream
-#             echo "$blue↑$normal_c$ahead$whitespace"
-#         case '0 *' # behind upstream
-#             echo "$red↓$normal_c$behind$whitespace"
-#         case '*' # diverged from upstream
-#             echo "$blue↑$normal$ahead $red↓$normal_c$behind$whitespace"
-#     end
-# end
-#
-# function _git_branch_name
-#     echo (command git symbolic-ref HEAD 2>/dev/null | sed -e 's|^refs/heads/||')
-# end
-#
-# function _is_git_dirty
-#     echo (command git status -s --ignore-submodules=dirty 2>/dev/null)
-# end
 
 # Setup the ssh-agent with our ssh private key.
 if test -z "$SSH_AUTH_SOCK"
@@ -338,5 +244,6 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # This is telling zoxide to use cd command to move to the directories instead of the z command.
 # The cd command not aliases to the z command. z is no longer available.
 # zoxide init --cmd cd fish | source
+
 zoxide init fish | source
 starship init fish | source
