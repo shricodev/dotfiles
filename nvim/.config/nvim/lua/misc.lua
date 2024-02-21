@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Explicitely set the color scheme to catppuccin to make sure that nvim-tree uses it. Else it fall backs to its own theme.
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.cmd("Catppuccin mocha")
+--   end,
+-- })
+
 -- Open the help window to the right
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),

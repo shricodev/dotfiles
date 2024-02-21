@@ -17,6 +17,18 @@ vim.opt.updatetime = 50
 -- line wrapping
 vim.opt.wrap = false -- disable line wrapping
 
+-- Enable break indent
+vim.opt.breakindent = true
+
+-- Set highlight on search
+vim.opt.hlsearch = true
+
+-- Save undo history
+vim.opt.undofile = true
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
+
 vim.opt.termguicolors = true
 vim.opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 

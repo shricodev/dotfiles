@@ -1,0 +1,1 @@
+/home/shricodev/.fzf/shell/key-bindings.fish

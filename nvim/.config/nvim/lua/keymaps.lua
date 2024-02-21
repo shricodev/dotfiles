@@ -40,6 +40,14 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Switch between multiple projects" }
 )
 
+-- Options through Telescope
+vim.keymap.set(
+  "n",
+  "<leader><tab>",
+  "<cmd>lua require('telescope.builtin').commands()<CR>",
+  { desc = "View Telescope options" }
+)
+
 -- Quick Fix list
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Navigate to next quick fix" })
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Navigate to prev quick fix" })
