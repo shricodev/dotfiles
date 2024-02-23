@@ -1,3 +1,11 @@
+-- Import all the custom keymaps, groups and custom vim options.
+-- Always load the keymappings before plugins, as they often rely on them.
+require("core.options")
+require("core.keymaps")
+
+-- Load the misc settings
+require("core.misc")
+
 -- This is for the lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -12,11 +20,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 -- EO lazy.nvim setup
-
--- Import all the custom keymaps, groups and custom vim options.
-require("misc")
-require("options")
-require("keymaps")
 
 require("lazy").setup({
   { import = "plugins" },

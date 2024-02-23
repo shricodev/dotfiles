@@ -47,3 +47,6 @@ vim.api.nvim_create_user_command("ToggleDiagnostics", function()
     vim.diagnostic.enable()
   end
 end, {})
+
+-- Set "CmpItemKind" highlight group
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })

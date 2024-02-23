@@ -3,6 +3,10 @@ return {
   event = "InsertEnter",
   dependencies = {
     {
+      "zbirenbaum/copilot.lua", -- copilot suggestion
+      event = "InsertEnter",
+    },
+    {
       "onsails/lspkind.nvim", -- vs-code like pictograms
       event = "InsertEnter",
     },
@@ -52,8 +56,6 @@ return {
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,preview,noselect",
@@ -69,7 +71,7 @@ return {
         ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+        ["<C-[>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)

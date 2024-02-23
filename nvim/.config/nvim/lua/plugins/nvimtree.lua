@@ -15,7 +15,7 @@ return {
       -- use all default mappings
       api.config.mappings.default_on_attach(bufnr)
 
-      -- override a default
+      -- override a default. Set l to open the file in the current window
       vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
     end
 
@@ -205,7 +205,9 @@ return {
         highlight_git = true,
         full_name = false,
         highlight_opened_files = "none",
-        root_folder_label = ":t",
+        -- Enable this to view the root folder label
+        -- root_folder_label = ":t",
+        root_folder_label = false,
         indent_width = 2,
         indent_markers = {
           enable = false,

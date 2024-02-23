@@ -4,10 +4,6 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 -- clear search highlights
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
--- increment/decrement numbers
-vim.keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
-vim.keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
-
 -- window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
@@ -51,6 +47,8 @@ vim.keymap.set(
 -- Quick Fix list
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Navigate to next quick fix" })
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Navigate to prev quick fix" })
+
+-- Location List
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Navigate to next location list" })
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Navigate to prev location list" })
 
@@ -102,3 +100,26 @@ vim.keymap.set(
 
 -- Setup the keybindings for the bufferline plugin
 vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
+
+-- Setup the keybindings for the telescope plugin.
+vim.keymap.set(
+  "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files()<CR>",
+  { desc = "Fuzzy find files in the cwd" }
+)
+-- This is to also view the .env sort of files in the telescope find files ui
+vim.keymap.set(
+  "n",
+  "<leader>faf",
+  "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
+  { desc = "Fuzzy find files in the cwd" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>fs",
+  "<cmd>lua require('telescope.builtin').live_grep()<CR>",
+  { desc = "Find string in cwd" }
+)
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
