@@ -14,7 +14,8 @@ set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME
 
 ### EXPORT ###
 set fish_greeting # Supresses fish's intro message
-set TERM xterm-256color # Sets the terminal type
+# use the default terminal color
+# set TERM screen-256color # Sets the terminal type
 
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
@@ -22,22 +23,25 @@ set -gx VISUAL "nvim"
 # Use the mocha theme for the bat command
 set -gx BAT_THEME "Catppuccin-mocha"
 
+set -gx KUBECONFIG "~/.kube/config"
+
+# Use this command to list files in the fzf window when simply run the 'fzf' command.
+set -gx FZF_DEFAULT_COMMAND "fdfind --type f --hidden --follow"
+
 # Use the mocha theme for the fish shell
 fish_config theme choose "Catppuccin Mocha"
 
 ### SET MANPAGER
-### Uncomment only one of these!
-
 ### "nvim" as manpager
 set -x MANPAGER "nvim +Man!"
 
-### "less" as manpager
-# set -x MANPAGER "less"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
     # fish_default_key_bindings
     fish_vi_key_bindings
+    # Use jk to change the mode from insert to normal in the terminal
+    bind -M insert -m default jk backward-char force-repaint
 end
 
 ### FUNCTIONS ###
@@ -150,27 +154,18 @@ alias .5='cd ../../../../..'
 # vim and emacs
 alias nv='nvim'
 
+alias cl="clear"
+
 # Changing "ls" to "eza"
-alias ls='eza -al --color=always --group-directories-first' # my preferred listing
+alias ls='eza -al --color=always --icons --group-directories-first' # my preferred listing
+
 alias la='eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='eza -l --color=always --group-directories-first' # long format
-alias lla='eza -la --color=always --group-directories-first' # long format with all files and dirs
+alias ll='eza -l --color=always --icons --group-directories-first' # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias llg="eza --tree --level=2 --long --icons --git"
+
+# Show only the dotfiles
 alias l.='eza -a | egrep "^\."'
-
-# pacman and yay
-alias pacsyu='sudo pacman -Syu' # update only standard pkgs
-alias pacsyyu='sudo pacman -Syyu' # Refresh pkglist & update standard pkgs
-alias parsua='paru -Sua --noconfirm' # update only AUR pkgs (paru)
-alias parsyu='paru -Syu --noconfirm' # update standard pkgs and AUR pkgs (paru)
-alias unlock='sudo rm /var/lib/pacman/db.lck' # remove pacman lock
-alias cleanup='sudo pacman -Rns (pacman -Qtdq)' # remove orphaned packages (DANGEROUS!)
-
-# get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -206,38 +201,68 @@ alias pull='git pull origin'
 alias push='git push origin'
 alias tag='git tag'
 alias newtag='git tag -a'
+
 alias lg="lazygit"
+
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-# alias to use 'batcat' with bt
+# alias to use 'batcat' with cat command
 alias bt="batcat"
-
-# gpg encryption
-# verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-# receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+alias bat="batcat"
 
 # switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias k="kubectl"
+alias ka="kubectl apply -f"
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias kdel="kubectl delete"
+alias kl="kubectl logs"
+alias kgpo="kubectl get pod"
+alias kgd="kubectl get deployments"
+alias kc="kubectx"
+alias kns="kubens"
+alias kl="kubectl logs -f"
+alias ke="kubectl exec -it"
+alias kcns='kubectl config set-context --current --namespace'
 
-# termbin
-alias tb="nc termbin.com 9999"
+# HTTP requests with xh! Make sure to have it installed.
+alias http="xh"
 
-# Mocp must be launched with bash instead of Fish!
-alias mocp="bash -c mocp"
+# Ranger file manager alias
+alias rr='ranger'
 
 # Setup the ssh-agent with our ssh private key.
 if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c > /dev/null)
     ssh-add ~/.ssh/github_shricodev >/dev/null 2>&1
 end
+
+### Navigation UTIL functions
+# Change directory and list files
+function cx
+  cd $argv && ls
+end
+
+# Use fzf to change directory and list the contents of the directory
+function fcd
+  cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
+end
+
+# Use fzf to choose file and copy the file path to the clipboard
+function f
+  echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
+end
+
+# Open a file from fzf list in neovim
+function fv
+  nvim "$(find . -type f -not -path '*/.*' | fzf)"
+end
+### EOF Navigation UTIL functions
 
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 

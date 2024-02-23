@@ -206,8 +206,8 @@ return {
         full_name = false,
         highlight_opened_files = "none",
         -- Enable this to view the root folder label
-        -- root_folder_label = ":t",
-        root_folder_label = false,
+        root_folder_label = ":t",
+        -- root_folder_label = false,
         indent_width = 2,
         indent_markers = {
           enable = false,
