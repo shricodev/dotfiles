@@ -19,7 +19,7 @@ return {
           initial_mode = "insert",
           selection_caret = "⮞ ",
           entry_prefix = "  ",
-          file_ignore_patterns = { "node_modules" },
+          file_ignore_patterns = { "node_modules", ".git" },
           set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
           borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
           color_devicons = true,
@@ -47,6 +47,7 @@ return {
           },
           mappings = {
             i = {
+              ["<Esc>"] = require("telescope.actions").close,
               ["<C-k>"] = require("telescope.actions").move_selection_previous, -- move to prev result
               ["<C-j>"] = require("telescope.actions").move_selection_next, -- move to next result
               ["<C-q>"] = require("telescope.actions").send_selected_to_qflist

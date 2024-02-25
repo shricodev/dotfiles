@@ -3,10 +3,6 @@ return {
   event = "InsertEnter",
   dependencies = {
     {
-      "zbirenbaum/copilot.lua", -- copilot suggestion
-      event = "InsertEnter",
-    },
-    {
       "onsails/lspkind.nvim", -- vs-code like pictograms
       event = "InsertEnter",
     },
@@ -107,7 +103,6 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "nvim_lua" },

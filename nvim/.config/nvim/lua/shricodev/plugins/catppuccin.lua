@@ -7,7 +7,7 @@ return {
     require("catppuccin").setup({
       flavour = "mocha",
       transparent_background = true,
-      -- I don't like to see the italics in my code
+      -- I don't like to see italics in my code
       no_italic = true,
       integrations = {
         indent_blankline = {

@@ -21,6 +21,9 @@ success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
+[directory]
+read_only = " 🔒"
+
 [git_branch]
 disabled = false
 

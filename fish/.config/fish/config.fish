@@ -32,9 +32,8 @@ set -gx FZF_DEFAULT_COMMAND "fdfind --type f --hidden --follow"
 fish_config theme choose "Catppuccin Mocha"
 
 ### SET MANPAGER
-### "nvim" as manpager
-set -x MANPAGER "nvim +Man!"
-
+### "less" as manpager
+set -x MANPAGER "less"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
@@ -244,22 +243,22 @@ end
 
 ### Navigation UTIL functions
 # Change directory and list files
-function cx
+function cdl
   cd $argv && ls
 end
 
 # Use fzf to change directory and list the contents of the directory
-function fcd
+function fcl
   cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
 end
 
 # Use fzf to choose file and copy the file path to the clipboard
-function f
+function ffp
   echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
 end
 
 # Open a file from fzf list in neovim
-function fv
+function ffn
   nvim "$(find . -type f -not -path '*/.*' | fzf)"
 end
 ### EOF Navigation UTIL functions

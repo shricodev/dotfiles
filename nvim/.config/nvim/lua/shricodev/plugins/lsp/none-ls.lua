@@ -49,8 +49,9 @@ return {
         formatting.isort,
         formatting.gofumpt,
         formatting.goimports_reviser,
-        formatting.black,
+        formatting.black, -- python formatter
         diagnostics.mypy,
+        -- diagnostics.dockerls, -- Dockerfile lsp
         diagnostics.ruff,
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
