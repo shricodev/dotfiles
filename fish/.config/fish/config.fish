@@ -75,6 +75,12 @@ else
     bind '$' __history_previous_command_arguments
 end
 
+# For obsidian to work
+if test -d ~/bin
+  # Add ~/bin to the PATH using fish_add_path function
+  fish_add_path ~/bin
+end
+
 # Function for creating a backup file
 # ex: backup file.txt
 # result: copies file as file.txt.bak
