@@ -94,16 +94,15 @@ vim.keymap.set("n", "<leader>f", function()
 end, { desc = "Format buffer with null-ls" })
 
 -- Setup the gitsigns plugins
-vim.keymap.set("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
+vim.keymap.set("n", "<leader>ghv", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })
+vim.keymap.set("n", "<leader>ghn", ":Gitsigns next_hunk<CR>", { desc = "Goto Gitsigns next hunk" })
+vim.keymap.set("n", "<leader>ghp", ":Gitsigns prev_hunk<CR>", { desc = "Goto Gitsigns previous hunk" })
 vim.keymap.set(
   "n",
   "<leader>gt",
   ":Gitsigns toggle_current_line_blame<CR>",
   { desc = "Toggle the current line git blame" }
 )
-
--- Setup the keybindings for the bufferline plugin
-vim.keymap.set("n", "<leader>fp", "<cmd>BufferLinePick<CR>", { desc = "Open a buffer" })
 
 -- Setup the keybindings for the telescope plugin.
 vim.keymap.set(
@@ -127,6 +126,11 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open a buffer" })
+
+vim.keymap.set("n", "<leader>km", "<cmd>Telescope keymaps<CR>", { desc = "View the keybindings" })
+vim.keymap.set("n", "<leader>mv", "<cmd>Telescope marks<CR>", { desc = "View  marks" })
 
 -- LSP keybindings
 
