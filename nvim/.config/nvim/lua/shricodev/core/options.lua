@@ -54,6 +54,9 @@ vim.opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 vim.opt.swapfile = false
 
+-- Concealer for Obsidian
+vim.o.conceallevel = 2
+
 -- cursor line
 vim.opt.cursorline = true -- highlight the current cursor line
 
