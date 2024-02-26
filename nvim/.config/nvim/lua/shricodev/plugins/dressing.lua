@@ -1,10 +1,13 @@
+-- return {}
 return {
   "stevearc/dressing.nvim",
   event = "VeryLazy",
   config = function()
     require("dressing").setup({
+      -- After setting up NvimTree to float, I really don't like
       input = {
-        enabled = true,
+        -- TODO: change this to true, after I stop working with nvimtree floating window
+        enabled = false,
 
         -- Default prompt string
         default_prompt = "Input:",
@@ -22,7 +25,7 @@ return {
         -- anchor = "SW",
         border = "rounded",
         -- 'editor' and 'win' will default to being centered
-        relative = "cursor",
+        relative = "editor",
 
         -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
         prefer_width = 40,
