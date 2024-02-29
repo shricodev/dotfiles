@@ -37,10 +37,17 @@ return {
 	-- window_background_opacity = 0.20,
 	window_decorations = "RESIZE",
 	keys = {
+		{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
+		{ action = wezterm.action.CopyTo("Clipboard"), mods = "CTRL|SHIFT", key = "C" },
+		{ action = wezterm.action.DecreaseFontSize, mods = "CTRL", key = "-" },
+		{ action = wezterm.action.IncreaseFontSize, mods = "CTRL", key = "=" },
+		{ action = wezterm.action.Nop, mods = "ALT", key = "Enter" },
+		{ action = wezterm.action.PasteFrom("Clipboard"), mods = "CTRL|SHIFT", key = "V" },
+		{ action = wezterm.action.ResetFontSize, mods = "CTRL", key = "0" },
 		{
-			key = "f",
-			mods = "CTRL",
 			action = wezterm.action.ToggleFullScreen,
+			mods = "CTRL",
+			key = "f",
 		},
 	},
 	mouse_bindings = {
