@@ -247,6 +247,11 @@ if test -z "$SSH_AUTH_SOCK"
     ssh-add ~/.ssh/github_shricodev >/dev/null 2>&1
 end
 
+# Either attach or create a new tmux session
+function tt
+  tmux new-session -A -s $argv
+end
+
 ### Navigation UTIL functions
 # Change directory and list files
 function cdl

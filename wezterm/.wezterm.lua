@@ -15,7 +15,7 @@ return {
 	font_size = 12.6,
 	disable_default_key_bindings = true,
 	cursor_blink_rate = 0,
-	window_close_confirmation = "NeverPrompt",
+	window_close_confirmation = "AlwaysPrompt",
 	scrollback_lines = 10000,
 	show_update_window = true,
 	window_padding = {
@@ -25,16 +25,11 @@ return {
 		bottom = 0,
 	},
 
-	-- window_background_image = '',
-	-- window_background_image_hsb = {
-	-- 	brightness = 0.01,
-	-- 	hue = 1.0,
-	-- 	saturation = 0.5,
-	-- },
-	-- window_background_opacity = 0.92,
-	window_background_opacity = 1.0,
-	-- window_background_opacity = 0.78,
-	-- window_background_opacity = 0.20,
+	window_background_opacity = 0.9,
+	inactive_pane_hsb = {
+		brightness = 0.5,
+		saturation = 0.24,
+	},
 	window_decorations = "RESIZE",
 	keys = {
 		{ action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
