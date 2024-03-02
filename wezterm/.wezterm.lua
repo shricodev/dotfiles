@@ -21,7 +21,7 @@ return {
   hide_mouse_cursor_when_typing = true,
   hide_tab_bar_if_only_one_tab = true,
   line_height = 1.2,
-  font_size = 12.6,
+  font_size = 12.4,
   exit_behavior = "Close",
   disable_default_key_bindings = true,
   cursor_blink_rate = 0,
@@ -29,7 +29,7 @@ return {
   scrollback_lines = 10000,
   use_dead_keys = false,
   -- Make the cursor red if prev command failed, green if succeeded
-  force_reverse_video_cursor = true,
+  -- force_reverse_video_cursor = true,
   show_update_window = true,
   window_padding = {
     left = 0,
@@ -38,10 +38,10 @@ return {
     bottom = 0,
   },
   window_background_opacity = 1,
-  inactive_pane_hsb = {
-    brightness = 0.5,
-    saturation = 0.24,
-  },
+  -- inactive_pane_hsb = {
+  --   brightness = 0.5,
+  --   saturation = 0.24,
+  -- },
   window_decorations = "RESIZE",
   keys = {
     { action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
