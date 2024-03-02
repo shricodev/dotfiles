@@ -24,12 +24,15 @@ return {
     require("obsidian").setup({
       workspaces = {
         {
-          name = "Notes",
-          path = "~/vaults/Notes",
+          name = "ObsidianVault",
+          path = "~/vaults/ObsidianVault",
         },
       },
       completion = {
         nvim_cmp = true,
+        -- 1. Whether to add the note ID during completion.
+        -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
+        prepend_note_id = true,
         min_chars = 2,
       },
       new_notes_location = "current_dir",
@@ -43,22 +46,7 @@ return {
         end
       end,
 
-      mappings = {
-        -- "Obsidian follow"
-        ["<leader>of"] = {
-          action = function()
-            return require("obsidian").util.gf_passthrough()
-          end,
-          opts = { noremap = false, expr = true, buffer = true },
-        },
-        -- Toggle check-boxes "obsidian done"
-        ["<leader>od"] = {
-          action = function()
-            return require("obsidian").util.toggle_checkbox()
-          end,
-          opts = { buffer = true },
-        },
-      },
+      mappings = {},
 
       note_frontmatter_func = function(note)
         -- This is equivalent to the default frontmatter function.
@@ -92,9 +80,12 @@ return {
       end,
 
       templates = {
-        subdir = "templates",
+        subdir = "Templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
+      },
+      ui = {
+        enable = true,
       },
     })
   end,

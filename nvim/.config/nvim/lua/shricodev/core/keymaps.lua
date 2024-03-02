@@ -9,10 +9,28 @@ vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+vim.keymap.set("n", "<leader>sxr", "<cmd>bp|bd #<CR>", { desc = "Close Buffer; Retain Split" }) -- Close buffer without closing split
 
 -- Move the selected text up and down, with J and K key.
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move the selected block of code down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the selected block of code up" })
+
+-- Select all
+vim.keymap.set("n", "==", "gg<S-v>G")
+
+-- Jump between markdown headers
+vim.keymap.set(
+  "n",
+  "<leader>gj",
+  [[/^##\+ .*<CR>]],
+  {desc = "Jump to next markdown header" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>gk",
+  [[?^##\+ .*<CR>]],
+  { desc = "Jump to previous markdown header" }
+)
 
 -- Move text
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join the current line with below line with space as the delimeter" })
@@ -25,12 +43,28 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move in the file up half the s
 vim.keymap.set("n", "n", "nzzzv", { desc = "Search the next occurance keeping the word in center" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Search the previous occurance keeping the word in center" })
 
+-- close buffer
+vim.keymap.set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close Buffer" })
+
+-- Source the current file right from nvim
+vim.keymap.set("n", "<leader><leader>", function()
+  vim.cmd("so")
+end, { desc = "Source current file" })
+
 -- Paste hack
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste the text while keeping it intact" })
+
+-- Copy file paths
+vim.keymap.set("n", "<leader>cf", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name" })
+vim.keymap.set("n", "<leader>cp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 
 -- Move to the start and end of the line. Remap the B and E keys.
 vim.keymap.set("n", "E", "$", { noremap = true })
 vim.keymap.set("n", "B", "^", { noremap = true })
+
+-- Stay in indent mode
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Switch between projects
 vim.keymap.set(
@@ -131,6 +165,21 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Open a
 
 vim.keymap.set("n", "<leader>km", "<cmd>Telescope keymaps<CR>", { desc = "View the keybindings" })
 vim.keymap.set("n", "<leader>mv", "<cmd>Telescope marks<CR>", { desc = "View  marks" })
+
+-- Obsidian
+vim.keymap.set(
+  "n",
+  "<leader>oc",
+  "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>",
+  { desc = "Obsidian Check Checkbox" }
+)
+vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTemplate<CR>", { desc = "Insert Obsidian Template" })
+vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian App" })
+vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianBacklinks<CR>", { desc = "Show ObsidianBacklinks" })
+vim.keymap.set("n", "<leader>ol", "<cmd>ObsidianLinks<CR>", { desc = "Show ObsidianLinks" })
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<CR>", { desc = "Create New Note" })
+vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<CR>", { desc = "Search Obsidian" })
+vim.keymap.set("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick Switch" })
 
 -- LSP keybindings
 
