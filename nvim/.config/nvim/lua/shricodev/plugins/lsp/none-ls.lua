@@ -19,9 +19,8 @@ return {
         "stylua", -- lua formatter
         "black", -- python formatter
         "mypy", -- static type checking
-        "ruff", -- python linter
         "isort", -- python imports sort
-        "eslint_d", -- js linter
+        -- "eslint_d", -- js linter
         "gofumpt", -- go formatter
         "goimports_reviser", -- go imports sort
       },
@@ -52,12 +51,11 @@ return {
         formatting.black, -- python formatter
         diagnostics.mypy,
         -- diagnostics.dockerls, -- Dockerfile lsp
-        diagnostics.ruff,
-        diagnostics.eslint_d.with({ -- js/ts linter
-          condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-          end,
-        }),
+        -- diagnostics.eslint_d.with({ -- js/ts linter
+        --   condition = function(utils)
+        --     return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+        --   end,
+        -- }),
       },
 
       -- configure format on save
