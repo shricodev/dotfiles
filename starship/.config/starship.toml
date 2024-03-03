@@ -5,7 +5,6 @@ $username\
 $directory\
 $git_branch\
 $git_state\
-$git_status\
 $python\
 $golang\
 $rust\
@@ -27,8 +26,8 @@ read_only = " 🔒"
 [git_branch]
 disabled = false
 
-[git_status]
-disabled = false
+# [git_status]
+# disabled = false
 
 [git_state]
 disabled = false
