@@ -32,16 +32,12 @@ return {
   -- force_reverse_video_cursor = true,
   show_update_window = true,
   window_padding = {
-    left = 0,
+    left = "0.3cell",
     right = 0,
-    top = 0,
+    top = "0.1cell",
     bottom = 0,
   },
   window_background_opacity = 1,
-  -- inactive_pane_hsb = {
-  --   brightness = 0.5,
-  --   saturation = 0.24,
-  -- },
   window_decorations = "RESIZE",
   keys = {
     { action = wezterm.action.ActivateCommandPalette, mods = "CTRL|SHIFT", key = "P" },
