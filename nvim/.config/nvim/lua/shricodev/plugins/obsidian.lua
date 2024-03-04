@@ -25,7 +25,7 @@ return {
       workspaces = {
         {
           name = "ObsidianVault",
-          path = "~/vaults/ObsidianVault",
+          path = "/mnt/c/ObsidianVault",
         },
       },
       completion = {
@@ -50,7 +50,7 @@ return {
 
       note_frontmatter_func = function(note)
         -- This is equivalent to the default frontmatter function.
-        local out = { id = note.id, aliases = note.aliases, tags = note.tags, area = "", project = "" }
+        local out = { id = note.id, tags = note.tags }
 
         -- `note.metadata` contains any manually added fields in the frontmatter.
         -- So here we just make sure those fields are kept in the frontmatter.
@@ -81,7 +81,7 @@ return {
 
       templates = {
         subdir = "Templates",
-        date_format = "%Y-%m-%d-%a",
+        date_format = "%Y-%m-%d",
         time_format = "%H:%M",
       },
       ui = {

@@ -19,18 +19,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move the selected block o
 vim.keymap.set("n", "==", "gg<S-v>G")
 
 -- Jump between markdown headers
-vim.keymap.set(
-  "n",
-  "<leader>gj",
-  [[/^##\+ .*<CR>]],
-  {desc = "Jump to next markdown header" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>gk",
-  [[?^##\+ .*<CR>]],
-  { desc = "Jump to previous markdown header" }
-)
+vim.keymap.set("n", "<leader>gj", [[/^##\+ .*<CR>]], { desc = "Jump to next markdown header" })
+vim.keymap.set("n", "<leader>gk", [[?^##\+ .*<CR>]], { desc = "Jump to previous markdown header" })
 
 -- Move text
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join the current line with below line with space as the delimeter" })
@@ -70,7 +60,7 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set(
   "n",
   "<C-p>",
-  ":lua require('telescope').extensions.projects.projects()<CR>",
+  ":lua require('telescope').extensions.projects.projects{}<CR>",
   { noremap = true, silent = true, desc = "Switch between multiple projects" }
 )
 
@@ -119,13 +109,20 @@ vim.keymap.set(
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Get the hover documentation" })
 
 -- Setup the keybindings for the none-ls
-vim.keymap.set("n", "<leader>f", function()
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name == "null-ls"
-    end,
-  })
-end, { desc = "Format buffer with null-ls" })
+vim.keymap.set(
+  { "n", "v" },
+  "<leader>f",
+  "<cmd>lua require('conform').format({lsp_fallback = true, timeout_ms = 500})<CR>",
+  { desc = "Format file or range (in visual mode)" }
+)
+
+-- Trigger linting for current file
+vim.keymap.set(
+  "n",
+  "<leader>l",
+  "<cmd>lua require('lint').try_lint()<CR>",
+  { desc = "Trigger linting for current file" }
+)
 
 -- Setup the gitsigns plugins
 vim.keymap.set("n", "<leader>ghv", ":Gitsigns preview_hunk<CR>", { desc = "View the Gitsigns hunk" })

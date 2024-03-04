@@ -21,7 +21,7 @@ return {
   hide_mouse_cursor_when_typing = true,
   hide_tab_bar_if_only_one_tab = true,
   line_height = 1.2,
-  font_size = 12.4,
+  font_size = 12.2,
   exit_behavior = "Close",
   disable_default_key_bindings = true,
   cursor_blink_rate = 0,

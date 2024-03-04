@@ -47,9 +47,10 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "isort", -- python formatter
-        "black", -- python formatter
-        -- "eslint_d", -- js linter
-        "mypy",
+        "eslint_d", -- js linter"black"
+        "mypy", -- python formatter
+        "gofumpt", -- go formatter
+        "goimports-reviser", -- go formatter
         -- add other formatter in the future.
       },
     })

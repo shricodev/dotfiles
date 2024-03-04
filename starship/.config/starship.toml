@@ -24,6 +24,7 @@ vimcmd_symbol = "[❮](green)"
 read_only = " 🔒"
 
 [git_branch]
+symbol = " "
 disabled = false
 
 # [git_status]
@@ -42,7 +43,7 @@ format = '[ ](bold cyan)'
 format = '[$symbol ](bold red)'
 
 [nodejs]
-format = "[♦️ ](bold red)"
+format = "[♦️](bold red)"
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
