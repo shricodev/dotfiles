@@ -1,14 +1,14 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufReadPre", "BufNewFile" },
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    'nvim-treesitter/nvim-treesitter-textobjects',
   },
   config = function()
     -- TreeSitter plugin setup
-    local config = require("nvim-treesitter.configs")
-    config.setup({
+    local config = require 'nvim-treesitter.configs'
+    config.setup {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
@@ -19,15 +19,15 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<C-n>",
-          node_incremental = "<C-n>",
+          init_selection = '<C-n>',
+          node_incremental = '<C-n>',
           scope_incremental = false,
-          node_decremental = "<bs>",
+          node_decremental = '<bs>',
         },
       },
-    })
+    }
     -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-    require("ts_context_commentstring").setup({})
+    require('ts_context_commentstring').setup {}
     -- EO Treesitter setup
   end,
 }

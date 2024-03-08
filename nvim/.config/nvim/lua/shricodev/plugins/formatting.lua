@@ -1,26 +1,26 @@
 return {
-  "stevearc/conform.nvim",
+  'stevearc/conform.nvim',
   lazy = true,
-  event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+  event = { 'BufReadPre', 'BufNewFile' }, -- to disable, comment this out
   config = function()
-    local conform = require("conform")
+    local conform = require 'conform'
 
-    conform.setup({
+    conform.setup {
       formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        svelte = { "prettier" },
-        css = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
-        go = { "gofumpt", "goimports-reviser" },
-        markdown = { "prettier" },
-        graphql = { "prettier" },
-        lua = { "stylua" },
-        python = { "isort", "black" },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        svelte = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        yaml = { 'prettier' },
+        go = { 'gofumpt', 'goimports-reviser' },
+        markdown = { 'prettier' },
+        graphql = { 'prettier' },
+        lua = { 'stylua' },
+        python = { 'isort', 'black' },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -32,6 +32,6 @@ return {
       format_after_save = {
         lsp_fallback = true,
       },
-    })
+    }
   end,
 }

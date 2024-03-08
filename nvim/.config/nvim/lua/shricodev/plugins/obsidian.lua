@@ -1,9 +1,9 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*", -- recommended, use latest release instead of latest commit
+  'epwalsh/obsidian.nvim',
+  version = '*', -- recommended, use latest release instead of latest commit
   -- Don't turn lazy true since we will use bindings in tmux.conf to open obsidian in tmux
   -- lazy = true,
-  -- ft = "markdown",
+  -- ft = 'markdown',
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -13,19 +13,19 @@ return {
   -- },
   dependencies = {
     -- Required.
-    "nvim-lua/plenary.nvim",
+    'nvim-lua/plenary.nvim',
 
     -- Optional
-    "nvim-telescope/telescope.nvim",
-    "hrsh7th/nvim-cmp",
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-telescope/telescope.nvim',
+    'hrsh7th/nvim-cmp',
+    'nvim-treesitter/nvim-treesitter',
   },
   config = function()
-    require("obsidian").setup({
+    require('obsidian').setup {
       workspaces = {
         {
-          name = "ObsidianVault",
-          path = "/mnt/c/ObsidianVault",
+          name = 'ObsidianVault',
+          path = '/mnt/c/Users/reali/Documents/ObsidianVault',
         },
       },
       completion = {
@@ -35,14 +35,14 @@ return {
         prepend_note_id = true,
         min_chars = 2,
       },
-      new_notes_location = "current_dir",
+      new_notes_location = 'current_dir',
       wiki_link_func = function(opts)
         if opts.id == nil then
-          return string.format("[[%s]]", opts.label)
+          return string.format('[[%s]]', opts.label)
         elseif opts.label ~= opts.id then
-          return string.format("[[%s|%s]]", opts.id, opts.label)
+          return string.format('[[%s|%s]]', opts.id, opts.label)
         else
-          return string.format("[[%s]]", opts.id)
+          return string.format('[[%s]]', opts.id)
         end
       end,
 
@@ -66,27 +66,27 @@ return {
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         -- In this case a note with the title 'My new note' will be given an ID that looks
         -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-        local suffix = ""
+        local suffix = ''
         if title ~= nil then
           -- If title is given, transform it into valid file name.
-          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
         else
           -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
             suffix = suffix .. string.char(math.random(65, 90))
           end
         end
-        return tostring(os.time()) .. "-" .. suffix
+        return tostring(os.time()) .. '-' .. suffix
       end,
 
       templates = {
-        subdir = "Templates",
-        date_format = "%Y-%m-%d",
-        time_format = "%H:%M",
+        subdir = 'Templates',
+        date_format = '%Y-%m-%d',
+        time_format = '%H:%M',
       },
       ui = {
         enable = true,
       },
-    })
+    }
   end,
 }

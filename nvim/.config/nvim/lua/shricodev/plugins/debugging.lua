@@ -1,39 +1,36 @@
 return {
-  "mfussenegger/nvim-dap",
+  'mfussenegger/nvim-dap',
   keys = {
     {
-      "<leader>dt",
-      ":DapToggleBreakpoint<CR>",
-      desc = "Toggle breakpoint",
+      '<leader>dt',
+      ':DapToggleBreakpoint<CR>',
+      desc = 'Toggle breakpoint',
     },
     {
-      "<leader>dc",
-      ":DapContinue<CR>",
-      desc = "Continue Breakpoint",
+      '<leader>dc',
+      ':DapContinue<CR>',
+      desc = 'Continue Breakpoint',
     },
     {
-      "<leader>dx",
-      ":DapTerminate<CR>",
-      desc = "Terminate the debugger",
+      '<leader>dx',
+      ':DapTerminate<CR>',
+      desc = 'Terminate the debugger',
     },
     {
-      "<leader>do",
-      ":DapStepOver<CR>",
-      desc = "Step Over the breakpoint",
+      '<leader>do',
+      ':DapStepOver<CR>',
+      desc = 'Step Over the breakpoint',
     },
   },
   dependencies = {
-    "rcarriga/nvim-dap-ui",
+    'rcarriga/nvim-dap-ui',
   },
   config = function()
-    require("dapui").setup()
+    require('dapui').setup()
     -- TODO: REQUIRE AND SETUP LANGUAGE SPECIFIC DEBUGGER HERE...
-    local dap, dapui = require("dap"), require("dapui")
+    local dap, dapui = require 'dap', require 'dapui'
     -- Use this symbol for visualizing a breakpoint.
-    vim.fn.sign_define(
-      "DapBreakpoint",
-      { text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-    )
+    vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()

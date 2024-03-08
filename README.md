@@ -17,6 +17,7 @@ apt install stow
 ```
 
 Install all the dotfiles config:
+There are though some folders which are not to be stowed such as windows/ that contains the `settings.json` file for the Windows Terminal.
 
 ```bash
 cd ~/.dotfiles && stow */ # Stow all the directories

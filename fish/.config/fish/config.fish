@@ -21,7 +21,7 @@ set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 
 # Use the mocha theme for the bat command
-set -gx BAT_THEME "Catppuccin-mocha"
+set -gx BAT_THEME "Catppuccin-macchiato"
 
 set -gx KUBECONFIG "~/.kube/config"
 
@@ -29,7 +29,7 @@ set -gx KUBECONFIG "~/.kube/config"
 set -gx FZF_DEFAULT_COMMAND "fdfind --type f --hidden --follow"
 
 # Use the mocha theme for the fish shell
-fish_config theme choose "Catppuccin Mocha"
+fish_config theme choose "Catppuccin Macchiato"
 
 ### SET MANPAGER
 ### "less" as manpager

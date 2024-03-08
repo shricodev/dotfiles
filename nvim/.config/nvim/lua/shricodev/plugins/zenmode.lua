@@ -1,20 +1,20 @@
 return {
-  "folke/zen-mode.nvim",
+  'folke/zen-mode.nvim',
   keys = {
     {
-      "<leader>fm",
-      "<cmd>ZenMode<CR>",
-      desc = "Toggle Zen mode",
+      '<leader>fm',
+      '<cmd>ZenMode<CR>',
+      desc = 'Toggle Zen mode',
     },
   },
   config = function()
-    require("zen-mode").setup({
+    require('zen-mode').setup {
       window = {
         backdrop = 0.95,
         width = 120, -- width of the Zen window
         height = 1, -- height of the Zen window
         options = {
-          signcolumn = "no", -- disable signcolumn
+          signcolumn = 'no', -- disable signcolumn
           number = false, -- disable number column
           relativenumber = false, -- disable relative numbers
           -- cursorline = false, -- disable cursorline
@@ -37,6 +37,6 @@ return {
         gitsigns = { enabled = false }, -- disables git signs
         tmux = { enabled = true }, -- disables the tmux statusline
       },
-    })
+    }
   end,
 }

@@ -20,3 +20,13 @@
 	ui = auto
 [branch]
 	sort = -committerdate
+[init]
+	defaultBranch = main
+[help]
+	autoCorrect = prompt
+[fetch]
+	prune = true
+[log]
+  date = iso
+[push]
+	autoSetupRemote = true

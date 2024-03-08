@@ -1,18 +1,18 @@
 return {
-  "stevearc/dressing.nvim",
-  event = "VeryLazy",
+  'stevearc/dressing.nvim',
+  event = 'VeryLazy',
   config = function()
-    require("dressing").setup({
+    require('dressing').setup {
       -- After setting up NvimTree to float, I really don't like
       input = {
         -- TODO: change this to true, after I stop working with nvimtree floating window
         enabled = false,
 
         -- Default prompt string
-        default_prompt = "Input:",
+        default_prompt = 'Input:',
 
         -- Can be 'left', 'right', or 'center'
-        title_pos = "left",
+        title_pos = 'left',
 
         -- When true, <Esc> will close the modal
         insert_only = true,
@@ -22,9 +22,9 @@ return {
 
         -- These are passed to nvim_open_win
         -- anchor = "SW",
-        border = "rounded",
+        border = 'rounded',
         -- 'editor' and 'win' will default to being centered
-        relative = "editor",
+        relative = 'editor',
 
         -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
         prefer_width = 40,
@@ -42,7 +42,7 @@ return {
           wrap = false,
           -- Indicator for when text exceeds window
           list = true,
-          listchars = "precedes:…,extends:…",
+          listchars = 'precedes:…,extends:…',
           -- Increase this for more context when text scrolls off the window
           sidescrolloff = 0,
         },
@@ -52,22 +52,22 @@ return {
         enabled = true,
 
         -- Priority list of preferred vim.select implementations
-        backend = { "nui", "telescope", "fzf_lua", "fzf", "builtin" },
+        backend = { 'nui', 'telescope', 'fzf_lua', 'fzf', 'builtin' },
 
         -- Trim trailing `:` from prompt
         trim_prompt = true,
 
         -- Options for nui Menu
         nui = {
-          position = "50%",
+          position = '50%',
           size = nil,
-          relative = "editor",
+          relative = 'editor',
           border = {
-            style = "rounded",
+            style = 'rounded',
           },
           buf_options = {
             swapfile = false,
-            filetype = "DressingSelect",
+            filetype = 'DressingSelect',
           },
           win_options = {
             -- winblend = 50,
@@ -82,16 +82,16 @@ return {
         builtin = {
           -- These are passed to nvim_open_win
           -- anchor = "NW",
-          border = "rounded",
+          border = 'rounded',
           -- 'editor' and 'win' will default to being centered
-          relative = "editor",
+          relative = 'editor',
 
           buf_options = {},
           win_options = {
             -- Window transparency (0-100)
             -- winblend = 50,
             cursorline = true,
-            cursorlineopt = "both",
+            cursorlineopt = 'both',
           },
 
           -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -106,12 +106,12 @@ return {
 
           -- Set to `false` to disable
           mappings = {
-            ["<Esc>"] = "Close",
-            ["<C-c>"] = "Close",
-            ["<CR>"] = "Confirm",
+            ['<Esc>'] = 'Close',
+            ['<C-c>'] = 'Close',
+            ['<CR>'] = 'Confirm',
           },
         },
       },
-    })
+    }
   end,
 }
