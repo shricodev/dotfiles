@@ -1,6 +1,6 @@
 return {
   'stevearc/dressing.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     require('dressing').setup {
       -- After setting up NvimTree to float, I really don't like

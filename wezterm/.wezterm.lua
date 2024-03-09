@@ -11,13 +11,7 @@ return {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = 'Disabled',
   enable_tab_bar = false,
-  font = wezterm.font {
-    family = 'GeistMono Nerd Font',
-    weight = 'Bold',
-    stretch = 'Normal',
-    style = 'Normal',
-    harfbuzz_features = { 'cv29', 'cv30', 'ss01', 'ss03', 'ss06', 'ss07', 'ss09' },
-  },
+  font = wezterm.font('JetBrainsMono Nerd Font', { weight = 'Bold', stretch = 'Normal', style = 'Normal' }),
   hide_mouse_cursor_when_typing = true,
   hide_tab_bar_if_only_one_tab = true,
   line_height = 1.2,
@@ -38,6 +32,10 @@ return {
     bottom = 0,
   },
   window_background_opacity = 1,
+  inactive_pane_hsb = {
+    brightness = 0.5,
+    saturation = 0.24,
+  },
   window_decorations = 'RESIZE',
   keys = {
     { action = wezterm.action.ActivateCommandPalette, mods = 'CTRL|SHIFT', key = 'P' },
@@ -50,7 +48,7 @@ return {
     {
       action = wezterm.action.ToggleFullScreen,
       mods = 'CTRL',
-      key = 'f',
+      key = 'F',
     },
   },
   mouse_bindings = {

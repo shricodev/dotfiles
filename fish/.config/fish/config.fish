@@ -20,7 +20,7 @@ set fish_greeting # Supresses fish's intro message
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 
-# Use the mocha theme for the bat command
+# Use the machhiato theme for the bat command
 set -gx BAT_THEME "Catppuccin-macchiato"
 
 set -gx KUBECONFIG "~/.kube/config"
@@ -28,7 +28,7 @@ set -gx KUBECONFIG "~/.kube/config"
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 set -gx FZF_DEFAULT_COMMAND "fdfind --type f --hidden --follow"
 
-# Use the mocha theme for the fish shell
+# Use the machhiato theme for the fish shell
 fish_config theme choose "Catppuccin Macchiato"
 
 ### SET MANPAGER
@@ -280,5 +280,6 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # The cd command not aliases to the z command. z is no longer available.
 # zoxide init --cmd cd fish | source
 
-zoxide init fish | source
+# Make cd to use zoxide
+zoxide init --cmd cd fish | source
 starship init fish | source
