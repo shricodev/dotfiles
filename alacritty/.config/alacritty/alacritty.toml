@@ -6,7 +6,7 @@ import = [
 live_config_reload = true
 
 [font]
-# The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below offsets with caution
+# The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below font size with caution
 size = 11.8
 
 # These are configured very precisely to make glyphs line up with the grid in alacritty. Please change the below offsets with caution
@@ -35,6 +35,7 @@ TERM = "screen-256color"
 opacity = 0.9
 decorations = "None"
 dynamic_padding = false
+startup_mode = "Fullscreen"
 
 [window.padding]
 x = 0

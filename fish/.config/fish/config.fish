@@ -241,10 +241,25 @@ alias http="xh"
 # Ranger file manager alias
 alias rr='ranger'
 
+# Install packages short Debian distros
+alias si="sudo apt install "
+alias i="apt install "
+
+# Weather in current location
+alias wtr="curl wttr.in"
+
+# Do the internet speed test
+alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py' | python3 -"
+
 # Setup the ssh-agent with our ssh private key.
 if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c > /dev/null)
     ssh-add ~/.ssh/github_shricodev >/dev/null 2>&1
+end
+
+# fetches the best possible documentation to work with for any command
+function cheatsheet
+  curl https://cheat.sh/$argv
 end
 
 # Either attach or create a new tmux session
