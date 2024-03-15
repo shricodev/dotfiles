@@ -24,7 +24,7 @@ return {
     require('lualine').setup {
       options = {
         theme = 'catppuccin',
-        ignore_focus = { 'NvimTree', 'Outline' },
+        ignore_focus = { 'NvimTree', 'Outline', 'Neotree' },
         always_divide_middle = true,
         globalstatus = false,
         icons_enabled = true,

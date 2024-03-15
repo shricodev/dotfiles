@@ -151,6 +151,8 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'Open a
 vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = 'View the keybindings' })
 vim.keymap.set('n', '<leader>mv', '<cmd>Telescope marks<CR>', { desc = 'View  marks' })
 
+vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<CR>', { desc = 'Git Branches' })
+
 -- Obsidian
 vim.keymap.set('n', '<leader>oc', "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = 'Obsidian Check Checkbox' })
 vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<CR>', { desc = 'Insert Obsidian Template' })
