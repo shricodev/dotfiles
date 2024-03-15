@@ -1,4 +1,3 @@
-Listing...
 adduser
 apache-arrow-apt-source
 apt-transport-https

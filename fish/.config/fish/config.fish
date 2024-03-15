@@ -162,12 +162,12 @@ alias nv='nvim'
 alias cl="clear"
 
 # Changing "ls" to "eza"
-alias ls='eza -al --color=always --icons --group-directories-first' # my preferred listing
+alias ls='eza -alg --color=always --icons --group-directories-first' # my preferred listing
 
 alias la='eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='eza -l --color=always --icons --group-directories-first' # long format
+alias ll='eza -lg --color=always --icons --group-directories-first' # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
-alias llg="eza --tree --level=2 --long --icons --git"
+alias llg="eza --tree --level=2 --long -g --icons --git"
 
 # Show only the dotfiles
 alias l.='eza -a | egrep "^\."'
@@ -254,7 +254,7 @@ alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master
 # Setup the ssh-agent with our ssh private key.
 if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c > /dev/null)
-    ssh-add ~/.ssh/github_shricodev >/dev/null 2>&1
+    ssh-add ~/.ssh/github_shricodev &> /dev/null
 end
 
 # fetches the best possible documentation to work with for any command
