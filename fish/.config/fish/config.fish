@@ -293,8 +293,5 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 
 # This is telling zoxide to use cd command to move to the directories instead of the z command.
 # The cd command not aliases to the z command. z is no longer available.
-# zoxide init --cmd cd fish | source
-
-# Make cd to use zoxide
 zoxide init --cmd cd fish | source
 starship init fish | source

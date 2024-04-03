@@ -4,6 +4,7 @@ format = """
 $username\
 $directory\
 $git_branch\
+$git_status\
 $git_state\
 $python\
 $golang\
@@ -29,8 +30,9 @@ read_only = " 🔒"
 symbol = " "
 disabled = false
 
-# [git_status]
-# disabled = false
+[git_status]
+disabled = false
+diverged = "󰦻"
 
 [cmd_duration]
 # Only show the time duration when above 5 minutes
@@ -47,10 +49,10 @@ format = "[$symbol($virtualenv )](bold yellow)"
 format = '[ ](bold cyan)'
 
 [rust]
-format = '[$symbol ](bold red)'
+format = '$symbol'
 
 [nodejs]
-format = "[♦️](bold red)"
+format = "💎 "
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'

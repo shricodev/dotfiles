@@ -8,12 +8,18 @@ return {
   config = function()
     require('copilot').setup {
       panel = {
+        enabled = true,
+        auto_refresh = true,
         keymap = {
           jump_next = '<c-j>',
           jump_prev = '<c-k>',
           accept = '<c-l>',
           refresh = 'r',
           open = '<M-CR>',
+        },
+        layout = {
+          position = 'bottom', -- | top | left | right
+          ratio = 0.4,
         },
       },
       suggestion = {
@@ -37,8 +43,7 @@ return {
         ['.'] = false,
       },
       copilot_node_command = 'node',
+      server_opts_overrides = {},
     }
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap('n', '<c-s>', ":lua require('copilot.suggestion').toggle_auto_trigger()<CR>", opts)
   end,
 }

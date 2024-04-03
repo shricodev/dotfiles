@@ -6,9 +6,10 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = {
-      'nvim-lua/plenary.nvim',
+      { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
-      'nvim-tree/nvim-web-devicons',
+      { 'nvim-tree/nvim-web-devicons' },
+      { 'folke/todo-comments.nvim' },
     },
     config = function()
       require('telescope').setup {
@@ -26,7 +27,7 @@ return {
           file_previewer = require('telescope.previewers').vim_buffer_cat.new,
           grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
           qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-          path_display = { 'truncate' },
+          path_display = { 'smart' },
           selection_strategy = 'reset',
           sorting_strategy = 'ascending',
           file_sorter = require('telescope.sorters').get_fuzzy_file,

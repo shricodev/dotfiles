@@ -1,156 +1,117 @@
 return {
-  'neovim/nvim-lspconfig',
-  event = { 'BufReadPost' },
-  dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    { 'antosha417/nvim-lsp-file-operations', config = true },
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    lazy = true,
+    config = false,
+    init = function()
+      -- Disable automatic setup, we are doing it manually
+      vim.g.lsp_zero_extend_cmp = 0
+      vim.g.lsp_zero_extend_lspconfig = 0
+    end,
   },
-  config = function()
-    -- import lspconfig plugin
-    local lspconfig = require 'lspconfig'
-    require('lspconfig.ui.windows').default_options.border = 'single'
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+  {
+    'williamboman/mason.nvim',
+    lazy = false,
+    dependencies = {
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+    },
+    config = function()
+      -- import mason
+      local mason = require 'mason'
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+      local mason_tool_installer = require 'mason-tool-installer'
 
-    -- setup borders in the diagnostic window.
-    vim.diagnostic.config {
-      float = {
-        border = 'rounded',
-      },
-    }
-
-    -- Add the border on hover and on signature help popup window
-    local handlers = {
-      ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
-      ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-    }
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
-    for type, icon in pairs(signs) do
-      local hl = 'DiagnosticSign' .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-    end
-
-    -- configure html server
-    lspconfig['html'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-    }
-
-    -- configure docker server
-    lspconfig['dockerls'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'Dockerfile', 'dockerfile' },
-    }
-
-    lspconfig['docker_compose_language_service'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-    }
-
-    -- configure typescript server with plugin
-    lspconfig['tsserver'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-    }
-
-    -- configure css server
-    lspconfig['cssls'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-    }
-
-    -- configure tailwindcss server
-    lspconfig['tailwindcss'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-    }
-
-    -- configure prisma orm server
-    lspconfig['prismals'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'prisma' },
-    }
-
-    -- configure graphql language server
-    lspconfig['graphql'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'graphql', 'gql', 'svelte', 'typescriptreact', 'javascriptreact' },
-    }
-
-    -- configure emmet language server
-    lspconfig['emmet_ls'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
-    }
-
-    -- configure python server
-    lspconfig['pyright'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'python' },
-    }
-
-    -- configure golang server
-    lspconfig['gopls'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-      settings = {
-        gopls = {
-          completeUnimported = true,
-          usePlaceholders = true,
-        },
-      },
-    }
-
-    -- configure lua server (with special settings)
-    lspconfig['lua_ls'].setup {
-      capabilities = capabilities,
-      handlers = handlers,
-      filetypes = { 'lua' },
-      settings = { -- custom settings for lua
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { 'vim' },
-          },
-          workspace = {
-            -- make language server aware of runtime files
-            library = {
-              [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-              [vim.fn.stdpath 'config' .. '/lua'] = true,
-            },
+      -- enable mason and configure icons
+      mason.setup {
+        ui = {
+          border = 'rounded',
+          icons = {
+            package_pending = ' ',
+            package_installed = '󰄳 ',
           },
         },
-      },
-    }
+      }
 
-    -- configure svelte server
-    -- lspconfig["svelte"].setup({
-    --   capabilities = capabilities,
-    --   handlers = handlers,
-    --   on_attach = function(client, bufnr)
-    --     on_attach(client, bufnr)
-    --
-    --     vim.api.nvim_create_autocmd("BufWritePost", {
-    --       pattern = { "*.js", "*.ts" },
-    --       callback = function(ctx)
-    --         if client.name == "svelte" then
-    --           client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-    --         end
-    --       end,
-    --     })
-    --   end,
-    -- })
-  end,
+      mason_tool_installer.setup {
+        ensure_installed = {
+          'prettierd', -- prettier formatter
+          'stylua', -- lua formatter
+          'isort', -- python formatter
+          'ruff', -- python linter and formatter
+          'eslint_d', -- js linter
+          'gofumpt', -- go formatter
+          'goimports-reviser', -- go formatter
+        },
+      }
+    end,
+  },
+
+  {
+    'neovim/nvim-lspconfig',
+    cmd = { 'LspInfo', 'LspInstall', 'LspStart', 'LspRestart' },
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'williamboman/mason-lspconfig.nvim' },
+    },
+    config = function()
+      -- import lspconfig plugin
+      -- This is where all the LSP shenanigans will live
+      local lsp_zero = require 'lsp-zero'
+      lsp_zero.extend_lspconfig()
+
+      -- Add borders to the LSP floating windows like :LspInfo
+      require('lspconfig.ui.windows').default_options.border = 'single'
+
+      -- setup borders in the diagnostic window.
+      vim.diagnostic.config {
+        float = {
+          border = 'rounded',
+        },
+      }
+
+      -- Change the Diagnostic symbols in the sign column (gutter)
+      -- (not in youtube nvim video)
+      local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
+      for type, icon in pairs(signs) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+      end
+
+      --- if you want to know more about lsp-zero and mason.nvim
+      --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+      lsp_zero.on_attach(function(client, bufnr)
+        -- see :help lsp-zero-keybindings
+        -- to learn the available actions
+        lsp_zero.default_keymaps { buffer = bufnr }
+      end)
+
+      require('mason-lspconfig').setup {
+        -- list of servers for mason to install
+        ensure_installed = {
+          'tsserver',
+          'html',
+          'cssls',
+          'tailwindcss',
+          'gopls',
+          'lua_ls',
+          'emmet_ls',
+          'pyright',
+        },
+        max_concurrent_installers = 10,
+        -- auto-install configured servers (with lspconfig)
+        automatic_installation = true, -- not the same as ensure_installed
+
+        handlers = {
+          lsp_zero.default_setup,
+          lua_ls = function()
+            -- (Optional) Configure lua language server for neovim
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+          end,
+        },
+      }
+    end,
+  },
 }

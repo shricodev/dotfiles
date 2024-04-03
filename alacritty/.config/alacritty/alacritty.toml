@@ -5,6 +5,10 @@ import = [
 
 live_config_reload = true
 
+[shell]
+program = "C:\\Windows\\System32\\wsl.exe"
+args = ["--", "/usr/bin/tmux", "new", "-A", "-s", "base"]
+
 [font]
 # The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below font size with caution
 size = 11.8

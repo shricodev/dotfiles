@@ -11,7 +11,7 @@ return {
       no_italic = true,
       integrations = {
         indent_blankline = {
-          enabled = false,
+          enabled = true,
           scope_color = 'sapphire',
           colored_indent_levels = false,
         },
@@ -38,8 +38,6 @@ return {
         treesitter_context = true,
       },
     }
-
-    -- Set the color scheme to catppuccin
-    vim.cmd.colorscheme 'catppuccin'
+    vim.cmd.colorscheme 'catppuccin-macchiato'
   end,
 }

@@ -3,7 +3,8 @@ return {
   build = ':TSUpdate',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    { 'windwp/nvim-ts-autotag' },
   },
   config = function()
     -- TreeSitter plugin setup
@@ -12,15 +13,34 @@ return {
       auto_install = true,
       highlight = { enable = true },
       indent = { enable = true },
+
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {
         enable = true,
       },
+
+      -- ensure these language parsers are installed
+      ensure_installed = {
+        'json',
+        'javascript',
+        'typescript',
+        'tsx',
+        'yaml',
+        'html',
+        'css',
+        'markdown',
+        'markdown_inline',
+        'bash',
+        'lua',
+        'dockerfile',
+        'gitignore',
+      },
+
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<C-n>',
-          node_incremental = '<C-n>',
+          init_selection = '<C-Space>',
+          node_incremental = '<C-Space>',
           scope_incremental = false,
           node_decremental = '<bs>',
         },
