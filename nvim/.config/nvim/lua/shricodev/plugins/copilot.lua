@@ -45,5 +45,8 @@ return {
       copilot_node_command = 'node',
       server_opts_overrides = {},
     }
+
+    -- Trigger copilot
+    vim.keymap.set('n', '<C-s>', ":lua require('copilot.suggestion').toggle_auto_trigger()<CR>", { silent = true, noremap = true })
   end,
 }

@@ -38,6 +38,6 @@ return {
         treesitter_context = true,
       },
     }
-    vim.cmd.colorscheme 'catppuccin-macchiato'
+    vim.cmd 'colorscheme catppuccin'
   end,
 }

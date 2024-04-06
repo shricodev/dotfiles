@@ -20,7 +20,8 @@ vim.wo.relativenumber = true
 opt.updatetime = 250
 opt.timeoutlen = 300
 
-opt.showmode = false -- don't show mode as it is already in the statusline
+-- don't show mode as it is already in the statusline
+opt.showmode = false
 
 -- line wrapping
 opt.wrap = false -- disable line wrapping
@@ -64,6 +65,7 @@ opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
+--  NOTE:: This option makes the editor much slower on some systems. So, prefer to lazy load it in misc.lua
 opt.clipboard = 'unnamedplus'
 
 -- split windows

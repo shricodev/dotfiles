@@ -32,12 +32,15 @@ return {
         async = false,
         timeout_ms = 500,
       },
-      -- -- If this is set, Conform will run the formatter asynchronously after save.
-      -- -- It will pass the table to conform.format().
-      -- -- This can also be a function that returns the table.
-      -- format_after_save = {
-      --   lsp_fallback = true,
-      -- },
+
+      -- Setup the keybindings for the conform formatter
+      vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
+        conform.format {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        }
+      end, { desc = 'Format file or range (in visual mode)' }),
     }
   end,
 }
