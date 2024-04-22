@@ -24,7 +24,7 @@ return {
       workspaces = {
         {
           name = 'ObsidianVault',
-          path = '/mnt/c/Users/reali/Documents/ObsidianVault',
+          path = '/home/shricodev/Documents/Obsidian-Notes',
         },
       },
       completion = {

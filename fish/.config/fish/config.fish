@@ -1,5 +1,6 @@
 # My fish config. Not much to see here; just some pretty standard stuff.
 # Open tmux as default when the shell starts
+# Attach to or create the base session
 if not set -q TMUX
     set -g TMUX tmux new-session -d -s base
     eval $TMUX
@@ -10,7 +11,7 @@ end
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $fish_user_paths
+set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting # Supresses fish's intro message
@@ -26,7 +27,9 @@ set -gx BAT_THEME "Catppuccin-macchiato"
 set -gx KUBECONFIG "~/.kube/config"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
-set -gx FZF_DEFAULT_COMMAND "fdfind --type f --hidden --follow"
+set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+set -gx FZF_ALT_C_COMMAND "fd --type d --hidden --strip-cwd-prefix --exclude .git"
 
 # Use the machhiato theme for the fish shell
 fish_config theme choose "Catppuccin Macchiato"
@@ -34,16 +37,6 @@ fish_config theme choose "Catppuccin Macchiato"
 ### SET MANPAGER
 ### "less" as manpager
 set -x MANPAGER "less"
-
-### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
-function fish_user_key_bindings
-    # fish_default_key_bindings
-    fish_vi_key_bindings
-    # Use jk to change the mode from insert to normal in the terminal
-    bind -M insert -m default jk backward-char force-repaint
-end
-
-### FUNCTIONS ###
 
 # Functions needed for !! and !$
 function __history_previous_command
@@ -212,10 +205,6 @@ alias lg="lazygit"
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-# alias to use 'batcat' with cat command
-alias bt="batcat"
-alias bat="batcat"
-
 # switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
@@ -254,7 +243,7 @@ alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master
 # Setup the ssh-agent with our ssh private key.
 if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c > /dev/null)
-    ssh-add ~/.ssh/github_shricodev &> /dev/null
+    ssh-add ~/.ssh/gh_login_shricodev &> /dev/null
 end
 
 # fetches the best possible documentation to work with for any command
@@ -282,11 +271,6 @@ end
 function ffp
   echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
 end
-
-# Open a file from fzf list in neovim
-function ffn
-  nvim "$(find . -type f -not -path '*/.*' | fzf)"
-end
 ### EOF Navigation UTIL functions
 
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
@@ -295,3 +279,4 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # The cd command not aliases to the z command. z is no longer available.
 zoxide init --cmd cd fish | source
 starship init fish | source
+

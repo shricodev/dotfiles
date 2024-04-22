@@ -4,7 +4,6 @@ format = """
 $username\
 $directory\
 $git_branch\
-$git_status\
 $git_state\
 $python\
 $golang\
@@ -30,9 +29,10 @@ read_only = " 🔒"
 symbol = " "
 disabled = false
 
-[git_status]
-disabled = false
-diverged = "󰦻"
+# This makes the terminal quite slow sometimes in certain folders. So disabling it for now.
+# [git_status]
+# disabled = false
+# diverged = "󰦻"
 
 [cmd_duration]
 # Only show the time duration when above 5 minutes

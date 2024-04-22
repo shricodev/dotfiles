@@ -5,16 +5,12 @@ import = [
 
 live_config_reload = true
 
-[shell]
-program = "C:\\Windows\\System32\\wsl.exe"
-args = ["--", "/usr/bin/tmux", "new", "-A", "-s", "base"]
-
 [font]
 # The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below font size with caution
 size = 11.8
 
 # These are configured very precisely to make glyphs line up with the grid in alacritty. Please change the below offsets with caution
-offset = { x = 0, y = 3 }
+offset = { x = 0, y = 2 }
 glyph_offset = { x = 0, y = 1 }
 
 [font.normal]
@@ -39,7 +35,7 @@ TERM = "screen-256color"
 opacity = 0.9
 decorations = "None"
 dynamic_padding = false
-startup_mode = "Fullscreen"
+startup_mode = "Maximized"
 
 [window.padding]
 x = 0
