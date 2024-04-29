@@ -4,22 +4,22 @@ return {
     {
       '<leader>dt',
       ':DapToggleBreakpoint<CR>',
-      desc = 'Toggle breakpoint',
+      desc = '[NvimDap]: Toggle breakpoint',
     },
     {
       '<leader>dc',
       ':DapContinue<CR>',
-      desc = 'Continue Breakpoint',
+      desc = '[NvimDap]: Continue Breakpoint',
     },
     {
       '<leader>dx',
       ':DapTerminate<CR>',
-      desc = 'Terminate the debugger',
+      desc = '[NvimDap]: Terminate the debugger',
     },
     {
       '<leader>do',
       ':DapStepOver<CR>',
-      desc = 'Step Over the breakpoint',
+      desc = '[NvimDap]: Step Over the breakpoint',
     },
   },
   dependencies = {

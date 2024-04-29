@@ -47,6 +47,11 @@ return {
     }
 
     -- Trigger copilot
-    vim.keymap.set('n', '<C-s>', ":lua require('copilot.suggestion').toggle_auto_trigger()<CR>", { silent = true, noremap = true })
+    vim.keymap.set(
+      'n',
+      '<C-s>',
+      ":lua require('copilot.suggestion').toggle_auto_trigger()<CR>",
+      { desc = '[Copilot]: Toggle copilot auto trigger', silent = true, noremap = true }
+    )
   end,
 }

@@ -312,14 +312,14 @@ return {
     }
 
     -- Use <leader>b to toggle the nvim-tree
-    vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<CR>', { silent = true, noremap = true, desc = 'Toggle the Nvim-Tree explorer' })
+    vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<CR>', { silent = true, noremap = true, desc = '[NvimTree]: Toggle the file explorer' })
     vim.keymap.set(
       'n',
       '<leader>ee',
       ':NvimTreeFindFileToggle<CR>',
-      { silent = true, noremap = true, desc = 'Toggle the Nvim-Tree explorer on the current file' }
+      { silent = true, noremap = true, desc = '[NvimTree]: Toggle file explorer on the current file' }
     )
-    vim.keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' }) -- collapse file explorer
-    vim.keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' }) -- refresh file explorer
+    vim.keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = '[NvimTree]: Collapse file explorer' }) -- collapse file explorer
+    vim.keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = '[NvimTree]: Refresh file explorer' }) -- refresh file explorer
   end,
 }

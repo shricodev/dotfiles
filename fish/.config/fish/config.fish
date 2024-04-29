@@ -1,11 +1,4 @@
 # My fish config. Not much to see here; just some pretty standard stuff.
-# Open tmux as default when the shell starts
-# Attach to or create the base session
-if not set -q TMUX
-    set -g TMUX tmux new-session -d -s base
-    eval $TMUX
-    tmux attach-session -d -t base
-end
 
 ### ADDING TO THE PATH
 # First line removes the path; second line sets it.  Without the first line,
@@ -13,13 +6,18 @@ end
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
-### EXPORT ###
-set fish_greeting # Supresses fish's intro message
-# use the default terminal color
-# set TERM screen-256color # Sets the terminal type
+# Open tmux as default when the shell starts
+# Attach to or create the base session
+if not set -q TMUX
+  set -g TMUX tmux new-session -d -s base
+  eval $TMUX
+  tmux attach-session -d -t base
+end
 
-set -gx EDITOR "nvim"
-set -gx VISUAL "nvim"
+set fish_greeting # Supresses fish's intro message
+
+# use the default terminal color
+set TERM screen-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "Catppuccin-macchiato"
@@ -95,15 +93,6 @@ function copy
     end
 end
 
-# Function for printing a column (splits input on whitespace)
-# ex: echo 1 2 3 | coln 3
-# output: 3
-# function coln
-#     while read -l input
-#         echo $input | awk '{print $'$argv[1]'}
-#     end
-# end
-
 # Function for printing a row
 # ex: seq 3 | rown 3
 # output: 3
@@ -125,6 +114,33 @@ function take --argument number
     head -$number
 end
 
+# fetches the best possible documentation to work with for any command
+function cheatsheet
+  curl https://cheat.sh/$argv
+end
+
+# Either attach or create a new tmux session
+function tt
+  tmux new-session -A -s $argv
+end
+
+### Navigation UTIL functions
+# Change directory and list files
+function cdl
+  cd $argv && ls
+end
+
+# Use fzf to change directory and list the contents of the directory
+function fcl
+  cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
+end
+
+# Use fzf to choose file and copy the file path to the clipboard
+function ffp
+  echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
+end
+### EOF Navigation UTIL functions
+
 # Function for org-agenda
 function org-search -d "send a search string to org-mode"
     set -l output (/usr/bin/emacsclient -a "" -e "(message \"%s\" (mapconcat #'substring-no-properties \
@@ -138,8 +154,11 @@ function org-search -d "send a search string to org-mode"
     printf $output
 end
 
-### END OF FUNCTIONS ###
-
+# Setup the ssh-agent with our ssh private key.
+if test -z "$SSH_AUTH_SOCK"
+    eval (ssh-agent -c > /dev/null)
+    ssh-add ~/.ssh/gh_login_shricodev &> /dev/null
+end
 
 ### ALIASES ###
 # navigation
@@ -163,7 +182,7 @@ alias lt='eza -aT --color=always --group-directories-first' # tree listing
 alias llg="eza --tree --level=2 --long -g --icons --git"
 
 # Show only the dotfiles
-alias l.='eza -a | egrep "^\."'
+alias l.='eza -a | grep -E "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -230,48 +249,11 @@ alias http="xh"
 # Ranger file manager alias
 alias rr='ranger'
 
-# Install packages short Debian distros
-alias si="sudo apt install "
-alias i="apt install "
-
 # Weather in current location
 alias wtr="curl wttr.in"
 
 # Do the internet speed test
 alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py' | python3 -"
-
-# Setup the ssh-agent with our ssh private key.
-if test -z "$SSH_AUTH_SOCK"
-    eval (ssh-agent -c > /dev/null)
-    ssh-add ~/.ssh/gh_login_shricodev &> /dev/null
-end
-
-# fetches the best possible documentation to work with for any command
-function cheatsheet
-  curl https://cheat.sh/$argv
-end
-
-# Either attach or create a new tmux session
-function tt
-  tmux new-session -A -s $argv
-end
-
-### Navigation UTIL functions
-# Change directory and list files
-function cdl
-  cd $argv && ls
-end
-
-# Use fzf to change directory and list the contents of the directory
-function fcl
-  cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
-end
-
-# Use fzf to choose file and copy the file path to the clipboard
-function ffp
-  echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
-end
-### EOF Navigation UTIL functions
 
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 

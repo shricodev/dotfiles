@@ -65,11 +65,16 @@ return {
         'n',
         '<C-p>',
         ":lua require('telescope').extensions.projects.projects{}<CR>",
-        { noremap = true, silent = true, desc = 'Switch between multiple projects' }
+        { noremap = true, silent = true, desc = '[Telescope]: Switch between multiple projects' }
       )
 
       -- Options through Telescope
-      vim.keymap.set('n', '<leader><tab>', "<cmd>lua require('telescope.builtin').commands()<CR>", { silent = true, desc = 'View Telescope options' })
+      vim.keymap.set(
+        'n',
+        '<leader><tab>',
+        "<cmd>lua require('telescope.builtin').commands()<CR>",
+        { silent = true, desc = '[Telescope]: View Telescope options' }
+      )
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -77,7 +82,7 @@ return {
         require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           previewer = false,
         })
-      end, { desc = 'Fuzzily search in current buffer' })
+      end, { desc = '[Telescope]: Fuzzily search in current buffer' })
 
       -- Search in Open Files
       vim.keymap.set('n', '<leader>s/', function()
@@ -85,18 +90,18 @@ return {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
         }
-      end, { silent = true, desc = 'Fuzzily search in Open Files' })
+      end, { silent = true, desc = '[Telescope]: Fuzzily search in Open Files' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Fuzzily find Neovim config' })
+      end, { desc = '[Telescope]: Fuzzily find Neovim config' })
 
       -- Use telescope to search the help tags
-      vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = 'Search the Help Documentation' })
+      vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = '[Telescope]: Search the Help Documentation' })
 
       -- Setup the keybindings for the telescope plugin.
-      vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", { desc = 'Fuzzy find files in the cwd' })
+      vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", { desc = '[Telescope]: Fuzzy find files in the cwd' })
       -- Also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
       vim.keymap.set('n', '<leader>s/', function()
@@ -104,24 +109,25 @@ return {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
         }
-      end, { desc = 'Fizzy find in Open Files' })
+      end, { desc = '[Telescope]: Fizzy find in Open Files' })
+
       -- This is to also view the .env sort of files in the telescope find files ui
       vim.keymap.set(
         'n',
         '<leader>faf',
         "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
-        { desc = 'Fuzzy find files in the cwd' }
+        { desc = '[Telescope]: Fuzzy find files in the cwd' }
       )
-      vim.keymap.set('n', '<leader>fs', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = 'Find string in cwd' })
-      vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Fuzzy find recent files' })
-      vim.keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = 'Find string under cursor in cwd' })
+      vim.keymap.set('n', '<leader>fs', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Find string in cwd' })
+      vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = '[Telescope]: Fuzzy find recent files' })
+      vim.keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = '[Telescope]: Find string under cursor in cwd' })
 
-      vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'Open a buffer' })
+      vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
 
-      vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = 'View the keybindings' })
-      vim.keymap.set('n', '<leader>mv', '<cmd>Telescope marks<CR>', { desc = 'View  marks' })
+      vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keybindings' })
+      vim.keymap.set('n', '<leader>mv', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: View  marks' })
 
-      vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<CR>', { desc = 'Git Branches' })
+      vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<CR>', { desc = '[Telescope]: Git Branches' })
     end,
   },
 }
