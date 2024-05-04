@@ -1,30 +1,30 @@
--- I am currently using LspZero to handle linting. This plugin is not currently in use.
-return {}
+return {
+  'mfussenegger/nvim-lint',
+  event = { 'BufReadPre', 'BufNewFile' },
+  config = function()
+    local lint = require 'lint'
 
--- return {
---   'mfussenegger/nvim-lint',
---   lazy = true,
---   event = { 'BufReadPre', 'BufNewFile' }, -- to disable, comment this out
---   config = function()
---     local lint = require 'lint'
---
---     lint.linters_by_ft = {
---       javascript = { 'eslint_d' },
---       typescript = { 'eslint_d' },
---       javascriptreact = { 'eslint_d' },
---       typescriptreact = { 'eslint_d' },
---       python = { 'ruff' },
---       markdown = { 'vale' },
---       docker = { 'hadolint' },
---     }
---
---     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
---
---     vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
---       group = lint_augroup,
---       callback = function()
---         lint.try_lint()
---       end,
---     })
---   end,
--- }
+    lint.linters_by_ft = {
+      javascript = { 'eslint_d' },
+      typescript = { 'eslint_d' },
+      javascriptreact = { 'eslint_d' },
+      typescriptreact = { 'eslint_d' },
+      python = { 'ruff' },
+      markdown = { 'vale' },
+      docker = { 'hadolint' },
+    }
+
+    local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+      group = lint_augroup,
+      callback = function()
+        lint.try_lint()
+      end,
+    })
+
+    vim.keymap.set('n', '<leader>l', function()
+      lint.try_lint()
+    end, { desc = 'Trigger linting for current file' })
+  end,
+}

@@ -65,8 +65,7 @@ opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
---  NOTE:: This option makes the editor much slower on some systems. So, prefer to lazy load it in misc.lua
-opt.clipboard = 'unnamedplus'
+opt.clipboard:append 'unnamedplus' -- use system clipboard as default register
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

@@ -12,9 +12,8 @@ keymap.set('i', 'JK', '<ESC>', { desc = '[ModeChange]: Exit insert mode with JK'
 keymap.set('i', 'kj', '<ESC>', { desc = '[ModeChange]: Exit insert mode with kj' })
 keymap.set('i', 'kj', '<ESC>', { desc = '[ModeChange]: Exit insert mode with KJ' })
 
--- increment/decrement numbers
--- I am making the Increment to have <leader>= and not <leader>+ because the + key needs to be hit with shift
-keymap.set('n', '<leader>=', '<C-a>', { desc = '[Number]: Increment number' }) -- increment
+-- Increment and Decrement numbers
+keymap.set('n', '<leader>+', '<C-a>', { desc = '[Number]: Increment number' }) -- increment
 keymap.set('n', '<leader>-', '<C-x>', { desc = '[Number]: Decrement number' }) -- decrement
 
 -- clear search highlights

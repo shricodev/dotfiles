@@ -21,8 +21,6 @@ return {
         python = {
           -- To run the ruff formatter
           'ruff_format',
-          -- To fix lint errors
-          'ruff_fix',
           -- Sort imports
           'isort',
         },
