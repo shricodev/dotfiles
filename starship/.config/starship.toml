@@ -6,16 +6,8 @@ $directory\
 $git_branch\
 $git_state\
 $python\
-$golang\
-$rust\
-$nodejs\
 $cmd_duration\
 $character"""
-
-right_format = """
-$aws\
-$docker_context
-"""
 
 [character]
 success_symbol = "[❯](purple)"
@@ -44,24 +36,6 @@ disabled = false
 
 [python]
 format = "[$symbol($virtualenv )](bold yellow)"
-
-[golang]
-format = '[ ](bold cyan)'
-
-[rust]
-format = '$symbol'
-
-[nodejs]
-format = "💎 "
-
-[aws]
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = 'bold blue'
-symbol = "  "
-
-[docker_context]
-format = '[🐳 $context](bold blue) '
-only_with_files = true
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"

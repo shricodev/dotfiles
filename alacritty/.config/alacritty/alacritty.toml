@@ -7,7 +7,7 @@ live_config_reload = true
 
 [font]
 # The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below font size with caution
-size = 11.8
+size = 11
 normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 
@@ -22,12 +22,12 @@ history = 10000
 TERM = "xterm-256color"
 
 [window]
-opacity = 0.95
+opacity = 1
 padding = { x = 2, y = 10 }
 blur = true
 decorations = "None"
 dynamic_padding = false
-startup_mode = "Maximized"
+startup_mode = "Fullscreen"
 option_as_alt = "Both"
 
 [selection]

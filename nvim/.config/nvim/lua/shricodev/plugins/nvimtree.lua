@@ -189,7 +189,7 @@ return {
         -- relativenumber = true,
         adaptive_size = false,
         width = 38,
-        side = 'left',
+        side = 'right',
         preserve_window_proportions = true,
         -- float = {
         --   enable = true,

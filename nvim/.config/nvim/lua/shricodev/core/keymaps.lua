@@ -9,12 +9,6 @@ keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 -- use jk or kj to exit insert mode
 keymap.set('i', 'jk', '<ESC>', { desc = '[ModeChange]: Exit insert mode with jk' })
 keymap.set('i', 'JK', '<ESC>', { desc = '[ModeChange]: Exit insert mode with JK' })
-keymap.set('i', 'kj', '<ESC>', { desc = '[ModeChange]: Exit insert mode with kj' })
-keymap.set('i', 'kj', '<ESC>', { desc = '[ModeChange]: Exit insert mode with KJ' })
-
--- Increment and Decrement numbers
-keymap.set('n', '<leader>+', '<C-a>', { desc = '[Number]: Increment number' }) -- increment
-keymap.set('n', '<leader>-', '<C-x>', { desc = '[Number]: Decrement number' }) -- decrement
 
 -- clear search highlights
 keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Clear search highlights' })
@@ -26,6 +20,12 @@ keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[Window]: Split window horizon
 keymap.set('n', '<leader>se', '<C-w>=', { desc = '[Window]: Make splits equal size' }) -- make split windows equal width & height
 keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = '[Window]: Close current split' }) -- close current split window
 keymap.set('n', '<leader>swr', '<cmd>bp|bd #<CR>', { desc = '[Window]: Close Buffer; Retain Split' }) -- Close buffer without closing split
+
+-- window size management
+keymap.set('n', '=', '<cmd>vertical resize +5<cr>', { desc = '[Window]: Increase window size vertically' }) -- make the window biger vertically
+keymap.set('n', '-', '<cmd>vertical resize -5<cr>', { desc = '[Window]: Decrease window size vertically' }) -- make the window smaller vertically
+keymap.set('n', '+', '<cmd>horizontal resize +2<cr>', { desc = '[Window]: Increase window size horizontally' }) -- make the window bigger horizontally by pressing shift and =
+keymap.set('n', '_', '<cmd>horizontal resize -2<cr>', { desc = '[Window]: Decrease window size horizontally' }) -- make the window smaller horizontally by pressing shift and -
 
 -- tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[Tab]: Open new tab' }) -- open new tab
