@@ -38,9 +38,6 @@ keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = '[Tab]: Open current
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = '[Move]: Move the selected block of code down' })
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = '[Move]: Move the selected block of code up' })
 
--- Select all
-keymap.set('n', '==', '[Select]: gg<S-v>G')
-
 -- Jump between markdown headers.
 keymap.set('n', '<leader>m]', [[/^##\+ .*<CR>]], { desc = '[Markdown]: Jump to next markdown header' })
 keymap.set('n', '<leader>m[', [[?^##\+ .*<CR>]], { desc = '[Markdown]: Jump to previous markdown header' })
@@ -63,6 +60,11 @@ keymap.set('n', '<leader>q', '<cmd>bd<CR>', { desc = '[Buffer]: Close Buffer' })
 keymap.set('n', '<leader><leader>', function()
   vim.cmd 'so'
 end, { desc = '[Source]: Source current file' })
+
+-- Inlay hints.
+keymap.set('n', '<leader>ht', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
 
 -- Paste hack
 keymap.set('x', '<leader>p', [["_dP]], { desc = '[Paste]: Paste the text while keeping it intact' })
