@@ -10,7 +10,8 @@ return {
       javascriptreact = { 'eslint_d' },
       typescriptreact = { 'eslint_d' },
       python = { 'ruff' },
-      markdown = { 'vale' },
+      -- Vale has so many issues. Commenting this for now.
+      -- markdown = { 'vale' },
       docker = { 'hadolint' },
     }
 

@@ -6,13 +6,6 @@
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
-# Open tmux as default when the shell starts
-# Attach to or create the base session
-if not set -q TMUX
-  set -g TMUX tmux new-session -d -s base
-  eval $TMUX
-  tmux attach-session -d -t base
-end
 
 set fish_greeting # Supresses fish's intro message
 
@@ -20,7 +13,7 @@ set fish_greeting # Supresses fish's intro message
 set TERM screen-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
-set -gx BAT_THEME "Catppuccin-macchiato"
+set -gx BAT_THEME "Catppuccin Macchiato"
 
 set -gx KUBECONFIG "~/.kube/config"
 
@@ -35,6 +28,9 @@ fish_config theme choose "Catppuccin Macchiato"
 ### SET MANPAGER
 ### "less" as manpager
 set -x MANPAGER "less"
+
+#set up NEOVIM as a default editor.
+set -gx EDITOR nvim
 
 # Functions needed for !! and !$
 function __history_previous_command
@@ -158,6 +154,14 @@ end
 if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c > /dev/null)
     ssh-add ~/.ssh/gh_login_shricodev &> /dev/null
+end
+
+# Open tmux as default when the shell starts
+# Attach to or create the base session
+if not set -q TMUX
+  set -g TMUX tmux new-session -d -s base
+  eval $TMUX
+  tmux attach-session -d -t base
 end
 
 ### ALIASES ###

@@ -7,7 +7,7 @@ return {
     local dashboard = require 'alpha.themes.dashboard'
 
     dashboard.section.header.val = {
-      [[                                            ]],
+      [[                                                                       ]],
       [[                                                                       ]],
       [[                                                                     ]],
       [[       ████ ██████           █████      ██                     ]],
@@ -18,9 +18,9 @@ return {
       [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
       [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
       [[                                                                       ]],
-      [[                                            ]],
+      [[                                                                       ]],
       [[                                                     [ 😎 @shricodev ] ]],
-      [[                                            ]],
+      [[                                                                       ]],
     }
 
     -- Set menu
@@ -29,7 +29,7 @@ return {
       dashboard.button('SPC ee', '  > Toggle file explorer', '<cmd>NvimTreeToggle<CR>'),
       dashboard.button('SPC ff', '󰱼  > Find File', '<cmd>Telescope find_files<CR>'),
       dashboard.button('SPC fs', '  > Find String', '<cmd>Telescope live_grep<CR>'),
-      dashboard.button('SPC wsr', '󰁯  > Session Restore For Current Directory', '<cmd>SessionRestore<CR>'),
+      dashboard.button('SPC wsr', '󰁯  > Session Restore For Current Dir', '<cmd>SessionRestore<CR>'),
       dashboard.button('q', '  > Quit NVIM', '<cmd>qa<CR>'),
     }
 
