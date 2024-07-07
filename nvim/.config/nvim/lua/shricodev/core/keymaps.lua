@@ -97,3 +97,10 @@ keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = '[E
 
 -- Shortcut to open the config folder
 keymap.set('n', '<leader>pp', '<cmd>e ~/.config/nvim/<CR>', { desc = '[ConfigFolder]: Open the NVIM config folder' })
+
+-- Terminal keymaps
+keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, desc = '[Terminal]: Change from insert to normal terminal mode' })
+keymap.set('t', '<A-h>', '<C-\\><C-n><C-w>h', { noremap = true, desc = '[Terminal]: Move to the left split' })
+keymap.set('t', '<A-j>', '<C-\\><C-n><C-w>j', { noremap = true, desc = '[Terminal]: Move to the bottom split' })
+keymap.set('t', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, desc = '[Terminal]: Move to the top split' })
+keymap.set('t', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, desc = '[Terminal]: Move to the right ' })

@@ -20,19 +20,19 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Enable spell checking and text wrapping for gitcommit, markdown and txt files
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  group = vim.api.nvim_create_augroup('edit_text', { clear = true }),
-  pattern = { 'gitcommit', 'markdown', 'txt' },
-  desc = 'Enable spell checking and text wrapping for certain filetypes',
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-
-    -- This ignores spell check on camel words that are actually valid like HelloWorld.
-    vim.opt_local.spelloptions:append 'camel'
-  end,
-})
+-- -- Enable spell checking and text wrapping for gitcommit, markdown and txt files
+-- vim.api.nvim_create_autocmd({ 'FileType' }, {
+--   group = vim.api.nvim_create_augroup('edit_text', { clear = true }),
+--   pattern = { 'gitcommit', 'markdown', 'txt' },
+--   desc = 'Enable spell checking and text wrapping for certain filetypes',
+--   callback = function()
+--     vim.opt_local.wrap = true
+--     vim.opt_local.spell = true
+--
+--     -- This ignores spell check on camel words that are actually valid like HelloWorld.
+--     vim.opt_local.spelloptions:append 'camel'
+--   end,
+-- })
 
 -- Toggle LSP Diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
@@ -50,3 +50,13 @@ end, {})
 
 -- Set "CmpItemKind" highlight group
 vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
+
+-- Always open terminal in insert mode.
+vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
+  pattern = { '*' },
+  callback = function()
+    if vim.opt.buftype:get() == 'terminal' then
+      vim.cmd ':startinsert'
+    end
+  end,
+})

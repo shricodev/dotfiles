@@ -31,11 +31,11 @@ border_symbol = "│"
 border_style  = { fg = "#8087a2" }
 
 # Highlighting
-syntect_theme = "~/.config/yazi/Catppuccin-macchiato.tmTheme"
+syntect_theme = "~/.config/yazi/preview-theme/Catppuccin-Macchiato.tmTheme"
 
 [status]
-separator_open  = ""
-separator_close = ""
+separator_open  = "█"
+separator_close = "█"
 separator_style = { fg = "#494d64", bg = "#494d64" }
 
 # Mode

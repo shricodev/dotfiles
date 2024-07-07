@@ -6,6 +6,10 @@
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
+# Run the fastfetch command in the startup only if it exists.
+if command -q fastfetch
+  fastfetch --file-raw $HOME/.config/fastfetch/cat-ascii.txt
+end
 
 set fish_greeting # Supresses fish's intro message
 
@@ -19,15 +23,13 @@ set -gx KUBECONFIG "~/.kube/config"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
-set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
-set -gx FZF_ALT_C_COMMAND "fd --type d --hidden --strip-cwd-prefix --exclude .git"
 
 # Use the machhiato theme for the fish shell
 fish_config theme choose "Catppuccin Macchiato"
 
 ### SET MANPAGER
-### "less" as manpager
-set -x MANPAGER "less"
+### "bat" as manpager
+set -x MANPAGER "bat"
 
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim
@@ -197,17 +199,8 @@ alias fgrep='fgrep --color=auto'
 alias df='df -h' # human-readable sizes
 alias free='free -m' # show sizes in MB
 
-# ps
-alias psa="ps auxf"
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias psmem='ps auxf | sort -nr -k 4'
-alias pscpu='ps auxf | sort -nr -k 3'
-
-# Merge Xresources
-alias merge='xrdb -merge ~/.Xresources'
-
-# peco
-alias hf='history | peco --layout=bottom-up'
+# fuzzily find history
+alias hf='history | fzf'
 
 # git
 alias addup='git add -u'
@@ -225,10 +218,9 @@ alias newtag='git tag -a'
 
 alias lg="lazygit"
 
-# get error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
-
 # switch between shells
+# The shell path is hardcoded for now since adding $(which <shell>) would result in warning in the terminal
+# if the shell is not installed.
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
@@ -250,8 +242,8 @@ alias kcns='kubectl config set-context --current --namespace'
 # HTTP requests with xh! Make sure to have it installed.
 alias http="xh"
 
-# Ranger file manager alias
-alias rr='ranger'
+# Yazi file manager
+alias yz='yazi'
 
 # Weather in current location
 alias wtr="curl wttr.in"
@@ -266,6 +258,8 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 zoxide init --cmd cd fish | source
 starship init fish | source
 
+# Source fzf command
+fzf --fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
