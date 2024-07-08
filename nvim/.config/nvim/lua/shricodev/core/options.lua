@@ -1,4 +1,5 @@
-local opt = vim.opt -- for conscise code
+local opt = vim.opt -- for vim options
+local window = vim.wo -- for window options
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -6,15 +7,23 @@ vim.g.maplocalleader = ' '
 -- Have nerd font available? Set this to true
 vim.g.have_nerd_font = true
 
+-- recommended settings from nvim-tree documentation vim.g.loaded_netrw = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- disable the default codeium key bindings.
+vim.g.codeium_disable_bindings = 1
+
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
+opt.smarttab = true
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- show number in current line and show relative number to all other lines
-vim.wo.number = true
-vim.wo.relativenumber = true
+window.number = true
+window.relativenumber = true
 
 -- change the updatetime property to 50ms
 opt.updatetime = 250
@@ -36,7 +45,7 @@ opt.hlsearch = true
 opt.undofile = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
+opt.completeopt = 'menu,menuone,noselect'
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
@@ -62,9 +71,9 @@ opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 -- backspace
 opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- -- Sync clipboard between OS and Neovim.
+-- --  Remove this option if you want your OS clipboard to remain independent.
+-- --  See `:help 'clipboard'`
 opt.clipboard:append 'unnamedplus' -- use system clipboard as default register
 
 -- split windows
@@ -75,7 +84,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.swapfile = false
 
 -- Concealer for Obsidian
-vim.o.conceallevel = 2
+opt.conceallevel = 2
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
@@ -86,7 +95,3 @@ opt.guicursor = {
   'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
 }
-
--- recommended settings from nvim-tree documentation vim.g.loaded_netrw = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1

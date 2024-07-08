@@ -7,9 +7,10 @@ set -e fish_user_paths
 set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
 # Run the fastfetch command in the startup only if it exists.
-if command -q fastfetch
-  fastfetch --file-raw $HOME/.config/fastfetch/cat-ascii.txt
-end
+# Disabling this for now since the Codeium plugin does not work with Neovim when fastfetch is used in the startup
+#if command -q fastfetch
+#  fastfetch --file-raw $HOME/.config/fastfetch/cat-ascii.txt
+#end
 
 set fish_greeting # Supresses fish's intro message
 
@@ -18,8 +19,6 @@ set TERM screen-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "Catppuccin Macchiato"
-
-set -gx KUBECONFIG "~/.kube/config"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
@@ -257,9 +256,6 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # The cd command not aliases to the z command. z is no longer available.
 zoxide init --cmd cd fish | source
 starship init fish | source
-
-# Source fzf command
-fzf --fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"

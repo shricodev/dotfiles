@@ -10,6 +10,9 @@ keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 keymap.set('i', 'jk', '<ESC>', { desc = '[ModeChange]: Exit insert mode with jk' })
 keymap.set('i', 'JK', '<ESC>', { desc = '[ModeChange]: Exit insert mode with JK' })
 
+-- Don't copy the cut out single character to the clipboard.
+keymap.set('n', 'x', '"_x')
+
 -- clear search highlights
 keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Clear search highlights' })
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Clear search highlights' })
