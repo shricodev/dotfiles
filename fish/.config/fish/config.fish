@@ -138,24 +138,15 @@ function ffp
 end
 ### EOF Navigation UTIL functions
 
-# Function for org-agenda
-function org-search -d "send a search string to org-mode"
-    set -l output (/usr/bin/emacsclient -a "" -e "(message \"%s\" (mapconcat #'substring-no-properties \
-        (mapcar #'org-link-display-format \
-        (org-ql-query \
-        :select #'org-get-heading \
-        :from  (org-agenda-files) \
-        :where (org-ql--query-string-to-sexp \"$argv\"))) \
-        \"
-    \"))")
-    printf $output
+if not set -q SSH_AUTH_SOCK
+  # Redirecting the error or the output to the /dev/null
+    ssh-agent -c > /dev/null 2>&1
 end
 
-# Setup the ssh-agent with our ssh private key.
-if test -z "$SSH_AUTH_SOCK"
-    eval (ssh-agent -c > /dev/null)
-    ssh-add ~/.ssh/gh_login_shricodev &> /dev/null
-end
+# If we are in this line, the ssh-agent should always be set up and running.
+# Add our private key to the ssh-agent
+  # Redirecting the error or the output to the /dev/null
+ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 
 # Open tmux as default when the shell starts
 # Attach to or create the base session
@@ -164,6 +155,7 @@ if not set -q TMUX
   eval $TMUX
   tmux attach-session -d -t base
 end
+
 
 ### ALIASES ###
 # navigation
@@ -255,6 +247,7 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # This is telling zoxide to use cd command to move to the directories instead of the z command.
 # The cd command not aliases to the z command. z is no longer available.
 zoxide init --cmd cd fish | source
+
 starship init fish | source
 
 # bun
