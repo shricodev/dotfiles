@@ -18,7 +18,7 @@ set fish_greeting # Supresses fish's intro message
 set TERM screen-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
-set -gx BAT_THEME "Catppuccin Macchiato"
+set -gx BAT_THEME "TokyoNight Night"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
@@ -32,6 +32,7 @@ set -x MANPAGER "bat"
 
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim
+set -gx GIT_EDITOR nvim
 
 # Functions needed for !! and !$
 function __history_previous_command
@@ -145,7 +146,7 @@ end
 
 # If we are in this line, the ssh-agent should always be set up and running.
 # Add our private key to the ssh-agent
-  # Redirecting the error or the output to the /dev/null
+# Redirecting the error or the output to the /dev/null
 ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 
 # Open tmux as default when the shell starts
@@ -165,17 +166,23 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
+alias ping="ping -c 10"
+
 # vim and emacs
 alias nv='nvim'
+alias v='nvim'
 
 alias cl="clear"
 
 # Changing "ls" to "eza"
 alias ls='eza -alg --color=always --icons --group-directories-first' # my preferred listing
 
+alias ll='eza -lg --color=always --icons --group-directories-first'
+alias lla='eza -alg --color=always --icons --group-directories-first'
+
 alias la='eza -a --color=always --group-directories-first' # all files and dirs
-alias ll='eza -lg --color=always --icons --group-directories-first' # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
+
 alias llg="eza --tree --level=2 --long -g --icons --git"
 
 # Show only the dotfiles
@@ -183,17 +190,23 @@ alias l.='eza -a | grep -E "^\."'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 
 # adding flags
 alias df='df -h' # human-readable sizes
 alias free='free -m' # show sizes in MB
 
-# fuzzily find history
+# Fuzzily find history
 alias hf='history | fzf'
 
-# git
+# Continue from where the download got interrupted if it happens. 
+# Without -c flag, wget will start downloading the file from scratch if the operation fails due to some 
+# netowk issues.
+alias wget="wget -c"
+
+# Open neovim in the dotfiles directory
+alias dots="nvim ~/dotfiles/"
+
+# Git
 alias addup='git add -u'
 alias addall='git add .'
 alias branch='git branch'
@@ -216,6 +229,20 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
+# Safety nets
+# do not delete / or prompt if deleting more than 3 files at a time 
+alias rm='rm -I --preserve-root'
+ 
+# confirmation
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+ 
+# Parenting changing perms on /
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
 alias k="kubectl"
 alias ka="kubectl apply -f"
 alias kg="kubectl get"
@@ -235,6 +262,10 @@ alias http="xh"
 
 # Yazi file manager
 alias yz='yazi'
+
+alias :q="exit"
+
+alias day="date +'%Y-%m-%d %A'"
 
 # Weather in current location
 alias wtr="curl wttr.in"

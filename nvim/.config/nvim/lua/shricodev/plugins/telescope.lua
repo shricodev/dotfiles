@@ -23,7 +23,7 @@ return {
         prompt_prefix = '   ',
         border = {},
         initial_mode = 'insert',
-        selection_caret = '⮞ ',
+        selection_caret = ' ',
         entry_prefix = '  ',
         file_ignore_patterns = { 'node_modules', '.git' },
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,

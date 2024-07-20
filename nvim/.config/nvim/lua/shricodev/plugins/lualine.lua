@@ -23,7 +23,7 @@ return {
 
     require('lualine').setup {
       options = {
-        theme = 'catppuccin',
+        theme = 'tokyonight-night',
         ignore_focus = { 'NvimTree', 'Outline', 'Neotree' },
         always_divide_middle = true,
         globalstatus = false,

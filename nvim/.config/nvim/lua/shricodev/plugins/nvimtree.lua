@@ -311,9 +311,11 @@ return {
       },
     }
 
-    -- Use <leader>b to toggle the nvim-tree
     vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>', { silent = true, noremap = true, desc = '[NvimTree]: Toggle the file explorer' })
     vim.keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { silent = true, noremap = true, desc = '[NvimTree]: Collapse file explorer' }) -- collapse file explorer
     vim.keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { silent = true, noremap = true, desc = '[NvimTree]: Refresh file explorer' }) -- refresh file explorer
+
+    -- Adding this line here as well because the colorscheme of tokyonight-night was being overwritten by the nvim-tree plugin.
+    vim.cmd 'colorscheme tokyonight-night'
   end,
 }
