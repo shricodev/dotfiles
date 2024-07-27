@@ -25,7 +25,7 @@ return {
         initial_mode = 'insert',
         selection_caret = ' ',
         entry_prefix = '  ',
-        file_ignore_patterns = { 'node_modules', '.git' },
+        file_ignore_patterns = { 'node_modules', '.git', '__pycache__', '.DS_Store', '.venv' },
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
         color_devicons = true,

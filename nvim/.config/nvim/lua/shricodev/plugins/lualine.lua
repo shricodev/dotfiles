@@ -28,7 +28,7 @@ return {
         always_divide_middle = true,
         globalstatus = false,
         icons_enabled = true,
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         component_separators = { left = '|', right = '|' },
       },
       inactive_sections = {
@@ -46,7 +46,6 @@ return {
         lualine_c = { 'filename', harpoon_component },
         lualine_z = {
           { 'location' },
-          -- { "location", separator = { right = "" }, left_padding = 1 },
         },
       },
       tabline = {},

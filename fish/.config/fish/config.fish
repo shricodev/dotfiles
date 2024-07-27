@@ -149,6 +149,9 @@ end
 # Redirecting the error or the output to the /dev/null
 ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 
+#This is the private key for my homelab vm on azure
+ssh-add ~/.ssh/shricodev-azure-vm-key.pem > /dev/null 2>&1
+
 # Open tmux as default when the shell starts
 # Attach to or create the base session
 if not set -q TMUX

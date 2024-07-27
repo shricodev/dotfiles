@@ -5,7 +5,6 @@ italic_font      auto
 bold_italic_font auto
 font_size 11
 adjust_line_height 120%
-font_features none
 
 # Cursor.
 cursor_blink_interval 0
@@ -13,8 +12,7 @@ cursor_blink_interval 0
 # Window configuration.
 hide_window_decorations yes
 
-
 # BEGIN_KITTY_THEME
-# Catppuccin-Macchiato
+# Tokyo Night
 include current-theme.conf
 # END_KITTY_THEME
