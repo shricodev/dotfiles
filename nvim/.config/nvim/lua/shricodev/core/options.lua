@@ -83,9 +83,6 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
--- Concealer for Obsidian
-opt.conceallevel = 2
-
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 

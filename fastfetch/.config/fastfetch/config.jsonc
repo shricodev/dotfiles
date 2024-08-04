@@ -4,7 +4,7 @@
     "logo": {
         "type": "small",
         "padding": {
-            "top": 1
+            "top": 0
         }
     },
     "display": {
@@ -12,46 +12,38 @@
     },
     "modules": [
         {
-            "key": "╔═══════════╗",
-            "type": "custom"
-        },
-        {
-            "key": "║ {#33}󰅐 uptime  {#keys}║",
+            "key": " {#33}󰅐 uptime  {#keys}•",
             "type": "uptime"
         },
         {
-            "key": "║ {#34}{icon} distro  {#keys}║",
-            "type": "os"
-        },
-        {
-            "key": "║ {#35} kernel  {#keys}║",
+            "key": " {#35} kernel  {#keys}•",
             "type": "kernel"
         },
         {
-            "key": "║ {#36}󰇄 desktop {#keys}║",
-            "type": "de"
-        },
-        {
-            "key": "║ {#32} shell   {#keys}║",
+            "key": " {#32} shell   {#keys}•",
             "type": "shell"
         },
         {
-            "key": "║ {#33}󰍛 cpu     {#keys}║",
+            "key": " {#33}󰍛 cpu     {#keys}•",
             "type": "cpu",
             "showPeCoreCount": true
         },
         {
-            "key": "║ {#34}󰉉 disk    {#keys}║",
+            "key": " {#33}󰍛 gpu     {#keys}•",
+            "type": "gpu"
+        },
+        {
+            "key": " {#34}󰉉 disk    {#keys}•",
             "type": "disk",
             "folders": "/"
         },
         {
-            "key": "║ {#35} memory  {#keys}║",
+            "key": " {#35} memory  {#keys}•",
             "type": "memory"
         },
         {
-            "key": "╚═══════════╝",
-            "type": "custom"
+          "key": " ",
+          "type": "custom"
         }
     ]
 }

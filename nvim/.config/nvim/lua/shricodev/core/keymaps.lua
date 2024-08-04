@@ -85,8 +85,8 @@ keymap.set('v', '<', '<gv', { desc = '[Indent]: Left indent while staying in ind
 keymap.set('v', '>', '>gv', { desc = '[Indent]: Right indent while staying in indent mode' })
 
 -- Quick Fix list
-keymap.set('n', '<leader>h', '<cmd>cnext<CR>zz', { desc = '[QuickFix]: Navigate to next quick fix' })
-keymap.set('n', '<leader>;', '<cmd>cprev<CR>zz', { desc = '[QuickFix]: Navigate to prev quick fix' })
+keymap.set('n', '<leader>qn', '<cmd>cnext<CR>zz', { desc = '[QuickFix]: Navigate to next quick fix' })
+keymap.set('n', '<leader>qp', '<cmd>cprev<CR>zz', { desc = '[QuickFix]: Navigate to prev quick fix' })
 
 -- Location List
 keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = '[LocationList]: Navigate to next location list' })
