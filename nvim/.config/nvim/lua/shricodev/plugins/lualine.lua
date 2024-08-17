@@ -26,7 +26,7 @@ return {
         theme = 'tokyonight-night',
         ignore_focus = { 'NvimTree', 'Outline', 'Neotree' },
         always_divide_middle = true,
-        globalstatus = false,
+        globalstatus = true,
         icons_enabled = true,
         section_separators = { left = '', right = '' },
         component_separators = { left = '|', right = '|' },

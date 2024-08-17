@@ -27,50 +27,56 @@ return {
         local opts = { buffer = ev.buf, silent = true }
 
         -- set keybinds
-        opts.desc = 'Show LSP references'
-        keymap.set('n', 'gR', '<cmd>Telescope lsp_references<CR>', opts) -- show definition, references
+        opts.desc = '[LSP]: Show LSP references'
+        keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts) -- show definition, references
 
-        opts.desc = 'Go to declaration'
+        opts.desc = '[LSP]: Go to declaration'
         keymap.set('n', 'gD', vim.lsp.buf.declaration, opts) -- go to declaration
 
-        opts.desc = 'Show LSP definitions'
+        opts.desc = '[LSP]: Show LSP definitions'
         keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts) -- show lsp definitions
 
-        opts.desc = 'Show LSP implementations'
+        opts.desc = '[LSP]: Show LSP implementations'
         keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts) -- show lsp implementations
 
-        opts.desc = 'Show LSP type definitions'
+        opts.desc = '[LSP]: Show LSP type definitions'
         keymap.set('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts) -- show lsp type definitions
 
-        opts.desc = 'See available code actions'
+        opts.desc = '[LSP]: See available code actions'
         keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-        opts.desc = 'Smart rename'
+        opts.desc = '[LSP]: Smart rename'
         keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- smart rename
 
-        opts.desc = 'Show buffer diagnostics'
+        opts.desc = '[LSP]: Show buffer diagnostics'
         keymap.set('n', '<leader>D', '<cmd>Telescope diagnostics bufnr=0<CR>', opts) -- show  diagnostics for file
 
-        opts.desc = 'Show line diagnostics'
+        opts.desc = '[LSP]: Show line diagnostics'
         keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-        opts.desc = 'Go to previous diagnostic'
+        opts.desc = '[LSP]: Go to previous diagnostic'
         keymap.set('n', '[d', vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 
-        opts.desc = 'Go to next diagnostic'
+        opts.desc = '[LSP]: Go to next diagnostic'
         keymap.set('n', ']d', vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
-        opts.desc = 'Document Symbols'
+        opts.desc = '[LSP]: Document Symbols'
         vim.keymap.set('n', '<leader>ds', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
 
-        opts.desc = 'Workspace Symbols'
+        opts.desc = '[LSP]: Workspace Symbols'
         vim.keymap.set('n', '<leader>ws', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", opts)
 
-        opts.desc = 'Show documentation for what is under cursor'
+        opts.desc = '[LSP]: Show documentation for what is under cursor'
         keymap.set('n', 'K', vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
-        opts.desc = 'Restart LSP'
+        opts.desc = '[LSP]: Restart LSP'
         keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts) -- mapping to restart lsp if necessary
+
+        -- Inlay hints.
+        opts.desc = '[LSP]: Toggle inlay hints'
+        keymap.set('n', '<leader>ht', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, opts)
       end,
     })
 

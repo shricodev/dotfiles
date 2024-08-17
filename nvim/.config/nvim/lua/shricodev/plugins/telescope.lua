@@ -1,7 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
-  event = 'VimEnter',
-  branch = '0.1.x',
+  tag = '0.1.8',
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
     {
@@ -11,8 +10,6 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
   },
   config = function()
     local telescope = require 'telescope'
@@ -28,7 +25,6 @@ return {
         file_ignore_patterns = { 'node_modules', '.git', '__pycache__', '.DS_Store', '.venv' },
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-        color_devicons = true,
         path_display = { 'smart' },
         selection_strategy = 'reset',
         layout_strategy = 'horizontal',
@@ -54,17 +50,12 @@ return {
           },
           n = { ['q'] = actions.close },
         },
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
-          },
-        },
       },
     }
 
     pcall(telescope.load_extension 'fzf')
-    pcall(telescope.load_extension 'harpoon')
-    pcall(telescope.load_extension 'ui-select')
+    -- pcall(telescope.load_extension 'harpoon')
+    -- pcall(telescope.load_extension 'ui-select')
 
     -- Switch between projects
     vim.keymap.set(
@@ -91,15 +82,17 @@ return {
     end, { desc = '[Telescope]: Fuzzily search in current buffer' })
 
     -- Search in Open Files
-    vim.keymap.set('n', '<leader>s/', function()
+    vim.keymap.set('n', '<leader>so', function()
       require('telescope.builtin').live_grep {
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       }
     end, { silent = true, desc = '[Telescope]: Fuzzily search in Open Files' })
+    vim.keymap.set('n', '<leader>s/', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Find string in cwd' })
+    vim.keymap.set('n', '<leader>sw', '<cmd>Telescope grep_string<cr>', { desc = '[Telescope]: Find string under cursor in cwd' })
 
     -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set('n', '<leader>sc', function()
+    vim.keymap.set('n', '<leader>fx', function()
       require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[Telescope]: Fuzzily find Neovim config' })
 
@@ -116,13 +109,11 @@ return {
       "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
       { desc = '[Telescope]: Fuzzy find files in the cwd' }
     )
-    vim.keymap.set('n', '<leader>fs', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Find string in cwd' })
     vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = '[Telescope]: Fuzzy find recent files' })
-    vim.keymap.set('n', '<leader>fc', '<cmd>Telescope grep_string<cr>', { desc = '[Telescope]: Find string under cursor in cwd' })
 
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
 
-    vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keybindings' })
+    vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keymaps' })
     vim.keymap.set('n', '<leader>mv', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: View marks' })
   end,
 }

@@ -9,6 +9,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- wrap and check for spell in text filetypes
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('wrap_spell', { clear = true }),
+  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = vim.api.nvim_create_augroup('json_conceal', { clear = true }),
+  pattern = { 'json', 'jsonc', 'json5' },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
 -- Open the help window to the right
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('vertical_help', { clear = true }),
@@ -19,20 +38,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.cmd.wincmd '='
   end,
 })
-
--- -- Enable spell checking and text wrapping for gitcommit, markdown and txt files
--- vim.api.nvim_create_autocmd({ 'FileType' }, {
---   group = vim.api.nvim_create_augroup('edit_text', { clear = true }),
---   pattern = { 'gitcommit', 'markdown', 'txt' },
---   desc = 'Enable spell checking and text wrapping for certain filetypes',
---   callback = function()
---     vim.opt_local.wrap = true
---     vim.opt_local.spell = true
---
---     -- This ignores spell check on camel words that are actually valid like HelloWorld.
---     vim.opt_local.spelloptions:append 'camel'
---   end,
--- })
 
 -- Toggle LSP Diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
@@ -47,9 +52,6 @@ vim.api.nvim_create_user_command('ToggleDiagnostics', function()
     vim.diagnostic.enable()
   end
 end, {})
-
--- Set "CmpItemKind" highlight group
-vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
 
 -- Always open terminal in insert mode.
 vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {

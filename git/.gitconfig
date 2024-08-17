@@ -3,14 +3,14 @@
 	name = Shrijal Acharya
 
 ; Enforce SSH
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
-
-[url "ssh://git@gitlab.com/"]
-  insteadOf = https://gitlab.com/
-
-[url "ssh://git@bitbucket.org/"]
-  insteadOf = https://bitbucket.org/
+; [url "ssh://git@github.com/"]
+;   insteadOf = https://github.com/
+;
+; [url "ssh://git@gitlab.com/"]
+;   insteadOf = https://gitlab.com/
+;
+; [url "ssh://git@bitbucket.org/"]
+;   insteadOf = https://bitbucket.org/
 
 ; Use neovim as the default editor for git
 [core]

@@ -14,6 +14,8 @@ vim.g.loaded_netrwPlugin = 1
 -- disable the default codeium key bindings.
 vim.g.codeium_disable_bindings = 1
 
+vim.g.python3_host_prog = '/usr/bin/python3'
+
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -27,7 +29,7 @@ window.relativenumber = true
 
 -- change the updatetime property to 50ms
 opt.updatetime = 250
-opt.timeoutlen = 300
+-- opt.timeoutlen = 500
 
 -- don't show mode as it is already in the statusline
 opt.showmode = false
@@ -71,10 +73,11 @@ opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 -- backspace
 opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
--- -- Sync clipboard between OS and Neovim.
--- --  Remove this option if you want your OS clipboard to remain independent.
--- --  See `:help 'clipboard'`
-opt.clipboard:append 'unnamedplus' -- use system clipboard as default register
+-- Sync clipboard between OS and Neovim.
+-- Remove this option if you want your OS clipboard to remain independent.
+-- only set clipboard if not in ssh, to make sure the OSC 52
+-- integration works automatically. Requires Neovim >= 0.10.0
+opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus' -- Sync with system clipboard
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

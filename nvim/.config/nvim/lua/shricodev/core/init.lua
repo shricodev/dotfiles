@@ -3,4 +3,4 @@
 require 'shricodev.core.options'
 require 'shricodev.core.keymaps'
 
-require 'shricodev.core.misc'
+require 'shricodev.core.autocmds'

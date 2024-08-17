@@ -141,7 +141,7 @@ end
 
 if not set -q SSH_AUTH_SOCK
   # Redirecting the error or the output to the /dev/null
-    ssh-agent -c > /dev/null 2>&1
+    eval (ssh-agent -c) > /dev/null 2>&1
 end
 
 # If we are in this line, the ssh-agent should always be set up and running.
@@ -150,7 +150,7 @@ end
 ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 
 #This is the private key for my homelab vm on azure
-ssh-add ~/.ssh/shricodev-azure-vm-key.pem > /dev/null 2>&1
+#ssh-add ~/.ssh/shricodev-azure-vm-key.pem > /dev/null 2>&1
 
 # Open tmux as default when the shell starts
 # Attach to or create the base session
@@ -269,6 +269,8 @@ alias yz='yazi'
 alias :q="exit"
 
 alias day="date +'%Y-%m-%d %A'"
+
+alias oo="cd $HOME/Documents/Obsidian-Notes/"
 
 # Weather in current location
 alias wtr="curl wttr.in"
