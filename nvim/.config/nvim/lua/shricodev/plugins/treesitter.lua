@@ -48,6 +48,8 @@ return {
         'luadoc',
         'dockerfile',
         'gitignore',
+        'git_rebase',
+        'gitcommit',
       },
 
       incremental_selection = {

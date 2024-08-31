@@ -122,6 +122,10 @@ function tt
   tmux new-session -A -s $argv
 end
 
+function mcdir 
+  mkdir -p $argv; and cd $argv
+end
+
 ### Navigation UTIL functions
 # Change directory and list files
 function cdl

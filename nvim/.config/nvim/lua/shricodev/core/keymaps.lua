@@ -56,7 +56,7 @@ keymap.set('n', 'n', 'nzzzv', { desc = '[Search]: Search the next occurance keep
 keymap.set('n', 'N', 'Nzzzv', { desc = '[Search]: Search the previous occurance keeping the word in center' })
 
 -- close buffer
-keymap.set('n', '<leader>q', '<cmd>bd<CR>', { desc = '[Buffer]: Close Buffer' })
+keymap.set('n', '<leader>qb', '<cmd>bd<CR>', { desc = '[Buffer]: Close Buffer' })
 
 -- Source the current file right from nvim
 keymap.set('n', '<leader><leader>', function()
