@@ -18,10 +18,10 @@ keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Cle
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Clear search highlights' })
 
 -- window management
-keymap.set('n', 'sv', '<C-w>v', { desc = '[Window]: Split window vertically' }) -- split window vertically
-keymap.set('n', 'sh', '<C-w>s', { desc = '[Window]: Split window horizontally' }) -- split window horizontally
-keymap.set('n', 'se', '<C-w>=', { desc = '[Window]: Make splits equal size' }) -- make split windows equal width & height
-keymap.set('n', 'sx', '<cmd>close<CR>', { desc = '[Window]: Close current split' }) -- close current split window
+keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[Window]: Split window vertically' }) -- split window vertically
+keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[Window]: Split window horizontally' }) -- split window horizontally
+keymap.set('n', '<leader>se', '<C-w>=', { desc = '[Window]: Make splits equal size' }) -- make split windows equal width & height
+keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = '[Window]: Close current split' }) -- close current split window
 
 -- window size management
 keymap.set('n', '<M-l>', '<cmd>vertical resize +5<cr>', { desc = '[Window]: Increase window size vertically' }) -- make the window biger vertically

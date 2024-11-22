@@ -1,8 +1,8 @@
+[general]
 import = [
   # Use the macchiato theme for alacritty
-  "~/.config/alacritty/themes/catppuccin-macchiato.toml"
+  "~/.config/alacritty/themes/tokyo-night.toml"
 ]
-
 live_config_reload = true
 
 [font]
@@ -13,10 +13,9 @@ bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 
 # These are configured very precisely to make glyphs line up with the grid in alacritty. Please change the below offsets with caution
 offset = { x = 0, y = 1 }
-glyph_offset = { x = 0, y = 1 }
 
-[scrolling]
-history = 10000
+# [scrolling]
+# history = 10000
 
 [env]
 TERM = "xterm-256color"
@@ -46,13 +45,13 @@ action = "ResetFontSize"
 key = "Key0"
 mods = "Control"
 
-[[keyboard.bindings]]
-action = "IncreaseFontSize"
-key = "Equals"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "DecreaseFontSize"
-key = "Minus"
-mods = "Control"
-
+# [[keyboard.bindings]]
+# action = "IncreaseFontSize"
+# key = "Equals"
+# mods = "Control"
+#
+# [[keyboard.bindings]]
+# action = "DecreaseFontSize"
+# key = "Minus"
+# mods = "Control"
+#

@@ -1,6 +1,6 @@
-## dotfiles
+# dotfiles
 
-> NOTE: These are specific to my requirements. Mainly for my usage, but feel free to grab the configs and modify it as per your needs.
+NOTE: These are specific to my requirements. Mainly for my usage, but feel free to grab the configs and modify it as per your needs.
 
 ### Clone this repository:
 

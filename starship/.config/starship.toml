@@ -27,7 +27,7 @@ disabled = false
 
 [cmd_duration]
 # Only show the time duration when above 5 minutes
-min_time = 300_000
+min_time = 200_000
 format = 'took [$duration](bold yellow) '
 
 [git_state]
