@@ -11,7 +11,8 @@ keymap.set('i', 'jk', '<ESC>', { desc = '[Mode]: Exit insert mode with jk' })
 keymap.set('i', 'JK', '<ESC>', { desc = '[Mode]: Exit insert mode with JK' })
 
 -- Don't copy the cut out single character to the clipboard.
-keymap.set('n', 'x', '"_x')
+keymap.set('n', 'x', '"_x', { desc = "[Text]: Don't copy the cut out character to clipboard" })
+keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = "[Text]: Don't copy the cut out text to clipboard" })
 
 -- clear search highlights
 keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = '[Highlights]: Clear search highlights' })
