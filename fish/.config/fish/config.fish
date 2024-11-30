@@ -15,7 +15,7 @@ set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME
 set fish_greeting # Supresses fish's intro message
 
 # use the default terminal color
-set TERM screen-256color # Sets the terminal type
+set TERM xterm-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "TokyoNight Night"
@@ -28,7 +28,7 @@ fish_config theme choose "Catppuccin Macchiato"
 
 ### SET MANPAGER
 ### "bat" as manpager
-set -x MANPAGER "bat"
+set -x MANPAGER "less"
 
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim

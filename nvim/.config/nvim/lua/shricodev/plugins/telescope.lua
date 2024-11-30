@@ -14,6 +14,7 @@ return {
   config = function()
     local telescope = require 'telescope'
     local actions = require 'telescope.actions'
+
     telescope.setup {
       defaults = {
         winblend = 0,
@@ -54,7 +55,7 @@ return {
     }
 
     pcall(telescope.load_extension 'fzf')
-    -- pcall(telescope.load_extension 'harpoon')
+    pcall(telescope.load_extension 'harpoon')
     -- pcall(telescope.load_extension 'ui-select')
 
     -- Switch between projects
