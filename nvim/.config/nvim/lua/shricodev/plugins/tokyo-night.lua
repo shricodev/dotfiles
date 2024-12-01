@@ -10,5 +10,8 @@ return {
       end,
     }
     vim.cmd 'colorscheme tokyonight-night'
+    vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#5e6063', bold = true })
+    vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })
+    vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#5e6063', bold = true })
   end,
 }

@@ -21,10 +21,15 @@ set TERM xterm-256color # Sets the terminal type
 set -gx BAT_THEME "TokyoNight Night"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
+# Make sure to use the CTRL-T and ALT-C to its fullest.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --border --color=hl:#2dd4bf"
 
-# Use the machhiato theme for the fish shell
-fish_config theme choose "Catppuccin Macchiato"
+set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -n 200'"
+
+fish_config theme choose "TokyoNight Night"
 
 ### SET MANPAGER
 ### "bat" as manpager
@@ -185,7 +190,6 @@ alias cl="clear"
 alias ls='eza -alg --color=always --icons --group-directories-first' # my preferred listing
 
 alias ll='eza -lg --color=always --icons --group-directories-first'
-alias lla='eza -alg --color=always --icons --group-directories-first'
 
 alias la='eza -a --color=always --group-directories-first' # all files and dirs
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
