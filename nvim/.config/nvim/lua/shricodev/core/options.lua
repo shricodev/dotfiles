@@ -28,8 +28,7 @@ window.number = true
 window.relativenumber = true
 
 -- change the updatetime property to 50ms
-opt.updatetime = 250
--- opt.timeoutlen = 500
+opt.updatetime = 50
 
 -- don't show mode as it is already in the statusline
 opt.showmode = false
@@ -59,7 +58,7 @@ opt.termguicolors = true
 opt.background = 'dark' -- colorschemes that can be light or dark will be made dark
 
 -- always keep min 10 lines above and below the cursor
-opt.scrolloff = 10
+opt.scrolloff = 8
 
 -- Preview substitutions live, as you type!
 opt.inccommand = 'split'
@@ -71,13 +70,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 
 -- backspace
-opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
-
--- Sync clipboard between OS and Neovim.
--- Remove this option if you want your OS clipboard to remain independent.
--- only set clipboard if not in ssh, to make sure the OSC 52
--- integration works automatically. Requires Neovim >= 0.10.0
-opt.clipboard = 'unnamedplus' -- Sync with system clipboard
+-- opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

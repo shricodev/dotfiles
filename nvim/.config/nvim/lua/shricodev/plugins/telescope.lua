@@ -16,6 +16,15 @@ return {
     local actions = require 'telescope.actions'
 
     telescope.setup {
+      extensions = {
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+          -- the default case_mode is "smart_case"
+        },
+      },
       defaults = {
         winblend = 0,
         prompt_prefix = '   ',
@@ -23,7 +32,24 @@ return {
         initial_mode = 'insert',
         selection_caret = ' ',
         entry_prefix = '  ',
-        file_ignore_patterns = { 'node_modules', '.git', '__pycache__', '.DS_Store', '.venv' },
+        file_ignore_patterns = {
+          'node_modules/',
+          '%.git/',
+          '%.next/',
+          '__pycache__',
+          '%.obsidian/',
+          '.DS_Store',
+          '%.venv/',
+          '%.xlsx',
+          '%.jpg',
+          '%.png',
+          '%.jpeg',
+          '%.gif',
+          '%.webp',
+          '%.pdf',
+          '%.odt',
+          '%.ico',
+        },
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
         path_display = { 'smart' },
@@ -55,7 +81,6 @@ return {
     }
 
     pcall(telescope.load_extension 'fzf')
-    pcall(telescope.load_extension 'harpoon')
     -- pcall(telescope.load_extension 'ui-select')
 
     -- Switch between projects
@@ -101,7 +126,12 @@ return {
     vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = '[Telescope]: Search the Help Documentation' })
 
     -- Setup the keybindings for the telescope plugin.
-    vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", { desc = '[Telescope]: Fuzzy find files in the cwd' })
+    vim.keymap.set(
+      'n',
+      '<leader>ff',
+      "<cmd>lua require('telescope.builtin').find_files({hidden = true})<CR>",
+      { desc = '[Telescope]: Fuzzy find files in the cwd' }
+    )
 
     -- This is to also view the .env sort of files in the telescope find files ui
     vim.keymap.set(
