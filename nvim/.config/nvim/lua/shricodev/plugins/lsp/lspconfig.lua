@@ -2,29 +2,21 @@ return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    { 'antosha417/nvim-lsp-file-operations', config = true },
-    { 'folke/neodev.nvim', opts = {} },
+    { 'williamboman/mason.nvim', config = true },
+    'williamboman/mason-lspconfig.nvim',
+    { 'b0o/schemastore.nvim' },
+    { 'hrsh7th/cmp-nvim-lsp' },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require 'lspconfig'
-
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require 'mason-lspconfig'
-
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-
     local keymap = vim.keymap -- for conciseness
     require('lspconfig.ui.windows').default_options.border = 'single'
 
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-      callback = function(ev)
+      group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+      callback = function(event)
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf, silent = true }
+        local opts = { buffer = event.buf, silent = true }
 
         -- set keybinds
         opts.desc = '[LSP]: Show LSP references'
@@ -77,86 +69,69 @@ return {
         keymap.set('n', '<leader>ht', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
         end, opts)
+
+        -- Thank you teej
+        -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L502
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.server_capabilities.documentHighlightProvider then
+          local highlight_augroup = vim.api.nvim_create_augroup('nvim-lsp-highlight', { clear = false })
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            buffer = event.buf,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.document_highlight,
+          })
+
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            buffer = event.buf,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.clear_references,
+          })
+          vim.api.nvim_create_autocmd('LspDetach', {
+            group = vim.api.nvim_create_augroup('nvim-lsp-detach', { clear = true }),
+            callback = function(event2)
+              vim.lsp.buf.clear_references()
+              vim.api.nvim_clear_autocmds { group = 'nvim-lsp-highlight', buffer = event2.buf }
+            end,
+          })
+        end
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+
+    local mason_lspconfig = require 'mason-lspconfig'
+
+    mason_lspconfig.setup_handlers {
+      function(server_name)
+        require('lspconfig')[server_name].setup {
+          capabilities = capabilities,
+        }
+      end,
+    }
+
     vim.diagnostic.config {
+      title = false,
+      underline = true,
+      virtual_text = true,
+      signs = true,
+      update_in_insert = false,
+      severity_sort = true,
       float = {
+        source = 'if_many',
+        style = 'minimal',
         border = 'rounded',
+        header = '',
+        prefix = '',
       },
     }
 
-    -- LSP settings (for overriding per client)
-    local handlers = {
-      ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
-      ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-    }
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
     local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
     for type, icon in pairs(signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
-
-    mason_lspconfig.setup_handlers {
-      -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup {
-          capabilities = capabilities,
-          handlers = handlers,
-        }
-      end,
-      ['graphql'] = function()
-        -- configure graphql language server
-        lspconfig['graphql'].setup {
-          capabilities = capabilities,
-          handlers = handlers,
-          filetypes = { 'graphql', 'gql', 'svelte', 'typescriptreact', 'javascriptreact' },
-        }
-      end,
-      ['emmet_ls'] = function()
-        -- configure emmet language server
-        lspconfig['emmet_ls'].setup {
-          capabilities = capabilities,
-          handlers = handlers,
-          filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'svelte' },
-        }
-      end,
-      ['gopls'] = function()
-        lspconfig['gopls'].setup {
-          capabilities = capabilities,
-          handlers = handlers,
-          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-          settings = {
-            gopls = {
-              completeUnimported = true,
-              usePlaceholders = true,
-            },
-          },
-        }
-      end,
-      ['lua_ls'] = function()
-        -- configure lua server (with special settings)
-        lspconfig['lua_ls'].setup {
-          capabilities = capabilities,
-          handlers = handlers,
-          settings = {
-            Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { 'vim' },
-              },
-              completion = {
-                callSnippet = 'Replace',
-              },
-            },
-          },
-        }
-      end,
-    }
   end,
 }

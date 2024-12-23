@@ -6,12 +6,16 @@ keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
-vim.keymap.set('i', '<BS>', function()
-  vim.cmd 'echo "Backspace is not allowed in insert mode!!"'
-end, { noremap = true, silent = true })
+-- vim.keymap.set('i', '<BS>', function()
+--   vim.cmd 'echo "Backspace is not allowed in insert mode!!"'
+-- end, { noremap = true, silent = true })
 
 -- use jk or kj to exit insert mode
 keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
+
+-- Yank to system clipboard using <Leader>y
+keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { noremap = true, silent = true })
+keymap.set('n', '<Leader>Y', '"+Y', { noremap = true, silent = true })
 
 -- Don't copy the cut out single character to the clipboard.>copy
 keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })

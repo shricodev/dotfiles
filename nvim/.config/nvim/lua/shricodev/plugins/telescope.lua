@@ -1,3 +1,4 @@
+-- return {}
 return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
@@ -26,12 +27,12 @@ return {
         },
       },
       defaults = {
-        winblend = 0,
+        -- winblend = 0,
         prompt_prefix = '   ',
-        border = {},
-        initial_mode = 'insert',
-        selection_caret = ' ',
-        entry_prefix = '  ',
+        -- border = {},
+        -- initial_mode = 'insert',
+        -- selection_caret = ' ',
+        -- entry_prefix = '  ',
         file_ignore_patterns = {
           'node_modules/',
           '%.git/',
@@ -50,24 +51,24 @@ return {
           '%.odt',
           '%.ico',
         },
-        set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-        borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+        -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+        -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
         path_display = { 'smart' },
-        selection_strategy = 'reset',
-        layout_strategy = 'horizontal',
-        layout_config = {
-          horizontal = {
-            prompt_position = 'top',
-            preview_width = 0.55,
-            results_width = 0.8,
-          },
-          vertical = {
-            mirror = false,
-          },
-          width = 0.87,
-          height = 0.80,
-          preview_cutoff = 120,
-        },
+        -- selection_strategy = 'reset',
+        -- layout_strategy = 'horizontal',
+        -- layout_config = {
+        --   horizontal = {
+        --     prompt_position = 'top',
+        --     preview_width = 0.55,
+        --     results_width = 0.8,
+        --   },
+        --   vertical = {
+        --     mirror = false,
+        --   },
+        --   width = 0.87,
+        --   height = 0.80,
+        --   preview_cutoff = 120,
+        -- },
         mappings = {
           i = {
             ['<Esc>'] = actions.close,
@@ -76,6 +77,24 @@ return {
             ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
           },
           n = { ['q'] = actions.close },
+        },
+      },
+      pickers = {
+        find_files = {
+          -- theme = 'ivy',
+          find_command = { 'rg', '--files', '--hidden' },
+        },
+        buffers = {
+          sort_mru = true,
+          ignore_current_buffer = true,
+          mappings = {
+            i = {
+              ['<C-q>'] = 'delete_buffer',
+            },
+            n = {
+              ['<C-q>'] = 'delete_buffer',
+            },
+          },
         },
       },
     }
@@ -140,7 +159,7 @@ return {
       "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
       { desc = '[Telescope]: Fuzzy find files in the cwd' }
     )
-    vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = '[Telescope]: Fuzzy find recent files' })
+    vim.keymap.set('n', '<leader>fr', "<cmd>lua require('telescope.builtin').oldfiles()<CR>", { desc = '[Telescope]: Fuzzy find recent files' })
 
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
 

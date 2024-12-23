@@ -1,7 +1,7 @@
 [general]
 import = [
   # Use the macchiato theme for alacritty
-  "~/.config/alacritty/themes/tokyo-night.toml"
+  "~/.config/alacritty/themes/rose-pine.toml"
 ]
 live_config_reload = true
 

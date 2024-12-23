@@ -10,9 +10,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- wrap and check for spell in text filetypes
+-- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('wrap_spell', { clear = true }),
-  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
+  pattern = { 'text', 'plaintext', 'gitcommit', 'markdown', 'mdx' },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
@@ -28,16 +29,16 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- Open the help window to the right
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('vertical_help', { clear = true }),
-  pattern = 'help',
-  callback = function()
-    vim.bo.bufhidden = 'unload'
-    vim.cmd.wincmd 'L'
-    vim.cmd.wincmd '='
-  end,
-})
+-- -- Open the help window to the right
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('vertical_help', { clear = true }),
+--   pattern = 'help',
+--   callback = function()
+--     vim.bo.bufhidden = 'unload'
+--     vim.cmd.wincmd 'L'
+--     vim.cmd.wincmd '='
+--   end,
+-- })
 
 -- Toggle LSP Diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()

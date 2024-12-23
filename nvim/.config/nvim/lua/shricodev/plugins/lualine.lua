@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'meuter/lualine-so-fancy.nvim' },
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     -- local harpoon = require 'harpoon.mark'
@@ -23,13 +23,26 @@ return {
 
     require('lualine').setup {
       options = {
-        theme = 'tokyonight-night',
+        theme = 'rose-pine',
         ignore_focus = { 'NvimTree', 'Outline', 'Neotree' },
         always_divide_middle = true,
         globalstatus = true,
         icons_enabled = true,
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         component_separators = { left = '|', right = '|' },
+        disabled_filetypes = {
+          statusline = {
+            'alfa-nvim',
+            'help',
+            'neo-tree',
+            'nvim-tree',
+            'Trouble',
+            'spectre_panel',
+            'toggleterm',
+            'oil',
+          },
+          winbar = {},
+        },
       },
       inactive_sections = {
         lualine_a = {},
@@ -43,7 +56,22 @@ return {
         lualine_a = {
           { 'mode' },
         },
-        lualine_c = { 'filename' },
+        lualine_b = {
+          'branch',
+        },
+        lualine_c = {
+          {
+            'filename',
+            path = 1, -- 2 for full path
+            symbols = {
+              modified = '  ',
+              -- readonly = "  ",
+              -- unnamed = "  ",
+            },
+          },
+          { 'fancy_diagnostics', sources = { 'nvim_lsp' }, symbols = { error = ' ', warn = ' ', info = ' ' } },
+          { 'fancy_searchcount' },
+        },
         lualine_z = {
           { 'location' },
         },

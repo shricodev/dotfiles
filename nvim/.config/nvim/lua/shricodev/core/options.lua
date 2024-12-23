@@ -8,8 +8,8 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 -- recommended settings from nvim-tree documentation vim.g.loaded_netrw = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- disable the default codeium key bindings.
 vim.g.codeium_disable_bindings = 1
