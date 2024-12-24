@@ -1,5 +1,9 @@
 return {
   'stevearc/oil.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  keys = {
+    { '-', '<CMD>Oil<CR>', desc = '[Oil]: Open parent directory' },
+  },
   config = function()
     require('oil').setup {
       columns = { 'icon' },
@@ -12,8 +16,5 @@ return {
         show_hidden = true,
       },
     }
-
-    vim.keymap.set('n', '<leader>ee', '<cmd>Oil<CR>', { desc = 'Open oil in parent directory' })
-    vim.keymap.set('n', '<leader>ed', '<cmd>Oil<CR>', { desc = 'Open oil in project root directory' })
   end,
 }

@@ -54,7 +54,7 @@ return {
       },
       sections = {
         lualine_a = {
-          { 'mode' },
+          { 'fancy_mode', width = 3 },
         },
         lualine_b = {
           'branch',
@@ -62,7 +62,7 @@ return {
         lualine_c = {
           {
             'filename',
-            path = 1, -- 2 for full path
+            path = 0, -- 2 for full path
             symbols = {
               modified = '  ',
               -- readonly = "  ",

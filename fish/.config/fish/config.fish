@@ -18,7 +18,7 @@ set fish_greeting # Supresses fish's intro message
 set TERM xterm-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
-set -gx BAT_THEME "TokyoNight Night"
+set -gx BAT_THEME "Rose Pine"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 # Make sure to use the CTRL-T and ALT-C to its fullest.
@@ -29,11 +29,7 @@ set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --border --color=hl:#2dd
 set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -n 200'"
 
-fish_config theme choose "TokyoNight Night"
-
-### SET MANPAGER
-### "bat" as manpager
-set -x MANPAGER "less"
+fish_config theme choose "Rosé Pine"
 
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim

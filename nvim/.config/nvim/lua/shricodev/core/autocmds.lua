@@ -9,6 +9,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- This autocmd is used to set the filetype of mdx files to mdx.
+-- Useful when using luasnip for snippets in mdx files.
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.mdx',
+  callback = function()
+    vim.bo.filetype = 'mdx'
+  end,
+})
+
 -- wrap and check for spell in text filetypes
 -- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
 vim.api.nvim_create_autocmd('FileType', {
