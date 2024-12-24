@@ -44,3 +44,7 @@ action = "ResetFontSize"
 key = "Key0"
 mods = "Control"
 
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = 'F11'
+

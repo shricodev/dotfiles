@@ -134,9 +134,6 @@ return {
     )
 
     ls.add_snippets('markdown', snippets)
-
-    -- I have added a nvim autocmd to set filetype for '*.mdx' file to mdx to make it work
-    ls.add_snippets('mdx', snippets)
     return opts
   end,
 }

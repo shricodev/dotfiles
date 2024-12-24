@@ -45,6 +45,8 @@ opt.hlsearch = true
 -- Save undo history
 opt.undofile = true
 
+opt.colorcolumn = '80' -- highlight column 80
+
 -- Set completeopt to have a better completion experience
 opt.completeopt = 'menu,menuone,noselect'
 

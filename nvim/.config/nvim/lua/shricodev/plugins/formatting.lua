@@ -32,13 +32,13 @@ return {
       },
 
       -- Setup the keybindings for the conform formatter
-      vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
-        conform.format {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
-        }
-      end, { desc = '[Conform]: Format file or range (in visual mode)' }),
+      -- vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
+      --   conform.format {
+      --     lsp_fallback = true,
+      --     async = false,
+      --     timeout_ms = 500,
+      --   }
+      -- end, { desc = '[Conform]: Format file or range (in visual mode)' }),
     }
   end,
 }
