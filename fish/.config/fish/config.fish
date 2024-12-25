@@ -282,6 +282,9 @@ alias wtr="curl wttr.in"
 # Do the internet speed test
 alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py' | python3 -"
 
+# Some flatpak aliases
+alias zen='flatpak run io.github.zen_browser.zen'
+
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 
 # This is telling zoxide to use cd command to move to the directories instead of the z command.

@@ -14,8 +14,8 @@ keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
 
 -- Yank to system clipboard using <Leader>y
-keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { noremap = true, silent = true })
-keymap.set('n', '<Leader>Y', '"+Y', { noremap = true, silent = true })
+keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true })
+keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 
 -- Don't copy the cut out single character to the clipboard.>copy
 keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })
@@ -32,10 +32,10 @@ keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal size' }) -- 
 keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close current split' }) -- close current split window
 
 -- window size management
-keymap.set('n', '<M-l>', '<cmd>vertical resize +5<cr>', { desc = 'Increase window size vertically' }) -- make the window biger vertically
-keymap.set('n', '<M-h>', '<cmd>vertical resize -5<cr>', { desc = 'Decrease window size vertically' }) -- make the window smaller vertically
-keymap.set('n', '<M-i>', '<cmd>horizontal resize +2<cr>', { desc = 'Increase window size horizontally' }) -- make the window bigger horizontally by pressing shift and =
-keymap.set('n', '<M-k>', '<cmd>horizontal resize -2<cr>', { desc = 'Decrease window size horizontally' }) -- make the window smaller horizontally by pressing shift and -
+keymap.set('n', '<M-l>', '<cmd>vertical resize +5<CR>', { desc = 'Increase window size vertically' }) -- make the window biger vertically
+keymap.set('n', '<M-h>', '<cmd>vertical resize -5<CR>', { desc = 'Decrease window size vertically' }) -- make the window smaller vertically
+keymap.set('n', '<M-i>', '<cmd>horizontal resize +2<CR>', { desc = 'Increase window size horizontally' }) -- make the window bigger horizontally by pressing shift and =
+keymap.set('n', '<M-k>', '<cmd>horizontal resize -2<CR>', { desc = 'Decrease window size horizontally' }) -- make the window smaller horizontally by pressing shift and -
 
 -- tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab
@@ -79,8 +79,8 @@ keymap.set('n', '<leader>yp', '<cmd>let @" = expand("%:p")<CR>', { noremap = tru
 keymap.set('n', '<leader>yn', '<cmd>let @" = expand("%:t")<CR>', { noremap = true, silent = true, desc = 'Yank current file name' })
 
 -- Move to the start and end of the line. Remap the B and E keys.
-keymap.set('n', 'E', '$', { noremap = true, desc = 'Move to the end of the line' })
-keymap.set('n', 'B', '^', { noremap = true, desc = 'Move to the start of the line' })
+-- keymap.set('n', 'E', '$', { noremap = true, desc = 'Move to the end of the line' })
+-- keymap.set('n', 'B', '^', { noremap = true, desc = 'Move to the start of the line' })
 
 -- Stay in indent mode
 keymap.set('v', '<', '<gv', { desc = 'Left indent while staying in indent mode' })
@@ -108,18 +108,18 @@ keymap.set('t', '<A-k>', '<C-\\><C-n><C-w>k', { noremap = true, desc = 'Move to 
 keymap.set('t', '<A-l>', '<C-\\><C-n><C-w>l', { noremap = true, desc = 'Move to the right terminal split ' })
 
 -- navigate to vault
-vim.keymap.set('n', '<leader>oo', '<cmd>cd $HOME/Documents/Obsidian-Notes/<cr>', { noremap = true, desc = '[Obsidian]: Open Obsidian Vault' })
+vim.keymap.set('n', '<leader>oo', '<cmd>cd $HOME/Documents/Obsidian-Notes/<CR>', { noremap = true, desc = '[Obsidian]: Open Obsidian Vault' })
 
 -- search for files in full vault
 vim.keymap.set(
   'n',
   '<leader>os',
-  '<cmd>Telescope find_files search_dirs={"$HOME/Documents/Obsidian-Notes/"}<cr>',
+  '<cmd>Telescope find_files search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
   { noremap = true, desc = '[Obsidian]: Search Obsidian Vault' }
 )
 vim.keymap.set(
   'n',
   '<leader>o/',
-  '<cmd>Telescope live_grep search_dirs={"$HOME/Documents/Obsidian-Notes/"}<cr>',
+  '<cmd>Telescope live_grep search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
   { noremap = true, desc = '[Obsidian]: Grep Obsidian Vault' }
 )

@@ -134,7 +134,7 @@ return {
       }
     end, { silent = true, desc = '[Telescope]: Fuzzily search in Open Files' })
     vim.keymap.set('n', '<leader>s/', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Find string in cwd' })
-    vim.keymap.set('n', '<leader>sw', '<cmd>Telescope grep_string<cr>', { desc = '[Telescope]: Find string under cursor in cwd' })
+    vim.keymap.set('n', '<leader>sw', '<cmd>Telescope grep_string<CR>', { desc = '[Telescope]: Find string under cursor in cwd' })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>fx', function()

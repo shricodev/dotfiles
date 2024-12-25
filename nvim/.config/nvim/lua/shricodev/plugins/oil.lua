@@ -1,8 +1,8 @@
 return {
   'stevearc/oil.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'echasnovski/mini.icons' },
   keys = {
-    { '-', '<CMD>Oil<CR>', desc = '[Oil]: Open parent directory' },
+    { '<leader>e', '<CMD>Oil<CR>', desc = '[Oil]: Open parent directory' },
   },
   config = function()
     require('oil').setup {
@@ -10,7 +10,9 @@ return {
       delete_to_trash = true,
       keymaps = {
         ['<C-h>'] = false,
-        ['<C-l'] = false,
+        ['<C-l>'] = false,
+        ['<C-k>'] = false,
+        ['<C-j>'] = false,
       },
       view_options = {
         show_hidden = true,

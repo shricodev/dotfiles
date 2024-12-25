@@ -19,7 +19,8 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 })
 
 -- wrap and check for spell in text filetypes
--- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
+-- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous,
+-- 'z=‘ for suggestions when on one.
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('wrap_spell', { clear = true }),
   pattern = { 'text', 'plaintext', 'gitcommit', 'markdown', 'mdx' },
@@ -61,7 +62,7 @@ vim.api.nvim_create_user_command('ToggleDiagnostics', function()
     vim.g.diagnostics_enabled = true
     vim.diagnostic.enable()
   end
-end, {})
+end, { desc = 'Toggle LSP Diagnostics' })
 
 -- Always open terminal in insert mode.
 vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
