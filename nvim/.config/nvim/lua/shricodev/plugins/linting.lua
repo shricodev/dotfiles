@@ -11,7 +11,7 @@ return {
       typescriptreact = { 'eslint_d' },
       python = { 'ruff' },
       -- Vale has so many issues. Commenting this for now.
-      -- markdown = { 'vale' },
+      markdown = { 'markdownlint' },
       docker = { 'hadolint' },
     }
 
@@ -24,8 +24,8 @@ return {
       end,
     })
 
-    vim.keymap.set('n', '<leader>l', function()
+    vim.keymap.set('n', '<leader>lf', function()
       lint.try_lint()
-    end, { desc = 'Trigger linting for current file' })
+    end, { desc = '[Lint]: Trigger linting for current file' })
   end,
 }

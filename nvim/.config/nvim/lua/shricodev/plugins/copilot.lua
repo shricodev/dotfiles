@@ -1,7 +1,8 @@
 return {
   'zbirenbaum/copilot.lua',
-  cmd = 'Copilot',
-  event = 'InsertEnter',
+  -- cmd = 'Copilot',
+  -- event = 'InsertEnter',
+  enabled = false,
   config = function()
     require('copilot').setup {
       panel = {
@@ -42,13 +43,5 @@ return {
       copilot_node_command = 'node',
       server_opts_overrides = {},
     }
-
-    -- Trigger copilot
-    vim.keymap.set(
-      'n',
-      '<C-s>',
-      ":lua require('copilot.suggestion').toggle_auto_trigger()<CR>",
-      { desc = '[Copilot]: Toggle copilot auto trigger', silent = true, noremap = true }
-    )
   end,
 }

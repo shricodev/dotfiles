@@ -1,6 +1,7 @@
 return {
   'windwp/nvim-autopairs',
-  event = { 'InsertEnter' },
+  -- event = { 'InsertEnter' },
+  enabled = false,
   dependencies = {
     'hrsh7th/nvim-cmp',
   },
@@ -10,7 +11,7 @@ return {
 
     -- configure autopairs
     autopairs.setup {
-      map_bs = false,
+      map_bs = true,
       check_ts = true, -- enable treesitter
       ts_config = {
         lua = { 'string' }, -- don't add pairs in lua string treesitter nodes

@@ -1,5 +1,6 @@
 return {
   'lewis6991/gitsigns.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     require('gitsigns').setup {
       on_attach = function(bufnr)
@@ -12,21 +13,21 @@ return {
         end
 
         -- Navigation
-        map('n', ']c', function()
+        map('n', ']h', function()
           if vim.wo.diff then
             vim.cmd.normal { ']c', bang = true }
           else
             gitsigns.nav_hunk 'next'
           end
-        end)
+        end, { desc = '[Gitsigns]: Next hunk' })
 
-        map('n', '[c', function()
+        map('n', '[h', function()
           if vim.wo.diff then
             vim.cmd.normal { '[c', bang = true }
           else
             gitsigns.nav_hunk 'prev'
           end
-        end)
+        end, { desc = '[Gitsigns]: Previous hunk' })
 
         -- Actions
         map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[Gitsigns]: Stage hunk' })
@@ -52,8 +53,6 @@ return {
         map('n', '<leader>hD', function()
           gitsigns.diffthis '~'
         end, { desc = '[Gitsigns]: Diff this ~' })
-
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[Gitsigns]: Select hunk' })
       end,
     }
   end,

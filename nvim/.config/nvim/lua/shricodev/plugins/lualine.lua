@@ -54,7 +54,7 @@ return {
       },
       sections = {
         lualine_a = {
-          { 'fancy_mode', width = 1 },
+          { 'fancy_mode', width = 3 },
         },
         lualine_b = {
           'branch',

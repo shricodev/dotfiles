@@ -41,9 +41,10 @@ return {
 
         map('<leader>rn', vim.lsp.buf.rename, 'Smart Rename')
 
-        map('<leader>D', function()
-          require('telescope.builtin').diagnostics { bufnr = 0 }
-        end, 'Show buffer diagnostics')
+        -- P.S: I have started using 'folke/trouble.nvim' for showing diagnostics
+        -- map('<leader>D', function()
+        --   require('telescope.builtin').diagnostics { bufnr = 0 }
+        -- end, 'Show buffer diagnostics')
 
         map('<leader>d', vim.diagnostic.open_float, 'Show line diagnostics')
 
@@ -69,28 +70,28 @@ return {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L502
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
-            group = highlight_augroup,
-            callback = vim.lsp.buf.document_highlight,
-          })
-
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
-            group = highlight_augroup,
-            callback = vim.lsp.buf.clear_references,
-          })
-
-          vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-            callback = function(event2)
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
-            end,
-          })
-        end
+        -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        --   local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+        --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        --     buffer = event.buf,
+        --     group = highlight_augroup,
+        --     callback = vim.lsp.buf.document_highlight,
+        --   })
+        --
+        --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        --     buffer = event.buf,
+        --     group = highlight_augroup,
+        --     callback = vim.lsp.buf.clear_references,
+        --   })
+        --
+        --   vim.api.nvim_create_autocmd('LspDetach', {
+        --     group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+        --     callback = function(event2)
+        --       vim.lsp.buf.clear_references()
+        --       vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
+        --     end,
+        --   })
+        -- end
 
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them

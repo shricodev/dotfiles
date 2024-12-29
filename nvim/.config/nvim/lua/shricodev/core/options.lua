@@ -12,7 +12,7 @@ vim.g.have_nerd_font = true
 -- vim.g.loaded_netrwPlugin = 1
 
 -- disable the default codeium key bindings.
-vim.g.codeium_disable_bindings = 1
+-- vim.g.codeium_disable_bindings = 1
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 
@@ -85,8 +85,8 @@ opt.swapfile = false
 opt.cursorline = true -- highlight the current cursor line
 
 opt.guicursor = {
-  'n-v-c:block', -- Normal, visual, command-line: block cursor
-  'i-ci-ve:ver25', -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+  'i-n-v-c:block', -- Insert, Normal, visual, command-line: block cursor
+  've:ver25', -- visual-exclude: vertical bar cursor with 25% width
   'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
 }

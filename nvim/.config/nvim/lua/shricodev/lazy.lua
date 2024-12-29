@@ -13,12 +13,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- EO lazy.nvim setup
 
-require('lazy').setup({
-  { import = 'shricodev.plugins' },
-  { import = 'shricodev.plugins.lsp' },
-}, {
+require('lazy').setup {
+  spec = {
+    { import = 'shricodev.plugins' },
+    { import = 'shricodev.plugins.lsp' },
+  },
   install = {
-    colorscheme = { 'catppuccin', 'default' },
+    colorscheme = { 'rose-pine', 'default' },
   },
   checker = {
     enabled = true,
@@ -30,4 +31,4 @@ require('lazy').setup({
   ui = {
     border = 'rounded',
   },
-})
+}

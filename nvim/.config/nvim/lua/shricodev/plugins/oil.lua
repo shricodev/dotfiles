@@ -9,10 +9,14 @@ return {
       columns = { 'icon' },
       delete_to_trash = true,
       keymaps = {
+        -- Used to move between splits in neovim
         ['<C-h>'] = false,
         ['<C-l>'] = false,
         ['<C-k>'] = false,
         ['<C-j>'] = false,
+
+        ['<C-\\>'] = { 'actions.select', opts = { vertical = true } },
+        ['<C-s>'] = { 'actions.select', opts = { horizontal = true } },
       },
       view_options = {
         show_hidden = true,
