@@ -3,6 +3,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
+    'hrsh7th/cmp-nvim-lsp',
     {
       'folke/lazydev.nvim',
       ft = 'lua', -- only load on lua files
@@ -40,11 +41,6 @@ return {
         map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
 
         map('<leader>rn', vim.lsp.buf.rename, 'Smart Rename')
-
-        -- P.S: I have started using 'folke/trouble.nvim' for showing diagnostics
-        -- map('<leader>D', function()
-        --   require('telescope.builtin').diagnostics { bufnr = 0 }
-        -- end, 'Show buffer diagnostics')
 
         map('<leader>d', vim.diagnostic.open_float, 'Show line diagnostics')
 
@@ -105,11 +101,12 @@ return {
       end,
     })
 
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
     local servers = {
       -- clangd = {},
@@ -167,25 +164,25 @@ return {
     }
 
     vim.diagnostic.config {
-      title = false,
-      underline = true,
-      virtual_text = true,
-      signs = true,
-      update_in_insert = false,
-      severity_sort = true,
+      -- title = false,
+      -- underline = true,
+      -- virtual_text = true,
+      -- signs = true,
+      -- update_in_insert = false,
+      -- severity_sort = true,
       float = {
-        source = 'if_many',
+        -- source = 'if_many',
         style = 'minimal',
         border = 'rounded',
-        header = '',
-        prefix = '',
+        -- header = '',
+        -- prefix = '',
       },
     }
 
-    local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
-    for type, icon in pairs(signs) do
-      local hl = 'DiagnosticSign' .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
-    end
+    -- local signs = { Error = '!!', Warn = '??', Hint = '**', Info = '@@' }
+    -- for type, icon in pairs(signs) do
+    --   local hl = 'DiagnosticSign' .. type
+    --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+    -- end
   end,
 }

@@ -1,4 +1,3 @@
--- return {}
 return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
@@ -72,8 +71,8 @@ return {
         mappings = {
           i = {
             ['<Esc>'] = actions.close,
-            ['<C-k>'] = actions.move_selection_previous, -- move to prev result
-            ['<C-j>'] = actions.move_selection_next, -- move to next result
+            ['<C-p>'] = actions.move_selection_previous, -- move to prev result
+            ['<C-n>'] = actions.move_selection_next, -- move to next result
           },
           n = { ['q'] = actions.close },
         },
@@ -118,7 +117,7 @@ return {
     )
 
     -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set('n', '<leader>/', function()
+    vim.keymap.set('n', '<leader>gb', function()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
       require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         previewer = false,
@@ -126,14 +125,14 @@ return {
     end, { desc = '[Telescope]: Fuzzily search in current buffer' })
 
     -- Search in Open Files
-    vim.keymap.set('n', '<leader>so', function()
+    vim.keymap.set('n', '<leader>go', function()
       require('telescope.builtin').live_grep {
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       }
-    end, { silent = true, desc = '[Telescope]: Fuzzily search in Open Files' })
-    vim.keymap.set('n', '<leader>s/', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Find string in cwd' })
-    vim.keymap.set('n', '<leader>sw', '<cmd>Telescope grep_string<CR>', { desc = '[Telescope]: Find string under cursor in cwd' })
+    end, { silent = true, desc = '[Telescope]: Fuzzily grep in Open Files' })
+    vim.keymap.set('n', '<leader>g/', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { desc = '[Telescope]: Grep string in cwd' })
+    vim.keymap.set('n', '<leader>gw', '<cmd>Telescope grep_string<CR>', { desc = '[Telescope]: Grep string under cursor in cwd' })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>fx', function()
@@ -163,6 +162,20 @@ return {
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
 
     vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keymaps' })
-    vim.keymap.set('n', '<leader>mv', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: View marks' })
+    vim.keymap.set('n', '<leader>mo', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: Open marks' })
+
+    -- search for files in full vault
+    vim.keymap.set(
+      'n',
+      '<leader>fo',
+      '<cmd>Telescope find_files search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
+      { noremap = true, desc = '[Obsidian]: Find Obsidian Vault' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>go/',
+      '<cmd>Telescope live_grep search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
+      { noremap = true, desc = '[Obsidian]: Grep Obsidian Vault' }
+    )
   end,
 }

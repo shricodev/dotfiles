@@ -3,12 +3,13 @@ return {
   event = 'BufEnter',
   config = function()
     require('codeium').setup {
+      enable_cmp_source = false,
       virtual_text = {
         enabled = true,
         -- For some reason setting this to false causes no keybindings to work.
         map_keys = true,
         key_bindings = {
-          accept = '<C-l>',
+          accept = '<M-;>',
           accept_word = false,
           accept_line = false,
           next = '<M-]>',

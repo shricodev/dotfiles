@@ -8,6 +8,28 @@ return {
   --   end,
   -- },
   {
+    'echasnovski/mini.statusline',
+    version = false,
+    config = function()
+      local statusline = require 'mini.statusline'
+      statusline.setup { use_icons = vim.g.have_nerd_font }
+
+      -- You can configure sections in the statusline by overriding their
+      -- default behavior. For example, here we set the section for
+      -- cursor location to LINE:COLUMN
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_location = function()
+        return '%2l:%-2v'
+      end
+
+      --- show shorter file path.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_filename = function()
+        return '%t'
+      end
+    end,
+  },
+  {
     'echasnovski/mini.surround',
     version = false,
     event = { 'BufReadPre', 'BufNewFile' },
@@ -33,10 +55,10 @@ return {
 
       -- Remap adding surrounding to Visual mode selection
       vim.keymap.del('x', 'ys')
-      vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+      vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true, desc = '[Mini.Surround]: Add surrounding (visual)' })
 
       -- Make special mapping for "add surrounding for line"
-      vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+      vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = '[Mini.Surround]: Add surrounding for line' })
     end,
   },
   {

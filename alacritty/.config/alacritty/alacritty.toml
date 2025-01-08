@@ -5,12 +5,10 @@ import = [
 live_config_reload = true
 
 [font]
-# The font size is configured very precisely to make glyphs line up with the grid in alacritty. Please change the below font size with caution
 size = 11.1
 normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 
-# These are configured very precisely to make glyphs line up with the grid in alacritty. Please change the below offsets with caution
 offset = { x = 0, y = 1 }
 
 [env]
@@ -21,9 +19,9 @@ cursor = { text = "CellBackground", cursor = "#a4a69f" }
 vi_mode_cursor = { text = "CellBackground", cursor = "#a4a69f" }
 
 [window]
-opacity = 1
+# opacity = 0.8
 padding = { x = 1, y = 1 }
-blur = true
+# blur = true
 decorations = "None"
 dynamic_padding = false
 startup_mode = "Fullscreen"

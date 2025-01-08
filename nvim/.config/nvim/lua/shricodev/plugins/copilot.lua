@@ -9,11 +9,11 @@ return {
         enabled = true,
         auto_refresh = true,
         keymap = {
-          jump_next = '<c-j>',
-          jump_prev = '<c-k>',
-          accept = '<c-l>',
-          refresh = 'r',
-          open = '<M-CR>',
+          jump_next = '<M-]>',
+          jump_prev = '<M-[>',
+          accept = '<M-;>',
+          refresh = '<M-r>',
+          open = false,
         },
         layout = {
           position = 'bottom', -- | top | left | right

@@ -2,6 +2,7 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'echasnovski/mini.icons', 'meuter/lualine-so-fancy.nvim' },
   event = { 'BufReadPre', 'BufNewFile' },
+  enabled = false,
   config = function()
     -- local harpoon = require 'harpoon.mark'
 
@@ -54,7 +55,7 @@ return {
       },
       sections = {
         lualine_a = {
-          { 'fancy_mode', width = 3 },
+          { 'mode' },
         },
         lualine_b = {
           'branch',

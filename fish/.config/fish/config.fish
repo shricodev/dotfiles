@@ -180,10 +180,18 @@ alias ping="ping -c 10"
 alias nv='nvim'
 alias v='nvim'
 
-alias cl="clear"
+alias cl='reset'
+# Make the `clear` command work as Ctrl - l as by default `clear` command clears
+# the screen completely
+alias clear='reset'
+
+alias clear-hard='command clear'
+alias clhard='command clear'
 
 # Changing "ls" to "eza"
 alias ls='eza -alg --color=always --icons --group-directories-first' # my preferred listing
+#alias to use when you need to access the raw ls command
+alias lsraw='command ls'
 
 alias ll='eza -lg --color=always --icons --group-directories-first'
 
@@ -273,8 +281,6 @@ alias yz='yazi'
 alias :q="exit"
 
 alias day="date +'%Y-%m-%d %A'"
-
-alias oo="cd $HOME/Documents/Obsidian-Notes/"
 
 # Weather in current location
 alias wtr="curl wttr.in"
