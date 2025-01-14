@@ -30,6 +30,9 @@ return {
     'hrsh7th/cmp-buffer', -- source for text in buffer
     'saadparwaiz1/cmp_luasnip',
 
+    -- Icons in the cmp
+    'onsails/lspkind-nvim',
+
     -- Adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
@@ -40,9 +43,18 @@ return {
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+    local lspkind = require 'lspkind'
     luasnip.config.setup {}
 
     cmp.setup {
+      formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        expandable_indicator = true,
+        format = lspkind.cmp_format {
+          maxwidth = 50,
+          ellipsis_char = '...',
+        },
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)

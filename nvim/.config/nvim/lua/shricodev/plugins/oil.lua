@@ -1,7 +1,6 @@
 return {
   'stevearc/oil.nvim',
   dependencies = { 'echasnovski/mini.icons' },
-  event = 'VeryLazy',
   -- Adding this keys option causes the plugin to load on key press and it cannot
   -- act as default_file_explorer, so need to ditch this setting
   -- keys = {

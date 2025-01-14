@@ -25,21 +25,32 @@ keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })
 keymap.set('v', '<leader>d', [["_d]], { desc = "Don't yank the (visual) cut out text to clipboard" })
 
+-- In the cmd line mode, type %% to get the directory of the current file.
+-- A tip from the Practical Vim book. typing :e %% is same as :e %:h<Tab>
+vim.keymap.set('c', '%%', function()
+  if vim.fn.getcmdtype() == ':' then
+    return vim.fn.expand '%:h'
+  else
+    return '%%'
+  end
+end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode' })
+
 -- clear search highlights
 keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
 keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
 
 -- window management
-keymap.set('n', '<leader>s|', '<C-w>v', { desc = 'Split window vertically' }) -- split window vertically
-keymap.set('n', '<leader>s-', '<C-w>s', { desc = 'Split window horizontally' }) -- split window horizontally
+keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' }) -- split window vertically
+keymap.set('n', '<leader>ss', '<C-w>s', { desc = 'Split window horizontally' }) -- split window horizontally
 keymap.set('n', '<leader>s=', '<C-w>=', { desc = 'Make splits equal size' }) -- make split windows equal width & height
 keymap.set('n', '<leader>sc', '<cmd>close<CR>', { desc = 'Close current split' }) -- close current split window
+keymap.set('n', '<leader>sC', '<cmd>only<CR>', { desc = 'Close all other splits and only keep active one' }) -- close current split window
 
 -- window size management
 keymap.set('n', '<M-l>', '<cmd>vertical resize +5<CR>', { desc = 'Increase window size vertically' }) -- make the window biger vertically
 keymap.set('n', '<M-h>', '<cmd>vertical resize -5<CR>', { desc = 'Decrease window size vertically' }) -- make the window smaller vertically
-keymap.set('n', '<M-i>', '<cmd>horizontal resize +2<CR>', { desc = 'Increase window size horizontally' }) -- make the window bigger horizontally by pressing shift and =
-keymap.set('n', '<M-k>', '<cmd>horizontal resize -2<CR>', { desc = 'Decrease window size horizontally' }) -- make the window smaller horizontally by pressing shift and -
+keymap.set('n', '<M-k>', '<cmd>horizontal resize +2<CR>', { desc = 'Increase window size horizontally' }) -- make the window bigger horizontally by pressing shift and =
+keymap.set('n', '<M-j>', '<cmd>horizontal resize -2<CR>', { desc = 'Decrease window size horizontally' }) -- make the window smaller horizontally by pressing shift and -
 
 -- tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' }) -- open new tab

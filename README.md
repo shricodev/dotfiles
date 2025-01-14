@@ -4,7 +4,7 @@ NOTE: These are specific to my requirements. Mainly for my usage, but feel free 
 
 ### Clone this repository:
 
-```
+```bash
 git clone git@github.com:shricodev/dotfiles.git ~/.dotfiles
 ```
 

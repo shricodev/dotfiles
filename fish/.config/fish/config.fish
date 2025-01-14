@@ -6,13 +6,14 @@
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
-# Run the fastfetch command in the startup only if it exists.
-# Disabling this for now since the Codeium plugin does not work with Neovim when fastfetch is used in the startup
 #if command -q fastfetch
 #  fastfetch --file-raw $HOME/.config/fastfetch/cat-ascii.txt
 #end
 
-set fish_greeting # Supresses fish's intro message
+#Remove fish vi mode indication in the prompt
+#function fish_mode_prompt; end
+
+set fish_greeting # Suppress fish's intro message
 
 # use the default terminal color
 set TERM xterm-256color # Sets the terminal type
@@ -20,11 +21,12 @@ set TERM xterm-256color # Sets the terminal type
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "Rose Pine"
 
+set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --border --color=hl:#2dd4bf"
+
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 # Make sure to use the CTRL-T and ALT-C to its fullest.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --border --color=hl:#2dd4bf"
 
 set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -n 200'"
@@ -34,36 +36,6 @@ fish_config theme choose "Rosé Pine"
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
-
-# Functions needed for !! and !$
-function __history_previous_command
-    switch (commandline -t)
-        case "!"
-            commandline -t $history[1]
-            commandline -f repaint
-        case "*"
-            commandline -i !
-    end
-end
-
-function __history_previous_command_arguments
-    switch (commandline -t)
-        case "!"
-            commandline -t ""
-            commandline -f history-token-search-backward
-        case "*"
-            commandline -i '$'
-    end
-end
-
-# The bindings for !! and !$
-if [ "$fish_key_bindings" = fish_vi_key_bindings ]
-    bind -Minsert ! __history_previous_command
-    bind -Minsert '$' __history_previous_command_arguments
-else
-    bind ! __history_previous_command
-    bind '$' __history_previous_command_arguments
-end
 
 # For obsidian and my custom scripts to work
 if test -d ~/bin
@@ -78,39 +50,11 @@ function backup --argument filename
     cp $filename $filename.bak
 end
 
-# Function for copying files and directories, even recursively.
-# ex: copy DIRNAME LOCATIONS
-# result: copies the directory and all of its contents.
-function copy
-    set count (count $argv | tr -d \n)
-    if test "$count" = 2; and test -d "$argv[1]"
-        set from (echo $argv[1] | trim-right /)
-        set to (echo $argv[2])
-        command cp -r $from $to
-    else
-        command cp $argv
-    end
-end
-
-# Function for printing a row
-# ex: seq 3 | rown 3
-# output: 3
-function rown --argument index
-    sed -n "$index p"
-end
-
 # Function for ignoring the first 'n' lines
 # ex: seq 10 | skip 5
 # results: prints everything but the first 5 lines
 function skip --argument n
     tail +(math 1 + $n)
-end
-
-# Function for taking the first 'n' lines
-# ex: seq 10 | take 5
-# results: prints only the first 5 lines
-function take --argument number
-    head -$number
 end
 
 # fetches the best possible documentation to work with for any command
@@ -134,16 +78,12 @@ function cdl
 end
 
 # Use fzf to change directory and list the contents of the directory
-function fcl
+function fcdl
   cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
-end
-
-# Use fzf to choose file and copy the file path to the clipboard
-function ffp
-  echo "$(find . -type f -not -path '*/.*' | fzf)" | xsel
 end
 ### EOF Navigation UTIL functions
 
+#Setup SSH running. (mostly for git push)
 if not set -q SSH_AUTH_SOCK
   # Redirecting the error or the output to the /dev/null
     eval (ssh-agent -c) > /dev/null 2>&1
@@ -153,6 +93,7 @@ end
 # Add our private key to the ssh-agent
 # Redirecting the error or the output to the /dev/null
 ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
+#End of SSH setup
 
 #This is the private key for my homelab vm on azure
 #ssh-add ~/.ssh/shricodev-azure-vm-key.pem > /dev/null 2>&1
@@ -215,30 +156,13 @@ alias hf='history | fzf'
 
 # Continue from where the download got interrupted if it happens. 
 # Without -c flag, wget will start downloading the file from scratch if the operation fails due to some 
-# netowk issues.
+# network issues.
 alias wget="wget -c"
-
-# Open neovim in the dotfiles directory
-alias dots="nvim ~/dotfiles/"
-
-# Git
-alias addup='git add -u'
-alias addall='git add .'
-alias branch='git branch'
-alias checkout='git checkout'
-alias clone='git clone'
-alias commit='git commit -m'
-alias remote='git remote -v'
-alias fetch='git fetch'
-alias pull='git pull origin'
-alias push='git push origin'
-alias tag='git tag'
-alias newtag='git tag -a'
 
 alias lg="lazygit"
 
 # switch between shells
-# The shell path is hardcoded for now since adding $(which <shell>) would result in warning in the terminal
+# The shell path is hard coded for now since adding $(which <shell>) would result in warning in the terminal
 # if the shell is not installed.
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
@@ -295,9 +219,9 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 
 # This is telling zoxide to use cd command to move to the directories instead of the z command.
 # The cd command not aliases to the z command. z is no longer available.
-zoxide init --cmd cd fish | source
+#zoxide init --cmd cd fish | source
 
-starship init fish | source
+#starship init fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
@@ -308,4 +232,6 @@ set -gx PNPM_HOME "/home/shricodev/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-# pnpm end
+
+zoxide init fish | source
+

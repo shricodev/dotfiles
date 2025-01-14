@@ -13,6 +13,9 @@ vim.g.have_nerd_font = true
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+-- When using codeium.vim instead of codeium.nvim, use this
+vim.g.codeium_disable_bindings = 1
+
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -78,12 +81,15 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- opt.spell = true
+opt.spelllang = 'en_us'
+
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
 opt.guicursor = {
-  'i-n-v-c:block', -- Insert, Normal, visual, command-line: block cursor
-  've:ver25', -- visual-exclude: vertical bar cursor with 25% width
+  'n-v-c:block', -- Normal, visual, command-line: block cursor
+  'i-ve:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
   'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
 }
