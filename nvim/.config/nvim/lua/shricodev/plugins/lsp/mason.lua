@@ -1,5 +1,8 @@
 return {
   'williamboman/mason.nvim',
+  -- We need to add mason-lspconfig as a dependency to mason
+  -- as we need to make sure that mason is loaded before mason-lspconfig to make
+  -- it work
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -13,6 +16,7 @@ return {
 
     local mason_tool_installer = require 'mason-tool-installer'
 
+    -- Make sure to setup mason before mason-lspconfig
     -- enable mason and configure icons
     mason.setup {
       ui = {

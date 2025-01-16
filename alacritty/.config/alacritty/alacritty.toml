@@ -35,7 +35,7 @@ save_to_clipboard = true
 hide_when_typing = true
 
 # [terminal]
-# shell = {program = "/bin/zsh", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
+# shell = {program = "/bin/fish", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
 
 [[mouse.bindings]]
 action = "PasteSelection"

@@ -40,7 +40,7 @@ opt.wrap = false -- disable line wrapping
 opt.breakindent = true
 
 -- Set highlight on search
-opt.hlsearch = true
+opt.hlsearch = false
 
 -- Save undo history
 opt.undofile = true
@@ -54,7 +54,7 @@ opt.completeopt = 'menu,menuone,noselect'
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = '› ', trail = '·', nbsp = '␣' }
 
 opt.termguicolors = true
 opt.background = 'dark' -- colorschemes that can be light or dark will be made dark

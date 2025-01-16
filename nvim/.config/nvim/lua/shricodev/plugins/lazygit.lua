@@ -1,5 +1,7 @@
 return {
   'kdheepak/lazygit.nvim',
+  -- Pushing myself to use fugitive for git until I am comfortable.
+  enabled = false,
   cmd = {
     'LazyGit',
     'LazyGitConfig',

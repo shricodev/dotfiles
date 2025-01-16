@@ -22,7 +22,8 @@ keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true })
 keymap.set('n', '<leader>Y', '"+Y', { noremap = true, silent = true })
 
 -- Don't copy the cut out single character to the clipboard.>copy
-keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })
+-- keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })
+
 keymap.set('v', '<leader>d', [["_d]], { desc = "Don't yank the (visual) cut out text to clipboard" })
 
 -- In the cmd line mode, type %% to get the directory of the current file.
@@ -91,8 +92,8 @@ keymap.set('n', '[q', '<cmd>cprev<CR>zz', { desc = 'Navigate to prev quick fix' 
 
 -- Location List
 -- Cannot use [l and ]l as they are already used in textobject for loop
-keymap.set('n', '<leader>ln', '<cmd>lnext<CR>zz', { desc = 'Navigate to next location list' })
-keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'Navigate to prev location list' })
+-- keymap.set('n', '<leader>ln', '<cmd>lnext<CR>zz', { desc = 'Navigate to next location list' })
+-- keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'Navigate to prev location list' })
 
 -- Change an occurance of a word in the entire file
 keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Rename an occurance of the word in the file' })
