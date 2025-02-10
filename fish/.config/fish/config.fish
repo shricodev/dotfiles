@@ -11,7 +11,7 @@ set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME
 #end
 
 #Remove fish vi mode indication in the prompt
-#function fish_mode_prompt; end
+function fish_mode_prompt; end
 
 set fish_greeting # Suppress fish's intro message
 

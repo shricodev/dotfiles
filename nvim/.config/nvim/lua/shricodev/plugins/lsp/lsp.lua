@@ -110,6 +110,7 @@ return {
 
     local servers = {
       -- clangd = {},
+      protols = {},
       gopls = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },

@@ -18,6 +18,7 @@ return {
         markdown = { 'prettierd', 'prettier', stop_after_first = true },
         graphql = { 'prettierd', 'prettier', stop_after_first = true },
         lua = { 'stylua' },
+        proto = { 'buf' },
         python = {
           -- To run the ruff formatter
           'ruff_format',

@@ -54,6 +54,8 @@ return {
         'vim',
         'vimdoc',
         'yaml',
+        'make',
+        'proto',
       },
 
       incremental_selection = {
