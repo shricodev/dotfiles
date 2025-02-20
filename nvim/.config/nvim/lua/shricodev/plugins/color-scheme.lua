@@ -55,7 +55,7 @@ return {
 
         highlight_groups = {
           -- Change the vertical line color
-          ColorColumn = { bg = '#2a2a3f' },
+          ColorColumn = { bg = '#232334' },
         },
       }
 

@@ -1,22 +1,22 @@
 return {
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
-    ft = { 'markdown' },
-    config = function()
-      require('render-markdown').setup {
-        heading = {
-          sign = false,
-        },
-        code = {
-          sign = false,
-        },
-        dash = {
-          icon = '-',
-        },
-      }
-    end,
-  },
+  -- {
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
+  --   ft = { 'markdown' },
+  --   config = function()
+  --     require('render-markdown').setup {
+  --       heading = {
+  --         sign = false,
+  --       },
+  --       code = {
+  --         sign = false,
+  --       },
+  --       dash = {
+  --         icon = '-',
+  --       },
+  --     }
+  --   end,
+  -- },
   -- {
   --   'iamcco/markdown-preview.nvim',
   --   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },

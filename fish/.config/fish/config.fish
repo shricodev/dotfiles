@@ -193,6 +193,11 @@ alias kl="kubectl logs -f"
 alias ke="kubectl exec -it"
 alias kcns='kubectl config set-context --current --namespace'
 
+# git aliases
+alias gl='git log --oneline'
+alias glp='git log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s"' 
+alias glt='git log --graph --oneline --all --decorate'
+
 # HTTP requests with xh! Make sure to have it installed.
 alias http="xh"
 

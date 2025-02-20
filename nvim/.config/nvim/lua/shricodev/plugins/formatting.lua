@@ -15,6 +15,7 @@ return {
         json = { 'prettierd', 'prettier', stop_after_first = true },
         yaml = { 'prettierd', 'prettier', stop_after_first = true },
         go = { 'gofumpt', 'goimports-reviser' },
+        sql = { 'sqlfmt' },
         markdown = { 'prettierd', 'prettier', stop_after_first = true },
         graphql = { 'prettierd', 'prettier', stop_after_first = true },
         lua = { 'stylua' },

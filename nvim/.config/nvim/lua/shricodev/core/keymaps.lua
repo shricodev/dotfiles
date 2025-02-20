@@ -16,6 +16,9 @@ keymap.set('n', '<down>', '<cmd>echo "KEY DISABLED!"<CR>')
 
 -- use jk or kj to exit insert mode
 keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
+-- Sometimes when working if I need to enter the normal mode after typing
+-- a character that requires using <shift> key, then mistakely it types Jk
+keymap.set('i', 'Jk', '<ESC>', { desc = 'Exit insert mode with Jk (backup of jk)' })
 
 -- Yank to system clipboard using <Leader>y
 keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true })

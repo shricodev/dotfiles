@@ -111,12 +111,14 @@ return {
     local servers = {
       -- clangd = {},
       protols = {},
+      sqlls = {},
       gopls = {
         cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
         settings = {
           gopls = {
             completeUnimported = true,
+            staticcheck = true,
             -- usePlaceholders = true,
             analyses = {
               unusedparams = true,

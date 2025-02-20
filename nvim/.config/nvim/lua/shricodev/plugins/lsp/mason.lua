@@ -40,6 +40,7 @@ return {
         'lua_ls',
         'emmet_ls',
         'pyright',
+        'sqlls',
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -48,10 +49,12 @@ return {
     mason_tool_installer.setup {
       ensure_installed = {
         'prettierd', -- prettier formatter
+        'prettier', -- prettier formatter (prettierd backup in formatting.lua)
         'stylua', -- lua formatter
         'isort', -- python formatter
         'eslint_d', -- js linter"black"
         'gofumpt', -- go formatter
+        'sqlfmt', -- sql formatter
         'goimports-reviser', -- go formatter
         -- add other formatter in the future
       },
