@@ -13,6 +13,9 @@ set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME
 #Remove fish vi mode indication in the prompt
 function fish_mode_prompt; end
 
+# init starship quickly
+starship init fish | source
+
 set fish_greeting # Suppress fish's intro message
 
 # use the default terminal color
@@ -36,6 +39,12 @@ fish_config theme choose "Rosé Pine"
 #set up NEOVIM as a default editor.
 set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
+
+# Always use a block cursor
+set -g fish_cursor_default block
+set -g fish_cursor_insert block
+set -g fish_cursor_replace block
+set -g fish_cursor_visual block
 
 # For obsidian and my custom scripts to work
 if test -d ~/bin
@@ -223,7 +232,6 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # The cd command not aliases to the z command. z is no longer available.
 #zoxide init --cmd cd fish | source
 
-#starship init fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"

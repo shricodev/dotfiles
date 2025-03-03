@@ -1,24 +1,27 @@
+# Make it look more like robby russel theme
 add_newline = false
 format = """
-$username\
+$character\
 $directory\
 $git_branch\
 $git_state\
 $python\
 $cmd_duration\
-$character"""
+${custom.git_status_simplified}\
+"""
 
 [character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+success_symbol = "[󰜴](blue)"
+error_symbol = "[󰜴](red)"
+vimcmd_symbol = "[󰜴](green)"
 
 [directory]
 read_only = " 🔒"
 
 [git_branch]
-symbol = " "
+symbol = "[git:](blue)"
 disabled = false
+format = '[$symbol\($branch\)](bold red) '
 
 # This makes the terminal quite slow sometimes in certain folders. So disabling it for now.
 # [git_status]
@@ -26,12 +29,20 @@ disabled = false
 # diverged = "󰦻"
 
 [cmd_duration]
-# Only show the time duration when above 5 minutes
-min_time = 200_000
-format = 'took [$duration](bold yellow) '
+min_time = 100_000
+format = '[$duration](bold yellow) '
 
 [git_state]
 disabled = false
 
 [python]
 format = "[($virtualenv )](bold yellow)"
+
+[custom.git_status_simplified]
+when = 'test -n "$(git status --porcelain)"'
+symbol = '✘'
+style = 'yellow bold'
+format = '[$symbol]($style) '
+# changing it to something else like fish causes a lot of slowness
+# let it stay bash
+shell = [ 'bash' ]

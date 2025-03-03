@@ -8,6 +8,7 @@ live_config_reload = true
 size = 11.2
 normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font"}
 
 offset = { x = 0, y = 1 }
 
@@ -18,6 +19,10 @@ TERM = "xterm-256color"
 draw_bold_text_with_bright_colors = true
 cursor = { text = "#000000", cursor = "#C0C0C0" }
 vi_mode_cursor = { text = "#000000", cursor = "#C0C0C0" }
+
+[cursor]
+style = {shape = "Block", blinking = "Never"}
+vi_mode_style = {shape = "Block", blinking = "Never"}
 
 [window]
 opacity = 1
@@ -34,8 +39,9 @@ save_to_clipboard = true
 [mouse]
 hide_when_typing = true
 
-# [terminal]
-# shell = {program = "/bin/fish", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
+[terminal]
+# shell = {program = "/usr/bin/zsh"}
+# shell = {program = "/usr/bin/fish", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
 
 [[mouse.bindings]]
 action = "PasteSelection"
