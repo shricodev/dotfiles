@@ -77,4 +77,26 @@ return {
   { 'tpope/vim-fugitive', cmd = { 'Git', 'G' }, keys = {
     { '<leader>tg', ':tab +Git<CR>', desc = '[Fugitive]: Open fugitive in a new tab' },
   } },
+  -- currently using it with tmux, so no need of this plugin in nvim
+  -- {
+  --   'kdheepak/lazygit.nvim',
+  --   -- Pushing myself to use fugitive for git until I am comfortable.
+  --   enabled = false,
+  --   cmd = {
+  --     'LazyGit',
+  --     'LazyGitConfig',
+  --     'LazyGitCurrentFile',
+  --     'LazyGitFilter',
+  --     'LazyGitFilterCurrentFile',
+  --   },
+  --   -- optional for floating window border decoration
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
+  --   -- order to load the plugin when the command is run for the first time
+  --   keys = {
+  --     { '<leader>lg', '<cmd>LazyGit<cr>', desc = '[Lazygit]: Open lazy git' },
+  --   },
+  -- },
 }

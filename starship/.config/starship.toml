@@ -16,6 +16,9 @@ error_symbol = "[󰜴](red)"
 vimcmd_symbol = "[󰜴](green)"
 
 [directory]
+truncation_length = 3
+truncation_symbol = ""
+truncate_to_repo = true
 read_only = " 🔒"
 
 [git_branch]
