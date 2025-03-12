@@ -4,3 +4,4 @@ require 'shricodev.core.options'
 require 'shricodev.core.keymaps'
 
 require 'shricodev.core.autocmds'
+require 'shricodev.core.custom-macros'

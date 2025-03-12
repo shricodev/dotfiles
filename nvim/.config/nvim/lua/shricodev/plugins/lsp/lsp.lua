@@ -28,17 +28,29 @@ return {
         end
 
         -- set keybinds
-        map('gr', require('telescope.builtin').lsp_references, 'Goto References')
+        map('gr', require('fzf-lua').lsp_references, 'Goto References')
 
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
-        map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
+        map('gd', require('fzf-lua').lsp_definitions, 'Goto Definition')
 
-        map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+        map('gI', require('fzf-lua').lsp_implementations, 'Goto Implementation')
 
-        map('gT', require('telescope.builtin').lsp_type_definitions, 'Show LSP type definitions')
+        map('gT', require('fzf-lua').lsp_typedefs, 'Show LSP type definitions')
 
-        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+        -- map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+        map('<leader>ca', function()
+          require('fzf-lua').lsp_code_actions {
+            winopts = {
+              preview = { hidden = true },
+              relative = 'cursor',
+              row = 1.01,
+              col = 0,
+              width = 0.4,
+              height = 0.2,
+            },
+          }
+        end, 'Code Actions')
 
         map('<leader>rn', vim.lsp.buf.rename, 'Smart Rename')
 
@@ -48,13 +60,14 @@ return {
 
         map(']d', vim.diagnostic.goto_next, 'Goto next diagnostic')
 
-        map('<leader>sd', function()
-          require('telescope.builtin').lsp_document_symbols()
-        end, 'Document Symbols')
+        -- Currently using fzf-lua for this
+        -- map('<leader>sd', function()
+        --   require('telescope.builtin').lsp_document_symbols()
+        -- end, 'Document Symbols')
 
-        map('<leader>sw', function()
-          require('telescope.builtin').lsp_dynamic_workspace_symbols()
-        end, 'Workspace Symbols')
+        -- map('<leader>sw', function()
+        --   require('telescope.builtin').lsp_dynamic_workspace_symbols()
+        -- end, 'Workspace Symbols')
 
         map('K', vim.lsp.buf.hover, 'Show documentation for what is under cursor')
 

@@ -1,6 +1,8 @@
 return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
+  -- trying out fzf-lua
+  enabled = false,
   tag = '0.1.8',
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
@@ -173,7 +175,7 @@ return {
 
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
 
-    vim.keymap.set('n', '<leader>km', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keymaps' })
+    vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keymaps' })
     vim.keymap.set('n', '<leader>mo', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: Open marks' })
 
     -- search for files in full vault

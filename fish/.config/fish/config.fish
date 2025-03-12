@@ -100,14 +100,14 @@ ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 #End of SSH setup
 
 #This is the private key for my homelab vm on azure
-#ssh-add ~/.ssh/shricodev-azure-vm-key.pem > /dev/null 2>&1
+ssh-add ~/.ssh/homelab-vm_key.pem > /dev/null 2>&1
 
 # Open tmux as default when the shell starts
 # Attach to or create the base session
 if not set -q TMUX
-  set -g TMUX tmux new-session -d -s main
+  set -g TMUX tmux new-session -d -s code-self
   eval $TMUX
-  tmux attach-session -d -t main
+  tmux attach-session -d -t code-self
 end
 
 
@@ -233,7 +233,6 @@ abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 # This is telling zoxide to use cd command to move to the directories instead of the z command.
 # The cd command not aliases to the z command. z is no longer available.
 #zoxide init --cmd cd fish | source
-
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"

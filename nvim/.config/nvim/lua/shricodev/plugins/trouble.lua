@@ -1,5 +1,7 @@
+-- Currently using fzf-lua diagnostics
 return {
   'folke/trouble.nvim',
+  enabled = false,
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {
     focus = true,
