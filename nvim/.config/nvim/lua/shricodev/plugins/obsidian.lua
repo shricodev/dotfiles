@@ -16,7 +16,7 @@ return {
 
     -- Optional
     'nvim-telescope/telescope.nvim',
-    'hrsh7th/nvim-cmp',
+    -- 'hrsh7th/nvim-cmp',
     'nvim-treesitter/nvim-treesitter',
   },
   config = function()
@@ -28,7 +28,7 @@ return {
         },
       },
       completion = {
-        nvim_cmp = true,
+        -- nvim_cmp = true,
         -- 1. Whether to add the note ID during completion.
         -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
         prepend_note_id = true,

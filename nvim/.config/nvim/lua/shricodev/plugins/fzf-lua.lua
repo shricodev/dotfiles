@@ -28,7 +28,7 @@ return {
     {
       '<leader>g/',
       function()
-        require('fzf-lua').live_grep_native()
+        require('fzf-lua').live_grep_native { hidden = true }
       end,
       desc = '[FZF-Lua]: Fuzzily search in current project',
     },
@@ -40,11 +40,18 @@ return {
       desc = '[FZF-Lua]: Fuzzily find Neovim config',
     },
     {
+      '<leader>faf',
+      function()
+        require('fzf-lua').files { hidden = true, no_ignore = true }
+      end,
+      desc = '[FZF-Lua]: Fuzzily find all files',
+    },
+    {
       '<leader>ff',
       function()
         require('fzf-lua').files { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily find Neovim config',
+      desc = '[FZF-Lua]: Fuzzily find files',
     },
     {
       '<leader>fb',
@@ -109,15 +116,17 @@ return {
       end,
       desc = '[FZF-Lua]: View the document diagnostics',
     },
+    -- making it g0 to match gO for document symbols
     {
-      '<leader>sw',
+      'g0',
       function()
-        require('fzf-lua').lsp_workspace_symbols()
+        require('fzf-lua').lsp_live_workspace_symbols()
       end,
       desc = '[FZF-Lua]: View the workspace symbols',
     },
+    -- gO is by default, I want to use fzf-lua version one
     {
-      '<leader>sd',
+      'gO',
       function()
         require('fzf-lua').lsp_document_symbols()
       end,
@@ -169,6 +178,18 @@ return {
     },
   },
   opts = {
+    winopts = {
+      -- using bat_native or bat improves the performance.
+      -- according to fzf-lua docs. see: https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-get-maximum-performance-out-of-fzf-lua
+      preview = { default = 'bat_native' },
+    },
+    fzf_opts = { ['--cycle'] = true },
+    files = {
+      -- I have modified the default settings to also exclude node_modules and .next directory
+      find_opts = [[-type f \! -path '*/.git/*' \! -path '*/node_modules/*' \! -path '*/.next/*']],
+      rg_opts = [[--color=never --hidden --files -g "!.git" -g "!node_modules" -g "!.next"]],
+      fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules --exclude .next]],
+    },
     keymap = {
       builtin = {
         -- set to true to get all the default bindings shown here:

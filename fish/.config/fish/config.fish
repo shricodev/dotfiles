@@ -142,10 +142,10 @@ alias lsraw='command ls'
 
 alias ll='eza -lg --color=always --icons --group-directories-first'
 
-alias la='eza -a --color=always --group-directories-first' # all files and dirs
-alias lt1='eza -aT --color=always --level=1 --group-directories-first'
-alias lt2='eza -aT --color=always --level=2 --group-directories-first'
-alias lt3='eza -aT --color=always --level=3 --group-directories-first'
+alias la='eza -a --color=always --git-ignore --group-directories-first' # all files and dirs
+alias lt1='eza -aT --color=always --git-ignore --level=1 --group-directories-first'
+alias lt2='eza -aT --color=always --git-ignore --level=2 --group-directories-first'
+alias lt3='eza -aT --color=always --git-ignore --level=3 --group-directories-first'
 
 alias llg="eza --tree --level=2 --long -g --icons --git"
 

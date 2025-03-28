@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   spec = {
     { import = 'shricodev.plugins' },
-    { import = 'shricodev.plugins.lsp' },
+    -- { import = 'shricodev.plugins.lsp' },
   },
   install = {
     colorscheme = { 'rose-pine', 'default' },
