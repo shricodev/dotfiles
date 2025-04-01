@@ -16,14 +16,14 @@ return {
       function()
         require('fzf-lua').grep_cWORD { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily search in current WORD',
+      desc = '[FZF-Lua]: Fuzzily search current WORD',
     },
     {
       '<leader>gw',
       function()
         require('fzf-lua').grep_cword { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily search in current word',
+      desc = '[FZF-Lua]: Fuzzily search current word',
     },
     {
       '<leader>g/',
@@ -107,14 +107,14 @@ return {
       function()
         require('fzf-lua').diagnostics_workspace()
       end,
-      desc = '[FZF-Lua]: View the project diagnostics',
+      desc = '[FZF-Lua(LSP)]: View the project diagnostics',
     },
     {
       '<leader>xd',
       function()
         require('fzf-lua').diagnostics_document()
       end,
-      desc = '[FZF-Lua]: View the document diagnostics',
+      desc = '[FZF-Lua(LSP)]: View the document diagnostics',
     },
     -- making it g0 to match gO for document symbols
     {
@@ -122,7 +122,7 @@ return {
       function()
         require('fzf-lua').lsp_live_workspace_symbols()
       end,
-      desc = '[FZF-Lua]: View the workspace symbols',
+      desc = '[FZF-Lua(LSP)]: View the workspace symbols',
     },
     -- gO is by default, I want to use fzf-lua version one
     {
@@ -130,7 +130,21 @@ return {
       function()
         require('fzf-lua').lsp_document_symbols()
       end,
-      desc = '[FZF-Lua]: View the document symbols',
+      desc = '[FZF-Lua(LSP)]: View the document symbols',
+    },
+    {
+      'grt',
+      function()
+        require('fzf-lua').lsp_typedefs()
+      end,
+      desc = '[FZF-Lua(LSP)]: View the type definitions',
+    },
+    {
+      'grd',
+      function()
+        require('fzf-lua').lsp_definitions()
+      end,
+      desc = '[FZF-Lua(LSP)]: View the definitions',
     },
     {
       -- This is the default nvim binding, which I am overriding here.

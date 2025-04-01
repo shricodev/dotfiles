@@ -5,4 +5,5 @@ require 'shricodev.core.options'
 require 'shricodev.core.keymaps'
 require 'shricodev.core.keymaps-del'
 
+require 'shricodev.core.lsp'
 require 'shricodev.core.autocmds'

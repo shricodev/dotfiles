@@ -5,4 +5,4 @@ require 'shricodev.core'
 require 'shricodev.lazy'
 
 -- Setup LSPs
-vim.lsp.enable { 'ruff', 'rust-analyzer', 'luals' }
+vim.lsp.enable { 'ruff', 'rust-analyzer', 'luals', 'gopls', 'ts_ls' }

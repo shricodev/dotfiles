@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
   desc = 'Highlight selection on yank',
   callback = function()
-    vim.highlight.on_yank { timeout = 70 }
+    vim.hl.on_yank { timeout = 70 }
   end,
 })
 
@@ -39,17 +39,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- -- Open the help window to the right
--- vim.api.nvim_create_autocmd('FileType', {
---   group = vim.api.nvim_create_augroup('vertical_help', { clear = true }),
---   pattern = 'help',
---   callback = function()
---     vim.bo.bufhidden = 'unload'
---     vim.cmd.wincmd 'L'
---     vim.cmd.wincmd '='
---   end,
--- })
-
 -- Toggle LSP Diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
   if vim.g.diagnostics_enabled == nil then
@@ -73,3 +62,23 @@ vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
     end
   end,
 })
+
+-- show cursor line only in active window
+local cursorGrp = vim.api.nvim_create_augroup('CursorLine', { clear = true })
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+  pattern = '*',
+  command = 'set cursorline',
+  group = cursorGrp,
+})
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', command = 'set nocursorline', group = cursorGrp })
+
+-- -- Open the help window to the right
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('vertical_help', { clear = true }),
+--   pattern = 'help',
+--   callback = function()
+--     vim.bo.bufhidden = 'unload'
+--     vim.cmd.wincmd 'L'
+--     vim.cmd.wincmd '='
+--   end,
+-- })

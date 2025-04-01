@@ -27,6 +27,10 @@ keymap.set('v', '<leader>d', [["_d]], opts "Don't yank the cut out character(s) 
 keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
 keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
 
+-- Line movement
+keymap.set('n', 'H', '^', opts 'Go to the start of the line')
+keymap.set('n', 'L', '$', opts 'Go to the end of the line')
+
 -- Split management
 keymap.set('n', '<leader>sv', '<C-w>v', opts 'Split window vertically')
 keymap.set('n', '<leader>ss', '<C-w>s', opts 'Split window horizontally')
@@ -46,9 +50,17 @@ keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', opts 'Close the current tab')
 keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', opts 'Go to next tab')
 keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', opts 'Go to previous tab')
 
--- Move the selected text up and down
+-- Buffer stuffs
+keymap.set('n', '<leader>bc', '<cmd>bd<CR>', opts 'Close the current buffer')
+keymap.set('n', '<leader>bp', '<cmd>b#<CR>', opts 'Go to the last buffer')
+
+-- Move the selected text up and down.
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts 'Move the selected lines up')
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts 'Move the selected lines down')
+
+-- Same as J, K in visual mode, but for normal mode.
+keymap.set('n', '<A-k>', '<cmd>m .-2<cr>==', opts 'Move line up')
+keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', opts 'Move line down')
 
 -- Move in the top or down half of the screen.
 keymap.set('n', '<C-u>', '<C-u>zz', opts 'Move up half the screen in the file')
@@ -57,9 +69,6 @@ keymap.set('n', '<C-d>', '<C-d>zz', opts 'Move down half the screen in the file'
 -- Search the file while keeping the search term in the center of the file.
 keymap.set('n', 'n', 'nzzzv', opts 'Search the next occurance keeping the word in center')
 keymap.set('n', 'N', 'Nzzzv', opts 'Search the previous occurance keeping the word in center')
-
--- Close buffer
-keymap.set('n', '<leader>bc', '<cmd>bd<CR>', opts 'Close the current buffer')
 
 -- Paste hack
 keymap.set('x', '<leader>p', [["_dP]], opts 'Paste without yanking the cut out text')
@@ -90,6 +99,9 @@ keymap.set('c', '%%', function()
     return '%%'
   end
 end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode' })
+
+-- vim.keymap.set('<leader>d', vim.diagnostic.open_float, {desc = 'Open floating line diagnostics'})
+-- vim.keymap.set('grD', vim.lsp.buf.declaration, {desc = 'Go to declaration'})
 
 -- Stay in indent mode. Might return back to using this setting later.
 -- Running . runs the same indentation we added/removed.
