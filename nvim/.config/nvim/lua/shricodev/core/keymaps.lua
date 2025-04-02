@@ -77,6 +77,9 @@ keymap.set('n', '<leader>bc', '<cmd>bd<CR>', { desc = 'Close Buffer' })
 -- Paste hack
 keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste the text while keeping it intact' })
 
+-- make file executable
+keymap.set('n', '<leader>xx', '<cmd>!chmod +x %<CR>', { desc = 'Make the current file executable' })
+
 -- Copy file paths
 keymap.set('n', '<leader>yfp', '<cmd>let @" = expand("%:p")<CR>', { noremap = true, silent = true, desc = 'Yank current file absolute path' })
 keymap.set('n', '<leader>yfn', '<cmd>let @" = expand("%:t")<CR>', { noremap = true, silent = true, desc = 'Yank current file name' })

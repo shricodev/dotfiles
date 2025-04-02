@@ -57,11 +57,6 @@ function skip --argument n
     tail +(math 1 + $n)
 end
 
-# fetches the best possible documentation to work with for any command
-function cheatsheet
-  curl https://cheat.sh/$argv
-end
-
 # Either attach or create a new tmux session
 function tt
   tmux new-session -A -s $argv
@@ -101,9 +96,9 @@ ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
 # Open tmux as default when the shell starts
 # Attach to or create the base session
 if not set -q TMUX
-  set -g TMUX tmux new-session -d -s base
+  set -g TMUX tmux new-session -d -s main
   eval $TMUX
-  tmux attach-session -d -t base
+  tmux attach-session -d -t main
 end
 
 
@@ -116,6 +111,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 alias ping="ping -c 10"
+
+alias cat='bat --style=plain --paging=never'
 
 # vim and emacs
 alias nv='nvim'
@@ -232,6 +229,9 @@ set -gx PNPM_HOME "/home/shricodev/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
+
+bind \cd delete-char  # Don't exit on accidental Ctrl-D
+bind \cd\cd\cd delete-or-exit  # Exit on the third one
 
 zoxide init fish | source
 

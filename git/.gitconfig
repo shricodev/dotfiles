@@ -38,12 +38,12 @@
 	autoSetupRemote = true
 
 ; gh cli tool specific configuration
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+; [credential "https://github.com"]
+; 	helper = 
+; 	helper = !/usr/bin/gh auth git-credential
+; [credential "https://gist.github.com"]
+; 	helper = 
+; 	helper = !/usr/bin/gh auth git-credential
 
 ; Instead of merging change when pulling, it will rebase our change on top of the remote change.
 [pull]

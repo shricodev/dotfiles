@@ -5,7 +5,7 @@ import = [
 live_config_reload = true
 
 [font]
-size = 11.1
+size = 11.2
 normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 

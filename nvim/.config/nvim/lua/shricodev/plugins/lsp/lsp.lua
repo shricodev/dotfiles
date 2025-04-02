@@ -48,11 +48,11 @@ return {
 
         map(']d', vim.diagnostic.goto_next, 'Goto next diagnostic')
 
-        map('<leader>ds', function()
+        map('<leader>sd', function()
           require('telescope.builtin').lsp_document_symbols()
         end, 'Document Symbols')
 
-        map('<leader>ws', function()
+        map('<leader>sw', function()
           require('telescope.builtin').lsp_dynamic_workspace_symbols()
         end, 'Workspace Symbols')
 
@@ -178,6 +178,7 @@ return {
     vim.diagnostic.config {
       -- title = false,
       -- underline = true,
+      -- virtual_lines = true,
       -- virtual_text = true,
       -- signs = true,
       -- update_in_insert = false,

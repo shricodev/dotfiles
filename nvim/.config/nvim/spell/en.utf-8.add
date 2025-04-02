@@ -32,3 +32,5 @@ symlink
 dotfiles
 unbuffered
 goroutine
+JSON
+tmux
