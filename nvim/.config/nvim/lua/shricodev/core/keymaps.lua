@@ -42,7 +42,9 @@ keymap.set('n', '<leader>sC', '<cmd>only<CR>', opts 'Close all windows except th
 keymap.set('n', '+', '<cmd>vertical resize +5<CR>', opts 'Increase window size vertically')
 keymap.set('n', '_', '<cmd>vertical resize -5<CR>', opts 'Decrease window size vertically')
 keymap.set('n', '=', '<cmd>horizontal resize +2<CR>', opts 'Increase window size horizontally')
-keymap.set('n', '-', '<cmd>horizontal resize -2<CR>', opts 'Decrease window size horizontally')
+-- NOTE: This binding needs to be changed to something else.
+-- cuz oil uses - in normal mode to open the file explorer
+-- keymap.set('n', '-', '<cmd>horizontal resize -2<CR>', opts 'Decrease window size horizontally')
 
 -- Tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', opts 'Open a new tab')

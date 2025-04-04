@@ -132,6 +132,23 @@ return {
       end,
       desc = '[FZF-Lua(LSP)]: View the document symbols',
     },
+    -- gra is by default for code actions. Overriding it to use fzf-lua
+    {
+      'gra',
+      function()
+        require('fzf-lua').lsp_code_actions {
+          winopts = {
+            preview = { hidden = true },
+            relative = 'cursor',
+            row = 1.01,
+            col = 0,
+            width = 0.4,
+            height = 0.2,
+          },
+        }
+      end,
+      desc = '[FZF-Lua(LSP)]: View the code actions',
+    },
     {
       'grt',
       function()

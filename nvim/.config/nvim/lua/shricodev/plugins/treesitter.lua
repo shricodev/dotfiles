@@ -79,8 +79,9 @@ return {
             ['im'] = { query = '@function.inner', desc = '[TextObject]: Select inner part of a method/function definition' },
             ['ai'] = { query = '@conditional.outer', desc = '[TextObject]: Select outer part of a conditional' },
             ['ii'] = { query = '@conditional.inner', desc = '[TextObject]: Select inner part of a conditional' },
-            ['al'] = { query = '@loop.outer', desc = '[TextObject]: Select outer part of a loop' },
-            ['il'] = { query = '@loop.inner', desc = '[TextObject]: Select inner part of a loop' },
+            -- l is for location list in recent nvim update and I don't think I use this binding much so I'm leaving it out.
+            -- ['al'] = { query = '@loop.outer', desc = '[TextObject]: Select outer part of a loop' },
+            -- ['il'] = { query = '@loop.inner', desc = '[TextObject]: Select inner part of a loop' },
             ['ac'] = { query = '@class.outer', desc = '[TextObject]: Select outer part of class definition.' },
             ['ic'] = { query = '@class.inner', desc = '[TextObject]: Select inner part of class definition.' },
           },
@@ -106,28 +107,32 @@ return {
             [']m'] = { query = '@function.outer', desc = '[TextObject]: Move to next method/function definition start' },
             [']c'] = { query = '@class.outer', desc = '[TextObject]: Move to next class start' },
             [']i'] = { query = '@conditional.outer', desc = '[TextObject]: Move to next condition start' },
-            [']l'] = { query = '@loop.outer', desc = '[TextObject]: Move to next loop start' },
+            -- l is for location list in recent nvim update and I don't think I use this binding much so I'm leaving it out.
+            -- [']l'] = { query = '@loop.outer', desc = '[TextObject]: Move to next loop start' },
           },
           goto_next_end = {
             [']F'] = { query = '@call.outer', desc = '[TextObject]: Move to previous function call end' },
             [']M'] = { query = '@function.outer', desc = '[TextObject]: Move to previous method/function definition end' },
             [']C'] = { query = '@class.outer', desc = '[TextObject]: Move to previous class end' },
             [']I'] = { query = '@conditional.outer', desc = '[TextObject]: Move to previous conditional end' },
-            [']L'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop end' },
+            -- l is for location list in recent nvim update and I don't think I use this binding much so I'm leaving it out.
+            -- [']L'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop end' },
           },
           goto_previous_start = {
             ['[f'] = { query = '@call.outer', desc = '[TextObject]: Move to previous function call start' },
             ['[m'] = { query = '@function.outer', desc = '[TextObject]: Move to previous method/function definition start' },
             ['[c'] = { query = '@class.outer', desc = '[TextObject]: Move to previous class start' },
             ['[i'] = { query = '@conditional.outer', desc = '[TextObject]: Move to previous conditional start' },
-            ['[l'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop start' },
+            -- l is for location list in recent nvim update and I don't think I use this binding much so I'm leaving it out.
+            -- ['[l'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop start' },
           },
           goto_previous_end = {
             ['[F'] = { query = '@call.outer', desc = '[TextObject]: Move to previous function call end' },
             ['[M'] = { query = '@function.outer', desc = '[TextObject]: Move to previous method/function definition end' },
             ['[C'] = { query = '@class.outer', desc = '[TextObject]: Move to previous class end' },
             ['[I'] = { query = '@conditional.outer', desc = '[TextObject]: Move to previous conditional end' },
-            ['[L'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop end' },
+            -- l is for location list in recent nvim update and I don't think I use this binding much so I'm leaving it out.
+            -- ['[L'] = { query = '@loop.outer', desc = '[TextObject]: Move to previous loop end' },
           },
         },
       },
