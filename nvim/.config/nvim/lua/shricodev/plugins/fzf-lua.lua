@@ -209,32 +209,42 @@ return {
     },
   },
   opts = {
+    oldfiles = {
+      include_current_session = true,
+    },
+    previewers = {
+      builtin = {
+        -- fzf-lua is very fast, but it really struggled to preview a couple files
+        -- in a repo. Those files were very big JavaScript files (1MB, minified, all on a single line).
+        -- It turns out it was Treesitter having trouble parsing the files.
+        -- With this change, the previewer will not add syntax highlighting to files larger than 100KB
+        -- (Yes, I know you shouldn't have 100KB minified files in source control.)
+        syntax_limit_b = 1024 * 100, -- 100KB
+      },
+    },
     winopts = {
       -- using bat_native or bat improves the performance.
       -- according to fzf-lua docs. see: https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-get-maximum-performance-out-of-fzf-lua
-      preview = { default = 'bat_native' },
+      preview = { default = 'bat_native', border = 'none' },
     },
     fzf_opts = { ['--cycle'] = true },
     files = {
+      file_icons = true,
+      color_icons = true,
       -- I have modified the default settings to also exclude node_modules and .next directory
       find_opts = [[-type f \! -path '*/.git/*' \! -path '*/node_modules/*' \! -path '*/.next/*']],
       rg_opts = [[--color=never --hidden --files -g "!.git" -g "!node_modules" -g "!.next"]],
-      fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules --exclude .next]],
+      fd_opts = [[--color=never --hidden --type f --exclude .git --exclude node_modules --exclude .next]],
     },
     keymap = {
-      builtin = {
-        -- set to true to get all the default bindings shown here:
-        -- https://github.com/ibhagwan/fzf-lua?tab=readme-ov-file#customization
-        true,
+      fzf = {
+        -- mimic the telescope behavior
+        ['ctrl-q'] = 'select-all+accept',
+        ['ctrl-d'] = 'preview-page-down',
+        ['ctrl-u'] = 'preview-page-up',
+        ['f4'] = 'toggle-preview',
+        ['f3'] = 'toggle-preview-wrap',
       },
     },
   },
-  -- config = function()
-  --   -- calling `setup` is optional for customization
-  --   require('fzf-lua').setup {}
-  --
-  --   vim.keymap.set('n', '<leader>/', function()
-  --     require('fzf-lua').grep()
-  --   end, { desc = '[FZF-Lua]: Fuzzily search in current buffer' })
-  -- end,
 }

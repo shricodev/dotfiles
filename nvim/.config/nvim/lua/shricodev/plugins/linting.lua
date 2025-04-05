@@ -11,7 +11,7 @@ return {
       javascriptreact = { 'eslint_d' },
       typescriptreact = { 'eslint_d' },
       python = { 'ruff' },
-      markdown = { 'markdownlint' },
+      -- markdown = { 'markdownlint' },
       docker = { 'hadolint' },
       go = { 'golangcilint' },
     }

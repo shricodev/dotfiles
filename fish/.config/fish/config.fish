@@ -24,15 +24,15 @@ set TERM xterm-256color # Sets the terminal type
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "Rose Pine"
 
-set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --border --color=hl:#2dd4bf"
+set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --color=hl:#2dd4bf"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 # Make sure to use the CTRL-T and ALT-C to its fullest.
 set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 
-set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -n 200'"
+set -gx FZF_CTRL_T_OPTS "--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window=right:noborder"
+set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --icons --color=always {} | head -n 200' --preview-window=right:noborder"
 
 fish_config theme choose "Rosé Pine"
 
@@ -79,11 +79,6 @@ end
 # Change directory and list files
 function cdl
   cd $argv && ls
-end
-
-# Use fzf to change directory and list the contents of the directory
-function fcdl
-  cd "$(find . -type d -not -path '*/.*' | fzf)" && ls
 end
 ### EOF Navigation UTIL functions
 
@@ -190,20 +185,6 @@ alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
-alias k="kubectl"
-alias ka="kubectl apply -f"
-alias kg="kubectl get"
-alias kd="kubectl describe"
-alias kdel="kubectl delete"
-alias kl="kubectl logs"
-alias kgpo="kubectl get pod"
-alias kgd="kubectl get deployments"
-alias kc="kubectx"
-alias kns="kubens"
-alias kl="kubectl logs -f"
-alias ke="kubectl exec -it"
-alias kcns='kubectl config set-context --current --namespace'
-
 # git aliases
 alias gl='git log --oneline'
 alias glp='git log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s"' 
@@ -226,7 +207,7 @@ alias wtr="curl wttr.in"
 alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py' | python3 -"
 
 # Some flatpak aliases
-alias zen='flatpak run io.github.zen_browser.zen'
+# alias zen='flatpak run io.github.zen_browser.zen'
 
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
 
