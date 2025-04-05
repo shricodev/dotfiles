@@ -24,7 +24,8 @@ set TERM xterm-256color # Sets the terminal type
 # Use the machhiato theme for the bat command
 set -gx BAT_THEME "Rose Pine"
 
-set -gx FZF_DEFAULT_OPTS "--height=50% --layout=default --color=hl:#2dd4bf"
+# -- layout=reverse makes the prompt at the top instead of at the bottom
+set -gx FZF_DEFAULT_OPTS "--height=50% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 # Make sure to use the CTRL-T and ALT-C to its fullest.

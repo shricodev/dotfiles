@@ -33,27 +33,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
--- wrap and check for spell in text filetypes
--- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous,
--- 'z=‘ for suggestions when on one.
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('wrap_spell', { clear = true }),
-  pattern = { 'text', 'plaintext', 'gitcommit', 'markdown', 'mdx' },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
--- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  group = vim.api.nvim_create_augroup('json_conceal', { clear = true }),
-  pattern = { 'json', 'jsonc', 'json5' },
-  callback = function()
-    vim.opt_local.conceallevel = 0
-  end,
-})
-
 -- Toggle LSP Diagnostics
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
   if vim.g.diagnostics_enabled == nil then
