@@ -34,9 +34,9 @@ return {
     },
 
     -- don't show blink in cmdline
-    cmdline = {
-      enabled = false,
-    },
+    -- cmdline = {
+    --   enabled = false,
+    -- },
     completion = {
       -- menu = { border = 'single' },
       documentation = { auto_show = true, auto_show_delay_ms = 400 },
