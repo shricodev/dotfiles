@@ -90,46 +90,6 @@ opt.spelllang = 'en_us'
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
-vim.diagnostic.config {
-  -- title = false,
-  -- underline = true,
-  -- virtual_lines = true,
-  -- virtual_text = true,
-  -- signs = true,
-  -- update_in_insert = false,
-  severity_sort = true,
-  underline = { severity = vim.diagnostic.severity.ERROR },
-  -- signs = {
-  --   text = {
-  --     [vim.diagnostic.severity.ERROR] = '󰅚 ',
-  --     [vim.diagnostic.severity.WARN] = '󰀪 ',
-  --     [vim.diagnostic.severity.INFO] = '󰋽 ',
-  --     [vim.diagnostic.severity.HINT] = '󰌶 ',
-  --   },
-  -- },
-  virtual_text = {
-    enabled = true,
-    source = 'if_many',
-    spacing = 2,
-    -- format = function(diagnostic)
-    --   local diagnostic_message = {
-    --     [vim.diagnostic.severity.ERROR] = diagnostic.message,
-    --     [vim.diagnostic.severity.WARN] = diagnostic.message,
-    --     [vim.diagnostic.severity.INFO] = diagnostic.message,
-    --     [vim.diagnostic.severity.HINT] = diagnostic.message,
-    --   }
-    --   return diagnostic_message[diagnostic.severity]
-    -- end,
-  },
-  float = {
-    source = 'if_many',
-    style = 'minimal',
-    -- border = 'rounded',
-    -- header = '',
-    -- prefix = '',
-  },
-}
-
 opt.guicursor = {
   'i-n-v-c:block', -- Normal, visual, command-line: block cursor
   've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
