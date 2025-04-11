@@ -4,11 +4,7 @@
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
-
-#if command -q fastfetch
-#  fastfetch --file-raw $HOME/.config/fastfetch/cat-ascii.txt
-#end
+set -U fish_user_paths $HOME/.bin $HOME/.local/bin $HOME/local/bin $HOME/.config/emacs/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/go/bin $HOME/.fzf/bin $fish_user_paths
 
 #Remove fish vi mode indication in the prompt
 function fish_mode_prompt; end
@@ -46,12 +42,6 @@ set -g fish_cursor_default block
 set -g fish_cursor_insert block
 set -g fish_cursor_replace block
 set -g fish_cursor_visual block
-
-# For obsidian and my custom scripts to work
-if test -d ~/bin
-  # Add ~/bin to the PATH using fish_add_path function
-  fish_add_path ~/bin
-end
 
 # Function for creating a backup file
 # ex: backup file.txt
@@ -191,9 +181,6 @@ alias gl='git log --oneline'
 alias glp='git log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset, %ar : %s"' 
 alias glt='git log --graph --oneline --all --decorate'
 
-# HTTP requests with xh! Make sure to have it installed.
-alias http="xh"
-
 # Yazi file manager
 alias yz='yazi'
 
@@ -207,14 +194,7 @@ alias wtr="curl wttr.in"
 # Do the internet speed test
 alias ist="curl -s 'https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py' | python3 -"
 
-# Some flatpak aliases
-# alias zen='flatpak run io.github.zen_browser.zen'
-
 abbr -a --position anywhere --set-cursor='%' -- L '% | less'
-
-# This is telling zoxide to use cd command to move to the directories instead of the z command.
-# The cd command not aliases to the z command. z is no longer available.
-#zoxide init --cmd cd fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
@@ -231,3 +211,4 @@ bind \cd\cd\cd delete-or-exit  # Exit on the third one
 
 zoxide init fish | source
 
+toilet "shricodev" -F border -F rainbow -f pagga

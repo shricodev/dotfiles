@@ -1,0 +1,11 @@
+#!/bin/bash
+
+files=$(fd . ~/Videos -e .mkv -e .mp4)
+selected_file=$(echo "$files" | rofi -dmenu -i -p "Select a file:")
+
+if [ -n "$selected_file" ]; then
+	mpv "$selected_file"
+else
+	notify-send "No file selected."
+fi
+pkill watchvid
