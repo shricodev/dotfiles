@@ -1,0 +1,16 @@
+# Ignore Git metadata.
+.git/
+.github/
+.gitignore
+
+# Log files.
+*.log
+
+# Documentation related stuffs.
+*.md
+docs/
+LICENSE
+
+# Not necessary docker files.
+Dockerfile
+.dockerignore

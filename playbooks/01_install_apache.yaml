@@ -1,0 +1,29 @@
+---
+- name: Keep the system cache and everything up to date
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Install updates (Debian, Ubuntu)
+      apt:
+        update_cache: true
+        dist_upgrade: true
+      when: ansible_distribution in ['Debian', 'Ubuntu']
+
+- name: Set up apache
+  hosts: homelabs
+  remote_user: shricodev
+  become: true
+
+  tasks:
+    - name: Install apache and add its php support
+      # apt is for debian based distro and yum is for rpm based distro. there
+      # are stuffs like pacman and all as well, but package is a generic thingy
+      # which will use whatever the underlying package manager for that
+      # distribution is
+      package:
+        name:
+          - "{{ apache_package }}"
+          - "{{ apache_php_package }}"
+        state: latest
+        update_cache: true

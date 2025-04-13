@@ -1,0 +1,49 @@
+# This is a generated file.
+
+# System and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+*~
+
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+env/
+Pipfile.lock
+poetry.lock
+
+# Ansible-related
+*.retry
+*.tar.gz
+*.zip
+*.bak
+secrets/
+inventory.ini
+*.log
+
+# SSH and sensitive credentials
+*.pem
+*.key
+*.crt
+id_rsa*
+id_ecdsa*
+id_ed25519*
+*.env
+
+# Git-specific
+.git/
+.gitmodules
+!.gitignore
+
+# VSCode and JetBrains IDE settings
+.vscode/
+.idea/
+

@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+
+# Auto terminate the program when a command fails.
+set -e
+
+# Color codes
+NC='\033[0m'
+BLACK='\033[00;30m'
+RED='\033[00;31m'
+GREEN='\033[00;32m'
+YELLOW='\033[00;33m'
+BLUE='\033[00;34m'
+PURPLE='\033[00;35m'
+CYAN='\033[00;36m'
+SEA="\\033[38;5;49m"
+LIGHTGRAY='\033[00;37m'
+LBLACK='\033[01;30m'
+LRED='\033[01;31m'
+LGREEN='\033[01;32m'
+LYELLOW='\033[01;33m'
+LBLUE='\033[01;34m'
+LPURPLE='\033[01;35m'
+LCYAN='\033[01;36m'
+WHITE='\033[01;37m'
+ORANGE='\033[38;5;214m'
+OVERWRITE='\e[1A\e[K'
+
+# Emoji codes
+CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
+X_MARK="${RED}\xE2\x9C\x96${NC}"
+PIN="${RED}\xF0\x9F\x93\x8C${NC}"
+CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
+ARROW="${SEA}\xE2\x96\xB6${NC}"
+BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
+HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
+WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
+RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
+
+DOTFILES_LOG="$HOME/.dotfiles.log"
+DOTFILES_DIR="$HOME/.dotfiles"
+SSH_DIR="$HOME/.ssh"
+IS_FIRST_RUN="$HOME/.dotfiles_first_run_check"
+
+function _info {
+  # First, the INFO is going to be undefined which will result in empty string
+  # and it will print with [ ], but secondly the INFO variable is going to be
+  # defined and it will print with [✓].
+  if [[ -n $INFO ]]; then
+    printf "${OVERWRITE}${LGREEN} [✓]  ${LGREEN}${INFO}\n"
+  fi
+
+  INFO=$1
+  printf "${LBLACK} [ ]  ${INFO} \n${NC}\n"
+}
+
+function _error {
+  printf "${OVERWRITE}${LRED} [X]  ${1}${LRED}\n"
+  # This will trigger the termination of the program with the `set -e` flag we
+  # have set up at the top.
+  return 1
+}
+
+function _clear_info {
+  INFO=""
+}
+
+function _info_done {
+  printf "${OVERWRITE}${LGREEN} [✓]  ${LGREEN}${INFO}\n"
+  _clear_info
+}
+
+function _cmd {
+  # create a log file if it doesn't exist.
+  [[ -f $DOTFILES_LOG ]] || touch $DOTFILES_LOG
+
+  echo "Run command: $1" >>$DOTFILES_LOG
+
+  if eval "$1" 1>/dev/null 2>$DOTFILES_LOG; then
+    return 0
+  fi
+
+  _error "Failed to run command: $1"
+  while read line; do
+    printf "   >> ${line}\n"
+  done <$DOTFILES_LOG
+  printf "\n"
+
+  # This will trigger the termination of the program with the `set -e` flag we
+  # have set up at the top.
+  return 1
+}
+
+function check_and_install_arch_package {
+  local pkg=$1
+  if ! pacman -Q "$pkg" >/dev/null 2>&1; then
+    _info "Installing $pkg"
+    _cmd "sudo pacman -S --noconfirm $pkg"
+  fi
+}
+
+function detect_os {
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    echo $ID
+  else
+    echo "unknown"
+  fi
+}
+
+function arch_setup {
+  if ! [ -x $(command -v ansible) ]; then
+    _info "Installing Ansible"
+    check_and_install_arch_package "ansible"
+  fi
+
+  check_and_install_arch_package "python3"
+  check_and_install_arch_package "python-pip"
+  check_and_install_arch_package "openssh"
+
+  _info "Setting Locale"
+  _cmd "sudo localectl set-locale LANG=en_US.UTF-8"
+}
+
+detected_os=$(detect_os)
+_info "Detected OS: $detected_os"
+
+case $detected_os in
+"arch")
+  arch_setup
+  ;;
+*)
+  _info "Supported OS: Arch Linux"
+  _error "Unsupported OS"
+  ;;
+esac
+
+if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
+  _info "Generating SSH Keys"
+  _cmd "mkdir -p $SSH_DIR"
+  _cmd "chmod 700 $SSH_DIR"
+  # Give no passphrase here, as it's going to be the SSH key that ansible will
+  # use to connect to the servers if provided other than the local system. Using
+  # it can be of issues as it will prompt for the passphrase every single time we
+  # try to connect to a remote machine.
+  _cmd "ssh-keygen -t ed25519 -f '$SSH_DIR/ansible_key' -N '' -C '$USER@$(hostname)'"
+  _info_done
+fi
+
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+  _info "Cloning @shricodev dotfiles repository"
+  _cmd "git clone --quiet https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
+else
+  _info "Updating @shricodev dotfiles repository"
+  _cmd "git -C $DOTFILES_DIR pull --quiet"
+fi
+
+pushd "$DOTFILES_DIR" >/dev/null 2>&1
+# TODO: ansible playbook works
+
+popd >/dev/null 2>&1
+
+_info "Everything ran successfully! 🎉"
+
+if ! [[ -f "$IS_FIRST_RUN" ]]; then
+  printf "\n"
+  echo -e "${ARROW} ${CYAN}First run detected!${NC}"
+  echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"
+  echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
+  touch "$IS_FIRST_RUN"
+fi
