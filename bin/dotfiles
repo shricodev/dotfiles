@@ -41,6 +41,8 @@ DOTFILES_DIR="$HOME/.dotfiles"
 SSH_DIR="$HOME/.ssh"
 IS_FIRST_RUN="$HOME/.dotfiles_first_run_check"
 
+USER_PRIMARY_GROUP="$(id -gn $USER)"
+
 function _info {
   # First, the INFO is going to be undefined which will result in empty string
   # and it will print with [ ], but secondly the INFO variable is going to be
@@ -149,12 +151,14 @@ fi
 if ! [[ -d "$DOTFILES_DIR" ]]; then
   _info "Cloning @shricodev dotfiles repository"
   _cmd "git clone --quiet https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
+  _cmd "chown -R $USER:$USER_PRIMARY_GROUP $DOTFILES_DIR"
 else
   _info "Updating @shricodev dotfiles repository"
   _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
+
 # TODO: ansible playbook works
 
 popd >/dev/null 2>&1
