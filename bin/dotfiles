@@ -100,6 +100,14 @@ function check_and_install_arch_package {
   fi
 }
 
+function check_and_install_ubuntu_package {
+  local pkg=$1
+  if ! dpkg -l "$pkg" >/dev/null 2>&1; then
+    _info "Installing $pkg"
+    _cmd "sudo apt-get install -y $pkg"
+  fi
+}
+
 function detect_os {
   if [[ -f /etc/os-release ]]; then
     source /etc/os-release
@@ -110,7 +118,7 @@ function detect_os {
 }
 
 function arch_setup {
-  if ! [ -x $(command -v ansible) ]; then
+  if ! [[ -x $(command -v ansible) ]]; then
     _info "Installing Ansible"
     check_and_install_arch_package "ansible"
   fi
@@ -123,6 +131,25 @@ function arch_setup {
   _cmd "sudo localectl set-locale LANG=en_US.UTF-8"
 }
 
+function ubuntu_setup {
+  if ! [[ -x $(command -v ansible) ]]; then
+    # Steps from ansible docs:
+    # https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu
+    _cmd "sudo apt-get update"
+    check_and_install_ubuntu_package "software-properties-common"
+    _cmd "sudo add-apt-repository --yes --update ppa:ansible/ansible"
+    check_and_install_ubuntu_package "ansible"
+  fi
+
+  check_and_install_ubuntu_package "python3"
+  check_and_install_ubuntu_package "python3-pip"
+  check_and_install_ubuntu_package "python3-watchdog"
+  check_and_install_ubuntu_package "openssh-server"
+
+  _info "Setting Locale"
+  _cmd "sudo locale-gen en_US.UTF-8"
+}
+
 detected_os=$(detect_os)
 _info "Detected OS: $detected_os"
 
@@ -130,26 +157,34 @@ case $detected_os in
 "arch")
   arch_setup
   ;;
+"ubuntu")
+  ubuntu_setup
+  ;;
 *)
-  _info "Supported OS: Arch Linux"
+  _info "Supported OS: Arch Linux, Ubuntu"
   _error "Unsupported OS"
   ;;
 esac
 
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
-  _info "Generating SSH Keys"
-  _cmd "mkdir -p $SSH_DIR"
-  _cmd "chmod 700 $SSH_DIR"
-  # Give no passphrase here, as it's going to be the SSH key that ansible will
-  # use to connect to the servers if provided other than the local system. Using
-  # it can be of issues as it will prompt for the passphrase every single time we
-  # try to connect to a remote machine.
-  _cmd "ssh-keygen -t ed25519 -f '$SSH_DIR/ansible_key' -N '' -C '$USER@$(hostname)'"
-  _info_done
+  if ! [[ -f "$SSH_DIR/ansible_key" ]]; then
+    _info "Generating SSH Keys"
+    _cmd "mkdir -p $SSH_DIR"
+    _cmd "chmod 700 $SSH_DIR"
+    # Give no passphrase here, as it's going to be the SSH key that ansible will
+    # use to connect to the servers if provided other than the local system. Using
+    # it can be of issues as it will prompt for the passphrase every single time we
+    # try to connect to a remote machine.
+    _cmd "ssh-keygen -t ed25519 -f '$SSH_DIR/ansible_key' -N '' -C '$USER@$(hostname)'"
+    _info_done
+  else
+    _info "SSH key already exists at $SSH_DIR/ansible_key. Skipping key generation."
+    _info_done
+  fi
 fi
 
 if ! [[ -d "$DOTFILES_DIR" ]]; then
-  _info "Cloning @shricodev dotfiles repository"
+  _info "Cloning @shricodev/dotfiles repository"
   _cmd "git clone --quiet https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
   _cmd "chown -R $USER:$USER_PRIMARY_GROUP $DOTFILES_DIR"
 else
@@ -168,7 +203,6 @@ _info "Everything ran successfully! 🎉"
 if ! [[ -f "$IS_FIRST_RUN" ]]; then
   printf "\n"
   echo -e "${ARROW} ${CYAN}First run detected!${NC}"
-  echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"
   echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
   touch "$IS_FIRST_RUN"
 fi
