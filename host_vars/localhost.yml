@@ -1,0 +1,8 @@
+---
+git_email: "shrijal.acharya@gmail.com"
+git_name: "Shrijal Acharya"
+
+dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
+
+timezone: "Asia/Kathmandu"
+keyboard_layout: "us"

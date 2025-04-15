@@ -1,6 +1,9 @@
 ---
 name: ansible-lint
-on: push
+# TODO: Once the setup to the dotfiles is done, change it to also include push
+# handler
+on:
+  workflow_dispatch:
 jobs:
   build:
     name: Ansible Lint

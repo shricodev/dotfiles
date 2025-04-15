@@ -1,0 +1,23 @@
+---
+- name: Dotfiles Configuration
+  hosts: homelabs
+  become: true
+
+  pre_tasks:
+    - name: Update package cache
+      ansible.builtin.import_tasks: pre_tasks/update_package_cache.yml
+      tags:
+        - always
+
+    - name: Setup ansible user
+      ansible.builtin.import_tasks: pre_tasks/setup_ansible_user.yml
+      tags:
+        - always
+
+    - name: Create config directory
+      ansible.builtin.import_tasks: pre_tasks/create_config_directory.yml
+      tags:
+        - always
+
+  roles:
+    - common

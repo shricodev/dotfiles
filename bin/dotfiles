@@ -77,7 +77,7 @@ function detect_os {
 function install_ansible {
   case $1 in
   arch)
-    _cmd "sudo pacman -Sy --noconfirm ansible"
+    _cmd "sudo pacman -S --noconfirm ansible"
     ;;
   ubuntu)
     _cmd "sudo apt-get update"
@@ -87,6 +87,8 @@ function install_ansible {
     ;;
   *)
     _error "Unsupported OS: $1"
+    _info "Supported OS: arch, ubuntu"
+    _info_done
     ;;
   esac
 }

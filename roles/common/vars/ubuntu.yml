@@ -1,0 +1,10 @@
+---
+common_packages:
+  - git
+  - curl
+  - unzip
+  - neovim
+  - python3
+  - python3-pip
+  - fish
+  - htop

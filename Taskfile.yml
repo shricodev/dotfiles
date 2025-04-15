@@ -1,0 +1,8 @@
+---
+version: "3"
+
+tasks:
+  docker-build:
+    desc: Build the dotfiles Docker image to a container
+    cmds:
+      - docker build -t shricodev/dotfiles:latest .

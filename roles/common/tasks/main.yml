@@ -1,0 +1,9 @@
+---
+- name: Include distro specific variables
+  include_vars: "{{ ansible_distribution | lower }}.yml"
+
+- name: Install common packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ common_packages }}"
+    state: present
