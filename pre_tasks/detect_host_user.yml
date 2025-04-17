@@ -1,0 +1,5 @@
+---
+- name: Detect dotfiles user based on environment
+  ansible.builtin.set_fact:
+    dotfiles_user: >-
+      {{ 'shricodev' if ansible_user_id == 'root' else ansible_user_id | trim }}

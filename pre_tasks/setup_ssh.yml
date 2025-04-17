@@ -1,0 +1,28 @@
+---
+- name: Ensure the '.ssh' directory exists
+  remote_user: "{{ dotfiles_user }}"
+  ansible.builtin.file:
+    path: "{{ dotfiles_dir }}/.ssh"
+    state: directory
+    mode: 0700
+    owner: "{{ dotfiles_user }}"
+    group: "{{ dotfiles_user }}"
+
+- name: Ensure the '.ssh/authorized_keys' file exists
+  remote_user: "{{ dotfiles_user }}"
+  ansible.builtin.file:
+    path: "/home/{{ dotfiles_user }}/.ssh/authorized_keys"
+    state: touch
+    owner: "{{ dotfiles_user }}"
+    group: "{{ dotfiles_user }}"
+    mode: 0600
+
+- name: Set public key path
+  set_fact:
+    pubkey_path: "/home/{{ dotfiles_user }}/.ssh/{{ ansible_ssh_key_name }}.pub"
+
+- name: Copy SSH public key to authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ dotfiles_user }}"
+    state: present
+    key: "{{ lookup('file', pubkey_path) }}"

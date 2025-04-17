@@ -1,5 +1,5 @@
 ---
-dotfiles_user: "shricodev"
+ansible_ssh_key_name: "ansible_key"
 
 config_dir: "/home/{{ dotfiles_user }}/.config"
 dotfiles_dir: "/home/{{ dotfiles_user }}/.dotfiles"
