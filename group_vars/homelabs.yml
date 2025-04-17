@@ -1,0 +1,3 @@
+---
+ansible_ssh_key_name: "ansible_key"
+needs_ssh_setup: true

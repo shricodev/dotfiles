@@ -6,3 +6,13 @@ tasks:
     desc: Build the dotfiles Docker image to a container
     cmds:
       - docker build -t shricodev/dotfiles:latest .
+
+  local:
+    desc: Run ansible locally
+    cmds:
+      - ansible-playbook main.yml --limit local --ask-become-pass
+
+  homelabs:
+    desc: Run ansible to set up system and dotfiles on homelabs
+    cmds:
+      - ansible-playbook main.yml --limit homelabs

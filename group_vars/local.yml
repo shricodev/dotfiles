@@ -6,3 +6,5 @@ dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
 
 timezone: "Asia/Kathmandu"
 keyboard_layout: "us"
+
+needs_ssh_setup: false

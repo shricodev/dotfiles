@@ -1,5 +1,5 @@
 ---
 - name: Configure dotfiles for individual tools
-  hosts: local
   become: true
+  hosts: all
   become_user: "{{ dotfiles_user }}"
