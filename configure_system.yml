@@ -30,5 +30,5 @@
       # so for that I've introduced this variable.
       when: needs_ssh_setup | bool
 
-  # roles:
-  #   - common
+  roles:
+    - common

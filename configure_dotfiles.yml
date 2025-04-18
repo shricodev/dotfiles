@@ -3,3 +3,6 @@
   become: true
   hosts: all
   become_user: "{{ dotfiles_user }}"
+
+  roles:
+    - fish

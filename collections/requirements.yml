@@ -1,0 +1,7 @@
+---
+collections:
+  - name: community.general
+  - name: ansible.posix
+
+  # Arch specific packages installer.
+  - name: kewlfft.aur

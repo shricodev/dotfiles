@@ -1,3 +1,6 @@
 ---
-- import_playbook: configure_system.yml
-- import_playbook: configure_dotfiles.yml
+- name: Configure the system
+  import_playbook: configure_system.yml
+
+- name: Configure dotfiles
+  import_playbook: configure_dotfiles.yml

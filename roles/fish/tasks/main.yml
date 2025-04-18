@@ -1,0 +1,21 @@
+---
+- name: Ensure fish shell is installed
+  ansible.builtin.package:
+    name: fish
+    state: present
+
+- name: Get fish shell path
+  # This below approach is supposed to be better, but somehow it gives linting
+  # error with ansible-lint, so using the 'which <command>' approach for now.
+  # ansible.builtin.shell: "command -v fish"
+  ansible.builtin.command: "which fish"
+  register: fish_path
+  changed_when: false
+
+- name: Set fish as default shell for the user
+  become: true
+  become_user: root
+  ansible.builtin.user:
+    name: "{{ dotfiles_user }}"
+    shell: "{{ fish_path.stdout }}"
+  when: fish_path.stdout is defined
