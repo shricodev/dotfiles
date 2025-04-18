@@ -109,14 +109,17 @@ function setup_ssh_key {
 
 function clone_dotfiles {
   if [[ -d "$DOTFILES_DIR" ]]; then
-    _info "Dotfiles already exists. Updating the repo"
-    _cmd "git -C $DOTFILES_DIR pull --quiet"
+    echo "hi"
+    # TODO: uncomment these
+    # _info "Dotfiles already exists. Updating the repo"
+    # _cmd "git -C $DOTFILES_DIR pull --quiet"
+    # _info_done
   else
     _info "Cloning @shricodev/dotfiles repo"
     _cmd "git clone --quiet https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
     _cmd "chown -R $USER:$USER_PRIMARY_GROUP $DOTFILES_DIR"
+    _info_done
   fi
-  _info_done
 }
 
 # Main execution
@@ -132,7 +135,12 @@ clone_dotfiles
 
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
 _info "Running Ansible playbook"
-# TODO: ansible playbook works
+
+# I'm hardcoding the limit to 'local' here as that's the whole purpose. Anytime
+# you run a script in another machine, then local will point to that localhost
+# of the machine.
+ansible-playbook $DOTFILES_DIR/main.yml --limit local --ask-become-pass
+
 _info_done
 popd >/dev/null 2>&1
 

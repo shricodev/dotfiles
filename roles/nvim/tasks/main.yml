@@ -1,0 +1,31 @@
+---
+- name: Ensure nvim is installed
+  ansible.builtin.package:
+    name: neovim
+    state: present
+
+- name: Get nvim shell path
+  ansible.builtin.command: "which nvim"
+  register: nvim_path
+  changed_when: false
+
+# - name: Set nvim as the default editor
+#   ansible.builtin.user:
+#     name: "{{ dotfiles_user }}"
+#     environment:
+#       EDITOR: "{{ nvim_path.stdout }}"
+#       VISUAL: "{{ nvim_path.stdout }}"
+#   when: nvim_path.stdout is defined
+
+- name: Create the '.config/nvim' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/nvim"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink to '.config/nvim' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_user_dir }}/.config/nvim"
+    state: link
+    force: true
