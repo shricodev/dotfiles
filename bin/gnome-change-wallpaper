@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Define the path to the wallpapers directory
+wallpapersDir="$HOME/Pictures/wallpapers"
+
+# Define the path to the log file
+logFile="$HOME/logs/scripts/gnome-change-wallpaper.log"
+
+# Create the logs directory if it doesn't exist
+logDir="$(dirname "$logFile")"
+if [ ! -d "$logDir" ]; then
+  mkdir -p "$logDir"
+  if [ $? -ne 0 ]; then
+    echo "$(date) - ERROR: Failed to create log directory $logDir" >>"$logFile"
+    exit 1
+  fi
+fi
+
+# Check if the wallpapers directory exists
+if [ ! -d "$wallpapersDir" ]; then
+  echo "$(date) - ERROR: Wallpapers directory does not exist" >>"$logFile"
+  exit 1
+fi
+
+# export DBUS_SESSION_BUS_ADDRESS environment variable
+# NOTE: This script is supposed to be run in the cron job, this below script is the preparation for it.
+# See: https://stackoverflow.com/a/19666729
+PID=$(pgrep -t tty2 gnome-session)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | cut -d= -f2-)
+
+# Get a random wallpaper file from the directory
+selectedWallpaper=$(find "$wallpapersDir" -type f -not -path "*/.git/*" | shuf -n 1)
+
+# Check if a wallpaper was selected
+if [ -z "$selectedWallpaper" ]; then
+  echo "$(date) - ERROR: No wallpapers found in directory" >>"$logFile"
+  exit 1
+fi
+
+# Update the wallpaper with the gsettings command. Note, this only works in GNOME shell
+# gsettings set org.gnome.desktop.background picture-options "spanned"
+gsettings set org.gnome.desktop.background picture-uri-dark "file:///$selectedWallpaper"
+
+# Log the action
+echo "$(date) - Successfully set wallpaper to $selectedWallpaper" >>"$logFile"

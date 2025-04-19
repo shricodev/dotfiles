@@ -5,7 +5,7 @@ tasks:
   docker-build:
     desc: Build the dotfiles Docker image to a container
     cmds:
-      - docker build -t shricodev/dotfiles:latest .
+      - docker build -t shricodev/dotfiles:latest --no-cache .
 
   local:
     desc: Run ansible locally

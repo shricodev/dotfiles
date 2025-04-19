@@ -1,0 +1,20 @@
+---
+- name: Ensure '~/.local/bin' exists
+  file:
+    path: "{{ ansible_user_dir }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: Register all the scripts inside 'bin' directory
+  find:
+    paths: "{{ playbook_dir }}/bin"
+    file_type: file
+  register: script_files
+
+- name: Symlink each of the script to '~/.local/bin'
+  become: false
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_user_dir }}/.local/bin/{{ item.path | basename }}"
+    state: link
+  loop: "{{ script_files.files }}"

@@ -1,6 +1,5 @@
 ---
 - name: Ensure the '$HOME/.config' directory exist
-  remote_user: "{{ dotfiles_user }}"
   ansible.builtin.file:
     path: "{{ config_dir }}"
     state: directory

@@ -4,3 +4,6 @@
 
 - name: Configure dotfiles
   import_playbook: configure_dotfiles.yml
+
+- name: Configure custom scripts
+  import_playbook: configure_bin_scripts.yml

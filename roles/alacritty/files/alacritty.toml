@@ -1,0 +1,58 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/rose-pine.toml"
+]
+live_config_reload = true
+
+[font]
+size = 11.2
+normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font"}
+
+offset = { x = 0, y = 1 }
+
+[env]
+TERM = "xterm-256color"
+
+[colors]
+draw_bold_text_with_bright_colors = true
+cursor = { text = "#000000", cursor = "#C0C0C0" }
+vi_mode_cursor = { text = "#000000", cursor = "#C0C0C0" }
+
+[cursor]
+style = {shape = "Block", blinking = "Never"}
+vi_mode_style = {shape = "Block", blinking = "Never"}
+
+[window]
+opacity = 1
+padding = { x = 1, y = 1 }
+# blur = true
+decorations = "None"
+dynamic_padding = false
+startup_mode = "Fullscreen"
+option_as_alt = "Both"
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
+[terminal]
+# shell = {program = "/usr/bin/zsh"}
+# shell = {program = "/usr/bin/fish", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = 'F11'
+

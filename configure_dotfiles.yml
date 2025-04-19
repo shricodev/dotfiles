@@ -1,9 +1,8 @@
 ---
 - name: Configure dotfiles for individual tools
-  become: true
   hosts: all
-  become_user: "{{ dotfiles_user }}"
 
   roles:
-    - fish
-    - nvim
+    # - tmux
+    # - fish
+    # - nvim

@@ -1,0 +1,15 @@
+---
+# TODO: Ensure alacritty is installed
+
+- name: Create the '.config/alacritty' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/alacritty"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '.config/alacritty' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_user_dir }}/.config/alacritty"
+    state: link
+    force: true

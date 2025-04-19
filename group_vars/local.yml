@@ -2,6 +2,8 @@
 git_email: "shrijal.acharya@gmail.com"
 git_name: "Shrijal Acharya"
 
+ansible_user: "shricodev"
+
 dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
 
 timezone: "Asia/Kathmandu"

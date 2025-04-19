@@ -4,11 +4,6 @@
   hosts: all
 
   pre_tasks:
-    - name: Detect dotfiles user
-      ansible.builtin.import_tasks: pre_tasks/detect_host_user.yml
-      tags:
-        - always
-
     - name: Update package cache
       ansible.builtin.import_tasks: pre_tasks/update_package_cache.yml
       tags:
@@ -19,7 +14,7 @@
       tags:
         - always
 
-    - name: Create '.config' directory
+    - name: Create '{{ ansible_user/.config }}' directory
       ansible.builtin.import_tasks: pre_tasks/create_config_directory.yml
       tags:
         - always

@@ -1,5 +1,6 @@
 ---
 - name: Ensure fish shell is installed
+  become: true
   ansible.builtin.package:
     name: fish
     state: present
@@ -14,8 +15,14 @@
 
 - name: Set fish as default shell for the user
   become: true
-  become_user: root
   ansible.builtin.user:
-    name: "{{ dotfiles_user }}"
+    name: "{{ ansible_user }}"
     shell: "{{ fish_path.stdout }}"
   when: fish_path.stdout is defined
+
+- name: Create symlink of files to '.config/fish' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_user_dir }}/.config/fish"
+    state: link
+    force: true
