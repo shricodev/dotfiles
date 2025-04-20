@@ -1,0 +1,67 @@
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+      "space c a": "editor::ToggleCodeActions",
+
+      // Formatting
+      "space m p": "editor::Format",
+
+      // Renaming
+      "space r n": "editor::Rename",
+
+      // File finder
+      "space f f": "file_finder::Toggle",
+      "space f b": "tab_switcher::Toggle",
+
+      // File tree toggle
+      "space e e": "workspace::ToggleRightDock",
+
+      "space s o": "outline::Toggle",
+
+      // "shift-j": "editor::MoveLineDown",
+      // "shift-k": "editor::MoveLineUp",
+
+      "space s w": "search::ReplaceAll",
+      "space s t": "pane::DeploySearch"
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore" // remap jk in insert mode to escape.
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // put key-bindings here (in addition to above) if you want them to
+      // work when no editor exists
+      // "space f": "file_finder::Toggle"
+    }
+  },
+  // File panel (netrw)
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste"
+    }
+  },
+  // Dock
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  }
+]

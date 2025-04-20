@@ -1,0 +1,7 @@
+---
+- name: Symlink the '.stow-global-ignore' file to '$HOME'
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.stow-global-ignore"
+    dest: "{{ ansible_user_dir }}/.stow-global-ignore"
+    state: link
+    force: true

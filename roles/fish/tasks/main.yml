@@ -20,7 +20,13 @@
     shell: "{{ fish_path.stdout }}"
   when: fish_path.stdout is defined
 
-- name: Create symlink of files to '.config/fish' directory
+- name: Create the '$HOME/.config/fish' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/fish"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '$HOME/.config/fish' directory
   ansible.builtin.file:
     src: "{{ role_path }}/files"
     dest: "{{ ansible_user_dir }}/.config/fish"

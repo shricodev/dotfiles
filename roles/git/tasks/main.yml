@@ -1,0 +1,15 @@
+---
+- name: Register git config inside the 'files' directory
+  ansible.builtin.find:
+    paths: "{{ role_path }}/files"
+    file_type: file
+    hidden: true
+  register: git_config_files
+
+- name: Symlink each of the git config to '$HOME'
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "{{ ansible_user_dir }}/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ git_config_files.files }}"

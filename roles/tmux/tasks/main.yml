@@ -10,7 +10,7 @@
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
 
-- name: Create symlink of files to '.config/tmux' directory
+- name: Create symlink of files to '$HOME/.config/tmux' directory
   ansible.builtin.file:
     src: "{{ role_path }}/files"
     dest: "{{ ansible_user_dir }}/.config/tmux"

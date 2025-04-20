@@ -1,0 +1,13 @@
+---
+- name: Create the '$HOME/.config/lazygit' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/lazygit"
+    mode: "0755"
+    state: directory
+
+- name: Symlink files to '$HOME/.config/lazygit' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_user_dir }}/.config/lazygit"
+    state: link
+    force: true

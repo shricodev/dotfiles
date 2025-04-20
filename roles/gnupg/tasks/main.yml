@@ -1,0 +1,7 @@
+---
+- name: Symlink files to '$HOME/.gnupg' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.gnupg"
+    dest: "{{ ansible_user_dir }}/.gnupg"
+    state: link
+    force: true

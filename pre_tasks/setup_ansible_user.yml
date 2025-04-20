@@ -1,18 +1,14 @@
 ---
-- name: Ubuntu | Ensure ansible user exists
+- name: Ubuntu | Add sudo privilege to user
   become: true
   ansible.builtin.user:
-    name: ansible
+    name: "{{ ansible_user }}"
     groups: sudo
-    shell: /bin/bash
-    create_home: false
   when: ansible_distribution == "Ubuntu"
 
-- name: Arch | Ensure ansible user exists
+- name: Arch | Add sudo privilege to user
   become: true
   ansible.builtin.user:
-    name: ansible
+    name: "{{ ansible_user }}"
     groups: wheel
-    shell: /bin/bash
-    create_home: false
   when: ansible_distribution == "Archlinux"

@@ -3,6 +3,14 @@
   hosts: all
 
   roles:
-    # - tmux
-    # - fish
-    # - nvim
+    - git
+    - alacritty
+    - tmux
+    - fish
+    - nvim
+    - gnupg
+    - lazygit
+    - starship
+    - stow
+    - yazi
+    - zed

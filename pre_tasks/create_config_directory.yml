@@ -1,5 +1,5 @@
 ---
-- name: Ensure the '$HOME/.config' directory exist
+- name: Create the '$HOME/.config' directory if not exists
   ansible.builtin.file:
     path: "{{ config_dir }}"
     state: directory

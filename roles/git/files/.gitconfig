@@ -1,0 +1,55 @@
+[user]
+	email = shrijal.acharya@gmail.com
+	name = Shrijal Acharya
+
+; Enforce SSH
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+;
+; [url "ssh://git@gitlab.com/"]
+;   insteadOf = https://gitlab.com/
+;
+; [url "ssh://git@bitbucket.org/"]
+;   insteadOf = https://bitbucket.org/
+
+; Use neovim as the default editor for git
+[core]
+	editor = nvim
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[init]
+	defaultBranch = main
+
+[help]
+	autoCorrect = prompt
+
+[fetch]
+	prune = true
+
+[log]
+  date = iso
+
+[push]
+	autoSetupRemote = true
+
+; gh cli tool specific configuration
+; [credential "https://github.com"]
+; 	helper = 
+; 	helper = !/usr/bin/gh auth git-credential
+; [credential "https://gist.github.com"]
+; 	helper = 
+; 	helper = !/usr/bin/gh auth git-credential
+
+; Instead of merging change when pulling, it will rebase our change on top of the remote change.
+[pull]
+	rebase = true
+
+; This basically remembers conflict resolution and if that occurs again in future
+; then it will automatically resolve the conflict.
+[rerere]
+	enabled = true

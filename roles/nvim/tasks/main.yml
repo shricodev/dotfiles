@@ -5,13 +5,13 @@
     name: neovim
     state: present
 
-- name: Create the '.config/nvim' directory if not exists
+- name: Create the '$HOME/.config/nvim' directory if not exists
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.config/nvim"
     mode: "0755"
     state: directory
 
-- name: Create symlink of files to '.config/nvim' directory
+- name: Create symlink of files to '$HOME/.config/nvim' directory
   ansible.builtin.file:
     src: "{{ role_path }}/files"
     dest: "{{ ansible_user_dir }}/.config/nvim"
