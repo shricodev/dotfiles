@@ -8,3 +8,4 @@ common_packages:
   - python-pip
   - fish
   - htop
+  - starship

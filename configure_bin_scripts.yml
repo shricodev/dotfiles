@@ -1,6 +1,0 @@
----
-- name: Configure custom scripts
-  hosts: all
-
-  roles:
-    - scripts

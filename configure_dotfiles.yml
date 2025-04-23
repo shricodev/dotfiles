@@ -3,10 +3,8 @@
   hosts: all
 
   roles:
-    - git
     - alacritty
     - tmux
-    - fish
     - nvim
     - gnupg
     - lazygit
@@ -14,3 +12,11 @@
     - stow
     - yazi
     - zed
+
+    # NOTE: Always put fish, git at the end here when configuring dotfiles
+    # because fish config sources different tools like starship, zoxide and all
+    # that requires them to be installed first. and git config sets up ssh setup
+    # for git, but ssh needs to be set up manually.
+    # TODO: uncomment it at the last
+    # - fish
+    - git

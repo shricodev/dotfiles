@@ -1,6 +1,5 @@
 ---
 - name: Set up the system
-  become: true
   hosts: all
 
   pre_tasks:
@@ -19,11 +18,18 @@
       tags:
         - always
 
+    - name: Ensure the dotfiles repo exists
+      ansible.builtin.import_tasks: pre_tasks/ensure_dotfiles_repo_exists.yml
+      tags:
+        - always
+
     - name: Setup SSH for the user
       ansible.builtin.import_tasks: pre_tasks/setup_ssh.yml
-      # There's no need to setup SSH on localhost.
-      # so for that I've introduced this variable.
+      # There's no need to setup SSH on localhost. so for that I've introduced
+      # this variable.
       when: needs_ssh_setup | bool
 
   roles:
     - common
+    - fonts
+    - scripts

@@ -91,9 +91,9 @@ ssh-add ~/.ssh/homelab-vm_key.pem > /dev/null 2>&1
 # Open tmux as default when the shell starts
 # Attach to or create the base session
 if not set -q TMUX
-  set -g TMUX tmux new-session -d -s code-self
+  set -g TMUX tmux new-session -d -s mainline
   eval $TMUX
-  tmux attach-session -d -t code-self
+  tmux attach-session -d -t mainline
 end
 
 

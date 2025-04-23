@@ -1,0 +1,15 @@
+---
+- name: Ensure starship is installed
+  ansible.builtin.command: "which starship"
+  register: starship_installed
+  changed_when: false
+  failed_when: false
+
+- name: Install starship
+  become: true
+  ansible.builtin.shell:
+    # NOTE: don't sorround the commands inside a double quotes. That results in
+    # ansible-lint error.
+    # risky-shell-pipe: Shells that use pipes should set the pipefail option.
+    cmd: set -o pipefail && curl --proto '=https' --tlsv1.2 -sSf https://starship.rs/install.sh | sh -s -- --force
+  when: starship_installed.rc != 0

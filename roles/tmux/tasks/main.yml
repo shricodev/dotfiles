@@ -5,10 +5,17 @@
     name: tmux
     state: present
 
-- name: Install TPM (Tmux Package Manager)
+- name: Create the '$HOME/.config/tmux' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/tmux"
+    mode: "0755"
+    state: directory
+
+- name: Clone Tmux Plugin Manager (no update)
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_user_dir }}/.tmux/plugins/tpm"
+    update: false
 
 - name: Create symlink of files to '$HOME/.config/tmux' directory
   ansible.builtin.file:

@@ -1,0 +1,6 @@
+---
+- name: Ensure starship is installed
+  become: true
+  community.general.pacman:
+    name: starship
+    state: present

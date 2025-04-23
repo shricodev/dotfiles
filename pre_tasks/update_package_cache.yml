@@ -1,18 +1,15 @@
 ---
-- name: Ubuntu | Update package cache
+- name: Update package cache
   become: true
-  ansible.builtin.apt:
-    update_cache: true
-  when: ansible_distribution == "Ubuntu"
-  # don't show in the changed section in the ansible play as cache always
-  # changes
-  changed_when: false
+  block:
+    - name: Update 'apt' cache
+      ansible.builtin.apt:
+        update_cache: true
+      when: ansible_distribution == "Ubuntu"
+      changed_when: false
 
-- name: Arch | Update package cache
-  become: true
-  community.general.pacman:
-    update_cache: true
-  when: ansible_distribution == "Archlinux"
-  # don't show in the changed section in the ansible play as cache always
-  # changes
-  changed_when: false
+    - name: Update 'pacman' cache
+      community.general.pacman:
+        update_cache: true
+      when: ansible_distribution == "Archlinux"
+      changed_when: false

@@ -12,6 +12,7 @@
   ansible.builtin.command: "which fish"
   register: fish_path
   changed_when: false
+  failed_when: false
 
 - name: Set fish as default shell for the user
   become: true

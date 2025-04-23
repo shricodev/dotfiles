@@ -49,12 +49,14 @@ keymap.set('n', '=', '<cmd>horizontal resize +2<CR>', opts 'Increase window size
 -- Tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', opts 'Open a new tab')
 keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', opts 'Close the current tab')
-keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', opts 'Go to next tab')
-keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', opts 'Go to previous tab')
+keymap.set('n', '<leader>t;', '<cmd>tabn<CR>', opts 'Go to next tab')
+keymap.set('n', '<leader>t,', '<cmd>tabp<CR>', opts 'Go to previous tab')
 
 -- Buffer stuffs
 keymap.set('n', '<leader>bc', '<cmd>bd<CR>', opts 'Close the current buffer')
-keymap.set('n', '<leader>bp', '<cmd>b#<CR>', opts 'Go to the last buffer')
+keymap.set('n', '<leader>b,', '<cmd>b#<CR>', opts 'Go to the last buffer')
+-- There's no need to add b; for the next buffer as 'b#' and 'bn' don't really
+-- work the same
 
 -- Move the selected text up and down.
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts 'Move the selected lines up')
@@ -82,9 +84,6 @@ keymap.set('n', '<leader>xx', '<cmd>!chmod +x %<CR>', opts 'Make the current fil
 keymap.set('n', '<leader>yfp', '<cmd>let @" = expand("%:p")<CR>', opts 'Yank current file absolute path')
 keymap.set('n', '<leader>yfn', '<cmd>let @" = expand("%:t")<CR>', opts 'Yank current file name')
 
--- Change an occurance of a word in the entire file
-keymap.set('n', '<leader>grrw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts 'Change an occurance of a word in the entire file')
-
 -- Terminal keymaps
 keymap.set('t', '<Esc>', '<C-\\><C-n>', opts 'Change terminal mode to normal mode')
 keymap.set('t', '<A-h>', '<C-\\><C-n><C-w>h', opts 'Move to the left terminal split')
@@ -109,15 +108,6 @@ end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode
 -- Running . runs the same indentation we added/removed.
 -- keymap.set('v', '<', '<gv', { desc = 'Left indent while staying in indent mode' })
 -- keymap.set('v', '>', '>gv', { desc = 'Right indent while staying in indent mode' })
-
--- Quick Fix list: It is now enabled by default in nvim >= 0.11
--- keymap.set('n', ']q', '<cmd>cnext<CR>zz', { desc = 'Navigate to next quick fix' })
--- keymap.set('n', '[q', '<cmd>cprev<CR>zz', { desc = 'Navigate to prev quick fix' })
-
--- Location List
--- Cannot use [l and ]l as they are already used in textobject for loop
--- keymap.set('n', '<leader>ln', '<cmd>lnext<CR>zz', { desc = 'Navigate to next location list' })
--- keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'Navigate to prev location list' })
 
 -- Disable using Backspace, to adapt to <C-w/u/h>
 -- keymap.set('i', '<BS>', function()

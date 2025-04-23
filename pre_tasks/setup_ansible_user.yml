@@ -1,14 +1,14 @@
 ---
-- name: Ubuntu | Add sudo privilege to user
+- name: Add sudo privilege to the user
   become: true
+  vars:
+    sudo_group_map:
+      Ubuntu: sudo
+      Archlinux: wheel
+    user_group: "{{ sudo_group_map[ansible_distribution] | default('wheel') }}"
   ansible.builtin.user:
     name: "{{ ansible_user }}"
-    groups: sudo
-  when: ansible_distribution == "Ubuntu"
-
-- name: Arch | Add sudo privilege to user
-  become: true
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    groups: wheel
-  when: ansible_distribution == "Archlinux"
+    # NOTE: don't make the mistake of changing 'groups' to 'group', as that
+    # will remove all the group of the user and just keep one listed above as
+    # their primary group.
+    groups: "{{ user_group }}"
