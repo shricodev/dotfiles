@@ -19,4 +19,4 @@
     # for git, but ssh needs to be set up manually.
     # TODO: uncomment it at the last
     # - fish
-    - git
+    # - git

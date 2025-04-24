@@ -4,4 +4,4 @@
     repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_dir }}"
     version: ansible-dotfiles-mgmt
-    update: no
+    update: false

@@ -3,3 +3,5 @@ config_dir: "{{ ansible_user_dir }}/.config"
 dotfiles_dir: "{{ ansible_user_dir }}/.dotfiles"
 
 dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
+
+ansible_user: "shricodev"

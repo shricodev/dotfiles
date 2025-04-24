@@ -3,7 +3,7 @@
   vars:
     nerd_font_url: >-
       https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-    fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts"
+    fonts_dir: "{{ ansible_user_dir }}/.local/share/fonts"
   block:
     - name: Create fonts directory
       ansible.builtin.file:

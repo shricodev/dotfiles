@@ -3,6 +3,11 @@
   hosts: all
 
   pre_tasks:
+    - name: Set lowercase distro name
+      ansible.builtin.import_tasks: pre_tasks/set_distro_name.yml
+      tags:
+        - always
+
     - name: Update package cache
       ansible.builtin.import_tasks: pre_tasks/update_package_cache.yml
       tags:

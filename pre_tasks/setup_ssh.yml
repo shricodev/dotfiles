@@ -1,24 +1,8 @@
 ---
 - name: Create the '$HOME/.ssh' directory if not exists
-  become_user: "{{ ansible_user }}"
   ansible.builtin.file:
     path: "/home/{{ ansible_user }}/.ssh"
     state: directory
     mode: "0700"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-
-- name: Ensure the '$HOME/.ssh/authorized_keys' file exists
-  become_user: "{{ ansible_user }}"
-  ansible.builtin.file:
-    path: "/home/{{ ansible_user }}/.ssh/authorized_keys"
-    state: touch
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: "0600"
-
-- name: Add public SSH key to '$HOME/.ssh/authorized_keys' file
-  ansible.posix.authorized_key:
-    user: "{{ ansible_user }}"
-    state: present
-    key: "{{ lookup('file', '/home/' ~ ansible_user ~ '/.ssh/' ~ ansible_ssh_key_name ~ '.pub') }}"

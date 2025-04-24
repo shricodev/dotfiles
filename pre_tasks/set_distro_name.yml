@@ -1,0 +1,4 @@
+---
+- name: Set lowercase distro name
+  ansible.builtin.set_fact:
+    distro_name: "{{ ansible_distribution | lower }}"
