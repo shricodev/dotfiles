@@ -1,0 +1,6 @@
+---
+- name: Install rust
+  become: true
+  community.general.pacman:
+    name: rust
+    state: present

@@ -9,3 +9,5 @@ common_packages:
   - fish
   - htop
   - starship
+  - zoxide
+  - sshfs

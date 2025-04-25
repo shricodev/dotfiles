@@ -5,3 +5,14 @@ dotfiles_dir: "{{ ansible_user_dir }}/.dotfiles"
 dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
 
 ansible_user: "shricodev"
+
+go:
+  packages:
+    - package: github.com/air-verse/air@latest
+      cmd: air
+
+    - package: github.com/melkeydev/go-blueprint@latest
+      cmd: go-blueprint
+
+    - package: github.com/pressly/goose/v3/cmd/goose@latest
+      cmd: goose

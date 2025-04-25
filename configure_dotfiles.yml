@@ -12,6 +12,7 @@
     - stow
     - yazi
     - zed
+    - rust
 
     # NOTE: Always put fish, git at the end here when configuring dotfiles
     # because fish config sources different tools like starship, zoxide and all

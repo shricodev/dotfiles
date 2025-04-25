@@ -1,0 +1,10 @@
+---
+- name: Remove orphaned packages
+  become: true
+  ansible.builtin.command: "pacman -Rns $( pacman -Qtdq )"
+  args:
+    warn: false
+  register: pacman_cleanup
+  changed_when: pacman_cleanup.stdout != ""
+  # don't fail the palybook even if the command fails
+  failed_when: false

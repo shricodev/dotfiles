@@ -39,3 +39,6 @@
     - fonts
     - scripts
     - docker
+
+    # TODO: uncomment this one after ubuntu is setup
+    # - go

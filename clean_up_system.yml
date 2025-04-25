@@ -1,0 +1,6 @@
+---
+- name: Clean up the system
+  hosts: all
+
+  roles:
+    - cleanup

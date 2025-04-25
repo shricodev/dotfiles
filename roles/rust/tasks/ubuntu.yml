@@ -1,0 +1,8 @@
+---
+- name: Install rust
+  become: true
+  ansible.builtin.apt:
+    name:
+      - rustc
+      - cargo
+    state: present

@@ -8,3 +8,5 @@ common_packages:
   - python3-pip
   - fish
   - htop
+  - zoxide
+  - sshfs

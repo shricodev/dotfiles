@@ -1,0 +1,12 @@
+---
+- name: Check for distribution specific configs
+  ansible.builtin.stat:
+    path: "{{ role_path }}/tasks/{{ distro_name }}.yml"
+  register: distro_config
+
+- name: Run tasks for distribution specific configs
+  ansible.builtin.include_tasks: "{{ role_path }}/tasks/{{ distro_name }}.yml"
+  when: distro_config.stat.exists
+
+- name: Install go packages (go install ...)
+  ansible.builtin.import_tasks: packages.yml

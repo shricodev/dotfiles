@@ -4,3 +4,6 @@
 
 - name: Configure dotfiles
   import_playbook: configure_dotfiles.yml
+
+- name: Clean up the system and unused packages
+  import_playbook: clean_up_system.yml
