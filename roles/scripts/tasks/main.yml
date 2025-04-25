@@ -1,5 +1,5 @@
 ---
-- name: Ensure '$HOME/.local/bin' exists
+- name: Create the '$HOME/.local/bin' directory if not exists
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.local/bin"
     state: directory

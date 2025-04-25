@@ -8,6 +8,7 @@
     user_group: "{{ sudo_group_map[ansible_distribution] | default('wheel') }}"
   ansible.builtin.user:
     name: "{{ ansible_user }}"
+    append: true
     # NOTE: don't make the mistake of changing 'groups' to 'group', as that
     # will remove all the group of the user and just keep one listed above as
     # their primary group.
