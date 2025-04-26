@@ -1,0 +1,6 @@
+---
+- name: Install goreleaser
+  become: true
+  community.general.pacman:
+    name: goreleaser
+    state: present

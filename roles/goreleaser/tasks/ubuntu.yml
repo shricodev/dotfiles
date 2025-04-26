@@ -1,0 +1,14 @@
+---
+- name: Add APT repository for goreleaser
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [trusted=yes] https://repo.goreleaser.com/apt/ /"
+    filename: goreleaser
+    state: present
+    mode: "0644"
+
+- name: Install goreleaser
+  become: true
+  ansible.builtin.apt:
+    name: goreleaser
+    state: present

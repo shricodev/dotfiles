@@ -1,2 +1,6 @@
 ---
-# TODO
+- name: Install go
+  become: true
+  ansible.builtin.apt:
+    name: golang
+    state: present

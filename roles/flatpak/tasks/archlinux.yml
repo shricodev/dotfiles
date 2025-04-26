@@ -1,0 +1,13 @@
+---
+- name: Install flatpak
+  becoem: true
+  community.general.pacman:
+    name: flatpak
+    state: present
+
+- name: Add flathub remote
+  become: true
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: "https://flathub.org/repo/flathub.flatpakrepo"
+    state: present

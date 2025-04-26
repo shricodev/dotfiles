@@ -1,10 +1,16 @@
 ---
+- name: Check for orphaned packages
+  become: true
+  ansible.builtin.shell: "pacman -Qtdq"
+  register: orphan_check
+  changed_when: false
+  failed_when: false
+
 - name: Remove orphaned packages
   become: true
-  ansible.builtin.command: "pacman -Rns $( pacman -Qtdq )"
-  args:
-    warn: false
+  ansible.builtin.shell: >-
+    "pacman -Rns --noconfirm {{ orphan_check.stdout_lines | join(' ') }}"
+  when: orphan_check.stdout != ""
   register: pacman_cleanup
   changed_when: pacman_cleanup.stdout != ""
-  # don't fail the palybook even if the command fails
   failed_when: false
