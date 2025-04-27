@@ -40,8 +40,11 @@ RUN chown -R ${USER}:${group} /home/${USER}
 USER ${USER}
 
 RUN mkdir -p /home/${USER}/.local/bin
-COPY --chown=${USER}:${group} bin/dotfiles /home/${USER}/.local/bin/dotfiles
-RUN chmod u+x /home/${USER}/.local/bin/dotfiles
+
+# Here, we copy to /tmp/dotfiles, instead because ansible already does the task
+# of symlinking the dotfiles script in the bin/ directory to ~/.local/bin
+COPY --chown=${USER}:${group} bin/dotfiles /tmp/dotfiles
+RUN chmod u+x /tmp/dotfiles
 
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/${USER}/.bashrc && \
   bash -c "source /home/$USER/.bashrc"
@@ -49,4 +52,4 @@ RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/${USER}/.bashrc && \
 # The setup is just meant to be one time and not everytime the container starts
 # and all, so using 'RUN' here is the appropriate option. and not something
 # like 'CMD' or 'ENTRYPOINT'.
-RUN bash /home/${USER}/.local/bin/dotfiles
+RUN bash /tmp/dotfiles

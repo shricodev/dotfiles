@@ -7,6 +7,17 @@ tasks:
     cmds:
       - docker build -t shricodev/dotfiles:latest --no-cache .
 
+  docker_run:
+    desc: Run the dotfiles Docker container interactively
+    cmds:
+      - docker run -it shricodev/dotfiles:latest /bin/bash
+
+  docker_build_and_run:
+    desc: Build the Docker image and then run the container
+    cmds:
+      - task: docker_build
+      - task: docker_run
+
   local:
     desc: Run ansible locally
     cmds:

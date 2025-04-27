@@ -1,6 +1,6 @@
 ---
 - name: Install flatpak
-  becoem: true
+  become: true
   community.general.pacman:
     name: flatpak
     state: present
