@@ -5,22 +5,34 @@
 ; Enforce SSH
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
-;
-; [url "ssh://git@gitlab.com/"]
-;   insteadOf = https://gitlab.com/
-;
-; [url "ssh://git@bitbucket.org/"]
-;   insteadOf = https://bitbucket.org/
 
-; Use neovim as the default editor for git
+; This makes sure that when cloning 'my' repositories from github I don't have
+; to type the whole url. just do: git clone shricodev:<repo_name>
+[url "git@github.com:shricodev/"]
+  insteadOf = "sh:"
+
+; similar here, instead of typing git@github.com:shricodev/<repo_name>
+; just do: git clone gh:<username>/<repo_name>
+[url "git@github.com:"]
+  insteadOf = "gh:"
+
 [core]
 	editor = nvim
+  whitespace = error
+  excludesFile = ~/.gitignore_global
+
+[status]
+  branch = true
+  showStash = true
 
 [column]
 	ui = auto
 
 [branch]
 	sort = -committerdate
+
+[tag]
+  sort = -taggerdate
 
 [init]
 	defaultBranch = main
@@ -37,19 +49,10 @@
 [push]
 	autoSetupRemote = true
 
-; gh cli tool specific configuration
-; [credential "https://github.com"]
-; 	helper = 
-; 	helper = !/usr/bin/gh auth git-credential
-; [credential "https://gist.github.com"]
-; 	helper = 
-; 	helper = !/usr/bin/gh auth git-credential
-
-; Instead of merging change when pulling, it will rebase our change on top of the remote change.
 [pull]
 	rebase = true
 
-; This basically remembers conflict resolution and if that occurs again in future
-; then it will automatically resolve the conflict.
+; This basically remembers conflict resolution and if that occurs again in
+; future then it will automatically resolve the conflict.
 [rerere]
 	enabled = true

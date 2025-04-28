@@ -1,7 +1,8 @@
-# My personal file which I have in every project for rough sketches.
-dump.log
-
+# prevent pushing env files ever to github. unless this file is not set up in
+# the ~/.gitconfig file under the [core] section.
 .env
+.env.local
+
 node_modules
 
 # Compiled source #

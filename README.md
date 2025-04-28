@@ -6,6 +6,10 @@
     <a href="https://github.com/shricodev/dotfiles/commits/main"><img align="center" src="https://img.shields.io/github/commit-activity/m/shricodev/dotfiles" alt="commit frequency"></a>
 </p>
 
+## 👀 Check Out My Blog Post on this Project!
+
+> I have a blog post about this project [here](https://dev.to/shricodev/how-i-manage-my-system-and-dotfiles-with-ansible-8m1).
+
 ## ✨ Why Ansible?
 
 Managing dotfiles and setting up a new system should be **fast**, **reliable**,
@@ -177,7 +181,7 @@ bug reports.
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache License, Version 2.0](LICENSE).
 
 # 🙌 Thanks for stopping by!
 
