@@ -3,7 +3,11 @@
   hosts: all
 
   roles:
-    - alacritty
+    # Ditch alacritty for ghostty. It's been acting weird lately with completion
+    # borders and all especially in (md) files.
+    # - alacritty
+
+    - ghostty
     - tmux
     - nvim
     - gnupg

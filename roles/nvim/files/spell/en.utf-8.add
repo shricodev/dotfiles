@@ -85,3 +85,4 @@ Dockerfile
 ansible
 Taskfile
 localhost
+MCP

@@ -1,0 +1,36 @@
+# fonts
+font-family = "JetBrainsMono Nerd Font"
+font-style = SemiBold
+font-size = 12
+
+# Line height
+# adjust-cell-height = 10%
+# adjust-cursor-height = 10%
+
+# Mouse
+mouse-hide-while-typing
+
+# Window
+fullscreen = true
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+window-decoration = false
+# background-opacity = 0.95
+# background-blur-radius = 20
+
+scrollback-limit = 10000
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+# shell-integration = fish
+
+# Themes
+theme = "rose-pine"
+
+# Keybindings
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
+
