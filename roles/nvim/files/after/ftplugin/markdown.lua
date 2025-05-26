@@ -1,4 +1,5 @@
 local opt_local = vim.opt_local
 
 opt_local.wrap = true
-opt_local.spell = true
+-- NOTE: change this to true to enable spells in maridown
+opt_local.spell = false

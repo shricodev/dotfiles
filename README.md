@@ -186,7 +186,3 @@ This project is licensed under the [Apache License, Version 2.0](LICENSE).
 # 🙌 Thanks for stopping by!
 
 Happy hacking! 🎉
-
-```
-
-```

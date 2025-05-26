@@ -27,7 +27,7 @@ cursor-style-blink = false
 # shell-integration = fish
 
 # Themes
-theme = "rose-pine"
+theme = "tokyonight"
 
 # Keybindings
 keybind = ctrl+plus=increase_font_size:1

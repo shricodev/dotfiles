@@ -116,7 +116,7 @@ function clone_dotfiles {
     _info_done
   else
     _info "Cloning @shricodev/dotfiles repo"
-    _cmd "git clone --quiet --branch ansible-dotfiles-mgmt  https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
+    _cmd "git clone --quiet --branch main  https://github.com/shricodev/dotfiles.git $DOTFILES_DIR"
     _cmd "chown -R $USER:$USER_PRIMARY_GROUP $DOTFILES_DIR"
     _info_done
   fi

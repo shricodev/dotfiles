@@ -116,9 +116,9 @@ return {
       end,
       desc = '[FZF-Lua(LSP)]: View the document diagnostics',
     },
-    -- making it g0 to match gO for document symbols
+    -- making it gW to match gO for document symbols
     {
-      'g0',
+      'gW',
       function()
         require('fzf-lua').lsp_live_workspace_symbols()
       end,

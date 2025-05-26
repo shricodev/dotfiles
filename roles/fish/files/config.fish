@@ -18,7 +18,7 @@ set fish_greeting # Suppress fish's intro message
 set TERM xterm-256color # Sets the terminal type
 
 # Use the machhiato theme for the bat command
-set -gx BAT_THEME "Rose Pine"
+set -gx BAT_THEME "tokyonight_night"
 
 # -- layout=reverse makes the prompt at the top instead of at the bottom
 set -gx FZF_DEFAULT_OPTS "--height=50% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
@@ -43,36 +43,6 @@ set -g fish_cursor_insert block
 set -g fish_cursor_replace block
 set -g fish_cursor_visual block
 
-# Function for creating a backup file
-# ex: backup file.txt
-# result: copies file as file.txt.bak
-function backup --argument filename
-    cp $filename $filename.bak
-end
-
-# Function for ignoring the first 'n' lines
-# ex: seq 10 | skip 5
-# results: prints everything but the first 5 lines
-function skip --argument n
-    tail +(math 1 + $n)
-end
-
-# Either attach or create a new tmux session
-function tt
-  tmux new-session -A -s $argv
-end
-
-function mcdir 
-  mkdir -p $argv; and cd $argv
-end
-
-### Navigation UTIL functions
-# Change directory and list files
-function cdl
-  cd $argv && ls
-end
-### EOF Navigation UTIL functions
-
 #Setup SSH running. (mostly for git push)
 if not set -q SSH_AUTH_SOCK
   # Redirecting the error or the output to the /dev/null
@@ -83,10 +53,9 @@ end
 # Add our private key to the ssh-agent
 # Redirecting the error or the output to the /dev/null
 ssh-add ~/.ssh/gh_login_shricodev > /dev/null 2>&1
-#End of SSH setup
 
 #This is the private key for my homelab vm on azure
-ssh-add ~/.ssh/homelab-vm_key.pem > /dev/null 2>&1
+# ssh-add ~/.ssh/homelab-vm_key.pem > /dev/null 2>&1
 
 # Open tmux as default when the shell starts
 # Attach to or create the base session
@@ -109,17 +78,16 @@ alias ping="ping -c 10"
 
 alias cat='bat --style=plain --paging=never'
 
-# vim and emacs
 alias nv='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias v='nvim'
 
 alias cl='reset'
 # Make the `clear` command work as Ctrl - l as by default `clear` command clears
 # the screen completely
 alias clear='reset'
-
-alias clear-hard='command clear'
-alias clhard='command clear'
+alias clearraw='command clear'
 
 # Changing "ls" to "eza"
 alias ls='eza -alg --color=always --icons --group-directories-first' # my preferred listing

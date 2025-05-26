@@ -61,6 +61,8 @@
 
 return {
   'Exafunction/codeium.vim',
+  -- TODO: toggle it to true
+  enabled = true,
   event = 'BufEnter',
   config = function()
     vim.keymap.set('i', '<M-;>', function()

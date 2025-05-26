@@ -15,8 +15,10 @@ keymap.set('i', 'jj', '<ESC>', opts 'Exit insert mode with jj')
 
 -- Sometimes when working if I need to enter the normal mode after typing
 -- a character that requires using <shift> key, then mistakely it types Jk
-keymap.set('i', 'Jk', '<ESC>', opts 'Exit insert mode with Jk (backup of jk)')
-keymap.set('i', 'Jj', '<ESC>', opts 'Exit insert mode with Jj (backup of jj)')
+keymap.set('i', 'Jk', '<ESC>', opts 'Exit insert mode with Jk')
+keymap.set('i', 'Jj', '<ESC>', opts 'Exit insert mode with Jj')
+keymap.set('i', 'JK', '<ESC>', opts 'Exit insert mode with JK')
+keymap.set('i', 'JJ', '<ESC>', opts 'Exit insert mode with JJ')
 
 keymap.set({ 'n', 'v' }, '<leader>y', '"+y', opts 'Yank to system clipboard')
 keymap.set('n', '<leader>Y', '"+Y', opts 'Yank line to system clipboard')
@@ -28,8 +30,8 @@ keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', opts 'Clear search highligh
 keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
 
 -- Line movement
-keymap.set('n', 'H', '^', opts 'Go to the start of the line')
-keymap.set('n', 'L', '$', opts 'Go to the end of the line')
+-- keymap.set('n', 'H', '^', opts 'Go to the start of the line')
+-- keymap.set('n', 'L', '$', opts 'Go to the end of the line')
 
 -- Split management
 keymap.set('n', '<leader>sv', '<C-w>v', opts 'Split window vertically')

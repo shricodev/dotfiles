@@ -11,6 +11,7 @@ return {
       default_file_explorer = true,
       columns = { 'icon' },
       delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
       keymaps = {
         -- Used to move between splits in neovim
         ['<C-h>'] = false,
