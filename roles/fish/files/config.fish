@@ -17,11 +17,10 @@ set fish_greeting # Suppress fish's intro message
 # use the default terminal color
 set TERM xterm-256color # Sets the terminal type
 
-# Use the machhiato theme for the bat command
 set -gx BAT_THEME "tokyonight_night"
 
 # -- layout=reverse makes the prompt at the top instead of at the bottom
-set -gx FZF_DEFAULT_OPTS "--height=50% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+set -gx FZF_DEFAULT_OPTS "--height=65% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
 
 # Use this command to list files in the fzf window when simply run the 'fzf' command.
 # Make sure to use the CTRL-T and ALT-C to its fullest.

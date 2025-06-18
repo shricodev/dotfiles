@@ -225,10 +225,11 @@ return {
     winopts = {
       -- using bat_native or bat improves the performance.
       -- according to fzf-lua docs. see: https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-get-maximum-performance-out-of-fzf-lua
-      preview = { default = 'bat_native', border = 'none' },
+      preview = { border = 'none' },
     },
     fzf_opts = { ['--cycle'] = true },
     files = {
+      -- fzf_opts = { ['--nth'] = false },
       file_icons = true,
       color_icons = true,
       -- I have modified the default settings to also exclude node_modules and .next directory
@@ -247,4 +248,5 @@ return {
       },
     },
   },
+  -- },
 }

@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       -- },
       virtual_text = {
         enabled = true,
-        source = 'if_many',
+        -- source = 'if_many',
         spacing = 2,
         -- format = function(diagnostic)
         --   local diagnostic_message = {
@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- end,
       },
       float = {
-        source = 'if_many',
+        -- source = 'if_many',
         style = 'minimal',
         -- border = 'rounded',
         -- header = '',

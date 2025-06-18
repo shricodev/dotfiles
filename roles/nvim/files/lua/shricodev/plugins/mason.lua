@@ -1,5 +1,6 @@
 return {
   'williamboman/mason.nvim',
+  event = 'VeryLazy',
   -- We need to add mason-lspconfig as a dependency to mason
   -- as we need to make sure that mason is loaded before mason-lspconfig to make
   -- it work

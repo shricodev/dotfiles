@@ -16,3 +16,9 @@ go:
 
     - package: github.com/pressly/goose/v3/cmd/goose@latest
       cmd: goose
+
+    - package: github.com/rakyll/hey@latest
+      cmd: hey
+
+    - package: github.com/joshmedeski/sesh@latest
+      cmd: sesh

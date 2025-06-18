@@ -26,11 +26,8 @@ return {
       ['<Down>'] = { 'select_next', 'fallback' },
       ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
       ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-      ['<C-space>'] = { 'show', 'hide_documentation' },
       ['<C-e>'] = { 'hide' },
       ['<C-y>'] = { 'select_and_accept' },
-      ['<Tab>'] = { 'snippet_forward', 'fallback' },
-      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
     },
 
     -- don't show blink in cmdline
