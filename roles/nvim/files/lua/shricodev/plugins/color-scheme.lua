@@ -2,6 +2,8 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
+    -- I'n not using this right now
+    event = 'VeryLazy',
     config = function()
       require('rose-pine').setup {
         variant = 'main', -- auto, main, moon, or dawn
@@ -64,8 +66,8 @@ return {
   },
   {
     'folke/tokyonight.nvim',
-    -- lazy = true,
-    -- priority = 1000,
+    lazy = false,
+    priority = 1000,
     opts = {},
     config = function()
       require('tokyonight').setup {
@@ -74,9 +76,6 @@ return {
         -- end,
       }
       vim.cmd 'colorscheme tokyonight-night'
-      -- vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#5e6063', bold = true })
-      -- vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })
-      -- vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#5e6063', bold = true })
     end,
   },
 }

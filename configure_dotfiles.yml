@@ -23,5 +23,5 @@
     # that requires them to be installed first. and git config sets up ssh setup
     # for git, but ssh needs to be set up manually (what I prefer).
     # TODO: uncomment it at the last
-    # - fish
-    # - git
+    - fish
+    - git

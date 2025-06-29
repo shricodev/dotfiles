@@ -1,6 +1,9 @@
 return {
   'williamboman/mason.nvim',
-  event = 'VeryLazy',
+  -- don't add lazy = true or the event as all the linters and formatters are
+  -- setup with mason and when opening files like so: nvim $(fd --type f -e ts
+  -- -e tsx), mason will not have loaded and will throw an error.
+  -- event = 'VeryLazy',
   -- We need to add mason-lspconfig as a dependency to mason
   -- as we need to make sure that mason is loaded before mason-lspconfig to make
   -- it work
@@ -49,13 +52,13 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
-        'prettierd', -- prettier formatter
-        'prettier', -- prettier formatter (prettierd backup in formatting.lua)
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'eslint_d', -- js linter"black"
-        'gofumpt', -- go formatter
-        'sqlfmt', -- sql formatter
+        'prettierd',         -- prettier formatter
+        'prettier',          -- prettier formatter (prettierd backup in formatting.lua)
+        'stylua',            -- lua formatter
+        'isort',             -- python formatter
+        'eslint_d',          -- js linter"black"
+        'gofumpt',           -- go formatter
+        'sqlfmt',            -- sql formatter
         'goimports-reviser', -- go formatter
         -- add other formatter in the future
       },
