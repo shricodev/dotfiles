@@ -52,4 +52,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/shricodev/\x2ebin\x1e/home/shricodev/\x2elocal/bin\x1e/home/shricodev/local/bin\x1e/home/shricodev/\x2econfig/emacs/bin\x1e/home/shricodev/Applications\x1e/var/lib/flatpak/exports/bin/\x1e/home/shricodev/go/bin\x1e/home/shricodev/\x2efzf/bin
+SETUVAR fish_user_paths:/var/lib/flatpak/exports/bin\x1e/home/shricodev/\x2ebin\x1e/home/shricodev/\x2elocal/bin\x1e/home/shricodev/local/bin\x1e/home/shricodev/\x2econfig/emacs/bin\x1e/home/shricodev/Applications\x1e/var/lib/flatpak/exports/bin/\x1e/home/shricodev/go/bin\x1e/home/shricodev/\x2efzf/bin
