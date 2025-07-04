@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   -- {
   --   'MeanderingProgrammer/render-markdown.nvim',
@@ -29,7 +31,7 @@ return {
   --     {
   --       '<leader>mp',
   --       '<cmd>MarkdownPreviewToggle<cr>',
-  --       desc = '[markdown-preview]: Markdown Preview',
+  --       desc =keymap_namer('markdown-preview', 'markdown preview')
   --     },
   --   },
   -- },

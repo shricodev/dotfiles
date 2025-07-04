@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   'olexsmir/gopher.nvim',
   ft = 'go',
@@ -10,9 +12,9 @@ return {
   config = function(_, opts)
     require('gopher').setup(opts)
 
-    vim.keymap.set('n', '<leader>goj', '<CMD>GoTagAdd json<CR>', { desc = '[Gopher]: GoTagAdd json' })
-    vim.keymap.set('n', '<leader>goy', '<CMD>GoTagAdd yaml<CR>', { desc = '[Gopher]: GoTagAdd yaml' })
-    vim.keymap.set('n', '<leader>goi', '<CMD>GoIfErr<CR>', { desc = '[Gopher]: GoIfErr' })
+    vim.keymap.set('n', '<leader>goj', '<CMD>GoTagAdd json<CR>', { desc = keymap_namer('gopher', 'gotagadd json') })
+    vim.keymap.set('n', '<leader>goy', '<CMD>GoTagAdd yaml<CR>', { desc = keymap_namer('gopher', 'gotagadd yaml') })
+    vim.keymap.set('n', '<leader>goi', '<CMD>GoIfErr<CR>', { desc = keymap_namer('gopher', 'goiferr') })
   end,
   -- (optional) will update plugin's deps on every update
   build = function()

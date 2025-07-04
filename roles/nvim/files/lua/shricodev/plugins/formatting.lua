@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' }, -- to disable, comment this out
@@ -43,7 +45,7 @@ return {
       --     async = false,
       --     timeout_ms = 500,
       --   }
-      -- end, { desc = '[Conform]: Format file or range (in visual mode)' }),
+      -- end, { desc = keymap_namer('conform', 'format file or range (in visual mode)') }),
     }
   end,
 }

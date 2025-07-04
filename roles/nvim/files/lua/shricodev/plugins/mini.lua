@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 -- Returns all my used plugins from mini.nvim library.
 return {
   -- {
@@ -55,10 +57,15 @@ return {
 
       -- Remap adding surrounding to Visual mode selection
       vim.keymap.del('x', 'ys')
-      vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true, desc = '[Mini.Surround]: Add surrounding (visual)' })
+      vim.keymap.set(
+        'x',
+        'S',
+        [[:<C-u>lua MiniSurround.add('visual')<CR>]],
+        { silent = true, desc = keymap_namer('mini.surround', 'add surrounding (visual)') }
+      )
 
       -- Make special mapping for "add surrounding for line"
-      vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = '[Mini.Surround]: Add surrounding for line' })
+      vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = keymap_namer('mini.surround', 'add surrounding for line') })
     end,
   },
   {
@@ -79,21 +86,21 @@ return {
       end
     end,
   },
-  -- {
-  --   'echasnovski/mini.files',
-  --   version = false,
-  --   config = function()
-  --     require('mini.files').setup {}
-  --
-  --     vim.keymap.set('n', '<leader>e', function()
-  --       require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-  --     end, { desc = '[Mini.Files]: Open mini explorer in the directory of current file' })
-  --
-  --     vim.keymap.set('n', '<leader>E', function()
-  --       require('mini.files').open(vim.uv.cwd(), true)
-  --     end, { desc = '[Mini.Files]: Open mini explorer in the CWD' })
-  --   end,
-  -- },
+  {
+    'echasnovski/mini.files',
+    version = false,
+    config = function()
+      require('mini.files').setup {}
+
+      vim.keymap.set('n', '<leader>ef', function()
+        require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+      end, { desc = keymap_namer('mini.files', 'open mini explorer in the directory of current file') })
+
+      vim.keymap.set('n', '<leader>ee', function()
+        require('mini.files').open(vim.uv.cwd(), true)
+      end, { desc = keymap_namer('mini.files', 'open mini explorer in the cwd') })
+    end,
+  },
   -- {
   --   'echasnovski/mini.indentscope',
   --   version = false, -- wait till new 0.7.0 release to put it back on semver

@@ -24,9 +24,9 @@ set fish_greeting
 # use the default terminal color
 set TERM xterm-256color
 
-set -gx BAT_THEME "tokyonight_night"
+# set -gx BAT_THEME "tokyonight_night"
 
-fish_config theme choose "Rosé Pine"
+fish_config theme choose "TokyoNight Night"
 
 # set up NEOVIM as a default editor.
 set -gx EDITOR nvim
@@ -40,7 +40,7 @@ set -g fish_cursor_visual block
 
 # Open tmux as default when the shell starts
 # Only attach if we're in an interactive session to avoid breaking scripts
-if not set -q TMUX; and status is-interactive
+if not set -q TMUX
   set -g TMUX tmux new-session -d -s mainline
   eval $TMUX
   tmux attach-session -d -t mainline
@@ -48,6 +48,7 @@ end
 
 # keep as alias since it's the base ls command replacement
 alias ls='eza -alg --color=always --icons --group-directories-first'
+alias cat='bat --style=plain --paging=never'
 alias rm='rm -I --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'

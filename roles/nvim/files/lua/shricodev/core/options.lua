@@ -12,8 +12,6 @@ global.have_nerd_font = true
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
-global.python3_host_prog = '/usr/bin/python3'
-
 -- When using codeium.vim instead of codeium.nvim, use this
 global.codeium_disable_bindings = 1
 
@@ -21,9 +19,11 @@ opt.winborder = 'rounded'
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
+opt.softtabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.smarttab = true
+opt.smartindent = true
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- show number in current line and show relative number to all other lines
@@ -66,7 +66,13 @@ opt.background = 'dark' -- colorschemes that can be light or dark will be made d
 opt.scrolloff = 8
 
 -- Preview substitutions live, as you type!
+opt.incsearch = true
 opt.inccommand = 'split'
+
+opt.foldenable = true
+opt.foldmethod = 'manual' -- Default fold method (change as needed)
+opt.foldlevel = 99 -- Open most folds by default
+opt.foldcolumn = '0'
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -75,7 +81,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
 
 -- backspace
--- opt.backspace = 'indent,eol,start' -- allow backspace on indent, end of line or insert mode start position
+opt.backspace = { 'indent', 'eol', 'start' } -- allow backspace on indent, end of line or insert mode start position
 
 -- split windows
 opt.splitright = true -- split vertical window to the right
@@ -83,6 +89,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+opt.backup = false
 
 -- opt.spell = true
 opt.spelllang = 'en_us'
@@ -90,9 +97,10 @@ opt.spelllang = 'en_us'
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
-opt.guicursor = {
-  'i-n-v-c:block', -- Normal, visual, command-line: block cursor
-  've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
-  'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
-  'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
-}
+opt.guicursor = ''
+-- opt.guicursor = {
+-- 'i-n-v-c:block', -- Normal, visual, command-line: block cursor
+-- 've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
+-- 'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
+--   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
+-- }

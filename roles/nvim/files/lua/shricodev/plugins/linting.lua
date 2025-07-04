@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   'mfussenegger/nvim-lint',
   event = { 'BufReadPre', 'BufNewFile' },
@@ -54,6 +56,6 @@ return {
       if should_lint() then
         lint.try_lint()
       end
-    end, { desc = '[Lint]: Trigger linting for current file' })
+    end, { desc = keymap_namer('lint', 'trigger linting for current file') })
   end,
 }

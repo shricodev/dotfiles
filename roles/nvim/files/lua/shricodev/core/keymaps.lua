@@ -108,8 +108,8 @@ end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode
 
 -- Stay in indent mode. Might return back to using this setting later.
 -- Running . runs the same indentation we added/removed.
--- keymap.set('v', '<', '<gv', { desc = 'Left indent while staying in indent mode' })
--- keymap.set('v', '>', '>gv', { desc = 'Right indent while staying in indent mode' })
+keymap.set('v', '<', '<gv', opts 'Left indent while staying in indent mode')
+keymap.set('v', '>', '>gv', opts 'Right indent while staying in indent mode')
 
 -- Disable using Backspace, to adapt to <C-w/u/h>
 -- keymap.set('i', '<BS>', function()

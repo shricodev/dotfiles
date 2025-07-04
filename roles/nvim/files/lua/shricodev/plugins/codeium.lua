@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 -- -- Codeium.nvim gives a lot of shitty errors for completion timeout.
 -- return {
 -- 	"Exafunction/windsurf.nvim",
@@ -67,18 +69,18 @@ return {
   config = function()
     vim.keymap.set('i', '<M-;>', function()
       return vim.fn['codeium#Accept']()
-    end, { expr = true, silent = true, desc = '[Codeium]: Accept' })
+    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'accept') })
 
     vim.keymap.set('i', '<M-]>', function()
       return vim.fn['codeium#CycleCompletions'](1)
-    end, { expr = true, silent = true, desc = '[Codeium]: Next Suggestion' })
+    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'next suggestion') })
 
     vim.keymap.set('i', '<M-[>', function()
       return vim.fn['codeium#CycleCompletions'](-1)
-    end, { expr = true, silent = true, desc = '[Codeium]: Previous Suggestion' })
+    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'previous suggestion') })
 
     vim.keymap.set('i', '<M-x>', function()
       return vim.fn['codeium#Clear']()
-    end, { expr = true, silent = true, desc = '[Codeium]: Clear' })
+    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'clear') })
   end,
 }

@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   {
     'lewis6991/gitsigns.nvim',
@@ -36,7 +38,7 @@ return {
             else
               gitsigns.nav_hunk 'next'
             end
-          end, { desc = '[Gitsigns]: Next hunk' })
+          end, { desc = keymap_namer('gitsigns', 'next hunk') })
 
           map('n', '[h', function()
             if vim.wo.diff then
@@ -44,37 +46,41 @@ return {
             else
               gitsigns.nav_hunk 'prev'
             end
-          end, { desc = '[Gitsigns]: Previous hunk' })
+          end, { desc = keymap_namer('gitsigns', 'previous hunk') })
 
           -- Actions
-          -- map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[Gitsigns]: Stage hunk' })
+          -- map('n', '<leader>hs', gitsigns.stage_hunk, { desc = keymap_namer('gitsigns', 'stage hunk') })
           -- map('v', '<leader>hs', function()
           --   gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          -- end, { desc = '[Gitsigns]: Stage hunk' })
+          -- end, { desc = keymap_namer('gitsigns', 'stage hunk') })
 
-          map('n', '<leader>hR', gitsigns.reset_buffer, { desc = '[Gitsigns]: Reset buffer' })
-          map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[Gitsigns]: Reset hunk' })
+          map('n', '<leader>hR', gitsigns.reset_buffer, { desc = keymap_namer('gitsigns', 'reset buffer') })
+          map('n', '<leader>hr', gitsigns.reset_hunk, { desc = keymap_namer('gitsigns', 'reset hunk') })
           map('v', '<leader>hr', function()
             gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-          end, { desc = '[Gitsigns]: Reset hunk' })
+          end, { desc = keymap_namer('gitsigns', 'reset hunk') })
 
-          -- map('n', '<leader>hu', gitsigns.stage_hunk, { desc = '[Gitsigns]: Undo stage hunk' })
+          -- map('n', '<leader>hu', gitsigns.stage_hunk, { desc = keymap_namer('gitsigns', 'undo stage hunk') })
 
-          map('n', '<leader>hv', gitsigns.preview_hunk, { desc = '[Gitsigns]: Preview hunk' })
+          map('n', '<leader>hv', gitsigns.preview_hunk, { desc = keymap_namer('gitsigns', 'preview hunk') })
 
           -- map('n', '<leader>hb', function()
           --   gitsigns.blame_line { full = true }
-          -- end, { desc = '[Gitsigns]: Blame line' })
+          -- end, { desc = keymap_namer('gitsigns', 'blame line') })
           --
-          -- map('n', '<leader>hd', gitsigns.diffthis, { desc = '[Gitsigns]: Diff this' })
+          -- map('n', '<leader>hd', gitsigns.diffthis, { desc = keymap_namer('gitsigns', 'diff this') })
           -- map('n', '<leader>hD', function()
           --   gitsigns.diffthis '~'
-          -- end, { desc = '[Gitsigns]: Diff this ~' })
+          -- end, { desc = keymap_namer('gitsigns', 'diff this ~') })
         end,
       }
     end,
   },
-  { 'tpope/vim-fugitive', cmd = { 'Git', 'G' }, keys = {
-    { '<leader>tg', ':tab +Git<CR>', desc = '[Fugitive]: Open fugitive in a new tab' },
-  } },
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'Git', 'G' },
+    keys = {
+      { '<leader>tg', ':tab +Git<CR>', desc = keymap_namer('fugitive', 'open fugitive in a new tab') },
+    },
+  },
 }

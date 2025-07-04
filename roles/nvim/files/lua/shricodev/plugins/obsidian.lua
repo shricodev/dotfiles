@@ -1,4 +1,6 @@
 return {}
+-- local keymap_namer = require('shricodev.utils').keymap_namer
+--
 -- return {
 --   'epwalsh/obsidian.nvim',
 --   version = '*', -- recommended, use latest release instead of latest commit
@@ -91,11 +93,11 @@ return {}
 --     }
 --
 --     -- Obsidian
---     vim.keymap.set('n', '<leader>oc', "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = '[Obsidian]: Obsidian Check Checkbox' })
---     vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<CR>', { desc = '[Obsidian]: Insert Obsidian Template' })
---     vim.keymap.set('n', '<leader>ob', '<cmd>ObsidianBacklinks<CR>', { desc = '[Obsidian]: Show ObsidianBacklinks' })
---     vim.keymap.set('n', '<leader>ol', '<cmd>ObsidianLinks<CR>', { desc = '[Obsidian]: Show ObsidianLinks' })
---     vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', { desc = '[Obsidian]: Create New Note' })
---     vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianQuickSwitch<CR>', { desc = '[Obsidian]: Quick Switch' })
+--     vim.keymap.set('n', '<leader>oc', "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", { desc = keymap_namer('obsidian', 'obsidian check checkbox') })
+--     vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<CR>', { desc = keymap_namer('obsidian', 'insert obsidian template') })
+--     vim.keymap.set('n', '<leader>ob', '<cmd>ObsidianBacklinks<CR>', { desc = keymap_namer('obsidian', 'show obsidianbacklinks') })
+--     vim.keymap.set('n', '<leader>ol', '<cmd>ObsidianLinks<CR>', { desc = keymap_namer('obsidian', 'show obsidianlinks') })
+--     vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', { desc = keymap_namer('obsidian', 'create new note') })
+--     vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianQuickSwitch<CR>', { desc = keymap_namer('obsidian', 'quick switch') })
 --   end,
 -- }

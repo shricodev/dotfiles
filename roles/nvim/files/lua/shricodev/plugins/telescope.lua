@@ -1,4 +1,5 @@
 return {}
+-- local keymap_namer = require('shricodev.utils').keymap_namer
 -- return {
 --   'nvim-telescope/telescope.nvim',
 --   event = 'VimEnter',
@@ -106,7 +107,7 @@ return {}
 --       'n',
 --       '<C-p>',
 --       ":lua require('telescope').extensions.projects.projects{}<CR>",
---       { noremap = true, silent = true, desc = '[Telescope]: Switch between multiple projects' }
+--       { noremap = true, silent = true, desc = keymap_namer('telescope', 'switch between multiple projects') }
 --     )
 --
 --     -- Options through Telescope
@@ -114,7 +115,7 @@ return {}
 --       'n',
 --       '<leader><tab>',
 --       "<cmd>lua require('telescope.builtin').commands()<CR>",
---       { silent = true, desc = '[Telescope]: View Telescope options' }
+--       { silent = true, desc = keymap_namer('telescope', 'view telescope options') }
 --     )
 --
 --     -- Slightly advanced example of overriding default behavior and theme
@@ -123,7 +124,7 @@ return {}
 --       require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
 --         previewer = false,
 --       })
---     end, { desc = '[Telescope]: Fuzzily search in current buffer' })
+--     end, { desc = keymap_namer('telescope', 'fuzzily search in current buffer') })
 --
 --     -- Search in Open Files
 --     vim.keymap.set('n', '<leader>gob', function()
@@ -131,7 +132,7 @@ return {}
 --         grep_open_files = true,
 --         prompt_title = 'Live Grep in Open Buffers',
 --       }
---     end, { silent = true, desc = '[Telescope]: Fuzzily grep in Open Files' })
+--     end, { silent = true, desc = keymap_namer('telescope', 'fuzzily grep in open files') })
 --
 --     vim.keymap.set('n', '<leader>g/', function()
 --       require('telescope.builtin').live_grep {
@@ -139,7 +140,7 @@ return {}
 --           return { '--hidden' }
 --         end,
 --       }
---     end, { desc = '[Telescope]: Grep string in cwd (including hidden)' })
+--     end, { desc = keymap_namer('telescope', 'grep string in cwd (including hidden)') })
 --
 --     vim.keymap.set('n', '<leader>gw', function()
 --       require('telescope.builtin').grep_string {
@@ -147,22 +148,22 @@ return {}
 --           return { '--hidden' }
 --         end,
 --       }
---     end, { desc = '[Telescope]: Grep string under cursor in cwd (including hidden)' })
+--     end, { desc = keymap_namer('telescope', 'grep string under cursor in cwd (including hidden)') })
 --
 --     -- Shortcut for searching your Neovim configuration files
 --     vim.keymap.set('n', '<leader>fx', function()
 --       require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
---     end, { desc = '[Telescope]: Fuzzily find Neovim config' })
+--     end, { desc = keymap_namer('telescope', 'fuzzily find neovim config') })
 --
 --     -- Use telescope to search the help tags
---     vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = '[Telescope]: Search the Help Documentation' })
+--     vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = keymap_namer('telescope', 'search the help documentation') })
 --
 --     -- Setup the keybindings for the telescope plugin.
 --     vim.keymap.set(
 --       'n',
 --       '<leader>ff',
 --       "<cmd>lua require('telescope.builtin').find_files({hidden = true})<CR>",
---       { desc = '[Telescope]: Fuzzy find files in the cwd' }
+--       { desc = keymap_namer('telescope', 'fuzzy find files in the cwd') }
 --     )
 --
 --     -- This is to also view the .env sort of files in the telescope find files ui
@@ -170,27 +171,27 @@ return {}
 --       'n',
 --       '<leader>faf',
 --       "<cmd>lua require('telescope.builtin').find_files({hidden = true, no_ignore = true})<CR>",
---       { desc = '[Telescope]: Fuzzy find files in the cwd' }
+--       { desc = keymap_namer('telescope', 'fuzzy find files in the cwd') }
 --     )
---     vim.keymap.set('n', '<leader>fr', "<cmd>lua require('telescope.builtin').oldfiles()<CR>", { desc = '[Telescope]: Fuzzy find recent files' })
+--     vim.keymap.set('n', '<leader>fr', "<cmd>lua require('telescope.builtin').oldfiles()<CR>", { desc = keymap_namer('telescope', 'fuzzy find recent files') })
 --
---     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = '[Telescope]: Open a buffer' })
+--     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = keymap_namer('telescope', 'open a buffer') })
 --
---     vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = '[Telescope]: View the keymaps' })
---     vim.keymap.set('n', '<leader>mo', '<cmd>Telescope marks<CR>', { desc = '[Telescope]: Open marks' })
+--     vim.keymap.set('n', '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = keymap_namer('telescope', 'view the keymaps') })
+--     vim.keymap.set('n', '<leader>mo', '<cmd>Telescope marks<CR>', { desc = keymap_namer('telescope', 'open marks') })
 --
 --     -- search for files in full vault
 --     vim.keymap.set(
 --       'n',
 --       '<leader>fn',
 --       '<cmd>Telescope find_files search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
---       { noremap = true, desc = '[Obsidian]: Find Obsidian Note Vault' }
+--       { noremap = true, desc = keymap_namer('obsidian', 'find obsidian note vault') }
 --     )
 --     vim.keymap.set(
 --       'n',
 --       '<leader>gn/',
 --       '<cmd>Telescope live_grep search_dirs={"$HOME/Documents/Obsidian-Notes/"}<CR>',
---       { noremap = true, desc = '[Obsidian]: Grep Obsidian Vault' }
+--       { noremap = true, desc = keymap_namer('obsidian', 'grep obsidian vault') }
 --     )
 --   end,
 -- }

@@ -1,3 +1,5 @@
+local keymap_namer = require('shricodev.utils').keymap_namer
+
 return {
   'ibhagwan/fzf-lua',
   enabled = true,
@@ -9,63 +11,63 @@ return {
       function()
         require('fzf-lua').lgrep_curbuf()
       end,
-      desc = '[FZF-Lua]: Fuzzily search in current buffer',
+      desc = keymap_namer('fzf-lua', 'fuzzily search in current buffer'),
     },
     {
       '<leader>gW',
       function()
         require('fzf-lua').grep_cWORD { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily search current WORD',
+      desc = keymap_namer('fzf-lua', 'fuzzily search current WORD'),
     },
     {
       '<leader>gw',
       function()
         require('fzf-lua').grep_cword { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily search current word',
+      desc = keymap_namer('fzf-lua', 'fuzzily search current word'),
     },
     {
       '<leader>g/',
       function()
         require('fzf-lua').live_grep_native { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily search in current project',
+      desc = keymap_namer('fzf-lua', 'fuzzily search string in cwd (including hidden)'),
     },
     {
       '<leader>fx',
       function()
         require('fzf-lua').files { cwd = vim.fn.stdpath 'config' }
       end,
-      desc = '[FZF-Lua]: Fuzzily find Neovim config',
+      desc = keymap_namer('fzf-lua', 'fuzzily find neovim config'),
     },
     {
       '<leader>faf',
       function()
         require('fzf-lua').files { hidden = true, no_ignore = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily find all files',
+      desc = keymap_namer('fzf-lua', 'fuzzily find files in the cwd (including hidden)'),
     },
     {
       '<leader>ff',
       function()
         require('fzf-lua').files { hidden = true }
       end,
-      desc = '[FZF-Lua]: Fuzzily find files',
+      desc = keymap_namer('fzf-lua', 'fuzzily find files in the cwd'),
     },
     {
       '<leader>fb',
       function()
         require('fzf-lua').buffers()
       end,
-      desc = '[FZF-Lua]: Find open buffers',
+      desc = keymap_namer('fzf-lua', 'fuzzily find buffers'),
     },
     {
       '<leader>fr',
       function()
         require('fzf-lua').oldfiles()
       end,
-      desc = '[FZF-Lua]: Fuzzily find recent files',
+      desc = keymap_namer('fzf-lua', 'fuzzily find recent files'),
     },
     -- I already have fr for oldfiles, so I am using fzr for this kind of like
     -- [fz]f [r]esume
@@ -74,47 +76,48 @@ return {
       function()
         require('fzf-lua').resume()
       end,
-      desc = '[FZF-Lua]: Fzf resume previous search',
+      desc = keymap_namer('fzf-lua', 'resume last fzf-lua search'),
     },
     {
       '<leader>fh',
       function()
         require('fzf-lua').help_tags()
       end,
-      desc = '[FZF-Lua]: Find help documentation',
+      desc = keymap_namer('fzf-lua', 'fuzzily find help tags'),
     },
     {
       '<leader>fk',
       function()
         require('fzf-lua').keymaps {
+          profile = 'ivy',
           -- show_details = false,
           winopts = {
             preview = { hidden = true },
           },
         }
       end,
-      desc = '[FZF-Lua]: Find keymaps',
+      desc = keymap_namer('fzf-lua', 'fuzzily find keymaps'),
     },
     {
       '<leader>fm',
       function()
         require('fzf-lua').marks()
       end,
-      desc = '[FZF-Lua]: Find marks',
+      desc = keymap_namer('fzf-lua', 'fuzzily find marks'),
     },
     {
       '<leader>xw',
       function()
         require('fzf-lua').diagnostics_workspace()
       end,
-      desc = '[FZF-Lua(LSP)]: View the project diagnostics',
+      desc = keymap_namer('fzf-lua', 'view the workspace diagnostics'),
     },
     {
       '<leader>xd',
       function()
         require('fzf-lua').diagnostics_document()
       end,
-      desc = '[FZF-Lua(LSP)]: View the document diagnostics',
+      desc = keymap_namer('fzf-lua', 'view the document diagnostics'),
     },
     -- making it gW to match gO for document symbols
     {
@@ -122,7 +125,7 @@ return {
       function()
         require('fzf-lua').lsp_live_workspace_symbols()
       end,
-      desc = '[FZF-Lua(LSP)]: View the workspace symbols',
+      desc = keymap_namer('fzf-lua', 'view the workspace symbols'),
     },
     -- gO is by default, I want to use fzf-lua version one
     {
@@ -130,7 +133,7 @@ return {
       function()
         require('fzf-lua').lsp_document_symbols()
       end,
-      desc = '[FZF-Lua(LSP)]: View the document symbols',
+      desc = keymap_namer('fzf-lua', 'view the document symbols'),
     },
     -- gra is by default for code actions. Overriding it to use fzf-lua
     {
@@ -147,21 +150,21 @@ return {
           },
         }
       end,
-      desc = '[FZF-Lua(LSP)]: View the code actions',
+      desc = keymap_namer('fzf-lua', 'view the code actions'),
     },
     {
       'grt',
       function()
         require('fzf-lua').lsp_typedefs()
       end,
-      desc = '[FZF-Lua(LSP)]: View the type definitions',
+      desc = keymap_namer('fzf-lua', 'view the typedefs'),
     },
     {
       'grd',
       function()
         require('fzf-lua').lsp_definitions()
       end,
-      desc = '[FZF-Lua(LSP)]: View the definitions',
+      desc = keymap_namer('fzf-lua', 'view the definitions'),
     },
     {
       -- This is the default nvim binding, which I am overriding here.
@@ -177,35 +180,35 @@ return {
           },
         }
       end,
-      desc = '[FZF-Lua]: Spelling suggestions (Overriden default z=)',
+      desc = keymap_namer('fzf-lua', 'spell suggestions'),
     },
     {
       '<leader>fn',
       function()
         require('fzf-lua').files { cwd = '$HOME/Documents/Obsidian-Notes/' }
       end,
-      desc = '[FZF-Lua]: Find obsidian notes',
+      desc = keymap_namer('fzf-lua', 'fuzzily find notes'),
     },
     {
       '<leader>gn/',
       function()
         require('fzf-lua').live_grep_native { cwd = '$HOME/Documents/Obsidian-Notes/' }
       end,
-      desc = '[FZF-Lua]: Grep obsidian notes',
+      desc = keymap_namer('fzf-lua', 'fuzzily search notes'),
     },
     {
       '<leader><tab>',
       function()
         require('fzf-lua').builtin()
       end,
-      desc = '[FZF-Lua]: View FZF-lua options',
+      desc = keymap_namer('fzf-lua', 'view the fzf-lua options'),
     },
     {
       '<leader>fp',
       function()
         require('fzf-lua').zoxide()
       end,
-      desc = '[FZF-Lua]: Switch between multiple recent directories (not necessarily a project)',
+      desc = keymap_namer('fzf-lua', 'switch between multiple recent directories (not necessarily a project)'),
     },
   },
   opts = {
