@@ -11,42 +11,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>d', vim.diagnostic.open_float, 'Show floating line diagnostics')
 
     vim.diagnostic.config {
-      -- title = false,
-      -- underline = true,
-      -- virtual_lines = true,
-      -- virtual_text = true,
-      -- signs = true,
-      -- update_in_insert = false,
+      signs = true,
+      update_in_insert = false,
       severity_sort = true,
       underline = { severity = vim.diagnostic.severity.ERROR },
-      -- signs = {
-      --   text = {
-      --     [vim.diagnostic.severity.ERROR] = '󰅚 ',
-      --     [vim.diagnostic.severity.WARN] = '󰀪 ',
-      --     [vim.diagnostic.severity.INFO] = '󰋽 ',
-      --     [vim.diagnostic.severity.HINT] = '󰌶 ',
-      --   },
-      -- },
       virtual_text = {
         enabled = true,
+        prefix = '●',
         -- source = 'if_many',
         spacing = 2,
-        -- format = function(diagnostic)
-        --   local diagnostic_message = {
-        --     [vim.diagnostic.severity.ERROR] = diagnostic.message,
-        --     [vim.diagnostic.severity.WARN] = diagnostic.message,
-        --     [vim.diagnostic.severity.INFO] = diagnostic.message,
-        --     [vim.diagnostic.severity.HINT] = diagnostic.message,
-        --   }
-        --   return diagnostic_message[diagnostic.severity]
-        -- end,
       },
-      float = {
-        -- source = 'if_many',
-        style = 'minimal',
-        -- border = 'rounded',
-        -- header = '',
-        -- prefix = '',
+    }
+
+    vim.diagnostic.config {
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '✗',
+          [vim.diagnostic.severity.WARN] = '⚠',
+          [vim.diagnostic.severity.INFO] = 'ℹ',
+          [vim.diagnostic.severity.HINT] = '💡',
+        },
       },
     }
   end,

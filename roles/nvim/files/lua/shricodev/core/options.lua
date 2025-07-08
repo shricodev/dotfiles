@@ -22,7 +22,6 @@ opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.softtabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
-opt.smarttab = true
 opt.smartindent = true
 opt.autoindent = true -- copy indent from current line when starting new one
 
@@ -45,13 +44,30 @@ opt.breakindent = true
 -- Set highlight on search
 opt.hlsearch = false
 
+opt.mouse = 'a'
+
 -- Save undo history
 opt.undofile = true
+opt.undodir = vim.fn.expand '~/.vim/undodir' -- Undo directory
+opt.showtabline = 1 -- Always show tabline (0=never, 1=when multiple tabs, 2=always)
+opt.tabline = '' -- Use default tabline (empty string uses built-in)
+
+-- Transparent tabline appearance
+vim.cmd [[
+  hi TabLineFill guibg=NONE ctermfg=242 ctermbg=NONE
+]]
 
 opt.colorcolumn = '80' -- highlight column 80
+-- highlight matching brackets
+opt.showmatch = true
+-- time to show the match of brackets
+opt.matchtime = 2 -- Don't hide markup
+opt.conceallevel = 0
+opt.concealcursor = '' -- Don't hide cursor line markup
 
 -- Set completeopt to have a better completion experience
-opt.completeopt = 'menu,menuone,noselect'
+opt.completeopt = 'menu,noinsert,menuone,noselect'
+opt.pumheight = 10 -- Popup menu height
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
@@ -62,8 +78,10 @@ opt.listchars = { tab = '› ', trail = '·', nbsp = '␣' }
 opt.termguicolors = true
 opt.background = 'dark' -- colorschemes that can be light or dark will be made dark
 
--- always keep min 10 lines above and below the cursor
+-- always keep min 8 lines above and below the cursor
 opt.scrolloff = 8
+-- always keep min 8 lines above and below the cursor
+opt.sidescrolloff = 8
 
 -- Preview substitutions live, as you type!
 opt.incsearch = true
@@ -90,6 +108,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 opt.backup = false
+opt.writebackup = false
 
 -- opt.spell = true
 opt.spelllang = 'en_us'
@@ -97,10 +116,10 @@ opt.spelllang = 'en_us'
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
-opt.guicursor = ''
--- opt.guicursor = {
--- 'i-n-v-c:block', -- Normal, visual, command-line: block cursor
--- 've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
--- 'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
---   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
--- }
+-- opt.guicursor = ''
+opt.guicursor = {
+  'i-n-v-c:block', -- Normal, visual, command-line: block cursor
+  've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
+  'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
+  'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
+}

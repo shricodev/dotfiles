@@ -41,22 +41,22 @@ keymap.set('n', '<leader>sc', '<cmd>close<CR>', opts 'Close current window')
 keymap.set('n', '<leader>sC', '<cmd>only<CR>', opts 'Close all windows except the current one')
 
 -- Window size management
-keymap.set('n', '+', '<cmd>vertical resize +5<CR>', opts 'Increase window size vertically')
-keymap.set('n', '_', '<cmd>vertical resize -5<CR>', opts 'Decrease window size vertically')
-keymap.set('n', '=', '<cmd>horizontal resize +2<CR>', opts 'Increase window size horizontally')
--- NOTE: This binding needs to be changed to something else.
--- cuz oil uses - in normal mode to open the file explorer
--- keymap.set('n', '-', '<cmd>horizontal resize -2<CR>', opts 'Decrease window size horizontally')
+keymap.set('n', '<C-Up>', ':resize +2<CR>', opts 'Increase window height')
+keymap.set('n', '<C-Down>', ':resize -2<CR>', opts 'Decrease window height')
+keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', opts 'Decrease window width')
+keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', opts 'Increase window width')
 
 -- Tab management
 keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', opts 'Open a new tab')
 keymap.set('n', '<leader>tc', '<cmd>tabclose<CR>', opts 'Close the current tab')
 keymap.set('n', '<leader>t;', '<cmd>tabn<CR>', opts 'Go to next tab')
 keymap.set('n', '<leader>t,', '<cmd>tabp<CR>', opts 'Go to previous tab')
+keymap.set('n', '<leader>t>', ':tabmove +1<CR>', opts 'Move tab right')
+keymap.set('n', '<leader>t<', ':tabmove -1<CR>', opts 'Move tab left')
 
 -- Buffer stuffs
 keymap.set('n', '<leader>bc', '<cmd>bd<CR>', opts 'Close the current buffer')
-keymap.set('n', '<leader>b,', '<cmd>b#<CR>', opts 'Go to the last buffer')
+keymap.set('n', '<leader>bp,', '<cmd>b#<CR>', opts 'Go to the last buffer')
 -- There's no need to add b; for the next buffer as 'b#' and 'bn' don't really
 -- work the same
 
@@ -103,20 +103,9 @@ keymap.set('c', '%%', function()
   end
 end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode' })
 
--- vim.keymap.set('<leader>d', vim.diagnostic.open_float, {desc = 'Open floating line diagnostics'})
--- vim.keymap.set('grD', vim.lsp.buf.declaration, {desc = 'Go to declaration'})
-
 -- Stay in indent mode. Might return back to using this setting later.
 -- Running . runs the same indentation we added/removed.
 keymap.set('v', '<', '<gv', opts 'Left indent while staying in indent mode')
 keymap.set('v', '>', '>gv', opts 'Right indent while staying in indent mode')
-
--- Disable using Backspace, to adapt to <C-w/u/h>
--- keymap.set('i', '<BS>', function()
---   vim.cmd 'echo "KEY DISABLED!"'
--- end, { noremap = true, silent = true })
-
--- Disable using Backspace in command mode as well, but don't echo anything
--- vim.keymap.set('c', '<BS>', '<Nop>', { noremap = true, silent = true })
 
 -- keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })

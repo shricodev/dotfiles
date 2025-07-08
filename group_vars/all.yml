@@ -22,3 +22,6 @@ go:
 
     - package: github.com/joshmedeski/sesh@latest
       cmd: sesh
+
+    - package: github.com/spf13/cobra-cli@latest
+      cmd: cobra-cli
