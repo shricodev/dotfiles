@@ -86,21 +86,21 @@ return {
       end
     end,
   },
-  {
-    'echasnovski/mini.files',
-    version = false,
-    config = function()
-      require('mini.files').setup {}
-
-      vim.keymap.set('n', '<leader>ef', function()
-        require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-      end, { desc = keymap_namer('mini.files', 'open mini explorer in the directory of current file') })
-
-      vim.keymap.set('n', '<leader>ee', function()
-        require('mini.files').open(vim.uv.cwd(), true)
-      end, { desc = keymap_namer('mini.files', 'open mini explorer in the cwd') })
-    end,
-  },
+  -- {
+  --   'echasnovski/mini.files',
+  --   version = false,
+  --   config = function()
+  --     require('mini.files').setup {}
+  --
+  --     vim.keymap.set('n', '<leader>ef', function()
+  --       require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+  --     end, { desc = keymap_namer('mini.files', 'open mini explorer in the directory of current file') })
+  --
+  --     vim.keymap.set('n', '<leader>ee', function()
+  --       require('mini.files').open(vim.uv.cwd(), true)
+  --     end, { desc = keymap_namer('mini.files', 'open mini explorer in the cwd') })
+  --   end,
+  -- },
   -- {
   --   'echasnovski/mini.indentscope',
   --   version = false, -- wait till new 0.7.0 release to put it back on semver

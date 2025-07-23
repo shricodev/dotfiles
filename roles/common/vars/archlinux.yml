@@ -1,6 +1,11 @@
 ---
 common_packages:
   - git
+  - eza
+  - jq
+  - nodejs
+  - npm
+  - xsel
   - curl
   - unzip
   - neovim
