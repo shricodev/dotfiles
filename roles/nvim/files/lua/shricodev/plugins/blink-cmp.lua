@@ -20,6 +20,7 @@ return {
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = {
       preset = 'none',
+      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
       ['<C-p>'] = { 'select_prev', 'fallback' },
       ['<C-n>'] = { 'select_next', 'fallback' },
       ['<Up>'] = { 'select_prev', 'fallback' },
@@ -39,7 +40,7 @@ return {
       documentation = { auto_show = true, auto_show_delay_ms = 400 },
     },
     -- use ctrl-s in insert mode instead.
-    -- signature = { enabled = true },
+    signature = { enabled = true },
 
     appearance = {
       nerd_font_variant = 'mono',

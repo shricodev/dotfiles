@@ -22,7 +22,7 @@ end
 set fish_greeting
 
 # use the default terminal color
-set TERM xterm-256color
+set TERM screen-256color
 
 # set -gx BAT_THEME "tokyonight_night"
 

@@ -35,29 +35,96 @@ return {
       })
     end
 
-    -- Define languages for code blocks
     local languages = {
+      -- Common languages
       'txt',
+      'plaintext',
       'lua',
       'sql',
       'go',
       'regex',
       'bash',
+      'sh',
+      'zsh',
+      'fish',
       'markdown',
       'markdown_inline',
       'yaml',
       'json',
       'jsonc',
       'cpp',
+      'c',
       'csv',
       'java',
       'javascript',
+      'typescript',
+      'typescriptreact',
+      'javascriptreact',
       'python',
-      'dockerfile',
+      'ruby',
+      'php',
+      'rust',
+      'dart',
+      'kotlin',
+      'swift',
+      'scala',
       'html',
       'css',
+      'scss',
+      'less',
       'templ',
-      'php',
+
+      -- Frontend frameworks & templating
+      'vue',
+      'svelte',
+      'astro',
+      'ejs',
+      'hbs',
+      'mustache',
+      'pug',
+      'jade',
+
+      -- Infra / DevOps / Configuration
+      'dockerfile',
+      'docker-compose',
+      'ini',
+      'toml',
+      'make',
+      'cmake',
+      'nix',
+      'terraform',
+      'hcl',
+      'helm',
+      'yaml.ansible',
+      'gitignore',
+
+      -- Scripting / CLI
+      'powershell',
+      'awk',
+      'sed',
+      'jq',
+
+      -- Data / Analytics / Scientific
+      'r',
+      'matlab',
+      'stata',
+      'graphql',
+      'xml',
+
+      -- Other languages
+      'elixir',
+      'erlang',
+      'clojure',
+      'groovy',
+      'gradle',
+      'perl',
+
+      -- Non-code formats (useful in docs)
+      'diff',
+      'log',
+      'output',
+      'tsv',
+      'http',
     }
 
     -- Generate snippets for all languages

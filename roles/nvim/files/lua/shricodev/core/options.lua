@@ -59,15 +59,12 @@ vim.cmd [[
 
 opt.colorcolumn = '80' -- highlight column 80
 -- highlight matching brackets
-opt.showmatch = true
--- time to show the match of brackets
-opt.matchtime = 2 -- Don't hide markup
 opt.conceallevel = 0
 opt.concealcursor = '' -- Don't hide cursor line markup
 
 -- Set completeopt to have a better completion experience
-opt.completeopt = 'menu,noinsert,menuone,noselect'
-opt.pumheight = 10 -- Popup menu height
+opt.completeopt = 'menuone,noinsert,noselect'
+-- opt.pumheight = 10 -- Popup menu height
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
