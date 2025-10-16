@@ -21,8 +21,10 @@ end
 # Suppress fish's intro message
 set fish_greeting
 
-# use the default terminal color
-set TERM xterm-256color
+# NOTE: don't set the terminal color like this here. as fish makes it universal
+# even inside tmux. setting xterm-256color here will override the tmux color
+# settings as well. Just use the terminal emulator default here.
+# set TERM xterm-256color
 
 # set -gx BAT_THEME "tokyonight_night"
 
@@ -72,11 +74,3 @@ if status is-interactive
     zoxide init fish | source
 end
 
-# If tmux is running, set it to 'tmux-256color' else 'xterm-256color'
-if test -n "$TMUX"
-    set -gx TERM tmux-256color
-else
-    set -gx TERM xterm-256color
-end
-
-# toilet "shricodev" -F border -F rainbow -f pagga
