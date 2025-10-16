@@ -5,6 +5,9 @@ local global = vim.g -- For global options
 global.mapleader = ' '
 global.maplocalleader = ' '
 
+-- For now when using wayland, force wl-copy clipboard
+global.clipboard = 'wl-copy'
+
 -- Have nerd font available? Set this to true
 global.have_nerd_font = true
 

@@ -21,7 +21,7 @@ mouse-hide-while-typing
 
 scrollback-limit = 10000
 
-theme = "tokyonight"
+theme = "TokyoNight"
 
 keybind = ctrl+plus=increase_font_size:1
 keybind = ctrl+minus=decrease_font_size:1

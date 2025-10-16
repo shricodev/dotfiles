@@ -30,7 +30,7 @@ return {
     {
       '<leader>g/',
       function()
-        require('fzf-lua').live_grep_native { hidden = true }
+        require('fzf-lua').live_grep_native()
       end,
       desc = keymap_namer('fzf-lua', 'fuzzily search string in cwd (including hidden)'),
     },

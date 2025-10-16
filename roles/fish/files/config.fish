@@ -22,7 +22,7 @@ end
 set fish_greeting
 
 # use the default terminal color
-set TERM screen-256color
+set TERM xterm-256color
 
 # set -gx BAT_THEME "tokyonight_night"
 
@@ -70,6 +70,13 @@ bind \cd\cd\cd delete-or-exit  # exit on the third one
 # initialize zoxide only in interactive mode
 if status is-interactive
     zoxide init fish | source
+end
+
+# If tmux is running, set it to 'tmux-256color' else 'xterm-256color'
+if test -n "$TMUX"
+    set -gx TERM tmux-256color
+else
+    set -gx TERM xterm-256color
 end
 
 # toilet "shricodev" -F border -F rainbow -f pagga
