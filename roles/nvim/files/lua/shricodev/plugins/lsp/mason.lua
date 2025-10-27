@@ -9,6 +9,7 @@ return {
   -- it work
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
   },
   config = function()
@@ -37,6 +38,12 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         'ts_ls',
+        'rust_analyzer',
+        'bashls',
+        'jsonls',
+        'ruff',
+        'yamlls',
+        'dockerls',
         'html',
         'cssls',
         'tailwindcss',
@@ -52,15 +59,15 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
-        'prettierd',         -- prettier formatter
-        'prettier',          -- prettier formatter (prettierd backup in formatting.lua)
-        'stylua',            -- lua formatter
-        'isort',             -- python formatter
-        'eslint_d',          -- js linter"black"
-        'gofumpt',           -- go formatter
-        'sqlfmt',            -- sql formatter
+        'prettierd', -- prettier formatter
+        'prettier', -- prettier formatter (prettierd backup in formatting.lua)
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'eslint_d', -- js linter"black"
+        'gofumpt', -- go formatter
+        'sqlfmt', -- sql formatter
         'goimports-reviser', -- go formatter
-        -- add other formatter in the future
+        -- add other formatter/linter in the future
       },
     }
   end,

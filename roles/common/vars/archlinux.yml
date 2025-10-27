@@ -16,3 +16,7 @@ common_packages:
   - starship
   - zoxide
   - sshfs
+  - grex
+  - asciinema
+  - trash-cli
+  - aria2

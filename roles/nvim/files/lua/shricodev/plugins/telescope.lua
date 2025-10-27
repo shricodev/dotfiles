@@ -156,7 +156,12 @@ return {}
 --     end, { desc = keymap_namer('telescope', 'fuzzily find neovim config') })
 --
 --     -- Use telescope to search the help tags
---     vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", { desc = keymap_namer('telescope', 'search the help documentation') })
+--     vim.keymap.set(
+--       'n',
+--       '<leader>fh',
+--       "<cmd>lua require('telescope.builtin').help_tags()<CR>",
+--       { desc = keymap_namer('telescope', 'search the help documentation') }
+--     )
 --
 --     -- Setup the keybindings for the telescope plugin.
 --     vim.keymap.set(

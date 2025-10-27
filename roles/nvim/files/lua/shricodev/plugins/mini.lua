@@ -3,14 +3,14 @@ local keymap_namer = require('shricodev.utils').keymap_namer
 -- Returns all my used plugins from mini.nvim library.
 return {
   -- {
-  --   'echasnovski/mini.ai',
+  --   'nvim-mini/mini.ai',
   --   version = false,
   --   config = function()
   --     require('mini.ai').setup {}
   --   end,
   -- },
   {
-    'echasnovski/mini.statusline',
+    'nvim-mini/mini.statusline',
     version = false,
     config = function()
       local statusline = require 'mini.statusline'
@@ -32,7 +32,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     version = false,
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
@@ -69,7 +69,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
     lazy = true,
     opts = {},
     specs = {
@@ -87,7 +87,7 @@ return {
     end,
   },
   -- {
-  --   'echasnovski/mini.files',
+  --   'nvim-mini/mini.files',
   --   version = false,
   --   config = function()
   --     require('mini.files').setup {}
@@ -102,7 +102,7 @@ return {
   --   end,
   -- },
   -- {
-  --   'echasnovski/mini.indentscope',
+  --   'nvim-mini/mini.indentscope',
   --   version = false, -- wait till new 0.7.0 release to put it back on semver
   --   opts = {
   --     symbol = '│',

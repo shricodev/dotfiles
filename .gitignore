@@ -24,7 +24,7 @@ poetry.lock
 *.retry
 *.tar.gz
 *.zip
-*.bak
+# *.bak
 secrets/
 inventory.ini
 *.log

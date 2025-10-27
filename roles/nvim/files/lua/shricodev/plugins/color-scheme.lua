@@ -6,11 +6,12 @@ return {
     opts = {},
     config = function()
       require('tokyonight').setup {
-        -- transparent = true,
-        -- on_colors = function(colors)
-        --   colors.border = '#2d2d2e'
-        -- end,
+        on_colors = function(colors)
+          -- Make line numbers more visible and grayish
+          colors.fg_gutter = '#4a506b'
+        end,
       }
+
       vim.cmd 'colorscheme tokyonight-night'
     end,
   },

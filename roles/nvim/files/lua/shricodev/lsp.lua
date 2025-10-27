@@ -1,0 +1,20 @@
+-- NOTE: mason-lspconfig enables all of the installed lsp servers by default.
+-- no need to do these manually like this.
+-- The names here must match 'neovim/lspconfig' name.
+-- Because we no longer are configuring lsp's manually in  the lsp/ directory
+-- at the topmost directory level.
+-- NOTE: If you want to configure some of the LSP's default fields which could
+-- be something required for some LSPs, you can configure it in the after/
+-- directory.
+-- For reference: https://youtu.be/oBiBEx7L000?t=762
+-- vim.lsp.enable 'lua_ls'
+-- vim.lsp.enable 'bashls'
+-- vim.lsp.enable 'cssls'
+-- vim.lsp.enable 'dockerls'
+-- vim.lsp.enable 'gopls'
+-- vim.lsp.enable 'jsonls'
+-- vim.lsp.enable 'pyright'
+-- vim.lsp.enable 'rust_analyzer'
+-- vim.lsp.enable 'tailwindcss'
+-- vim.lsp.enable 'ts_ls'
+-- vim.lsp.enable 'yamlls'
