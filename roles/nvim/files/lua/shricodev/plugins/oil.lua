@@ -17,10 +17,12 @@ return {
       keymaps = {
         -- Used to move between splits in neovim
         ['<C-h>'] = false,
-        ['<C-l>'] = false,
-        ['<C-k>'] = false,
         ['<C-j>'] = false,
+        ['<C-k>'] = false,
+        ['<C-l>'] = false,
 
+        ['-'] = { 'actions.parent', mode = 'n' },
+        ['_'] = { 'actions.open_cwd', mode = 'n' },
         ['<C-\\>'] = { 'actions.select', opts = { vertical = true } },
         ['<C-s>'] = { 'actions.select', opts = { horizontal = true } },
       },
@@ -31,5 +33,10 @@ return {
     }
 
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = keymap_namer('oil', 'open parent directory') })
+    vim.keymap.set('n', '_', function()
+      require('oil.actions').open_cwd.callback()
+    end, {
+      desc = keymap_namer('oil', 'open current working directory (cwd)'),
+    })
   end,
 }

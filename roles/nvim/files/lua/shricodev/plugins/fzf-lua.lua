@@ -236,9 +236,9 @@ return {
       file_icons = true,
       color_icons = true,
       -- I have modified the default settings to also exclude node_modules and .next directory
-      find_opts = [[-type f \! -path '*/.git/*' \! -path '*/node_modules/*' \! -path '*/.next/*']],
-      rg_opts = [[--color=never --hidden --files -g "!.git" -g "!node_modules" -g "!.next"]],
-      fd_opts = [[--color=never --hidden --type f --exclude .git --exclude node_modules --exclude .next]],
+      -- find_opts = [[-type f \! -path '*/.git/*' \! -path '*/node_modules/*' \! -path '*/.next/*']],
+      -- rg_opts = [[--color=never --hidden --files -g "!.git" -g "!node_modules" -g "!.next"]],
+      -- fd_opts = [[--color=never --hidden --type f --exclude .git --exclude node_modules --exclude .next]],
     },
     keymap = {
       fzf = {
