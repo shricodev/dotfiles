@@ -10,6 +10,12 @@ return {
           -- Make line numbers more visible and grayish
           colors.fg_gutter = '#4a506b'
         end,
+
+        on_highlights = function(hl, c)
+          -- Slightly brighter, more readable comment color
+          -- The default is pretty muted, so this lifts it without making it neon
+          hl.Comment = { fg = '#9094c7' }
+        end,
       }
 
       vim.cmd 'colorscheme tokyonight-night'
