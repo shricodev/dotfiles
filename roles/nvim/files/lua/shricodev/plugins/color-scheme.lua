@@ -8,7 +8,7 @@ return {
       require('tokyonight').setup {
         on_colors = function(colors)
           -- Make line numbers more visible and grayish
-          colors.fg_gutter = '#4a506b'
+          colors.fg_gutter = '#596084'
         end,
 
         on_highlights = function(hl, c)
