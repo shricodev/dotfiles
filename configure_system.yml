@@ -35,10 +35,30 @@
       when: needs_ssh_setup | bool
 
   roles:
-    - common
-    - fonts
-    - scripts
-    - docker
-    - go
-    - rust
-    - flatpak
+    - role: common
+      tags:
+        - system
+
+    - role: fonts
+      tags:
+        - system
+
+    - role: scripts
+      tags:
+        - scripts
+
+    - role: docker
+      tags:
+        - system
+
+    - role: go
+      tags:
+        - system
+
+    - role: rust
+      tags:
+        - system
+
+    - role: flatpak
+      tags:
+        - system
