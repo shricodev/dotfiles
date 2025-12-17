@@ -32,7 +32,7 @@ format = '[$symbol\($branch\)](bold red) '
 # diverged = "󰦻"
 
 [cmd_duration]
-min_time = 100_000
+min_time = 5_000
 format = '[$duration](bold yellow) '
 
 [git_state]

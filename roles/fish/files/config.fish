@@ -28,7 +28,9 @@ set fish_greeting
 
 # set -gx BAT_THEME "tokyonight_night"
 
-fish_config theme choose "TokyoNight Night"
+if status is-interactive
+    fish_config theme choose "TokyoNight Night"
+end
 
 # set up NEOVIM as a default editor.
 set -gx EDITOR nvim
@@ -42,7 +44,7 @@ set -g fish_cursor_visual block
 
 # Open tmux as default when the shell starts
 # Only attach if we're in an interactive session to avoid breaking scripts
-if not set -q TMUX
+if status is-interactive; and not set -q TMUX
   set -g TMUX tmux new-session -d -s mainline
   eval $TMUX
   tmux attach-session -d -t mainline
@@ -66,18 +68,15 @@ alias clearraw='command clear'
 # colorize grep output (good for log files) - keep as global setting
 alias grep='grep --color=auto'
 
-bind \cd delete-char  # don't exit on accidental Ctrl-D
-bind \cd\cd\cd delete-or-exit  # exit on the third one
+if status is-interactive
+    bind \cd delete-char  # don't exit on accidental Ctrl-D
+    bind \cd\cd\cd delete-or-exit  # exit on the third one
+end
 
 # initialize zoxide only in interactive mode
 if status is-interactive
     zoxide init fish | source
 end
-
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
 
 # Generated for envman. Do not edit.
 test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish

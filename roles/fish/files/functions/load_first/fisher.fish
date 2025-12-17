@@ -224,7 +224,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
     end
 end
 
-if ! set --query _fisher_upgraded_to_4_4
+if status is-interactive; and ! set --query _fisher_upgraded_to_4_4
     set --universal _fisher_upgraded_to_4_4
     if functions --query _fisher_list
         set --query XDG_DATA_HOME[1] || set --local XDG_DATA_HOME ~/.local/share

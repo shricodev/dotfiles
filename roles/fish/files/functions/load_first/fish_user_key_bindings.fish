@@ -1,4 +1,9 @@
 function fish_user_key_bindings
+    # Only set up key bindings in interactive shells
+    if not status is-interactive
+        return
+    end
+
     # fish_default_key_bindings
     fish_vi_key_bindings
 

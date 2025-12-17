@@ -1,6 +1,11 @@
 # Fish abbreviations - faster than aliases
 # These expand when you press space or enter
 
+# Only set up abbreviations in interactive shells
+if not status is-interactive
+    exit
+end
+
 # Navigation abbreviations
 abbr -a .. 'cd ..'
 abbr -a ... 'cd ../..'
