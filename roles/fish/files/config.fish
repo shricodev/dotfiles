@@ -26,7 +26,7 @@ set fish_greeting
 # settings as well. Just use the terminal emulator default here.
 # set TERM xterm-256color
 
-# set -gx BAT_THEME "tokyonight_night"
+set -gx BAT_THEME "Visual Studio Dark+"
 
 if status is-interactive
     fish_config theme choose "TokyoNight Night"
@@ -60,10 +60,6 @@ alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
-
-# some raw aliases
-alias lsraw='command ls'
-alias clearraw='command clear'
 
 # colorize grep output (good for log files) - keep as global setting
 alias grep='grep --color=auto'

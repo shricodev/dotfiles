@@ -19,11 +19,8 @@ abbr -a --position anywhere --set-cursor='%' cdl 'cd % && ls'
 # File operations
 abbr -a ll 'eza -lg --color=always --icons --group-directories-first'
 abbr -a la 'eza -a --color=always --git-ignore --group-directories-first'
-abbr -a lt1 'eza -aT --color=always --git-ignore --level=1 --group-directories-first'
-abbr -a lt2 'eza -aT --color=always --git-ignore --level=2 --group-directories-first'
-abbr -a lt3 'eza -aT --color=always --git-ignore --level=3 --group-directories-first'
 abbr -a llg 'eza --tree --level=2 --long -g --icons --git'
-abbr -a l. 'eza -a | grep -E "^\."'
+abbr -a l. 'eza -a --color=never | grep -E "^\."'
 
 # Editor abbreviations
 abbr -a nv nvim
@@ -56,7 +53,6 @@ abbr -a yz yazi
 abbr -a :q exit
 abbr -a day 'date +"%Y-%m-%d %A"'
 abbr -a wtr 'curl wttr.in'
-abbr -a ist 'curl -s "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py" | python3 -'
 abbr -a tt 'tmux new-session -A -s'
 
 # Special abbreviations with cursor positioning
