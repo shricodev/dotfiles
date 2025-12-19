@@ -17,10 +17,12 @@ abbr -a .5 'cd ../../../../..'
 abbr -a --position anywhere --set-cursor='%' cdl 'cd % && ls'
 
 # File operations
+abbr -a ls 'eza -alg --color=always --icons --group-directories-first'
 abbr -a ll 'eza -lg --color=always --icons --group-directories-first'
 abbr -a la 'eza -a --color=always --git-ignore --group-directories-first'
 abbr -a llg 'eza --tree --level=2 --long -g --icons --git'
 abbr -a l. 'eza -a --color=never | grep -E "^\."'
+abbr -a cat 'bat --style=plain --paging=never'
 
 # Editor abbreviations
 abbr -a nv nvim

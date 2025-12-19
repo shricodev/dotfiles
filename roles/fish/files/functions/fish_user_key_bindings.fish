@@ -11,10 +11,12 @@ function fish_user_key_bindings
     bind -M insert -m default jk backward-char force-repaint
     fzf --fish | source
 
-    #Keep this change in the bottom after adding the fish_vi_key_bindings
-    #Remove the /cd binding in fish, this basically kills tmux windows
-    #runs the exit command
+    # Keep this change in the bottom after adding the fish_vi_key_bindings
+    # Remove the Ctrl-D binding in fish - prevent accidental exits in tmux
     bind --erase --preset \cd
     bind --mode default \cd delete-char
     bind --mode insert \cd delete-char
+    # Triple Ctrl-D to exit
+    bind --mode default \cd\cd\cd delete-or-exit
+    bind --mode insert \cd\cd\cd delete-or-exit
 end

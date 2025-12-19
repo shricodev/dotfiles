@@ -10,9 +10,6 @@ fish_add_path \
     "$HOME/go/bin" \
     "$HOME/.fzf/bin"
 
-# Remove fish vi mode indication in the prompt
-function fish_mode_prompt; end
-
 # init starship quickly (only in interactive mode)
 if status is-interactive
     starship init fish | source
@@ -45,29 +42,23 @@ set -g fish_cursor_visual block
 # Open tmux as default when the shell starts
 # Only attach if we're in an interactive session to avoid breaking scripts
 if status is-interactive; and not set -q TMUX
-  set -g TMUX tmux new-session -d -s mainline
-  eval $TMUX
-  tmux attach-session -d -t mainline
+    tmux new-session -A -s mainline
 end
 
-# keep as alias since it's the base ls command replacement
-alias ls='eza -alg --color=always --icons --group-directories-first'
-alias cat='bat --style=plain --paging=never'
-alias rm='rm -I --preserve-root'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ln='ln -i'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-
-# colorize grep output (good for log files) - keep as global setting
-alias grep='grep --color=auto'
-
+# Aliases only for interactive shells
 if status is-interactive
-    bind \cd delete-char  # don't exit on accidental Ctrl-D
-    bind \cd\cd\cd delete-or-exit  # exit on the third one
+    # Safety aliases - interactive prompts
+    alias rm='rm -I --preserve-root'
+    alias cp='cp -i'
+    alias mv='mv -i'
+    alias ln='ln -i'
+    alias chown='chown --preserve-root'
+    alias chmod='chmod --preserve-root'
+    alias chgrp='chgrp --preserve-root'
 end
+
+# Colorize grep output (good for log files) - global for scripts too
+alias grep='grep --color=auto'
 
 # initialize zoxide only in interactive mode
 if status is-interactive
