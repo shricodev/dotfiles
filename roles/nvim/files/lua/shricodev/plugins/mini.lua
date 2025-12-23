@@ -27,7 +27,11 @@ return {
       --- show shorter file path.
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_filename = function()
-        return '%t'
+        -- %t = tail of file name
+        -- %m = modified (+ when modified)
+        local readonly = vim.bo.readonly and '' or ''
+
+        return '%t %m' .. readonly
       end
     end,
   },

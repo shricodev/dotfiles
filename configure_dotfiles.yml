@@ -37,6 +37,9 @@
     - role: goreleaser
       tags: [dotfiles]
 
+    - role: bat
+      tags: [dotfiles]
+
     # NOTE: Always put fish, git at the end here when configuring dotfiles
     # because fish config sources different tools like starship, zoxide and all
     # that requires them to be installed first. and git config sets up ssh setup

@@ -16,13 +16,14 @@ abbr -a .5 'cd ../../../../..'
 # Directory operations
 abbr -a --position anywhere --set-cursor='%' cdl 'cd % && ls'
 
-# File operations
-abbr -a ls 'eza -alg --color=always --icons --group-directories-first'
+# File operations (ls and cat moved to aliases.fish because it's easier to
+# bypass aliases using the 'command ls/cat' command, but not possible with
+# abbreviations. and there's a lot of chance that I want to use the real ls and
+# cat command at times.)
 abbr -a ll 'eza -lg --color=always --icons --group-directories-first'
 abbr -a la 'eza -a --color=always --git-ignore --group-directories-first'
 abbr -a llg 'eza --tree --level=2 --long -g --icons --git'
 abbr -a l. 'eza -a --color=never | grep -E "^\."'
-abbr -a cat 'bat --style=plain --paging=never'
 
 # Editor abbreviations
 abbr -a nv nvim
@@ -35,7 +36,7 @@ abbr -a cl reset
 abbr -a clear reset
 abbr -a ping 'ping -c 10'
 abbr -a df 'df -h'
-abbr -a free 'free -m'
+abbr -a free 'free -h'
 abbr -a wget 'wget -c'
 abbr -a hf 'history | fzf'
 

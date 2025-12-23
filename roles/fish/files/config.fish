@@ -23,8 +23,6 @@ set fish_greeting
 # settings as well. Just use the terminal emulator default here.
 # set TERM xterm-256color
 
-set -gx BAT_THEME "Visual Studio Dark+"
-
 if status is-interactive
     fish_config theme choose "TokyoNight Night"
 end
@@ -44,21 +42,6 @@ set -g fish_cursor_visual block
 if status is-interactive; and not set -q TMUX
     tmux new-session -A -s mainline
 end
-
-# Aliases only for interactive shells
-if status is-interactive
-    # Safety aliases - interactive prompts
-    alias rm='rm -I --preserve-root'
-    alias cp='cp -i'
-    alias mv='mv -i'
-    alias ln='ln -i'
-    alias chown='chown --preserve-root'
-    alias chmod='chmod --preserve-root'
-    alias chgrp='chgrp --preserve-root'
-end
-
-# Colorize grep output (good for log files) - global for scripts too
-alias grep='grep --color=auto'
 
 # initialize zoxide only in interactive mode
 if status is-interactive
