@@ -39,6 +39,7 @@ abbr -a df 'df -h'
 abbr -a free 'free -h'
 abbr -a wget 'wget -c'
 abbr -a hf 'history | fzf'
+abbr -a grep 'grep --color=auto'
 
 # Git abbreviations
 abbr -a lg lazygit

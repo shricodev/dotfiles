@@ -1,6 +1,6 @@
 ---
-config_dir: "{{ ansible_user_dir }}/.config"
-dotfiles_dir: "{{ ansible_user_dir }}/.dotfiles"
+config_dir: "{{ ansible_facts['user_dir'] }}/.config"
+dotfiles_dir: "{{ ansible_facts['user_dir'] }}/.dotfiles"
 
 dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
 

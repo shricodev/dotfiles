@@ -44,6 +44,15 @@ No more "setting up" — **just run the playbook and go!**
   - Ubuntu (maybe also for Debian, but some packages names might be different)
 - (Optional) Docker, if you want to test this in a container
 
+## Ansible Version Notes
+
+This repository is compatible with Ansible 2.20+ and avoids deprecated
+auto-injected facts. All system facts must be accessed via:
+
+- ansible_facts["distribution"]
+- ansible_facts["user_dir"]
+- ansible_facts["distribution_release"]
+
 ## ⚡ Setup
 
 > [!NOTE]

@@ -5,7 +5,10 @@
     sudo_group_map:
       Ubuntu: sudo
       Archlinux: wheel
-    user_group: "{{ sudo_group_map[ansible_distribution] | default('wheel') }}"
+    user_group: >-
+      {{ sudo_group_map[ansible_facts['distribution']]
+       | default('wheel') }}
+
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     append: true

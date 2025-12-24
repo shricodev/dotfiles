@@ -2,7 +2,7 @@
 - name: Install go packages
   ansible.builtin.command:
     cmd: "go install {{ item.package }}"
-    creates: "{{ ansible_user_dir }}/go/bin/{{ item.cmd }}"
+    creates: "{{ ansible_facts['user_dir'] }}/go/bin/{{ item.cmd }}"
   register: go_install
   changed_when: go_install.rc != 0
   loop_control:

@@ -11,6 +11,6 @@
 - name: Symlink config file to '$HOME/starship.toml'
   ansible.builtin.file:
     src: "{{ role_path }}/files/starship.toml"
-    dest: "{{ ansible_user_dir }}/.config/starship.toml"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/starship.toml"
     state: link
     force: true

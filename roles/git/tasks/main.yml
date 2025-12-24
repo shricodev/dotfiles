@@ -9,7 +9,7 @@
 - name: Symlink each of the git config to '$HOME'
   ansible.builtin.file:
     src: "{{ item.path }}"
-    dest: "{{ ansible_user_dir }}/{{ item.path | basename }}"
+    dest: "{{ ansible_facts['user_dir'] }}/{{ item.path | basename }}"
     state: link
     force: true
   loop: "{{ git_config_files.files }}"
