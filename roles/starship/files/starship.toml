@@ -48,4 +48,4 @@ style = 'yellow bold'
 format = '[$symbol]($style) '
 # changing it to something else like fish causes a lot of slowness
 # let it stay bash
-shell = [ 'bash' ]
+# shell = [ 'bash' ]

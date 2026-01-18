@@ -7,7 +7,7 @@ cursor-style-blink = false
 # cursor-invert-fg-bg = true
 
 confirm-close-surface = true
-fullscreen = true
+fullscreen = false
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
