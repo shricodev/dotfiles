@@ -5,6 +5,7 @@
     sudo_group_map:
       Ubuntu: sudo
       Archlinux: wheel
+      Fedora: wheel
     user_group: >-
       {{ sudo_group_map[ansible_facts['distribution']]
        | default('wheel') }}

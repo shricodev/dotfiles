@@ -1,0 +1,20 @@
+---
+- name: Check if starship is installed
+  ansible.builtin.command: "which starship"
+  register: starship_installed
+  changed_when: false
+  failed_when: false
+
+- name: Find path to bash
+  ansible.builtin.command: "which bash"
+  register: bash_path
+  changed_when: false
+
+- name: Install starship
+  become: true
+  ansible.builtin.shell:
+    cmd: set -o pipefail && curl --proto '=https' --tlsv1.2 -sSf https://starship.rs/install.sh | sh -s -- --force
+  args:
+    executable: "{{ bash_path.stdout }}"
+    creates: /usr/local/bin/starship
+  when: starship_installed.rc != 0

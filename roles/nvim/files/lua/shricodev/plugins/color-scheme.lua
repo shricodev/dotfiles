@@ -6,7 +6,7 @@ return {
     opts = {},
     config = function()
       require('tokyonight').setup {
-        -- transparent = true,
+        transparent = true,
         on_colors = function(colors)
           -- Make line numbers more visible and grayish
           colors.fg_gutter = '#596084'

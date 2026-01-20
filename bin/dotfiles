@@ -85,9 +85,12 @@ function install_ansible {
     _cmd "sudo add-apt-repository --yes --update ppa:ansible/ansible"
     _cmd "sudo apt-get install -y ansible"
     ;;
+  fedora)
+    _cmd "sudo dnf install -y ansible"
+    ;;
   *)
     _error "Unsupported OS: $1"
-    _info "Supported OS: arch, ubuntu"
+    _info "Supported OS: arch, ubuntu, fedora"
     _info_done
     ;;
   esac

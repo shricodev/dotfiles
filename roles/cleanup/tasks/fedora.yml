@@ -1,0 +1,10 @@
+---
+- name: Clean up the system (autoremove)
+  become: true
+  ansible.builtin.dnf:
+    autoremove: true
+
+- name: Clean dnf cache
+  become: true
+  ansible.builtin.command: dnf clean all
+  changed_when: false

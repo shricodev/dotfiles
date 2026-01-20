@@ -1,0 +1,6 @@
+---
+# Goreleaser is installed via go install in the go role (see group_vars/all.yml)
+# This file exists to prevent the role from failing on Fedora
+- name: Goreleaser installed via go packages
+  ansible.builtin.debug:
+    msg: "Goreleaser is installed via 'go install' in the go role"

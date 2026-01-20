@@ -42,6 +42,7 @@ No more "setting up" — **just run the playbook and go!**
 - Supported Operating Systems (for now):
   - Arch Linux
   - Ubuntu (maybe also for Debian, but some packages names might be different)
+  - Fedora
 - (Optional) Docker, if you want to test this in a container
 
 ## Ansible Version Notes
