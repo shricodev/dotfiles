@@ -20,6 +20,9 @@ bindsym $mod+Print --release exec --no-startup-id flameshot screen
 
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 
+set $locker betterlockscreen -l dimblur
+bindsym $mod+Shift+x exec --no-startup-id $locker
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -226,4 +229,7 @@ exec --no-startup-id ~/.local/bin/polybar-launch.sh
 
 exec --no-startup-id redshift -c ~/.config/redshift.conf
 exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpapers/*
+
+# make sure that this folder exists
+exec --no-startup-id betterlockscreen -u ~/Pictures/wallpapers/ --fx dimblur
 
