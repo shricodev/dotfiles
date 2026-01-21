@@ -46,7 +46,7 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf
 for_window [class=".*"] border pixel 0
 
 # set gaps
-gaps inner 3
+gaps inner 8
 gaps outer 3
 
 # Use pactl to adjust volume in PulseAudio.
