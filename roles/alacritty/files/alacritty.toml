@@ -1,58 +1,63 @@
 [general]
 import = [
-  "~/.config/alacritty/themes/rose-pine.toml"
+  "~/.config/alacritty/themes/tokyo-night.toml"
 ]
 live_config_reload = true
 
+[window]
+opacity = 0.88
+
+blur = true
+decorations = "None"
+
+startup_mode = "Windowed"
+
+padding = { x = 1, y = 1 }
+
+dynamic_padding = true
+
+[cursor]
+style = {shape = "Block", blinking = "Never"}
+vi_mode_style = {shape = "Block", blinking = "Never"}
+
+[mouse]
+# Ghostty: mouse-hide-while-typing
+hide_when_typing = true
+
+
+[scrolling]
+# Ghostty: scrollback-limit = 10000
+history = 10000
+
 [font]
-size = 11.2
-normal = { family = "JetBrainsMono Nerd Font", style = "Bold"}
+size = 12
+normal = { family = "JetBrainsMono Nerd Font", style = "Normal"}
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font"}
-
+italic = { family = "JetBrainsMono Nerd Font" }
 offset = { x = 0, y = 1 }
-
-[env]
-TERM = "xterm-256color"
 
 [colors]
 draw_bold_text_with_bright_colors = true
 cursor = { text = "#000000", cursor = "#C0C0C0" }
 vi_mode_cursor = { text = "#000000", cursor = "#C0C0C0" }
 
-[cursor]
-style = {shape = "Block", blinking = "Never"}
-vi_mode_style = {shape = "Block", blinking = "Never"}
+# [colors.primary]
+# Ghostty: background = #000000
+# background = "#000000"
 
-[window]
-opacity = 1
-padding = { x = 1, y = 1 }
-# blur = true
-decorations = "None"
-dynamic_padding = false
-startup_mode = "Fullscreen"
-option_as_alt = "Both"
+[keyboard]
+bindings = [
+  # Ghostty: ctrl+plus=increase_font_size:1
+  # Note: key names can vary by layout, so include a couple common ones.
+  { key = "Plus",  mods = "Control", action = "IncreaseFontSize" },
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "NumpadAdd", mods = "Control", action = "IncreaseFontSize" },
 
-[selection]
-save_to_clipboard = true
+  # Ghostty: ctrl+minus=decrease_font_size:1
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "NumpadSubtract", mods = "Control", action = "DecreaseFontSize" },
 
-[mouse]
-hide_when_typing = true
-
-[terminal]
-# shell = {program = "/usr/bin/zsh"}
-# shell = {program = "/usr/bin/fish", args = ["--login", "-c", "/bin/tmux attach || /bin/tmux"]}
-
-[[mouse.bindings]]
-action = "PasteSelection"
-mouse = "Middle"
-
-[[keyboard.bindings]]
-action = "ResetFontSize"
-key = "Key0"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = 'F11'
+  # Ghostty: ctrl+zero=reset_font_size
+  { key = "0", mods = "Control", action = "ResetFontSize" },
+]
 

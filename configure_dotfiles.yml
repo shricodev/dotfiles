@@ -3,14 +3,16 @@
   hosts: all
 
   roles:
-    # Ditch alacritty for ghostty. It's been acting weird lately with completion
-    # borders and all especially in (md) files.
-    # - alacritty
+    - role: alacritty
+      tags: [dotfiles]
 
     - role: ghostty
       tags: [dotfiles]
 
     - role: tmux
+      tags: [dotfiles]
+
+    - role: i3
       tags: [dotfiles]
 
     - role: nvim

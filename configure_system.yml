@@ -62,3 +62,19 @@
     - role: flatpak
       tags:
         - system
+
+    - role: picom
+      tags:
+        - system
+
+    - role: gtk-3.0
+      tags:
+        - system
+
+    - role: gtk-4.0
+      tags:
+        - system
+
+    - role: redshift
+      tags:
+        - system

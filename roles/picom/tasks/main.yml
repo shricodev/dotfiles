@@ -1,0 +1,13 @@
+---
+- name: Create the '$HOME/.config/picom' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/picom"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '$HOME/.config/picom' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/picom"
+    state: link
+    force: true

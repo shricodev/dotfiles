@@ -1,0 +1,7 @@
+---
+- name: Symlink config file to '~/.config/redshift.conf'
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/redshift.conf"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/redshift.conf"
+    state: link
+    force: true

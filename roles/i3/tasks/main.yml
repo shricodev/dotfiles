@@ -1,0 +1,13 @@
+---
+- name: Create the '$HOME/.config/i3' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/i3"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '$HOME/.config/i3' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/i3"
+    state: link
+    force: true
