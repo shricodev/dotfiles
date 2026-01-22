@@ -36,7 +36,7 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $locker
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -140,6 +140,25 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+
+# don't assign the terminal like so, because diong so does not let you open
+# terminal in any workspace, no matter where you are, it will open the terminal
+# in that workspace
+# assign [class="Alacritty"] workspace number $ws3
+
+# kinda fine with firefox or anything else, because you open it almost always
+# in one single workspace.
+assign [class="^firefox$|^Firefox$|^org.mozilla.firefox$"] workspace number $ws2
+assign [class="^Discord$|^discord$"] workspace number $ws4
+
+# running this in order, because I want the 'workspace number 1' to be the
+# last command
+exec --no-startup-id i3-msg "\
+  workspace number $ws2; exec firefox; \
+  workspace number $ws3; exec alacritty; \
+  workspace number $ws4; exec flatpak run com.discordapp.Discord; \
+  workspace number 1"
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -198,6 +217,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym XF86MonBrightnessUp exec brightnessctl -d nvidia_0 set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl -d nvidia_0 set 5%-
+
 # class                 border  bground text    indicator child_border
 client.focused          #83CAFA #51A2DA #FFFFFF #83CAFA   #51A2DA
 client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #8C8C8C
@@ -227,9 +249,14 @@ client.background       #FFFFFF
 
 exec --no-startup-id ~/.local/bin/polybar-launch.sh
 
-exec --no-startup-id redshift -c ~/.config/redshift.conf
+exec --no-startup-id redshift-gtk
 exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpapers/*
+
+exec_always --no-startup-id xset r rate 300 55
+
+# set system auto lock after 45 minutes (2700 seconds) of inactivity
+exec_always --no-startup-id xset s 2700
+exec_always --no-startup-id xset dpms 2700 2700 2700
 
 # make sure that this folder exists
 exec --no-startup-id betterlockscreen -u ~/Pictures/wallpapers/ --fx dimblur
-

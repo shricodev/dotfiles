@@ -1,7 +1,13 @@
 ---
-- name: Symlink config file to '~/.config/redshift.conf'
+- name: Create the '$HOME/.config/redshift' directory if not exists
   ansible.builtin.file:
-    src: "{{ role_path }}/files/redshift.conf"
-    dest: "{{ ansible_facts['user_dir'] }}/.config/redshift.conf"
+    path: "{{ ansible_facts['user_dir'] }}/.config/redshift"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '$HOME/.config/redshift' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/redshift"
     state: link
     force: true
