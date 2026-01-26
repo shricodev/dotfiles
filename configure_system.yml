@@ -78,3 +78,7 @@
     - role: redshift
       tags:
         - system
+
+    - role: polybar
+      tags:
+        - system

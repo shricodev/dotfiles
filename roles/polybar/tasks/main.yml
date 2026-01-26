@@ -1,0 +1,13 @@
+---
+- name: Create the '$HOME/.config/polybar' directory if not exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/polybar"
+    mode: "0755"
+    state: directory
+
+- name: Create symlink of files to '$HOME/.config/polybar' directory
+  ansible.builtin.file:
+    src: "{{ role_path }}/files"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/polybar"
+    state: link
+    force: true

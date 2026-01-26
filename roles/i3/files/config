@@ -141,7 +141,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 
-# don't assign the terminal like so, because diong so does not let you open
+# don't assign the terminal like so, because doing so does not let you open
 # terminal in any workspace, no matter where you are, it will open the terminal
 # in that workspace
 # assign [class="Alacritty"] workspace number $ws3
@@ -149,7 +149,12 @@ set $ws10 "10"
 # kinda fine with firefox or anything else, because you open it almost always
 # in one single workspace.
 assign [class="^firefox$|^Firefox$|^org.mozilla.firefox$"] workspace number $ws2
+# always open an incognito window in 9th window. firefox seems to be the browser
+# I use right now, so using firefox for it.
+assign [class="^firefox$|^Firefox$|^org.mozilla.firefox$" window_role="private"] workspace number $ws9
+
 assign [class="^Discord$|^discord$"] workspace number $ws4
+assign [class="^Obsidian$|^obsidian$"] workspace number $ws5
 
 # running this in order, because I want the 'workspace number 1' to be the
 # last command
@@ -157,6 +162,7 @@ exec --no-startup-id i3-msg "\
   workspace number $ws2; exec firefox; \
   workspace number $ws3; exec alacritty; \
   workspace number $ws4; exec flatpak run com.discordapp.Discord; \
+  workspace number $ws4; exec flatpak run md.obsidian.Obsidian; \
   workspace number 1"
 
 # switch to workspace
