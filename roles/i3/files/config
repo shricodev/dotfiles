@@ -16,7 +16,9 @@ set $mod Mod4
 font pango:JetBrains Mono Nerd Font 11
 
 bindsym Print exec --no-startup-id flameshot gui
-bindsym $mod+Print --release exec --no-startup-id flameshot screen
+bindsym --release $mod+Shift+s exec --no-startup-id flameshot gui
+
+bindsym --release $mod+Print exec --no-startup-id flameshot screen
 
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 
@@ -63,14 +65,14 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-10'"
-bindsym $mod+space exec --no-startup-id rofi -show drun
+bindsym $mod+space exec "rofi -modi drun,run -show drun"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

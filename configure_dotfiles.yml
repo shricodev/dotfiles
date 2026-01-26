@@ -6,6 +6,9 @@
     - role: alacritty
       tags: [dotfiles]
 
+    - role: kitty
+      tags: [dotfiles]
+
     - role: ghostty
       tags: [dotfiles]
 
