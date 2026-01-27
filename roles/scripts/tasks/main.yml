@@ -14,8 +14,7 @@
 - name: Symlink each of the script to '$HOME/.local/bin'
   ansible.builtin.file:
     src: "{{ item.path }}"
-    dest: >
-      {{ ansible_facts['user_dir'] }}/.local/bin/
-      {{ item.path | basename }}
+    dest: >-
+      {{ ansible_facts['user_dir'] }}/.local/bin/{{ item.path | basename }}
     state: link
   loop: "{{ script_files.files }}"
