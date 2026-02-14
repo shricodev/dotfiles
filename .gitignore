@@ -47,3 +47,7 @@ id_ed25519*
 .vscode/
 .idea/
 
+# GnuPG runtime files
+dots/gnupg/.gnupg/pubring.kbx
+dots/gnupg/.gnupg/trustdb.gpg
+

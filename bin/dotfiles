@@ -136,13 +136,13 @@ _info_done
 setup_ssh_key
 clone_dotfiles
 
-pushd "$DOTFILES_DIR" >/dev/null 2>&1
+pushd "$DOTFILES_DIR/ansible" >/dev/null 2>&1
 _info "Running Ansible playbook"
 
 # I'm hardcoding the limit to 'local' here as that's the whole purpose. Anytime
 # you run a script in another machine, then local will point to that localhost
 # of the machine.
-ansible-playbook "$DOTFILES_DIR/main.yml" --limit local --ask-become-pass
+ansible-playbook main.yml --limit local --ask-become-pass
 
 _info_done
 popd >/dev/null 2>&1

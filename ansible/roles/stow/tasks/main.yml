@@ -1,0 +1,19 @@
+---
+- name: Ensure stow is installed
+  become: true
+  ansible.builtin.package:
+    name: stow
+    state: present
+
+- name: Get list of stow packages
+  ansible.builtin.find:
+    paths: "{{ dotfiles_dir }}/dots"
+    file_type: directory
+    recurse: false
+  register: stow_packages
+
+- name: Deploy dotfiles with stow
+  ansible.builtin.command:
+    cmd: "stow -d {{ dotfiles_dir }}/dots -t {{ ansible_facts['user_dir'] }} {{ item.path | basename }}"
+  loop: "{{ stow_packages.files }}"
+  changed_when: false

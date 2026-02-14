@@ -20,10 +20,27 @@ tasks:
 
   local:
     desc: Run ansible locally
+    dir: ansible
     cmds:
       - ansible-playbook main.yml --limit local --ask-become-pass
 
   ubuntu_homelabs:
     desc: Run ansible to set up system and dotfiles on ubuntu homelabs
+    dir: ansible
     cmds:
       - ansible-playbook main.yml --limit ubuntu_homelabs
+
+  stow:
+    desc: Deploy all dotfiles via stow
+    cmds:
+      - ./stow.sh stow
+
+  unstow:
+    desc: Remove all dotfile symlinks
+    cmds:
+      - ./stow.sh unstow
+
+  restow:
+    desc: Re-deploy all dotfiles via stow (unstow + stow)
+    cmds:
+      - ./stow.sh restow

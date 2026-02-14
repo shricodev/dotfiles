@@ -1,0 +1,12 @@
+---
+- name: Ensure tmux is installed
+  become: true
+  ansible.builtin.package:
+    name: tmux
+    state: present
+
+- name: Clone Tmux Plugin Manager (no update)
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ ansible_facts['user_dir'] }}/.tmux/plugins/tpm"
+    update: false

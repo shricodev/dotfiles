@@ -1,0 +1,6 @@
+---
+- name: Configure the system
+  import_playbook: configure_system.yml
+
+- name: Clean up the system and unused packages
+  import_playbook: clean_up_system.yml

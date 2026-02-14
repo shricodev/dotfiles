@@ -15,5 +15,5 @@ jobs:
         with:
           args: ""
           setup_python: "true"
-          working_directory: ""
+          working_directory: "ansible"
           requirements_file: ""

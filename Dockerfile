@@ -23,8 +23,13 @@ RUN apt-get install -y \
   gnupg \
   locales \
   tzdata \
-  wget && \
+  wget \
+  software-properties-common && \
   apt-get autoremove -y
+
+# Install Ansible
+RUN add-apt-repository --yes --update ppa:ansible/ansible && \
+  apt-get install -y ansible
 
 RUN adduser --quiet --disabled-password \
   --shell $(which bash) --home /home/${USER} \
@@ -41,15 +46,18 @@ USER ${USER}
 
 RUN mkdir -p /home/${USER}/.local/bin
 
-# Here, we copy to /tmp/dotfiles, instead because ansible already does the task
-# of symlinking the dotfiles script in the bin/ directory to ~/.local/bin
-COPY --chown=${USER}:${group} bin/dotfiles /tmp/dotfiles
-RUN chmod u+x /tmp/dotfiles
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/${USER}/.bashrc
 
-RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/${USER}/.bashrc && \
-  bash -c "source /home/$USER/.bashrc"
+# Copy the entire repo as ~/.dotfiles so we test the actual local changes
+# instead of cloning from GitHub (which may have an older structure).
+COPY --chown=${USER}:${group} . /home/${USER}/.dotfiles
 
-# The setup is just meant to be one time and not everytime the container starts
-# and all, so using 'RUN' here is the appropriate option. and not something
-# like 'CMD' or 'ENTRYPOINT'.
-RUN bash /tmp/dotfiles
+# Initialize a git repo so the ensure_dotfiles_repo_exists pre-task is happy
+# (.git/ is excluded via .dockerignore to keep the build context small).
+RUN cd /home/${USER}/.dotfiles && git init && git add -A && \
+  git -c user.name="docker" -c user.email="docker@test" commit -m "init" --quiet
+
+# Run ansible playbook directly. Not using --ask-become-pass since the sudoers
+# config already grants NOPASSWD access and Docker builds are non-interactive.
+WORKDIR /home/${USER}/.dotfiles/ansible
+RUN ansible-playbook main.yml --limit local

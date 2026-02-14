@@ -1,0 +1,7 @@
+---
+- name: Ensure dotfiles repo exists (no update)
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_dir }}"
+    version: main
+    update: false
