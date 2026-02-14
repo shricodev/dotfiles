@@ -4,6 +4,7 @@ common_packages:
   - jq
   - nodejs
   - xsel
+  - fzf
   - curl
   - unzip
   - neovim

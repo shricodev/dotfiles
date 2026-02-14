@@ -48,14 +48,8 @@ RUN mkdir -p /home/${USER}/.local/bin
 
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/${USER}/.bashrc
 
-# Copy the entire repo as ~/.dotfiles so we test the actual local changes
-# instead of cloning from GitHub (which may have an older structure).
-COPY --chown=${USER}:${group} . /home/${USER}/.dotfiles
-
-# Initialize a git repo so the ensure_dotfiles_repo_exists pre-task is happy
-# (.git/ is excluded via .dockerignore to keep the build context small).
-RUN cd /home/${USER}/.dotfiles && git init && git add -A && \
-  git -c user.name="docker" -c user.email="docker@test" commit -m "init" --quiet
+# Clone the dotfiles repo from GitHub
+RUN git clone --branch main https://github.com/shricodev/dotfiles.git /home/${USER}/.dotfiles
 
 # Run ansible playbook directly. Not using --ask-become-pass since the sudoers
 # config already grants NOPASSWD access and Docker builds are non-interactive.

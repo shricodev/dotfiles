@@ -6,6 +6,7 @@ common_packages:
   - nodejs
   - npm
   - xsel
+  - fzf
   - curl
   - unzip
   - neovim
