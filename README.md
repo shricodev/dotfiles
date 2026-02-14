@@ -9,7 +9,8 @@
 ## 👀 Check Out My Blog Post on this Project! (Outdated)
 
 > I have a blog post about this project [here](https://dev.to/shricodev/how-i-manage-my-system-and-dotfiles-with-ansible-8m1).
-> **NOTE:** It's outdated as previously everything including dotfiles was setup using Ansible. Now, we have a mix of Stow + Ansible.
+>
+> ⚠️ **NOTE:** It's outdated as previously everything including dotfiles was setup using Ansible. Now, we have a mix of Stow + Ansible.
 
 Best of both worlds: **Stow** for dotfiles, **Ansible** for system setup.
 
