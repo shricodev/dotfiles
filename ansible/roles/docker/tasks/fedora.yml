@@ -1,23 +1,34 @@
 ---
 - name: Check if docker-ce is already installed
-  ansible.builtin.command: rpm -q docker-ce
+  ansible.builtin.command: "dnf list installed docker-ce"
   register: docker_installed
   changed_when: false
   failed_when: false
 
 - name: Remove unofficial docker packages if any
   become: true
-  ansible.builtin.shell: |
-    dnf remove -y docker docker-client docker-client-latest docker-common \
-      docker-latest docker-latest-logrotate docker-logrotate docker-selinux \
-      docker-engine-selinux docker-engine podman 2>/dev/null || true
+  ansible.builtin.dnf:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-selinux
+      - docker-engine-selinux
+      - docker-engine
+      - podman
+    state: absent
   when: docker_installed.rc != 0
-  changed_when: false
 
 - name: Add docker repository
   become: true
   ansible.builtin.command:
-    cmd: dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
+    cmd: >-
+      dnf config-manager addrepo
+      --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
     creates: /etc/yum.repos.d/docker-ce.repo
 
 - name: Install docker engine

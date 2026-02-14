@@ -39,7 +39,7 @@
 
 - name: Get system architecture
   ansible.builtin.command: "dpkg --print-architecture"
-  register: system_arch
+  register: docker_system_arch
   changed_when: false
   failed_when: false
 
@@ -47,7 +47,7 @@
   become: true
   ansible.builtin.apt_repository:
     repo: >
-      deb [arch={{ system_arch.stdout }}
+      deb [arch={{ docker_system_arch.stdout }}
       signed-by=/etc/apt/keyrings/docker.gpg]
       https://download.docker.com/linux/ubuntu
       {{ ansible_facts['distribution_release'] }} stable

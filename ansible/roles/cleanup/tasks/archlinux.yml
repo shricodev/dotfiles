@@ -1,16 +1,17 @@
 ---
 - name: Check for orphaned packages
   become: true
-  ansible.builtin.shell: "pacman -Qtdq"
-  register: orphan_check
+  ansible.builtin.command: "pacman -Qtdq"
+  register: cleanup_orphan_check
   changed_when: false
   failed_when: false
 
 - name: Remove orphaned packages
   become: true
-  ansible.builtin.shell: >-
-    "pacman -Rns --noconfirm {{ orphan_check.stdout_lines | join(' ') }}"
-  when: orphan_check.stdout != ""
-  register: pacman_cleanup
-  changed_when: pacman_cleanup.stdout != ""
+  ansible.builtin.command: >-
+    pacman -Rns --noconfirm
+    {{ cleanup_orphan_check.stdout_lines | join(' ') }}
+  when: cleanup_orphan_check.stdout != ""
+  register: cleanup_pacman_result
+  changed_when: cleanup_pacman_result.rc == 0
   failed_when: false

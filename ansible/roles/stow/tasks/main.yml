@@ -14,6 +14,9 @@
 
 - name: Deploy dotfiles with stow
   ansible.builtin.command:
-    cmd: "stow -d {{ dotfiles_dir }}/dots -t {{ ansible_facts['user_dir'] }} {{ item.path | basename }}"
+    cmd: >-
+      stow -d {{ dotfiles_dir }}/dots
+      -t {{ ansible_facts['user_dir'] }}
+      {{ item.path | basename }}
   loop: "{{ stow_packages.files }}"
   changed_when: false

@@ -3,17 +3,29 @@ name: ansible-lint
 on:
   push:
   workflow_dispatch:
+
 jobs:
   build:
     name: Ansible Lint
     runs-on: ubuntu-24.04
+    env:
+      ANSIBLE_COLLECTIONS_PATH: >-
+        ${{ github.workspace }}/.ansible/collections:
+        /usr/share/ansible/collections
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+
+      - name: Install Ansible collections (repo local)
+        run: |
+          mkdir -p .ansible/collections
+          ansible-galaxy collection install \
+            -r ansible/collections/requirements.yml \
+            -p .ansible/collections \
+            --force
+
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main
-        # optional
         with:
-          args: ""
-          setup_python: "true"
-          working_directory: "ansible"
-          requirements_file: ""
+          working_directory: ansible
+          args: "-v"
