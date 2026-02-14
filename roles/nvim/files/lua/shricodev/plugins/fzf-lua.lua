@@ -226,9 +226,10 @@ return {
       },
     },
     winopts = {
+      border = 'rounded',
       -- using bat_native or bat improves the performance.
       -- according to fzf-lua docs. see: https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-get-maximum-performance-out-of-fzf-lua
-      preview = { border = 'none' },
+      -- preview = { border = 'none' },
     },
     fzf_opts = { ['--cycle'] = true },
     files = {

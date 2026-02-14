@@ -2,7 +2,7 @@
 - name: Enable terra COPR repository for ghostty
   become: true
   community.general.copr:
-    name: pgdev/ghostty
+    name: scottames/ghostty
     state: enabled
 
 - name: Install ghostty

@@ -9,32 +9,32 @@ return {
   --     require('mini.ai').setup {}
   --   end,
   -- },
-  {
-    'nvim-mini/mini.statusline',
-    version = false,
-    config = function()
-      local statusline = require 'mini.statusline'
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      --- show shorter file path.
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_filename = function()
-        -- %t = tail of file name
-        -- %m = modified (+ when modified)
-        local readonly = vim.bo.readonly and '' or ''
-
-        return '%t %m' .. readonly
-      end
-    end,
-  },
+  -- {
+  --   'nvim-mini/mini.statusline',
+  --   version = false,
+  --   config = function()
+  --     local statusline = require 'mini.statusline'
+  --     statusline.setup { use_icons = vim.g.have_nerd_font }
+  --
+  --     -- You can configure sections in the statusline by overriding their
+  --     -- default behavior. For example, here we set the section for
+  --     -- cursor location to LINE:COLUMN
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     statusline.section_location = function()
+  --       return '%2l:%-2v'
+  --     end
+  --
+  --     --- show shorter file path.
+  --     ---@diagnostic disable-next-line: duplicate-set-field
+  --     statusline.section_filename = function()
+  --       -- %t = tail of file name
+  --       -- %m = modified (+ when modified)
+  --       local readonly = vim.bo.readonly and '' or ''
+  --
+  --       return '%t %m' .. readonly
+  --     end
+  --   end,
+  -- },
   {
     'nvim-mini/mini.surround',
     version = false,

@@ -15,8 +15,8 @@
     - role: tmux
       tags: [dotfiles]
 
-    - role: i3
-      tags: [dotfiles]
+    # - role: i3
+    #   tags: [dotfiles]
 
     - role: nvim
       tags: [dotfiles]
@@ -31,9 +31,6 @@
       tags: [dotfiles]
 
     - role: stow
-      tags: [dotfiles]
-
-    - role: yazi
       tags: [dotfiles]
 
     - role: zed
