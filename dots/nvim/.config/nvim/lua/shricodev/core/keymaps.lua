@@ -23,10 +23,12 @@ keymap.set('i', 'JJ', '<ESC>', opts 'Exit insert mode with JJ')
 keymap.set({ 'n', 'v' }, '<leader>y', '"+y', opts 'Yank to system clipboard')
 keymap.set('n', '<leader>Y', '"+Y', opts 'Yank line to system clipboard')
 
+-- Paste hack
 keymap.set('v', '<leader>d', [["_d]], opts "Don't yank the cut out character(s) to clipboard")
+keymap.set('x', '<leader>p', [["_dP]], opts 'Paste without yanking the cut out text')
 
 -- Highlight management
-keymap.set('n', '<leader>nh', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
+keymap.set('n', '<leader>c', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
 keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>', opts 'Clear search highlights')
 
 -- Line movement
@@ -76,15 +78,24 @@ keymap.set('n', '<C-d>', '<C-d>zz', opts 'Move down half the screen in the file'
 keymap.set('n', 'n', 'nzzzv', opts 'Search the next occurance keeping the word in center')
 keymap.set('n', 'N', 'Nzzzv', opts 'Search the previous occurance keeping the word in center')
 
--- Paste hack
-keymap.set('x', '<leader>p', [["_dP]], opts 'Paste without yanking the cut out text')
-
 -- Make file executable
 keymap.set('n', '<leader>xx', '<cmd>!chmod +x %<CR>', opts 'Make the current file executable')
 
 -- Copy file paths
-keymap.set('n', '<leader>yfp', '<cmd>let @" = expand("%:p")<CR>', opts 'Yank current file absolute path')
-keymap.set('n', '<leader>yfn', '<cmd>let @" = expand("%:t")<CR>', opts 'Yank current file name')
+-- Copy file paths (yank + print)
+local function yank_and_echo(text)
+  vim.fn.setreg('"', text)
+  print('Yanked: ' .. text)
+end
+
+-- Get (file info) keymaps, yanks to nvim unnamed register
+keymap.set('n', '<leader>gfp', function()
+  yank_and_echo(vim.fn.expand '%:p')
+end, opts 'Yank absolute file path')
+
+keymap.set('n', '<leader>gfn', function()
+  yank_and_echo(vim.fn.expand '%:t')
+end, opts 'Yank file name')
 
 -- Terminal keymaps
 keymap.set('t', '<Esc>', '<C-\\><C-n>', opts 'Change terminal mode to normal mode')
@@ -107,5 +118,3 @@ end, { expr = true, desc = 'Get the directory of the current file (cmdline) mode
 -- Running . runs the same indentation we added/removed.
 keymap.set('v', '<', '<gv', opts 'Left indent while staying in indent mode')
 keymap.set('v', '>', '>gv', opts 'Right indent while staying in indent mode')
-
--- keymap.set('n', 'x', '"_x', { desc = "Don't yank the cut out character to clipboard" })

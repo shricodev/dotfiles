@@ -30,17 +30,17 @@ return {
     {
       '<leader>g/',
       function()
-        require('fzf-lua').live_grep_native()
+        require('fzf-lua').live_grep_native { hidden = true }
       end,
-      desc = keymap_namer('fzf-lua', 'fuzzily search string in cwd (including hidden)'),
+      desc = keymap_namer('fzf-lua', 'fuzzily search string in the project (including hidden)'),
     },
-    {
-      '<leader>fx',
-      function()
-        require('fzf-lua').files { cwd = vim.fn.stdpath 'config' }
-      end,
-      desc = keymap_namer('fzf-lua', 'fuzzily find neovim config'),
-    },
+    -- {
+    --   '<leader>fx',
+    --   function()
+    --     require('fzf-lua').files { cwd = vim.fn.stdpath 'config' }
+    --   end,
+    --   desc = keymap_namer('fzf-lua', 'fuzzily find neovim config'),
+    -- },
     {
       '<leader>faf',
       function()
@@ -106,14 +106,14 @@ return {
       desc = keymap_namer('fzf-lua', 'fuzzily find marks'),
     },
     {
-      '<leader>xw',
+      '<leader>fX',
       function()
         require('fzf-lua').diagnostics_workspace()
       end,
       desc = keymap_namer('fzf-lua', 'view the workspace diagnostics'),
     },
     {
-      '<leader>xd',
+      '<leader>fx',
       function()
         require('fzf-lua').diagnostics_document()
       end,
@@ -185,7 +185,7 @@ return {
     {
       '<leader>fn',
       function()
-        require('fzf-lua').files { cwd = '$HOME/Documents/Obsidian-Notes/' }
+        require('fzf-lua').files { cwd = '$HOME/Documents/obsidian-notes/' }
       end,
       desc = keymap_namer('fzf-lua', 'fuzzily find notes'),
     },

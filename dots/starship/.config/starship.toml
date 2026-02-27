@@ -7,7 +7,7 @@ $git_branch\
 $git_state\
 $python\
 $cmd_duration\
-${custom.git_status_simplified}\
+$git_status\
 """
 
 [character]
@@ -27,9 +27,19 @@ disabled = false
 format = '[$symbol\($branch\)](bold red) '
 
 # This makes the terminal quite slow sometimes in certain folders. So disabling it for now.
-# [git_status]
-# disabled = false
+[git_status]
+disabled = false
+# format = '[$all_status$ahead_behind](yellow bold) '
+# untracked = "✘"
+# modified = "✘"
+# staged = "✘"
+# renamed = ""
+# deleted = ""
+# conflicted = ""
+# ahead = ""
+# behind = ""
 # diverged = "󰦻"
+# stashed = ""
 
 [cmd_duration]
 min_time = 5_000
@@ -41,11 +51,11 @@ disabled = false
 [python]
 format = "[($virtualenv )](bold yellow)"
 
-[custom.git_status_simplified]
-when = 'test -n "$(git status --porcelain)"'
-symbol = '✘'
-style = 'yellow bold'
-format = '[$symbol]($style) '
+# [custom.git_status_simplified]
+# when = 'test -n "$(git status --porcelain)"'
+# symbol = '✘'
+# style = 'yellow bold'
+# format = '[$symbol]($style) '
 # changing it to something else like fish causes a lot of slowness
 # let it stay bash
 # shell = [ 'bash' ]

@@ -35,6 +35,8 @@ window.relativenumber = true
 
 -- change the updatetime property to 50ms
 opt.updatetime = 50
+-- don't autosave changes
+opt.autowrite = false
 
 -- don't show mode as it is already in the statusline
 opt.showmode = false
@@ -46,7 +48,7 @@ opt.wrap = false -- disable line wrapping
 opt.breakindent = true
 
 -- Set highlight on search
-opt.hlsearch = false
+opt.hlsearch = true
 
 opt.mouse = 'a'
 
@@ -88,16 +90,14 @@ opt.sidescrolloff = 8
 opt.incsearch = true
 opt.inccommand = 'split'
 
-opt.foldenable = true
-opt.foldmethod = 'manual' -- Default fold method (change as needed)
-opt.foldlevel = 99 -- Open most folds by default
-opt.foldcolumn = '0'
-
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 opt.signcolumn = 'yes' -- show sign column so that text doesn't shift
+
+-- single line cmd height
+opt.cmdheight = 1
 
 -- backspace
 opt.backspace = { 'indent', 'eol', 'start' } -- allow backspace on indent, end of line or insert mode start position
@@ -117,10 +117,28 @@ opt.spelllang = 'en_us'
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
+-- show hidden buffers
+opt.hidden = true
+opt.errorbells = false
+
+-- don't autochange directories
+opt.autochdir = false
+
+opt.encoding = 'utf-8'
+
 -- opt.guicursor = ''
-opt.guicursor = {
-  'i-n-v-c:block', -- Normal, visual, command-line: block cursor
-  've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
-  'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
-  'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
-}
+-- opt.guicursor = {
+--   'i-n-v-c:block', -- Normal, visual, command-line: block cursor
+--   've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
+--   'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
+--   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
+-- }
+
+opt.guicursor = 'n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175' -- cursor blinking and settings
+
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- start with all folds open
+opt.foldlevel = 99
+opt.foldenable = true
+opt.foldcolumn = '0'

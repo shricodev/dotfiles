@@ -17,3 +17,4 @@ common_packages:
   - asciinema
   - trash-cli
   - aria2
+  - ncdu
