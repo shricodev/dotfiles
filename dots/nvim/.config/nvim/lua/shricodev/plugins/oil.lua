@@ -1,4 +1,6 @@
-local keymap_namer = require('shricodev.utils').keymap_namer
+local utils = require 'shricodev.utils'
+local keymap_namer = utils.keymap_namer
+local pname = utils.plugin_name()
 
 return {
   'stevearc/oil.nvim',
@@ -6,7 +8,7 @@ return {
   -- Adding this keys option causes the plugin to load on key press and it cannot
   -- act as default_file_explorer, so need to ditch this setting
   -- keys = {
-  --   { '<leader>e', '<CMD>Oil<CR>', desc = keymap_namer('oil', 'open parent directory') },
+  --   { '<leader>e', '<CMD>Oil<CR>', desc = keymap_namer(pname, 'open parent directory') },
   -- },
   config = function()
     require('oil').setup {
@@ -32,11 +34,11 @@ return {
       },
     }
 
-    vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = keymap_namer('oil', 'open parent directory') })
+    vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = keymap_namer(pname, 'open parent directory') })
     vim.keymap.set('n', '_', function()
       require('oil.actions').open_cwd.callback()
     end, {
-      desc = keymap_namer('oil', 'open current working directory (cwd)'),
+      desc = keymap_namer(pname, 'open current working directory (cwd)'),
     })
   end,
 }

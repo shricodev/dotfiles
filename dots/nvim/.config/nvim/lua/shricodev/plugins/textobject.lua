@@ -1,4 +1,6 @@
-local keymap_namer = require('shricodev.utils').keymap_namer
+local utils = require('shricodev.utils')
+local keymap_namer = utils.keymap_namer
+local pname = utils.plugin_name()
 
 return {
   {
@@ -30,100 +32,100 @@ return {
 
       map({ 'x', 'o' }, 'af', function()
         sel.select_textobject('@call.outer', 'textobjects')
-      end, keymap_namer('textobject', 'select outer part of function call.'))
+      end, keymap_namer(pname, 'select outer part of function call.'))
 
       map({ 'x', 'o' }, 'if', function()
         sel.select_textobject('@call.inner', 'textobjects')
-      end, keymap_namer('textobject', 'select inner part of function call.'))
+      end, keymap_namer(pname, 'select inner part of function call.'))
 
       map({ 'x', 'o' }, 'am', function()
         sel.select_textobject('@function.outer', 'textobjects')
-      end, keymap_namer('textobject', 'select outer part of a method/function definition'))
+      end, keymap_namer(pname, 'select outer part of a method/function definition'))
 
       map({ 'x', 'o' }, 'im', function()
         sel.select_textobject('@function.inner', 'textobjects')
-      end, keymap_namer('textobject', 'select inner part of a method/function definition'))
+      end, keymap_namer(pname, 'select inner part of a method/function definition'))
 
       map({ 'x', 'o' }, 'ai', function()
         sel.select_textobject('@conditional.outer', 'textobjects')
-      end, keymap_namer('textobject', 'select outer part of a conditional'))
+      end, keymap_namer(pname, 'select outer part of a conditional'))
 
       map({ 'x', 'o' }, 'ii', function()
         sel.select_textobject('@conditional.inner', 'textobjects')
-      end, keymap_namer('textobject', 'select inner part of a conditional'))
+      end, keymap_namer(pname, 'select inner part of a conditional'))
 
       map({ 'x', 'o' }, 'ac', function()
         sel.select_textobject('@class.outer', 'textobjects')
-      end, keymap_namer('textobject', 'select outer part of class definition.'))
+      end, keymap_namer(pname, 'select outer part of class definition.'))
 
       map({ 'x', 'o' }, 'ic', function()
         sel.select_textobject('@class.inner', 'textobjects')
-      end, keymap_namer('textobject', 'select inner part of class definition.'))
+      end, keymap_namer(pname, 'select inner part of class definition.'))
 
       -- Move textobjects (same keys as before)
       map({ 'n', 'x', 'o' }, ']f', function()
         mv.goto_next_start('@call.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to next function call start'))
+      end, keymap_namer(pname, 'move to next function call start'))
 
       map({ 'n', 'x', 'o' }, ']m', function()
         mv.goto_next_start('@function.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to next method/function definition start'))
+      end, keymap_namer(pname, 'move to next method/function definition start'))
 
       map({ 'n', 'x', 'o' }, ']c', function()
         mv.goto_next_start('@class.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to next class start'))
+      end, keymap_namer(pname, 'move to next class start'))
 
       map({ 'n', 'x', 'o' }, ']i', function()
         mv.goto_next_start('@conditional.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to next condition start'))
+      end, keymap_namer(pname, 'move to next condition start'))
 
       map({ 'n', 'x', 'o' }, ']F', function()
         mv.goto_next_end('@call.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous function call end'))
+      end, keymap_namer(pname, 'move to previous function call end'))
 
       map({ 'n', 'x', 'o' }, ']M', function()
         mv.goto_next_end('@function.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous method/function definition end'))
+      end, keymap_namer(pname, 'move to previous method/function definition end'))
 
       map({ 'n', 'x', 'o' }, ']C', function()
         mv.goto_next_end('@class.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous class end'))
+      end, keymap_namer(pname, 'move to previous class end'))
 
       map({ 'n', 'x', 'o' }, ']I', function()
         mv.goto_next_end('@conditional.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous conditional end'))
+      end, keymap_namer(pname, 'move to previous conditional end'))
 
       map({ 'n', 'x', 'o' }, '[f', function()
         mv.goto_previous_start('@call.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous function call start'))
+      end, keymap_namer(pname, 'move to previous function call start'))
 
       map({ 'n', 'x', 'o' }, '[m', function()
         mv.goto_previous_start('@function.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous method/function definition start'))
+      end, keymap_namer(pname, 'move to previous method/function definition start'))
 
       map({ 'n', 'x', 'o' }, '[c', function()
         mv.goto_previous_start('@class.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous class start'))
+      end, keymap_namer(pname, 'move to previous class start'))
 
       map({ 'n', 'x', 'o' }, '[i', function()
         mv.goto_previous_start('@conditional.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous conditional start'))
+      end, keymap_namer(pname, 'move to previous conditional start'))
 
       map({ 'n', 'x', 'o' }, '[F', function()
         mv.goto_previous_end('@call.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous function call end'))
+      end, keymap_namer(pname, 'move to previous function call end'))
 
       map({ 'n', 'x', 'o' }, '[M', function()
         mv.goto_previous_end('@function.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous method/function definition end'))
+      end, keymap_namer(pname, 'move to previous method/function definition end'))
 
       map({ 'n', 'x', 'o' }, '[C', function()
         mv.goto_previous_end('@class.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous class end'))
+      end, keymap_namer(pname, 'move to previous class end'))
 
       map({ 'n', 'x', 'o' }, '[I', function()
         mv.goto_previous_end('@conditional.outer', 'textobjects')
-      end, keymap_namer('textobject', 'move to previous conditional end'))
+      end, keymap_namer(pname, 'move to previous conditional end'))
     end,
   },
 }

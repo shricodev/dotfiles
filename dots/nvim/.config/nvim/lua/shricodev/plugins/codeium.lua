@@ -1,4 +1,6 @@
-local keymap_namer = require('shricodev.utils').keymap_namer
+local utils = require('shricodev.utils')
+local keymap_namer = utils.keymap_namer
+local pname = utils.plugin_name()
 
 -- -- Codeium.nvim gives a lot of shitty errors for completion timeout.
 -- return {
@@ -69,18 +71,18 @@ return {
   config = function()
     vim.keymap.set('i', '<M-;>', function()
       return vim.fn['codeium#Accept']()
-    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'accept') })
+    end, { expr = true, silent = true, desc = keymap_namer(pname, 'accept') })
 
     vim.keymap.set('i', '<M-]>', function()
       return vim.fn['codeium#CycleCompletions'](1)
-    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'next suggestion') })
+    end, { expr = true, silent = true, desc = keymap_namer(pname, 'next suggestion') })
 
     vim.keymap.set('i', '<M-[>', function()
       return vim.fn['codeium#CycleCompletions'](-1)
-    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'previous suggestion') })
+    end, { expr = true, silent = true, desc = keymap_namer(pname, 'previous suggestion') })
 
     vim.keymap.set('i', '<M-x>', function()
       return vim.fn['codeium#Clear']()
-    end, { expr = true, silent = true, desc = keymap_namer('codeium', 'clear') })
+    end, { expr = true, silent = true, desc = keymap_namer(pname, 'clear') })
   end,
 }

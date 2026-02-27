@@ -1,4 +1,6 @@
-local keymap_namer = require('shricodev.utils').keymap_namer
+local utils = require 'shricodev.utils'
+local keymap_namer = utils.keymap_namer
+local pname = utils.plugin_name()
 
 return {
   'stevearc/conform.nvim',
@@ -45,7 +47,7 @@ return {
       --     async = false,
       --     timeout_ms = 500,
       --   }
-      -- end, { desc = keymap_namer('conform', 'format file or range (in visual mode)') }),
+      -- end, { desc = keymap_namer(pname, 'format file or range (in visual mode)') }),
     }
   end,
 }

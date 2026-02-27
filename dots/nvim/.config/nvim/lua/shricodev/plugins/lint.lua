@@ -1,4 +1,6 @@
-local keymap_namer = require('shricodev.utils').keymap_namer
+local utils = require 'shricodev.utils'
+local keymap_namer = utils.keymap_namer
+local pname = utils.plugin_name()
 
 return {
   'mfussenegger/nvim-lint',
@@ -56,6 +58,6 @@ return {
       if should_lint() then
         lint.try_lint()
       end
-    end, { desc = keymap_namer('lint', 'trigger linting for current file') })
+    end, { desc = keymap_namer(pname, 'trigger linting for current file') })
   end,
 }
