@@ -6,10 +6,11 @@ SETUVAR VIRTUAL_ENV_DISABLE_PROMPT:true
 SETUVAR VISUAL:nvim
 SETUVAR Z_DATA_DIR:/home/shricodev/\x2elocal/share/z
 SETUVAR __fish_initialized:3800
+SETUVAR _fisher_jomik_2F_fish_2D_gruvbox_files:\x7e/\x2econfig/fish/functions/theme_gruvbox\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_oh_2D_my_2D_fish_2F_theme_2D_robbyrussell_files:\x7e/\x2econfig/fish/functions/fish_prompt\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish\x1eoh\x2dmy\x2dfish/theme\x2drobbyrussell\x1erose\x2dpine/fish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish\x1eoh\x2dmy\x2dfish/theme\x2drobbyrussell\x1erose\x2dpine/fish\x1ejomik/fish\x2dgruvbox
 SETUVAR _fisher_rose_2D_pine_2F_fish_files:\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Dawn\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Moon\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x2etheme
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/home/shricodev/\x2ebun/bin\x1e/home/shricodev/\x2elocal/share/pnpm\x1e/var/lib/flatpak/exports/bin\x1e/home/shricodev/\x2ebin\x1e/home/shricodev/\x2elocal/bin\x1e/home/shricodev/local/bin\x1e/home/shricodev/\x2econfig/emacs/bin\x1e/home/shricodev/Applications\x1e/var/lib/flatpak/exports/bin/\x1e/home/shricodev/go/bin\x1e/home/shricodev/\x2efzf/bin\x1e/usr/bin
+SETUVAR fish_user_paths:/home/shricodev/\x2enpm\x2dglobal/bin\x1e/bin\x1e/home/shricodev/\x2ebun/bin\x1e/home/shricodev/\x2elocal/share/pnpm\x1e/var/lib/flatpak/exports/bin\x1e/home/shricodev/\x2ebin\x1e/home/shricodev/\x2elocal/bin\x1e/home/shricodev/local/bin\x1e/home/shricodev/\x2econfig/emacs/bin\x1e/home/shricodev/Applications\x1e/var/lib/flatpak/exports/bin/\x1e/home/shricodev/go/bin\x1e/home/shricodev/\x2efzf/bin\x1e/usr/bin

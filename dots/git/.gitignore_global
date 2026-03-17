@@ -5,6 +5,8 @@
 
 node_modules
 **/.claude/settings.local.json
+.histfile
+.zsh_history
 
 # Compiled source #
 ###################

@@ -24,7 +24,7 @@ set fish_greeting
 # set TERM xterm-256color
 
 if status is-interactive
-    fish_config theme choose "TokyoNight Night"
+  theme_gruvbox dark medium
 end
 
 # set up NEOVIM as a default editor.

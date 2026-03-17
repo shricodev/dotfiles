@@ -7,6 +7,12 @@ if test -d "$HOME/.bun"
     fish_add_path "$BUN_INSTALL/bin"
 end
 
+# Npm
+if test -d "$HOME/.npm-global"
+    set -gx NPM_INSTALL "$HOME/.npm-global"
+    fish_add_path "$NPM_INSTALL/bin"
+end
+
 # pnpm
 set -l pnpm_home "$HOME/.local/share/pnpm"
 if test -d $pnpm_home

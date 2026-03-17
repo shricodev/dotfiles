@@ -26,7 +26,6 @@ symbol = "[git:](blue)"
 disabled = false
 format = '[$symbol\($branch\)](bold red) '
 
-# This makes the terminal quite slow sometimes in certain folders. So disabling it for now.
 [git_status]
 disabled = false
 # format = '[$all_status$ahead_behind](yellow bold) '

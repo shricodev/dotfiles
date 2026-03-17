@@ -1,4 +1,4 @@
-local utils = require('shricodev.utils')
+local utils = require 'shricodev.utils'
 local keymap_namer = utils.keymap_namer
 local pname = utils.plugin_name()
 
@@ -66,7 +66,7 @@ local pname = utils.plugin_name()
 return {
   'Exafunction/codeium.vim',
   -- TODO: toggle it to true
-  enabled = true,
+  enabled = false,
   event = 'BufEnter',
   config = function()
     vim.keymap.set('i', '<M-;>', function()
