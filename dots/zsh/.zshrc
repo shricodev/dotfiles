@@ -1,3 +1,9 @@
+# if command -v tmux >/dev/null 2>&1; then
+#   if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
+#     exec tmux new-session -A -s mainline
+#   fi
+# fi
+
 # Zinit Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -8,59 +14,10 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# OMZ snippets
-zinit snippet OMZP::sudo
-
-# PATH
-typeset -U path  # deduplicate PATH entries
-path=(
-    "$HOME/.bin"
-    "$HOME/.local/bin"
-    "$HOME/local/bin"
-    "$HOME/.config/emacs/bin"
-    "$HOME/Applications"
-    "/var/lib/flatpak/exports/bin"
-    "$HOME/go/bin"
-    "$HOME/.fzf/bin"
-    $path
-)
-
-# Bun
-if [[ -d "$HOME/.bun" ]]; then
-    export BUN_INSTALL="$HOME/.bun"
-    path=("$BUN_INSTALL/bin" $path)
-fi
-
-# Npm global
-if [[ -d "$HOME/.npm-global" ]]; then
-    export NPM_INSTALL="$HOME/.npm-global"
-    path=("$NPM_INSTALL/bin" $path)
-fi
-
-# pnpm
-if [[ -d "$HOME/.local/share/pnpm" ]]; then
-    export PNPM_HOME="$HOME/.local/share/pnpm"
-    path=("$PNPM_HOME" $path)
-fi
-
-# Rust / Cargo
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-# Environment
-export EDITOR=nvim
-export GIT_EDITOR=nvim
-
 # History
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
-HISTDUP=erase
 
 setopt appendhistory
 setopt sharehistory
@@ -77,16 +34,18 @@ unsetopt autocd beep notify
 bindkey -v
 export KEYTIMEOUT=15  # 150ms escape delay (snappy jk)
 
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
 
 # jk to exit insert mode (like fish config)
 bindkey -M viins 'jk' vi-cmd-mode
 
-# Ctrl-D: delete-char instead of exit (triple Ctrl-D to exit, like fish)
-setopt ignore_eof  # prevents single Ctrl-D from closing the shell
-bindkey -M viins '^D' delete-char
-bindkey -M vicmd '^D' delete-char
+# by default vim mode in zsh is a bit weird. so this kinda helps.
+bindkey -M viins '^W' backward-kill-word
+
+# some terminals send backspace as ^? and some as ^H. so this helps in both case.
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
 
 # Completions
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -95,8 +54,34 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# OMZ snippets
+zinit snippet OMZP::sudo
+# completion plugins load before compinit
+zinit light zsh-users/zsh-completions
+zinit light Aloxaf/fzf-tab
+
 autoload -Uz compinit && compinit
 zinit cdreplay -q
+
+# use ctrl + x and e to edit the command line using $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
+
+# clear screen, keep buffer
+clear-keep-buffer() {
+  zle clear-screen
+}
+zle -N clear-keep-buffer
+bindkey '^Xl' clear-keep-buffer
+
+# copy current command to clipboard
+copy-command() {
+  echo -n $BUFFER | wl-copy
+  zle -M "Copied to clipboard"
+}
+zle -N copy-command
+bindkey '^Xc' copy-command
 
 # FZF Configuration
 export FZF_DEFAULT_OPTS="--height=65% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
@@ -131,6 +116,7 @@ alias v='nvim'
 
 # System
 alias cl='reset'
+alias clear='reset'
 alias ping='ping -c 10'
 alias df='df -h'
 alias free='free -h'
@@ -184,28 +170,16 @@ lt() {
     fi
 }
 
-# SSH Agent
-if [[ -z "$SSH_AUTH_SOCK" ]]; then
-    eval "$(ssh-agent -s)" >/dev/null 2>&1
-fi
+# Plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
 
-if [[ -n "$SSH_AUTH_SOCK" ]]; then
-    _ssh_keys=(
-        "$HOME/.ssh/gh_login_shricodev"
-        "$HOME/.ssh/homelab-vm_key.pem"
-    )
-    for key in "${_ssh_keys[@]}"; do
-        [[ -f "$key" ]] && ssh-add "$key" >/dev/null 2>&1
-    done
-    unset _ssh_keys
+# load ssh for github
+if command -v keychain >/dev/null 2>&1; then
+  eval "$(keychain --eval --quiet gh_login_shricodev)"
 fi
 
 # Shell integrations (keep at the end)
 eval "$(starship init zsh)"
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 eval "$(zoxide init zsh)"
-
-# Auto-attach to tmux (like fish config)
-if [[ -z "$TMUX" ]] && [[ -t 0 ]]; then
-    tmux new-session -A -s mainline
-fi
