@@ -1,0 +1,9 @@
+---
+session_name: notes
+start_directory: "#{HOME}/Documents/obsidian-notes"
+windows:
+  - panes:
+      - shell_command:
+          - nvim .
+  - panes:
+      - shell_command: []

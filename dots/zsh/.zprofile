@@ -13,3 +13,5 @@ path=(
 export EDITOR=nvim
 export GIT_EDITOR=nvim
 
+NPM_PREFIX=$(npm config get prefix 2>/dev/null)
+[ -n "$NPM_PREFIX" ] && export PATH="$NPM_PREFIX/bin:$PATH"

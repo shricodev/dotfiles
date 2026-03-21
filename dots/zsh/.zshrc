@@ -1,8 +1,11 @@
-# if command -v tmux >/dev/null 2>&1; then
-#   if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
-#     exec tmux new-session -A -s mainline
-#   fi
-# fi
+if command -v tmux >/dev/null 2>&1 && command -v tmuxp >/dev/null 2>&1; then
+  if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
+    # with exec we are substituting the shell with tmux. so if tmux is closed
+    # essentially the terminal will close as well.
+    exec ~/.local/bin/tmux-start
+  fi
+fi
+
 
 # Zinit Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -54,13 +57,22 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# OMZ snippets
-zinit snippet OMZP::sudo
 # completion plugins load before compinit
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-autoload -Uz compinit && compinit
+# OMZ snippets
+zinit snippet OMZP::sudo
+
+autoload -Uz compinit
+
+# Smarter completion initialization
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 zinit cdreplay -q
 
 # use ctrl + x and e to edit the command line using $EDITOR
@@ -144,6 +156,16 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
+# Plugins
+zinit light zsh-users/zsh-autosuggestions
+# light version of syntax highlighting
+zinit light zsh-users/zsh-syntax-highlighting 
+
+# load ssh for github
+if command -v keychain >/dev/null 2>&1; then
+  eval "$(keychain --eval --quiet gh_login_shricodev)"
+fi
+
 # Functions
 # cd into a directory and list contents
 cdl() { cd "$1" && ls; }
@@ -151,35 +173,8 @@ cdl() { cd "$1" && ls; }
 # Create a directory and cd into it
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
-# Tree listing with depth; uses tree or eza
-lt() {
-    local depth=1 path="."
-    if [[ "$1" =~ ^[0-9]+$ ]]; then
-        depth="$1"; shift
-    fi
-    if [[ -n "$1" ]]; then
-        path="$1"; shift
-    fi
-    if (( $+commands[tree] )); then
-        command tree -a -C --dirsfirst --gitignore -L "$depth" "$path" "$@"
-    elif (( $+commands[eza] )); then
-        command eza -aT --color=always --git-ignore --level="$depth" --group-directories-first "$path" "$@"
-    else
-        echo "lt: required command not found: install 'tree' or 'eza'" >&2
-        return 127
-    fi
-}
-
-# Plugins
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
-
-# load ssh for github
-if command -v keychain >/dev/null 2>&1; then
-  eval "$(keychain --eval --quiet gh_login_shricodev)"
-fi
-
 # Shell integrations (keep at the end)
 eval "$(starship init zsh)"
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
+

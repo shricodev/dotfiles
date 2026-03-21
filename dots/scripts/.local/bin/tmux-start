@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ensure_session() {
+  local session="$1"
+  if ! tmux has-session -t "$session" 2>/dev/null; then
+    tmuxp load -d "$session"
+  fi
+}
+
+ensure_session notes
+ensure_session dotfiles
+ensure_session work
+
+if tmux has-session -t main 2>/dev/null; then
+  exec tmux attach -t main
+else
+  exec tmuxp load main
+fi

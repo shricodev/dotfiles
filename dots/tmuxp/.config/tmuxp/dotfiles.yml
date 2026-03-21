@@ -1,0 +1,9 @@
+---
+session_name: dotfiles
+start_directory: "#{HOME}/.dotfiles"
+windows:
+  - panes:
+      - shell_command:
+          - nvim .
+  - panes:
+      - shell_command: []

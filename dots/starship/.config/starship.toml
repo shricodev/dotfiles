@@ -4,10 +4,9 @@ format = """
 $character\
 $directory\
 $git_branch\
-$git_state\
 $python\
 $cmd_duration\
-$git_status\
+${custom.dirty}\
 """
 
 [character]
@@ -21,40 +20,24 @@ truncation_symbol = ""
 truncate_to_repo = true
 read_only = " 🔒"
 
+[git_status]
+disabled = true
+
+[custom.dirty]
+when = 'git diff-index --quiet HEAD -- 2>/dev/null; test $? -ne 0'
+symbol = '✘'
+style = 'yellow bold'
+format = '[$symbol]($style) '
+shell = ['zsh', '-f']
+
 [git_branch]
 symbol = "[git:](blue)"
 disabled = false
 format = '[$symbol\($branch\)](bold red) '
 
-[git_status]
-disabled = false
-# format = '[$all_status$ahead_behind](yellow bold) '
-# untracked = "✘"
-# modified = "✘"
-# staged = "✘"
-# renamed = ""
-# deleted = ""
-# conflicted = ""
-# ahead = ""
-# behind = ""
-# diverged = "󰦻"
-# stashed = ""
-
 [cmd_duration]
 min_time = 5_000
 format = '[$duration](bold yellow) '
 
-[git_state]
-disabled = false
-
 [python]
 format = "[($virtualenv )](bold yellow)"
-
-# [custom.git_status_simplified]
-# when = 'test -n "$(git status --porcelain)"'
-# symbol = '✘'
-# style = 'yellow bold'
-# format = '[$symbol]($style) '
-# changing it to something else like fish causes a lot of slowness
-# let it stay bash
-# shell = [ 'bash' ]

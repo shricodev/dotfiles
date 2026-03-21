@@ -1,0 +1,10 @@
+---
+session_name: work
+start_directory: "#{HOME}/codes"
+
+windows:
+  - panes:
+      - shell_command: []
+  - panes:
+      - shell_command:
+          - nvim .
