@@ -1,74 +1,58 @@
-return {
-  'williamboman/mason.nvim',
-  -- don't add lazy = true or the event as all the linters and formatters are
-  -- setup with mason and when opening files like so: nvim $(fd --type f -e ts
-  -- -e tsx), mason will not have loaded and will throw an error.
-  -- event = 'VeryLazy',
-  -- We need to add mason-lspconfig as a dependency to mason
-  -- as we need to make sure that mason is loaded before mason-lspconfig to make
-  -- it work
-  dependencies = {
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+-- import mason
+local mason = require 'mason'
+
+-- import mason-lspconfig
+local mason_lspconfig = require 'mason-lspconfig'
+
+local mason_tool_installer = require 'mason-tool-installer'
+
+-- Make sure to setup mason before mason-lspconfig
+-- enable mason and configure icons
+mason.setup {
+  ui = {
+    border = 'rounded',
+    icons = {
+      package_pending = ' ',
+      package_installed = '󰄳 ',
+      package_uninstalled = '󰚌 ',
+    },
   },
-  config = function()
-    -- import mason
-    local mason = require 'mason'
+}
 
-    -- import mason-lspconfig
-    local mason_lspconfig = require 'mason-lspconfig'
+mason_lspconfig.setup {
+  -- list of servers for mason to install
+  ensure_installed = {
+    'ts_ls',
+    'rust_analyzer',
+    'bashls',
+    'jsonls',
+    'ruff',
+    'yamlls',
+    'dockerls',
+    'html',
+    'cssls',
+    'tailwindcss',
+    'gopls',
+    'lua_ls',
+    'emmet_ls',
+    'pyright',
+    'sqlls',
+  },
+  -- auto-install configured servers (with lspconfig)
+  automatic_installation = true, -- not the same as ensure_installed
+}
 
-    local mason_tool_installer = require 'mason-tool-installer'
-
-    -- Make sure to setup mason before mason-lspconfig
-    -- enable mason and configure icons
-    mason.setup {
-      ui = {
-        border = 'rounded',
-        icons = {
-          package_pending = ' ',
-          package_installed = '󰄳 ',
-          package_uninstalled = '󰚌 ',
-        },
-      },
-    }
-
-    mason_lspconfig.setup {
-      -- list of servers for mason to install
-      ensure_installed = {
-        'ts_ls',
-        'rust_analyzer',
-        'bashls',
-        'jsonls',
-        'ruff',
-        'yamlls',
-        'dockerls',
-        'html',
-        'cssls',
-        'tailwindcss',
-        'gopls',
-        'lua_ls',
-        'emmet_ls',
-        'pyright',
-        'sqlls',
-      },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
-    }
-
-    mason_tool_installer.setup {
-      ensure_installed = {
-        'prettierd', -- prettier formatter
-        'prettier', -- prettier formatter (prettierd backup in formatting.lua)
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'eslint_d', -- js linter"black"
-        'gofumpt', -- go formatter
-        'sqlfmt', -- sql formatter
-        'goimports-reviser', -- go formatter
-        -- add other formatter/linter in the future
-      },
-    }
-  end,
+mason_tool_installer.setup {
+  ensure_installed = {
+    'prettierd', -- prettier formatter
+    'prettier', -- prettier formatter (prettierd backup in formatting.lua)
+    'stylua', -- lua formatter
+    'isort', -- python formatter
+    'eslint_d', -- js linter
+    'gofumpt', -- go formatter
+    'sqlfmt', -- sql formatter
+    'goimports-reviser', -- go formatter
+    'shfmt', -- shell formatter
+    -- add other formatter/linter in the future
+  },
 }

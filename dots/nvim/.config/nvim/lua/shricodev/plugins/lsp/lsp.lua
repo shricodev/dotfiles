@@ -1,4 +1,3 @@
-return {
-  -- This will help us setup default config for each lsp servers...
-  'neovim/nvim-lspconfig', -- already loaded in mason.lua, but keep it for now. No issues.
-}
+-- nvim-lspconfig is loaded via vim.pack in pack.lua.
+-- Server configs live in lsp/ directory (Neovim 0.12+ native).
+-- Servers are enabled via vim.lsp.enable() in lua/shricodev/lsp.lua.

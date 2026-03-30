@@ -1,8 +1,8 @@
 -- Imp config file for neovim.
 require 'shricodev.core'
 
--- Require the lazy plugin manager.
-require 'shricodev.lazy'
+-- Require the vim.pack plugin manager (Neovim 0.12+).
+require 'shricodev.pack'
 
--- This enables all the lsp servers
-require 'shricodev.lsp'
+-- -- Enable all the lsp servers (Neovim 0.12+ native)
+-- require 'shricodev.lsp'

@@ -1,5 +1,2 @@
--- Returns plugins that don't need much configuration.
-return {
-  'christoomey/vim-tmux-navigator', -- Navigate between vim and tmux panes.
-  'nvim-lua/plenary.nvim', -- lua functions that most plugins depends upon.
-}
+-- Plugin configuration is loaded from pack.lua.
+-- vim-tmux-navigator and plenary.nvim need no extra config.
