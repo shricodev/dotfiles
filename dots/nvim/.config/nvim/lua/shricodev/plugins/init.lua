@@ -1,2 +1,0 @@
--- Plugin configuration is loaded from pack.lua.
--- vim-tmux-navigator and plenary.nvim need no extra config.

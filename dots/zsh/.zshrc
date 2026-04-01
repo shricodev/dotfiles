@@ -2,7 +2,7 @@ if command -v tmux >/dev/null 2>&1 && command -v tmuxp >/dev/null 2>&1; then
   if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
     # with exec we are substituting the shell with tmux. so if tmux is closed
     # essentially the terminal will close as well.
-    exec ~/.local/bin/tmux-start
+    bash ~/.local/bin/tmux-start
   fi
 fi
 
@@ -28,14 +28,13 @@ setopt extendedglob
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
-setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 unsetopt autocd beep notify
 
 # Vi mode + Key bindings
 bindkey -v
-export KEYTIMEOUT=15  # 150ms escape delay (snappy jk)
+export KEYTIMEOUT=10  # 100ms escape delay (snappy jk)
 
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
@@ -87,19 +86,28 @@ clear-keep-buffer() {
 zle -N clear-keep-buffer
 bindkey '^Xl' clear-keep-buffer
 
-# copy current command to clipboard
+# copy current command to clipboard (works on both Wayland and X11)
+clip-copy() {
+  if [[ -n "$WAYLAND_DISPLAY" ]]; then
+    echo -n "$1" | wl-copy
+  else
+    echo -n "$1" | xclip -selection clipboard
+  fi
+}
+
 copy-command() {
-  echo -n $BUFFER | wl-copy
+  clip-copy "$BUFFER"
   zle -M "Copied to clipboard"
 }
 zle -N copy-command
 bindkey '^Xc' copy-command
 
 # FZF Configuration
-export FZF_DEFAULT_OPTS="--height=65% --layout=reverse --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+export FZF_DEFAULT_OPTS="--height=50% --layout=default --bind ctrl-u:preview-page-up,ctrl-d:preview-page-down"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window=right:noborder"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --icons --color=always {} | head -n 200' --preview-window=right:noborder"
 
 # Aliases (can be bypassed with 'command ls', 'command cat', etc.)
@@ -127,8 +135,9 @@ alias vim='nvim'
 alias v='nvim'
 
 # System
-alias cl='reset'
-alias clear='reset'
+# clears visible screen but preserves scrollback (prompt moves to top)
+alias cl='printf "\033[2J\033[H"'
+alias clear='printf "\033[2J\033[H"'
 alias ping='ping -c 10'
 alias df='df -h'
 alias free='free -h'
@@ -156,10 +165,10 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-# Plugins
-zinit light zsh-users/zsh-autosuggestions
-# light version of syntax highlighting
-zinit light zsh-users/zsh-syntax-highlighting 
+# Deferred plugin loading for faster startup
+zinit wait lucid light-mode for \
+  zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-syntax-highlighting
 
 # load ssh for github
 if command -v keychain >/dev/null 2>&1; then
@@ -177,4 +186,3 @@ mkcd() { mkdir -p "$1" && cd "$1"; }
 eval "$(starship init zsh)"
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
-

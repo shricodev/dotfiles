@@ -18,6 +18,8 @@ local function inactive_file_icon()
   return icon .. ' '
 end
 
+-- NOTE: tokyonight must be installed even if gruvbox is the active colorscheme,
+-- since lualine pulls its color palette from tokyonight.
 local tn = require('tokyonight.colors').setup { style = 'night' }
 
 local conditions = {

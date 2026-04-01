@@ -153,7 +153,7 @@ vim.keymap.set('n', '<leader>fn', function()
 end, { desc = keymap_namer(pname, 'fuzzily find notes') })
 
 vim.keymap.set('n', '<leader>gn/', function()
-  require('fzf-lua').live_grep_native { cwd = '$HOME/Documents/Obsidian-Notes/' }
+  require('fzf-lua').live_grep_native { cwd = '$HOME/Documents/obsidian-notes/' }
 end, { desc = keymap_namer(pname, 'fuzzily search notes') })
 
 vim.keymap.set('n', '<leader><tab>', function()

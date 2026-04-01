@@ -1,13 +1,7 @@
 -- Toggle LSP Diagnostics
+vim.g.diagnostics_enabled = true
+
 vim.api.nvim_create_user_command('ToggleDiagnostics', function()
-  if vim.g.diagnostics_enabled == nil then
-    vim.g.diagnostics_enabled = false
-    vim.diagnostic.enable(false)
-  elseif vim.g.diagnostics_enabled then
-    vim.g.diagnostics_enabled = false
-    vim.diagnostic.enable(false)
-  else
-    vim.g.diagnostics_enabled = true
-    vim.diagnostic.enable()
-  end
+  vim.g.diagnostics_enabled = not vim.g.diagnostics_enabled
+  vim.diagnostic.enable(vim.g.diagnostics_enabled)
 end, { desc = 'Toggle LSP Diagnostics' })

@@ -8,8 +8,6 @@ require('blink.cmp').setup {
     ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
     ['<C-p>'] = { 'select_prev', 'fallback' },
     ['<C-n>'] = { 'select_next', 'fallback' },
-    ['<Up>'] = { 'select_prev', 'fallback' },
-    ['<Down>'] = { 'select_next', 'fallback' },
     ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
     ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
     ['<C-e>'] = { 'hide' },

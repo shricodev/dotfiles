@@ -4,4 +4,3 @@ require 'shricodev.core.options'
 require 'shricodev.core.autocmds'
 
 require 'shricodev.core.keymaps'
-require 'shricodev.core.keymaps-del'

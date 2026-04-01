@@ -3,7 +3,7 @@ local window = vim.wo -- For window options
 local global = vim.g -- For global options
 
 global.mapleader = ' '
-global.maplocalleader = ' '
+global.maplocalleader = '\\'
 
 -- Currently using i3, so running x11, so ignore this wl-copy thing.
 -- For now when using wayland, force wl-copy clipboard
@@ -30,8 +30,8 @@ opt.smartindent = true
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- show number in current line and show relative number to all other lines
-window.number = true
-window.relativenumber = true
+opt.number = true
+opt.relativenumber = true
 
 -- change the updatetime property to 50ms
 opt.updatetime = 50

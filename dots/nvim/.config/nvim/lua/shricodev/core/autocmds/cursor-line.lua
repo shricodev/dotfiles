@@ -2,7 +2,15 @@
 local cursorGrp = vim.api.nvim_create_augroup('CursorLine', { clear = true })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   pattern = '*',
-  command = 'set cursorline',
+  callback = function()
+    vim.wo.cursorline = true
+  end,
   group = cursorGrp,
 })
-vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', command = 'set nocursorline', group = cursorGrp })
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  pattern = '*',
+  callback = function()
+    vim.wo.cursorline = false
+  end,
+  group = cursorGrp,
+})

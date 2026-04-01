@@ -65,7 +65,7 @@ map({ 'n', 'x', 'o' }, ']m', function()
   mv.goto_next_start('@function.outer', 'textobjects')
 end, keymap_namer(pname, 'move to next method/function definition start'))
 
-map({ 'n', 'x', 'o' }, ']c', function()
+map({ 'n', 'x', 'o' }, ']k', function()
   mv.goto_next_start('@class.outer', 'textobjects')
 end, keymap_namer(pname, 'move to next class start'))
 
@@ -81,9 +81,9 @@ map({ 'n', 'x', 'o' }, ']M', function()
   mv.goto_next_end('@function.outer', 'textobjects')
 end, keymap_namer(pname, 'move to previous method/function definition end'))
 
-map({ 'n', 'x', 'o' }, ']C', function()
+map({ 'n', 'x', 'o' }, ']K', function()
   mv.goto_next_end('@class.outer', 'textobjects')
-end, keymap_namer(pname, 'move to previous class end'))
+end, keymap_namer(pname, 'move to next class end'))
 
 map({ 'n', 'x', 'o' }, ']I', function()
   mv.goto_next_end('@conditional.outer', 'textobjects')
@@ -97,7 +97,7 @@ map({ 'n', 'x', 'o' }, '[m', function()
   mv.goto_previous_start('@function.outer', 'textobjects')
 end, keymap_namer(pname, 'move to previous method/function definition start'))
 
-map({ 'n', 'x', 'o' }, '[c', function()
+map({ 'n', 'x', 'o' }, '[k', function()
   mv.goto_previous_start('@class.outer', 'textobjects')
 end, keymap_namer(pname, 'move to previous class start'))
 
@@ -113,7 +113,7 @@ map({ 'n', 'x', 'o' }, '[M', function()
   mv.goto_previous_end('@function.outer', 'textobjects')
 end, keymap_namer(pname, 'move to previous method/function definition end'))
 
-map({ 'n', 'x', 'o' }, '[C', function()
+map({ 'n', 'x', 'o' }, '[K', function()
   mv.goto_previous_end('@class.outer', 'textobjects')
 end, keymap_namer(pname, 'move to previous class end'))
 

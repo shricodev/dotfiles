@@ -6,7 +6,6 @@ $directory\
 $git_branch\
 $python\
 $cmd_duration\
-${custom.dirty}\
 """
 
 [character]
@@ -23,13 +22,13 @@ read_only = " 🔒"
 [git_status]
 disabled = true
 
-[custom.dirty]
-when = 'git diff-index --quiet HEAD -- 2>/dev/null; test $? -ne 0'
-symbol = '✘'
-style = 'yellow bold'
-format = '[$symbol]($style) '
-shell = ['zsh', '-f']
-
+# [custom.dirty]
+# when = 'git diff-index --quiet HEAD -- 2>/dev/null; test $? -ne 0'
+# symbol = '✘'
+# style = 'yellow bold'
+# format = '[$symbol]($style) '
+# shell = ['zsh', '-f']
+#
 [git_branch]
 symbol = "[git:](blue)"
 disabled = false
