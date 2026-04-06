@@ -79,6 +79,11 @@ vim.pack.add({
   gh 'olexsmir/gopher.nvim',
 }, { load = true })
 
+-- some default nvim plugins that needs to be enabled
+vim.cmd.packadd 'cfilter'
+vim.cmd.packadd 'nvim.undotree'
+vim.cmd.packadd 'nvim.difftool'
+
 -- coonfigure all plugins (order matters for dependencies)
 require 'shricodev.plugins.color-scheme'
 require 'shricodev.plugins.mini-icons'

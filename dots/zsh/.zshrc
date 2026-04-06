@@ -1,8 +1,13 @@
+# load ssh agent before tmux so the tmux server inherits SSH_AUTH_SOCK
+if command -v keychain >/dev/null 2>&1; then
+  eval "$(keychain --eval --quiet gh_login_shricodev)"
+fi
+
 if command -v tmux >/dev/null 2>&1 && command -v tmuxp >/dev/null 2>&1; then
   if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
     # with exec we are substituting the shell with tmux. so if tmux is closed
     # essentially the terminal will close as well.
-    bash ~/.local/bin/tmux-start
+    exec ~/.local/bin/tmux-start
   fi
 fi
 
@@ -169,11 +174,6 @@ alias .5='cd ../../../../..'
 zinit wait lucid light-mode for \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-syntax-highlighting
-
-# load ssh for github
-if command -v keychain >/dev/null 2>&1; then
-  eval "$(keychain --eval --quiet gh_login_shricodev)"
-fi
 
 # Functions
 # cd into a directory and list contents

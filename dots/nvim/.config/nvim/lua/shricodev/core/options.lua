@@ -29,6 +29,9 @@ opt.expandtab = true -- expand tab to spaces
 opt.smartindent = true
 opt.autoindent = true -- copy indent from current line when starting new one
 
+-- ask for file changes confirm before closing
+opt.confirm = true
+
 -- show number in current line and show relative number to all other lines
 opt.number = true
 opt.relativenumber = true
