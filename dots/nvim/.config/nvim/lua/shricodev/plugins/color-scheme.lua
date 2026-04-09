@@ -1,5 +1,9 @@
 require('tokyonight').setup {
   transparent = true,
+  styles = {
+    sidebars = 'transparent',
+    floats = 'transparent',
+  },
   on_colors = function(colors)
     -- Make line numbers more visible and grayish
     colors.fg_gutter = '#596084'
@@ -11,8 +15,6 @@ require('tokyonight').setup {
     hl.Comment = { fg = '#9094c7' }
   end,
 }
-
--- vim.cmd 'colorscheme tokyonight-night'
 
 -- Default options:
 require('gruvbox').setup {
@@ -41,4 +43,4 @@ require('gruvbox').setup {
   transparent_mode = true,
 }
 
-vim.cmd 'colorscheme gruvbox'
+vim.cmd 'colorscheme tokyonight-night'

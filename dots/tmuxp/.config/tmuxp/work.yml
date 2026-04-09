@@ -1,6 +1,6 @@
 ---
 session_name: work
-start_directory: "#{HOME}/codes"
+start_directory: "#{HOME}/personal/codes"
 
 windows:
   - panes:

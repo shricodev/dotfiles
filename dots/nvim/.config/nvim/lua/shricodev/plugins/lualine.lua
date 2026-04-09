@@ -28,8 +28,7 @@ local conditions = {
   end,
   check_git_workspace = function()
     local filepath = vim.fn.expand '%:p:h'
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
+    return vim.fn.finddir('.git', filepath .. ';') ~= '' or vim.fn.findfile('.git', filepath .. ';') ~= ''
   end,
 }
 
@@ -114,7 +113,7 @@ local config = {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
         sections = { 'error', 'warn', 'hint' },
-        symbols = { error = ' ', warn = ' ', hint = ' ' },
+        symbols = { error = ' ', warn = ' ', hint = '󰠠 ' },
         colored = true,
         diagnostics_color = {
           error = { fg = tn.red },
