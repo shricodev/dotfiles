@@ -2,8 +2,6 @@ typeset -U path
 path=(
     "$HOME/.bin"
     "$HOME/.local/bin"
-    "$HOME/Applications"
-    "/var/lib/flatpak/exports/bin"
     "$HOME/go/bin"
     $path
 )

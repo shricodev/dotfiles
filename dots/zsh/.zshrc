@@ -7,7 +7,7 @@ if command -v tmux >/dev/null 2>&1 && command -v tmuxp >/dev/null 2>&1; then
   if [[ -z "$TMUX" && -n "$TERM" && "$TERM" != "dumb" && -z "$SSH_TTY" ]]; then
     # with exec we are substituting the shell with tmux. so if tmux is closed
     # essentially the terminal will close as well.
-    exec ~/.local/bin/tmux-start
+    bash ~/.local/bin/tmux-start
   fi
 fi
 
@@ -16,26 +16,24 @@ fi
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
+   mkdir -p "$(dirname "$ZINIT_HOME")"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
 # History
-HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTFILE=$HOME/.histfile
+HISTSIZE=50000
+SAVEHIST=50000
 
-setopt appendhistory
-setopt sharehistory
-setopt extendedglob
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_find_no_dups
+setopt SHARE_HISTORY         # write immediately + import from other sessions
+setopt EXTENDED_GLOB
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
 
-unsetopt autocd beep notify
+unsetopt AUTO_CD BEEP NOTIFY
 
 # Vi mode + Key bindings
 bindkey -v
@@ -185,4 +183,18 @@ mkcd() { mkdir -p "$1" && cd "$1"; }
 # Shell integrations (keep at the end)
 eval "$(starship init zsh)"
 source <(fzf --zsh)
+
+# Re-read histfile before fzf search so commands from other tmux panes show up
+fzf-history-widget-synced() {
+  fc -R
+  fzf-history-widget
+}
+zle -N fzf-history-widget-synced
+bindkey '^R' fzf-history-widget-synced
+
 eval "$(zoxide init zsh)"
+
+eval "$("$HOME/.local/bin/mise" activate zsh)"
+
+# OpenClaw Completion
+source "/home/shricodev/.openclaw/completions/openclaw.zsh"

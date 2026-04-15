@@ -104,6 +104,13 @@ keymap.set('t', '<A-j>', '<C-\\><C-n><C-w>j', opts 'Move to the bottom terminal 
 keymap.set('t', '<A-k>', '<C-\\><C-n><C-w>k', opts 'Move to the top terminal split')
 keymap.set('t', '<A-l>', '<C-\\><C-n><C-w>l', opts 'Move to the right terminal split')
 
+-- restart with buffers intact
+vim.keymap.set('n', '<leader>R', function()
+  local session = vim.fn.stdpath 'state' .. '/restart_session.vim'
+  vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
+  vim.cmd('restart source ' .. vim.fn.fnameescape(session))
+end, { desc = 'Restart Neovim' })
+
 -- In the cmd line mode, type %% to get the directory of the current file.
 -- A tip from the Practical Vim book. typing :e %% is same as :e %:h<Tab>
 keymap.set('c', '%%', function()

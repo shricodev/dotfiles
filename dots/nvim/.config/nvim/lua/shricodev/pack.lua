@@ -77,6 +77,10 @@ vim.pack.add({
 
   -- language specific
   gh 'olexsmir/gopher.nvim',
+
+  -- markdown
+  { src = gh 'obsidian-nvim/obsidian.nvim', version = vim.version.range '*' },
+  gh 'MeanderingProgrammer/render-markdown.nvim',
 }, { load = true })
 
 -- some default nvim plugins that needs to be enabled
@@ -103,3 +107,4 @@ require 'shricodev.plugins.lint'
 require 'shricodev.plugins.nvim-ts-autotag'
 require 'shricodev.plugins.fzf-lua'
 require 'shricodev.plugins.gopher'
+require 'shricodev.plugins.markdown'
