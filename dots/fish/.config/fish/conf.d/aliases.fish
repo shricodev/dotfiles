@@ -17,3 +17,8 @@ alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
+
+# clear aliases
+alias cl='printf "\033[2J\033[H"'
+alias clear='printf "\033[2J\033[H"'
+

@@ -21,9 +21,9 @@ abbr -a --position anywhere --set-cursor='%' cdl 'cd % && ls'
 # abbreviations. and there's a lot of chance that I want to use the real ls and
 # cat command at times.)
 abbr -a ll 'eza -lg --color=always --icons --group-directories-first'
-abbr -a la 'eza -a --color=always --git-ignore --group-directories-first'
-abbr -a llg 'eza --tree --level=2 --long -g --icons --git'
-abbr -a l. 'eza -a --color=never | grep -E "^\."'
+abbr -a la 'eza -a --color=always --icons --git-ignore --group-directories-first'
+abbr -a llg 'eza --tree --level=2 --long -g --icons --git --color=always'
+abbr -a l. 'eza -a --color-scale=none --group-directories-first | grep -E "^\."'
 
 # Editor abbreviations
 abbr -a nv nvim
@@ -32,8 +32,6 @@ abbr -a vim nvim
 abbr -a v nvim
 
 # System abbreviations
-abbr -a cl reset
-abbr -a clear reset
 abbr -a ping 'ping -c 10'
 abbr -a df 'df -h'
 abbr -a free 'free -h'
@@ -48,9 +46,9 @@ abbr -a glp 'git log --pretty=format:"%C(yellow)%h%Creset - %C(green)%an%Creset,
 abbr -a glt 'git log --graph --oneline --all --decorate'
 
 # Shell switching
-abbr -a tobash 'sudo chsh $USER -s /bin/bash && echo "Now log out."'
-abbr -a tozsh 'sudo chsh $USER -s /bin/zsh && echo "Now log out."'
-abbr -a tofish 'sudo chsh $USER -s /bin/fish && echo "Now log out."'
+abbr -a tobash 'sudo chsh -s /bin/bash $USER && echo "Now log out."'
+abbr -a tozsh 'sudo chsh -s /bin/zsh $USER && echo "Now log out."'
+abbr -a tofish 'sudo chsh -s /bin/fish $USER && echo "Now log out."'
 
 # Utilities
 abbr -a yz yazi

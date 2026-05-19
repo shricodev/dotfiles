@@ -14,9 +14,17 @@
   changed_when: false
   failed_when: false
 
+- name: Ensure fish is listed in /etc/shells
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: "{{ fish_path.stdout }}"
+    state: present
+  when: fish_path.rc == 0
+
 - name: Set fish as default shell for the user
   become: true
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     shell: "{{ fish_path.stdout }}"
-  when: fish_path.stdout is defined
+  when: fish_path.rc == 0

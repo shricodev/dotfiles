@@ -115,12 +115,15 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --icons --color=always {} | head -n
 
 # Aliases (can be bypassed with 'command ls', 'command cat', etc.)
 # File operations
-alias ls='eza --color=always --icons --group-directories-first'
+alias ls='eza --color=always --icons --group-directories-first --hyperlink'
+alias ll='ls -lg'
+alias la='ls -a --git-ignore'
+alias llg='ls --tree --level=2 --long -g --git'
 alias cat='bat --style=plain --paging=never'
-alias ll='eza -lg --color=always --icons --group-directories-first'
-alias la='eza -a --color=always --git-ignore --group-directories-first'
-alias llg='eza --tree --level=2 --long -g --icons --git'
-alias l.='eza -a --color-scale=none | grep -E "^\."'
+
+# Show dotfiles only
+# Note: no icons here, because icons would appear before "." and break the grep.
+alias l.='eza -a --color-scale=none --group-directories-first | grep -E "^\."'
 
 # Safety aliases
 alias rm='rm -I --preserve-root'

@@ -10,7 +10,8 @@ conform.setup {
     html = { 'prettierd', 'prettier', stop_after_first = true },
     json = { 'prettierd', 'prettier', stop_after_first = true },
     yaml = { 'prettierd', 'prettier', stop_after_first = true },
-    go = { 'gofumpt', 'goimports-reviser' },
+    go = { 'gofumpt', 'goimports-reviser', 'golines' },
+    rust = { 'rustfmt' },
     sh = { 'shfmt' },
     bash = { 'shfmt' },
     sql = { 'sqlfmt' },
@@ -23,6 +24,11 @@ conform.setup {
       'ruff_format',
       -- Sort imports
       'isort',
+    },
+  },
+  formatters = {
+    golines = {
+      extra_args = { '--base-formatter=gofumpt' },
     },
   },
   notify_on_error = false,

@@ -50,6 +50,7 @@ mason_tool_installer.setup {
     'isort', -- python formatter
     'eslint_d', -- js linter
     'gofumpt', -- go formatter
+    'golines', -- go formatter
     'sqlfmt', -- sql formatter
     'goimports-reviser', -- go formatter
     'shfmt', -- shell formatter

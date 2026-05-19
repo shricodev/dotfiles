@@ -27,8 +27,7 @@ Best of both worlds: **Stow** for dotfiles, **Ansible** for system setup.
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/shricodev/dotfiles/main/bin/dotfiles)"
 ```
 
-This auto-detects your OS, installs Ansible, runs the playbook (which installs
-all packages and deploys dotfiles via stow).
+This auto-detects your OS, installs Ansible, runs the playbook (which installs all packages and deploys dotfiles via stow).
 
 **Day-to-day dotfiles** (no ansible needed):
 

@@ -28,9 +28,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.pack.add({
-  -- core dependencies
-  gh 'nvim-lua/plenary.nvim',
-
   -- colorschemes
   gh 'folke/tokyonight.nvim',
   gh 'ellisonleao/gruvbox.nvim',

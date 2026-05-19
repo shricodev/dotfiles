@@ -1,15 +1,16 @@
-# SSH Configuration
-# Automated SSH agent setup and key management
+# Use a fixed socket path under XDG_RUNTIME_DIR. works on any DE or WM.
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-# Only setup SSH agent in interactive shells
 if status is-interactive
-    # Setup SSH agent if not already running
-    if not set -q SSH_AUTH_SOCK
-        eval (ssh-agent -c) >/dev/null 2>&1
-    end
-
-    # Add SSH keys if SSH agent is running
-    if set -q SSH_AUTH_SOCK
-        _add_ssh_keys
+    ssh-add -l >/dev/null 2>&1
+    switch $status
+        case 2
+            # Agent unreachable. remove stale socket and start fresh
+            rm -f $SSH_AUTH_SOCK
+            ssh-agent -a $SSH_AUTH_SOCK >/dev/null
+            _add_ssh_keys
+        case 1
+            # Agent running but empty. just load keys
+            _add_ssh_keys
     end
 end

@@ -12,14 +12,13 @@ require('obsidian').setup {
 }
 
 require('render-markdown').setup {
-  render_modes = true, -- keep rendering een in insert mode
+  render_modes = true,
 
   anti_conceal = {
     enabled = true,
     above = 0,
     below = 0,
     ignore = {
-      -- add more if required
       indent = true,
       sign = true,
       virtual_lines = true,
@@ -32,15 +31,17 @@ require('render-markdown').setup {
     enabled = false,
   },
 
-  -- don't style headings
-  -- heading = {
+  -- don't render links at all
+  -- link = {
   --   enabled = false,
   -- },
 
-  -- win_options = {
-  --   concealcursor = {
-  --     default = vim.o.concealcursor,
-  --     rendered = 'nc',
-  --   },
-  -- },
+  -- don't render markdown inside hover / floating docs / nofile buffers
+  overrides = {
+    buftype = {
+      nofile = {
+        enabled = false,
+      },
+    },
+  },
 }

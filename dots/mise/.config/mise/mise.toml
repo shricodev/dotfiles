@@ -1,2 +1,3 @@
 [tools]
+go = "latest"
 neovim = "latest"

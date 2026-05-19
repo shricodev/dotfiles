@@ -23,6 +23,7 @@ local wanted = {
   'markdown',
   'markdown_inline',
   'regex',
+  'rust',
   'sql',
   'tsx',
   'typescript',
