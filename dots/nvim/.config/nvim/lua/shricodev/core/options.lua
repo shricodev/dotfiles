@@ -1,5 +1,5 @@
 local opt = vim.opt -- For vim options
-local window = vim.wo -- For window options
+-- local window = vim.wo -- For window options
 local global = vim.g -- For global options
 
 global.mapleader = ' '
@@ -17,7 +17,7 @@ global.have_nerd_font = true
 -- vim.g.loaded_netrwPlugin = 1
 
 -- When using codeium.vim instead of codeium.nvim, use this
-global.codeium_disable_bindings = 1
+-- global.codeium_disable_bindings = 1
 
 opt.winborder = 'rounded'
 
@@ -57,7 +57,7 @@ opt.mouse = 'a'
 
 -- Save undo history
 opt.undofile = true
-opt.undodir = vim.fn.expand '~/.vim/undodir' -- Undo directory
+opt.undodir = vim.fn.stdpath 'data' .. '/undodir'
 opt.showtabline = 1 -- Always show tabline (0=never, 1=when multiple tabs, 2=always)
 opt.tabline = '' -- Use default tabline (empty string uses built-in)
 
@@ -128,14 +128,6 @@ opt.errorbells = false
 opt.autochdir = false
 
 opt.encoding = 'utf-8'
-
--- opt.guicursor = ''
--- opt.guicursor = {
---   'i-n-v-c:block', -- Normal, visual, command-line: block cursor
---   've:ver25', -- Insert, visual-exclude: vertical bar cursor with 25% width
---   'r-cr:hor20', -- Replace, command-line replace: horizontal bar cursor with 20% height
---   'o:hor50', -- Operator-pending: horizontal bar cursor with 50% height
--- }
 
 opt.guicursor = 'n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175' -- cursor blinking and settings
 

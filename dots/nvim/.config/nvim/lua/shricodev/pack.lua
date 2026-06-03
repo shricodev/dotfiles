@@ -77,7 +77,7 @@ vim.pack.add({
 
   -- markdown
   { src = gh 'obsidian-nvim/obsidian.nvim', version = vim.version.range '*' },
-  gh 'MeanderingProgrammer/render-markdown.nvim',
+  -- gh 'MeanderingProgrammer/render-markdown.nvim',
 }, { load = true })
 
 -- some default nvim plugins that needs to be enabled
