@@ -10,7 +10,8 @@ lint.linters_by_ft = {
   typescript = { 'eslint_d' },
   javascriptreact = { 'eslint_d' },
   typescriptreact = { 'eslint_d' },
-  python = { 'ruff' },
+  -- python handled by the ruff LSP server (mason); don't also run it here or
+  -- diagnostics show up twice for the same line.
   -- markdown = { 'markdownlint' },
   docker = { 'hadolint' },
   go = { 'golangcilint' },

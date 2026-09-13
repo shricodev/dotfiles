@@ -4,6 +4,13 @@ dotfiles_dir: "{{ ansible_facts['user_dir'] }}/.dotfiles"
 
 dotfiles_repo: "https://github.com/shricodev/dotfiles.git"
 
+# Stow packages that must never have their directories folded into a single
+# symlink. These target directories the application also writes its own state
+# into, so a folded symlink would make that state land inside the dotfiles repo.
+# Keep in sync with NO_FOLDING_PACKAGES in stow.sh.
+stow_no_folding_packages:
+  - kdenlive
+
 ansible_user: "shricodev"
 
 go:

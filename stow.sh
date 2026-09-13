@@ -5,6 +5,12 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 DOTS_DIR="$DOTFILES_DIR/dots"
 
+# Packages that must never have their directories folded into a single symlink.
+# These target directories the application also writes its own state into, so a
+# folded symlink would make that state land inside this repo. Keep in sync with
+# stow_no_folding_packages in ansible/roles/stow/tasks/main.yml.
+NO_FOLDING_PACKAGES=(kdenlive)
+
 usage() {
   echo "Usage: $0 [stow|unstow|restow] [package...]"
   echo ""
@@ -51,9 +57,17 @@ for pkg in "${PACKAGES[@]}"; do
     echo "Warning: package '$pkg' not found in $DOTS_DIR, skipping."
     continue
   fi
+  FOLD_FLAG=""
+  for nf in "${NO_FOLDING_PACKAGES[@]}"; do
+    if [[ "$pkg" == "$nf" ]]; then
+      FOLD_FLAG="--no-folding"
+      break
+    fi
+  done
+
   echo "${ACTION}ing $pkg..."
   # shellcheck disable=SC2086
-  stow -d "$DOTS_DIR" -t "$HOME" $STOW_FLAG "$pkg"
+  stow -d "$DOTS_DIR" -t "$HOME" $STOW_FLAG $FOLD_FLAG "$pkg"
 done
 
 echo "Done."

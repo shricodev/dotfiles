@@ -75,6 +75,7 @@ Compatible with Ansible 2.20+. All system facts are accessed via
 │   ├── zed/                   #   ~/.config/zed/
 │   ├── git/                   #   ~/.gitconfig, ~/.gitignore_global
 │   ├── gnupg/                 #   ~/.gnupg/
+│   ├── kdenlive/              #   ~/.local/share/kdenlive/layouts/
 │   ├── scripts/               #   ~/.local/bin/
 │   └── ...                    #   (i3, picom, polybar, gtk, etc.)
 ├── ansible/                   # System automation
@@ -118,6 +119,59 @@ stow -d dots -t ~ nvim
 # re-deploy (unstow + stow)
 ./stow.sh restow
 ```
+
+### Kdenlive layouts
+
+Only the custom editing layouts are tracked (`Custom`, `Premiere`, `Vertical`).
+They are plain JSON with no absolute paths, so they move between machines and
+install methods unchanged. Settings (`kdenliverc`) are deliberately **not**
+tracked — Kdenlive rewrites that file on nearly every exit and hardcodes
+install-specific binary paths in its `[env]` group.
+
+`stow kdenlive` puts them at `~/.local/share/kdenlive/layouts`, which is where a
+native build already reads from. Flatpak and macOS read from their own sandboxed
+locations, so they need a one-time symlink back to it.
+
+| Install       | Layout directory                                            | Setup                           |
+| ------------- | ----------------------------------------------------------- | ------------------------------- |
+| Native Linux  | `~/.local/share/kdenlive/layouts`                           | `stow` only                     |
+| Flatpak       | `~/.var/app/org.kde.kdenlive/data/kdenlive/layouts`         | `stow` + `kdenlive-layouts link` |
+| macOS         | `~/Library/Application Support/kdenlive/layouts`            | `stow` + `kdenlive-layouts link` |
+
+**Native Linux** (dnf, pacman, apt) — nothing beyond the usual stow:
+
+```bash
+sudo dnf install kdenlive
+stow -d dots -t ~ kdenlive      # already done by the ansible bootstrap
+```
+
+**Flatpak or macOS** — one extra command, once per machine:
+
+```bash
+flatpak install flathub org.kde.kdenlive   # or: brew install --cask kdenlive
+kdenlive                                   # launch once so it creates its data dir
+kdenlive-layouts link
+```
+
+Order does not matter — `stow` may run before Kdenlive is even installed.
+
+### Managing tracked layouts
+
+```bash
+kdenlive-layouts status   # which layouts are tracked
+kdenlive-layouts pull     # adopt newly saved layouts into the repo
+```
+
+Editing an existing layout writes straight through its symlink into this repo, so
+it is tracked with no extra step. Only a layout saved under a **brand new name**
+lands outside the repo — `kdenlive-layouts pull` adopts it and re-stows.
+
+> [!NOTE]
+> `kdenlive` is in `stow_no_folding_packages`, so stow creates real directories
+> and symlinks the layout files individually. Without `--no-folding`, stow would
+> collapse `~/.local/share/kdenlive` into one symlink pointing at this repo, and
+> Kdenlive's own `.backup/`, `titles/` and `library/` state would be written
+> inside the dotfiles.
 
 ### Ansible (system setup)
 

@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+# Keep Kdenlive's custom layouts tracked in the dotfiles repo.
+#
+# `stow kdenlive` puts the tracked layouts at ~/.local/share/kdenlive/layouts,
+# which is where a native Linux build (dnf, pacman, apt) already reads from.
+# Flatpak and macOS read from their own locations, so they need a symlink back.
+#
+#   link    point Flatpak / macOS at the stowed layouts  (run once per machine)
+#   pull    adopt layouts saved since the last run into the repo
+#   status  show which layouts are tracked
+#
+# Editing an existing layout writes straight through to the repo. Only a layout
+# saved under a brand new name needs `pull`.
+
+set -euo pipefail
+
+CANONICAL="$HOME/.local/share/kdenlive/layouts"
+
+if [[ ! -d "$CANONICAL" ]]; then
+  echo "error: $CANONICAL not found. Run 'stow -d dots -t ~ kdenlive' first." >&2
+  exit 1
+fi
+
+# Prefer resolving the repo through an existing symlink, so this keeps working
+# if the dotfiles live somewhere other than ~/.dotfiles.
+repo_layouts() {
+  local f
+  for f in "$CANONICAL"/*.json; do
+    if [[ -L "$f" ]]; then
+      dirname "$(readlink -f "$f")"
+      return
+    fi
+  done
+  echo "${DOTFILES_DIR:-$HOME/.dotfiles}/dots/kdenlive/.local/share/kdenlive/layouts"
+}
+
+link_one() {
+  local target="$1" label="$2"
+
+  if [[ ! -d "${target%/*}" ]]; then
+    echo "skip   $label: ${target%/*} does not exist (install and launch Kdenlive first)"
+    return
+  fi
+
+  if [[ -L "$target" && "$(readlink -f "$target")" == "$(readlink -f "$CANONICAL")" ]]; then
+    echo "ok     $label: already linked"
+    return
+  fi
+
+  # Keep whatever is there, in case it holds layouts not yet in the repo.
+  if [[ -e "$target" || -L "$target" ]]; then
+    local backup
+    backup="$target.pre-stow.$(date +%Y%m%d%H%M%S)"
+    mv "$target" "$backup"
+    echo "moved  $label: existing directory -> ${backup##*/}"
+  fi
+
+  ln -s "$CANONICAL" "$target"
+  echo "linked $label -> $CANONICAL"
+}
+
+cmd_link() {
+  case "$(uname -s)" in
+  Linux)
+    link_one "$HOME/.var/app/org.kde.kdenlive/data/kdenlive/layouts" "flatpak"
+    ;;
+  Darwin)
+    # Kdenlive on macOS uses QStandardPaths::AppDataLocation. Confirm with:
+    #   find ~/Library -maxdepth 4 -path '*kdenlive*' -name layouts
+    link_one "$HOME/Library/Application Support/kdenlive/layouts" "macos"
+    ;;
+  esac
+  echo "native Linux builds read $CANONICAL directly; no link needed."
+}
+
+cmd_pull() {
+  local repo adopted=0 f
+  repo="$(repo_layouts)"
+
+  if [[ ! -d "$repo" ]]; then
+    echo "error: repo layout directory not found: $repo" >&2
+    exit 1
+  fi
+
+  for f in "$CANONICAL"/*.json; do
+    [[ -e "$f" ]] || continue
+    [[ -L "$f" ]] && continue # already tracked
+    mv "$f" "$repo/"
+    echo "adopted $(basename "$f")"
+    adopted=1
+  done
+
+  if [[ "$adopted" -eq 0 ]]; then
+    echo "nothing to adopt; all layouts already tracked."
+    return
+  fi
+
+  # Re-stow so the adopted files become symlinks again. stow.sh owns the
+  # --no-folding list, so go through it rather than calling stow directly.
+  local root="$repo/../../../../../.."
+  if [[ -x "$root/stow.sh" ]]; then
+    (cd "$root" && ./stow.sh restow kdenlive)
+  else
+    echo "note: run 'stow -d dots -t ~ --no-folding -R kdenlive' to finish." >&2
+  fi
+  echo "done. commit the adopted layouts in your dotfiles repo."
+}
+
+cmd_status() {
+  local f
+  printf '%-28s %s\n' "LAYOUT" "STATE"
+  for f in "$CANONICAL"/*.json; do
+    [[ -e "$f" ]] || continue
+    if [[ -L "$f" ]]; then
+      printf '%-28s %s\n' "$(basename "$f")" "tracked"
+    else
+      printf '%-28s %s\n' "$(basename "$f")" "untracked (run: kdenlive-layouts pull)"
+    fi
+  done
+}
+
+case "${1:-link}" in
+link) cmd_link ;;
+pull) cmd_pull ;;
+status) cmd_status ;;
+*)
+  echo "Usage: ${0##*/} [link|pull|status]" >&2
+  exit 1
+  ;;
+esac
